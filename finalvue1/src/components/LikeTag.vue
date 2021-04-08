@@ -1,11 +1,20 @@
 <template>
+<!--  <div style="display: inline-block">-->
+<!--    <el-tag-->
+<!--      v-for="tag in tags"-->
+<!--      :key="tag.name"-->
+<!--      closable-->
+<!--      :type="tag.type">-->
+<!--      {{tag.name}}-->
+<!--    </el-tag>-->
+<!--  </div>-->
   <div style="display: inline-block">
     <el-tag
-      v-for="tag in tags"
-      :key="tag.name"
-      closable
-      :type="tag.type">
-      {{tag.name}}
+      v-for="item in items"
+      :key="item.label"
+      :type="item.type"
+      effect="plain">
+      {{ item.label }}
     </el-tag>
   </div>
 </template>
@@ -15,9 +24,9 @@ export default {
   name: 'LikeTag',
   data () {
     return {
-      tags: [
-        { name: '标签一', type: '' },
-        { name: '标签二', type: 'success' }
+      items: [
+        { type: 'success', label: 'Software Eng' },
+        { type: 'success', label: 'Coding Test' }
       ]
     }
   }

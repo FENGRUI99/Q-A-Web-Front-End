@@ -1,6 +1,6 @@
 <template>
 <div>
-  <el-button type="success" size="medium">Add Questions</el-button>
+  <el-button id= ask type="success" ><br>Add Questions<br><br></el-button>
 <!--  <div>-->
 <!--    <v-btn-->
 <!--    class="mx-2"-->
@@ -24,5 +24,7 @@ export default {
 </script>
 
 <style scoped>
-
+#ask{
+  font-size:22px;
+}
 </style>
