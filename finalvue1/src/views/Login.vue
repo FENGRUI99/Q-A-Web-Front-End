@@ -1,52 +1,52 @@
 <template>
   <div>
-  <el-header>
+    <el-header>
       <div>
         <RealHead></RealHead>
       </div>
-  </el-header>
-  <body>
+    </el-header>
+    <body>
 
-<!--  <iframe src="/head" width="100%" height="50%" frameborder="0"></iframe>-->
-  <div class="side" style="height: 700px"><BR/>
-    <div class = "side p" style="width: 70%;line-height:50px;">
-      <div style="width: 70%;margin: auto">
+    <!--  <iframe src="/head" width="100%" height="50%" frameborder="0"></iframe>-->
+    <div class="side" style="height: 700px"><BR/>
+      <div class = "side p" style="width: 70%;line-height:50px;">
+        <div style="width: 70%;margin: auto">
 
-        <h2 style="color: forestgreen;line-height:30px;flex-direction: column-reverse" >
-          LOG IN
-        </h2>
-        <div style="width: 50%;float: left">
-          <table style="border-right-color: #cccccc;width: 100%">
-            <tr><td><div class="link-top" style="line-height:30px;width: 70%" ></div><BR/></td></tr>
-            <tr><td>Student ID</td></tr>
-            <tr><td><input type="text" required id="id" value=""/></td></tr>
-            <tr><td>Password</td></tr>
-            <tr><td><input type="password" required="required" id="password" value=""/></td></tr>
-          </table>
-        </div>
-        <div >
-          <table style="color: green">
-            <tr><td>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Louder Slogan !!!!!<br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And Ambition !!!!!!<br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goes Here !!!!!!!!!!!<br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Louder Slogan !!!!!<br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goes Here !!!!!!!!!!!<br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Louder Slogan !!!!!<br/>
-            </td></tr>
-          </table>
-        </div><br/>
-        <div style="clear:both;text-align: center">
+          <h2 style="color: forestgreen;line-height:30px;flex-direction: column-reverse" >
+            LOG IN
+          </h2>
+          <div style="width: 50%;float: left">
+            <table style="border-right-color: #cccccc;width: 100%">
+              <tr><td><div class="link-top" style="line-height:30px;width: 70%" ></div><BR/></td></tr>
+              <tr><td>Student ID</td></tr>
+              <tr><td><input type="text" required id="id" value=""/></td></tr>
+              <tr><td>Password</td></tr>
+              <tr><td><input type="password" required="required" id="password" value=""/></td></tr>
+            </table>
+          </div>
+          <div >
+            <table style="color: green">
+              <tr><td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Louder Slogan !!!!!<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And Ambition !!!!!!<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goes Here !!!!!!!!!!!<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Louder Slogan !!!!!<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goes Here !!!!!!!!!!!<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Louder Slogan !!!!!<br/>
+              </td></tr>
+            </table>
+          </div><br/>
+          <div style="clear:both;text-align: center">
 
-          <button style="font-size: large; color: white" onclick="Login()" v-on:click="toPage">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button style="font-size: large; color: white" onclick="onClick()">Sign up</button>
+            <button style="font-size: large; color: white" onclick="Login()" v-on:click="toPage">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button style="font-size: large; color: white" onclick="Login()" v-on:click="toNextPage">Sign up</button>
 
-        </div>
-        <br/></div>
-    </div><br/><br/>
-    <iframe src="/foot" width="100%" height="50%" frameborder="0"></iframe>
-  </div>
-  </body>
+          </div>
+          <br/></div>
+      </div><br/><br/>
+      <iframe src="/foot" width="100%" height="50%" frameborder="0"></iframe>
+    </div>
+    </body>
   </div>
 </template>
 
@@ -55,8 +55,10 @@ import RealHead from '../components/realhead'
 import Body from '../components/Body'
 export default {
   name: 'Login',
-  components: {Body, RealHead
+  components: {
+    Body, RealHead
   },
+
   methods: {
     toPage () {
       this.$router.push({
@@ -70,6 +72,11 @@ export default {
         this.$store.commit('setList', response.data.entity)
       }).catch((response) => {
         console.log(response)
+      })
+    },
+    toNextPage () {
+      this.$router.push({
+        path: '../views/register.vue', name: 'register'
       })
     }
   }

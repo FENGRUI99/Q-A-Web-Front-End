@@ -1,11 +1,11 @@
 <template>
-  <div style="background: #eaeaea">
+  <div style="background: #f6f6f6" >
     <el-container>
       <el-header>
         <header123></header123>
       </el-header>
       <el-container>
-        <el-aside width="200px">
+        <el-aside width=30%>
           <Aside></Aside>
         </el-aside>
         <el-container>
@@ -18,7 +18,6 @@
         </el-container>
       </el-container>
     </el-container>
-
   </div>
 </template>
 <script>

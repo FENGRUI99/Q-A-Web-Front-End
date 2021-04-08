@@ -1,12 +1,13 @@
 <template>
-  <div style="display: inline-block">
+  <div style="display: inline-block;margin: 0 auto;">
+    <span>Sorted by</span>
     <el-select
       v-model="value"
       multiple
       filterable
       allow-create
       default-first-option
-      placeholder="请选择文章标签">
+      placeholder="Likes">
       <el-option
         v-for="item in options"
         :key="item.value"

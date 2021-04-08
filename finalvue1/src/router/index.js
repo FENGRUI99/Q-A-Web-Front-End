@@ -4,6 +4,7 @@ import Login from '../views/Login'
 import HomePage from '../views/HomePage'
 import PersonalDetail from '../views/PersonalDetail'
 import Header from '../components/Header'
+import register from '../views/register'
 
 Vue.use(Router)
 
@@ -29,6 +30,16 @@ export default new Router({
       path: '/Header',
       name: 'Header',
       component: Header
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Login
     }
   ]
 })

@@ -1,10 +1,15 @@
 <template>
   <div>
-    <selectedBox></selectedBox>
-    <multiSelectedBox></multiSelectedBox>
+    <div id=bar style="background: #ffffff; width: 85%">
+      <multiSelectedBox></multiSelectedBox>
+      <selectedBox></selectedBox>
+    </div>
+    <div>
+      <br>
+      <br>
+    </div>
   </div>
 </template>
-
 <script>
 import MultiSelectedBox from './MultiSelectedBox'
 import SelectedBox from './SelectedBox'
@@ -19,5 +24,7 @@ export default {
 </script>
 
 <style scoped>
-
+#bar{
+  border-radius: 10px;
+}
 </style>

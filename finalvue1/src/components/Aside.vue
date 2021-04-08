@@ -1,8 +1,10 @@
 <template>
-<div>
-  <AskQuestion></AskQuestion>
-  <TopContributors></TopContributors>
-</div>
+  <div class="aside" >
+    <br>
+    <AskQuestion></AskQuestion>
+    <br>
+    <TopContributors></TopContributors>
+  </div>
 </template>
 
 <script>
@@ -19,5 +21,7 @@ export default {
 </script>
 
 <style scoped>
-
+.aside{
+  width: 400px;
+}
 </style>

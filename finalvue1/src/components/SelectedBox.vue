@@ -1,6 +1,7 @@
 <template>
-  <div style="display: inline-block">
-    <el-select v-model="value" placeholder="请选择">
+  <div style="display: inline-block;margin: 0 10%;">
+    <span>Tags Filter</span>
+    <el-select v-model="value" placeholder="Choose">
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -8,6 +9,7 @@
         :value="item.value">
       </el-option>
     </el-select>
+
   </div>
 </template>
 

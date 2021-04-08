@@ -1,26 +1,26 @@
 <template>
-<div>
-  <div style=" background:#ffffff; width:180px; height:150px;">
-    <p>Top Contributors</p>
-    <div>
+  <div>
+    <table id="t1">
+      <p>Top Contributors</p>
       <table id="tc">
-        <tr>CQR</tr>
+        <tr> CQR </tr>
         <tr>CFR</tr>
         <tr>YRM</tr>
       </table>
-    </div>
+
+    </table>
+    <br>
+    <table id="t2">
+      <p>Hot Tag Trend</p>
+      <div>
+        <table id="ht">
+          <tr>UCSD</tr>
+          <tr>WLB</tr>
+          <tr>aaa</tr>
+        </table>
+      </div>
+    </table>
   </div>
-  <div style=" background:#ffffff; width:180px; height:150px">
-    <p>Hot Tag Trend</p>
-    <div>
-  <table id="ht">
-    <tr>UCSD</tr>
-    <tr>WLB</tr>
-    <tr>aaa</tr>
-  </table>
-    </div>
-  </div>
-</div>
 </template>
 
 <script>
@@ -34,4 +34,12 @@ export default {
 <style scoped>
 #ht{margin:0 auto;width:180px;position: relative; top:0px;height: 50px;left: 0px}
 #tc{margin:0 auto;width:180px;position: relative; top:0px;height: 50px;left: 0px}
+#t1{
+  margin: 5% 30%; background:#ffffff; width:180px; height:150px;
+  border-radius: 10px;
+}
+#t2{
+  margin: 10% 30%; background:#ffffff; width:180px; height:150px;
+  border-radius: 10px;
+}
 </style>

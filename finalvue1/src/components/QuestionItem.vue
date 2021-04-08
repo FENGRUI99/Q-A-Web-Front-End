@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div id="block">
     <table class="abc" v-for="(item,index) in this.$store.getters.getList" v-bind:key="index">
-      <div style="display: inline-block">
+      <div style="display: inline-block" >
         <table>
-           {{item.question_description}} -{{index}}
+          {{item.question_description}} -{{index}}
         </table>
         <div style="display: inline-block">
           <span>Posted by Qirui 1min ago</span>
@@ -18,7 +18,6 @@
       </div>
     </table>
   </div>
-
 </template>
 
 <script>
@@ -34,9 +33,12 @@ export default {
 
 <style scoped>
 .abc {
-
-  background: #d9fff8;
-
-  border-radius: 25px;
+  background: #ffffff;
+  border-radius: 10px;
+  width: 75%;
+}
+#block {
+  margin: 0 5%;
+  width:100%;
 }
 </style>
