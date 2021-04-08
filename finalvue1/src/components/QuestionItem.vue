@@ -1,6 +1,7 @@
 <template>
   <div id="block">
-    <table class="abc" v-for="(item,index) in this.$store.getters.getList" v-bind:key="index">
+    <div v-for="(item,index) in this.$store.getters.getList" v-bind:key="index">
+     <table class="abc">
       <div style="display: inline-block" >
           <p>try to write title here</p>
           <p>try to write introduction here test test test test test test test test test</p>
@@ -28,7 +29,10 @@
       </div>
       <br>
       <br>
-    </table>
+     </table>
+      <br>
+      <br>
+    </div>
   </div>
 </template>
 
@@ -47,7 +51,7 @@ export default {
 .abc {
   background: #ffffff;
   border-radius: 10px;
-  width: 85%;
+  width: 90%;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
 }
 #block {

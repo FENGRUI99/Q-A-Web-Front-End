@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id=bar style="background: #ffffff; width: 85%">
+    <div id=bar style="background: #ffffff; width: 90%">
       <multiSelectedBox></multiSelectedBox>
       <selectedBox></selectedBox>
     </div>
