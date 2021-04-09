@@ -1,18 +1,18 @@
 <template>
   <div>
-    <table id="tt" height="1px" style="background: white">
-    <td>
-    <img src="../assets/logo1.png" width="200px"  >
-    </td>
-    <td>
-    <p id="title" rows="3" cols="20" >ask louder here</p>
-    </td>
-    <td>
-    <searchBox></searchBox>
-    </td>
-    <td>
-      <nameTag></nameTag>
-    </td>
+    <table id="tt" height="0px" style="background: white">
+      <td>
+        <img src="../assets/logo1.png" width="200px"  >
+      </td>
+      <td>
+        <p id="title" rows="3" cols="20" >ask louder here</p>
+      </td>
+      <td>
+        <searchBox></searchBox>
+      </td>
+      <td>
+        <nameTag></nameTag>
+      </td>
     </table>
   </div>
 </template>

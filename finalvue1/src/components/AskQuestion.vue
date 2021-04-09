@@ -1,5 +1,6 @@
 <template>
 <div>
+  <br>
   <el-button id= ask type="success" ><br>Add Questions<br><br></el-button>
 <!--  <div>-->
 <!--    <v-btn-->
@@ -25,6 +26,10 @@ export default {
 
 <style scoped>
 #ask{
+  margin: auto;
+  width: 50%;
   font-size:22px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
 }
+
 </style>
