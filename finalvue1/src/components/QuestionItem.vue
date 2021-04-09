@@ -1,30 +1,32 @@
 <template>
-  <div id="block">
+  <div id="block" >
     <div v-for="(item,index) in this.$store.getters.getList" v-bind:key="index">
      <table class="abc">
-       <td>
-      <div >
+      <div style="display: inline-block" >
           <p>{{item.question_description}}</p>
           <p>{{item.question_detail}}</p>
-        <table style="margin: 0 5%;width: 100%;">
-         <td> <p>Posted by {{item.user_id}} 1min ago </p></td>
-         <td> <likeTag></likeTag></td>
-        </table>
-    </div>
-       </td>
+        <div style="display: inline-block">
+          <p>Posted by {{item.user_id}} 1min ago test test test &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </div>
+       <span style="position: relative;margin-right: 35px"> <likeTag></likeTag></span>
+      </div>
+      <div style="display: inline-block">
         <br>
-       <td>
-        <el-button plain size="medium">
+        <el-button @click="liked(index, item.question_id)" plain size="medium">
+          <table>
           <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tr>
           <tr>{{item.likes}}</tr>
+          </table>
         </el-button>
         <br>
         <br>
         <el-button type="success" plain size="medium">
+          <table>
           <tr>Comments</tr>
           <tr>{{item.number_comment}}</tr>
+          </table>
         </el-button>
-       </td>
+      </div>
       <br>
       <br>
      </table>
@@ -48,6 +50,29 @@ export default {
         path: '/ProblemDetailPage',
         name: 'ProblemDetailPage'
       })
+    },
+    liked (index, questionId) {
+      alert(this.$store.commit('getLikeFlag', index) === false)
+      if (this.$store.commit('getLikeFlag', index) === false) {
+        this.$store.commit('addLike', index, 1)
+        this.axios.post('http://localhost:8080/like', {
+          request: questionId,
+          msg: 1}
+        ).then((response) => {
+          console.log(response.data.entity)
+        }).catch((response) => {
+          console.log(response)
+        })
+      } else {
+        this.$store.commit('addLike', index, questionId, -1)
+        this.axios.post('http://localhost:8080/like', {
+          request: questionId,
+          msg: -1}
+        ).then((response) => {
+        }).catch((response) => {
+          console.log(response)
+        })
+      }
     }
   }
 }

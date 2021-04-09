@@ -5,6 +5,7 @@
       filterable
       allow-create
       multiple
+      @change="filtered"
       v-model="value" placeholder="Choose">
       <el-option
         v-for="item in options"
@@ -23,31 +24,31 @@ export default {
   data () {
     return {
       options: [{
-        value: 'Test & Coursework',
+        value: '1',
         label: 'Test & Coursework'
       }, {
-        value: 'Software Engi',
+        value: '2',
         label: 'Software Engi'
       }, {
-        value: 'Learning Skills',
+        value: '3',
         label: 'Learning Skills'
       }, {
-        value: 'Group Project',
+        value: '4',
         label: 'Group Project'
       }, {
-        value: 'Internship',
+        value: '5',
         label: 'Internship'
       }, {
-        value: 'Academic Courses',
+        value: '6s',
         label: 'Academic Courses'
       }, {
-        value: 'Career',
+        value: '7',
         label: 'Career'
       }, {
-        value: 'Life Study Balance',
+        value: '8',
         label: 'Life Study Balance'
       }, {
-        value: 'Graduate Application',
+        value: '9',
         label: 'Graduate Application'
       }],
       value: []
@@ -56,7 +57,7 @@ export default {
   methods: {
     filtered () {
       this.axios.post('http://localhost:8080/listbyTag', {
-        request: '',
+        request: this.value.toString(),
         msg: ''}
       ).then((response) => {
         this.$store.commit('setList', response.data.entity)
