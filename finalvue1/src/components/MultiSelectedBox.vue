@@ -1,6 +1,6 @@
 <template>
   <div style="display: inline-block;margin: 0 auto;">
-    <span>Sorted by</span>
+    <span @click="Sorted">Sorted by</span>
     <el-select
       v-model="value"
       multiple
@@ -25,16 +25,40 @@ export default {
   data () {
     return {
       options: [{
-        value: 'HTML',
-        label: 'HTML'
+        value: 'Likes',
+        label: 'Likes'
       }, {
-        value: 'CSS',
-        label: 'CSS'
+        value: 'Time',
+        label: 'Time'
       }, {
-        value: 'JavaScript',
-        label: 'JavaScript'
+        value: 'Comments',
+        label: 'Comments'
       }],
       value: []
+    }
+  },
+  methods: {
+    Sorted () {
+      if (this.value === 'Likes') {
+        this.axios.post('http://localhost:8080/sortbyLikes').then((response) => {
+          this.$store.commit('setList', response.data.entity)
+          alert()
+        }).catch((response) => {
+          console.log(response)
+        })
+      } else if (this.value === 'Time') {
+        this.axios.post('http://localhost:8080/sortbyTime').then((response) => {
+          this.$store.commit('setList', response.data.entity)
+        }).catch((response) => {
+          console.log(response)
+        })
+      } else if (this.value === 'Comments') {
+        this.axios.post('http://localhost:8080/sortbyAnswers').then((response) => {
+          this.$store.commit('setList', response.data.entity)
+        }).catch((response) => {
+          console.log(response)
+        })
+      }
     }
   }
 }

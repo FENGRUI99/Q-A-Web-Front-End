@@ -24,13 +24,15 @@ export default {
   methods: {
     getList () {
       this.axios.post('http://localhost:8080/search', {
-        question_description: this.input,
-        question_detail: ''
+        request: this.input.toString(),
+        msg: ''
       }).then((response) => {
+        alert(response.data.entity.length)
         this.$store.commit('setList', response.data.entity)
       }).catch((response) => {
         console.log(response)
       })
+      console.log(this.$store.state.list)
     }
   }
 }

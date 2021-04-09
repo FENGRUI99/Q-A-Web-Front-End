@@ -11,7 +11,6 @@
     <div class="side" style="height: 700px"><BR/>
       <div class = "side p" style="width: 70%;line-height:50px;">
         <div style="width: 70%;margin: auto">
-
           <h2 style="color: forestgreen;line-height:30px;flex-direction: column-reverse" >
             LOG IN
           </h2>
@@ -38,8 +37,8 @@
           </div><br/>
           <div style="clear:both;text-align: center">
 
-            <button style="font-size: large; color: white" onclick="Login()" v-on:click="toPage">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button style="font-size: large; color: white" onclick="Login()" v-on:click="toNextPage">Sign up</button>
+            <button style="font-size: large; color: white" v-on:click="toPage">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button style="font-size: large; color: white"  v-on:click="toRegister">Sign up</button>
 
           </div>
           <br/></div>
@@ -74,9 +73,10 @@ export default {
         console.log(response)
       })
     },
-    toNextPage () {
+    toRegister () {
       this.$router.push({
-        path: '../views/register.vue', name: 'register'
+        path: '/Register',
+        name: 'Register'
       })
     }
   }
@@ -98,7 +98,6 @@ export default {
   justify-content: center;
   align-items: center;
   align-content: center;
-
 }
 .side {
   margin:0 auto;

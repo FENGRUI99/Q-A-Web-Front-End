@@ -5,7 +5,7 @@
       <div style="display: inline-block" >
           <p>try to write title here</p>
           <p>try to write introduction here test test test test test test test test test</p>
-         <p>{{item.question_description}} -{{index}}</p>
+         <p>{{item}} -{{index}}</p>
         <div style="display: inline-block">
           <p>Posted by Qirui 1min ago test test test &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         </div>
