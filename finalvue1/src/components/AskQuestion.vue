@@ -1,6 +1,6 @@
 <template>
 <div>
-  <el-button id= ask type="success" ><br>Add Questions<br><br></el-button>
+  <el-button type="success" round id= ask ><br>Add Questions<br><br></el-button>
 <!--  <div>-->
 <!--    <v-btn-->
 <!--    class="mx-2"-->
@@ -28,7 +28,11 @@ export default {
   margin: auto;
   width: 50%;
   font-size:22px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  background: #81D454;
+  border: 1px;
+  border-style: solid;
+  border-color: #81D454;
 }
 
 </style>

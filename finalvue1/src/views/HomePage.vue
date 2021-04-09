@@ -5,7 +5,7 @@
         <header123></header123>
       </el-header>
       <el-container>
-        <el-aside width=30%>
+        <el-aside width=28%>
           <Aside></Aside>
         </el-aside>
         <el-container>

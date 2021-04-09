@@ -1,15 +1,17 @@
 <template>
-  <div style="display: inline-block">
-    <div style="display: inline-block">
+  <div>
+    <table>
+      <td width="75%">
       <el-input
-        placeholder="请输入内容"
+        placeholder="search something..."
         prefix-icon="el-icon-search"
-        v-model="input" style="display: inline-block" >
+        v-model="input">
       </el-input>
-    </div>
-    <div style="display: inline-block">
-      <el-button type="primary" icon="el-icon-search" @click="getList" style="display: inline-block" >搜索</el-button>
-    </div>
+      </td>
+      <td>
+      <el-button type="success" icon="el-icon-search" @click="getList">search</el-button>
+      </td>
+    </table>
   </div>
 </template>
 

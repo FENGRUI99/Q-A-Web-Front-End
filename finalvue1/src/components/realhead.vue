@@ -1,11 +1,11 @@
 <template>
   <div>
-    <table id="tt" height="0px" style="background: white; position: fixed; z-index:5">
+    <table id="tt">
       <td>
         <img src="../assets/logo1.png" width="200px"  >
       </td>
       <td>
-        <p id="title" rows="3" cols="20" >ask louder here</p>
+        <p id="title">ask louder here</p>
       </td>
       <td>
         <searchBox></searchBox>
@@ -31,7 +31,17 @@ export default {
 </script>
 
 <style scoped>
-#tt {margin:0 auto;width:100%;position: absolute; top:0px;height: min-content;left: 0px}
+#tt {
+  background: white;
+  border: 1px;
+  border-style: solid;
+  border-color: #ffffff #ffffff #81D454 #ffffff;
+  position: fixed;
+  z-index:5;
+  margin:0px auto;
+  width:100%;
+  top:0px;
+  left: 0px}
 
 #title{font-size: xx-large}
 </style>

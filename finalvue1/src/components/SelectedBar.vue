@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id=bar style="background: #ffffff; width: 90%">
+    <div id=bar>
       <multiSelectedBox></multiSelectedBox>
       <selectedBox></selectedBox>
     </div>
@@ -26,5 +26,8 @@ export default {
 <style scoped>
 #bar{
   border-radius: 10px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  width: 90%;
 }
 </style>

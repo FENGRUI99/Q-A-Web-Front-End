@@ -32,8 +32,8 @@ export default {
 </script>
 
 <style scoped>
-#ht{margin:0 auto;width:180px;position: relative; top:0px;height: 50px;left: 0px}
-#tc{margin:0 auto;width:180px;position: relative; top:0px;height: 50px;left: 0px;
+#ht{margin:0 auto;position: relative; top:0px;height: 50px;left: 0px}
+#tc{margin:0 auto;position: relative; top:0px;height: 50px;left: 0px;
 }
 #t1{
   /*margin: 5% 30%; */
