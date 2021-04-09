@@ -8,7 +8,7 @@
 <!--      {{tag.name}}-->
 <!--    </el-tag>-->
 <!--  </div>-->
-  <div style="display: inline-block">
+  <div>
     <el-tag
       v-for="item in items"
       :key="item.label"

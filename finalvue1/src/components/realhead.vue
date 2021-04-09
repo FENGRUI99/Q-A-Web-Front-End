@@ -41,7 +41,7 @@ export default {
   margin:0px auto;
   width:100%;
   top:0px;
-  left: 0px}
-
+  left: 0px
+}
 #title{font-size: xx-large}
 </style>

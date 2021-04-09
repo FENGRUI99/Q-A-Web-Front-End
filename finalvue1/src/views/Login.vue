@@ -1,40 +1,36 @@
 <template>
   <div>
-    <el-header>
-      <div>
-        <RealHead></RealHead>
-      </div>
-    </el-header>
-    <body>
-
-    <!--  <iframe src="/head" width="100%" height="50%" frameborder="0"></iframe>-->
-    <div class="side" style="height: 700px"><BR/>
-      <div class = "side p" style="width: 70%;line-height:50px;">
+  <div class="background">
+    <img :src="imgSrc" width="100%" height="100%" alt="" />
+  </div>
+<!--    <el-header>-->
+<!--      <div>-->
+<!--        <RealHead></RealHead>-->
+<!--      </div>-->
+<!--    </el-header>-->
+    <div>
+      <br>
+      <br>
+      <table class = "side p" style="width: 55%;line-height:45px;background: rgba(256,256,256,.5);">
+        <div class="animate seven" style="margin: auto;">
+          <br>
+          <span>L</span><span>o</span><span>g</span>&nbsp;
+          <span>i</span><span>n</span>&nbsp;
+          <span>L</span><span>o</span><span>u</span><span>d</span><span>e</span><span>r</span><span>!</span>
+          <br>
+        </div>
         <div style="width: 70%;margin: auto">
-          <h2 style="color: forestgreen;line-height:30px;flex-direction: column-reverse" >
-            LOG IN
-          </h2>
-          <div style="width: 50%;float: left">
-            <table style="border-right-color: #cccccc;width: 100%">
-              <tr><td><div class="link-top" style="line-height:30px;width: 70%" ></div><BR/></td></tr>
-              <tr><td>Student ID</td></tr>
-              <tr><td><input type="text" required id="id" value=""/></td></tr>
-              <tr><td>Password</td></tr>
-              <tr><td><input type="password" required="required" id="password" value=""/></td></tr>
+          <div>
+            <table style="width: 100% ;">
+              <tr><div class="link-top" style="line-height:30px;width: 70%" ></div>
+                <BR/></tr>
+              <tr>Student ID</tr>
+              <tr><input type="text" required id="id" value=""/></tr>
+              <tr>Password</tr>
+              <tr><input type="password" required="required" id="password" value=""/></tr>
             </table>
           </div>
-          <div >
-            <table style="color: green">
-              <tr><td>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Louder Slogan !!!!!<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And Ambition !!!!!!<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goes Here !!!!!!!!!!!<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Louder Slogan !!!!!<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Goes Here !!!!!!!!!!!<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Louder Slogan !!!!!<br/>
-              </td></tr>
-            </table>
-          </div><br/>
+             <br/>
           <div style="clear:both;text-align: center">
 
             <button style="font-size: large; color: white" v-on:click="toPage">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -42,10 +38,9 @@
 
           </div>
           <br/></div>
-      </div><br/><br/>
+      </table><br/><br/>
       <iframe src="/foot" width="100%" height="50%" frameborder="0"></iframe>
     </div>
-    </body>
   </div>
 </template>
 
@@ -57,7 +52,11 @@ export default {
   components: {
     Body, RealHead
   },
-
+  data () {
+    return {
+      imgSrc: require('../assets/back.png')
+    }
+  },
   methods: {
     toPage () {
       this.$router.push({
@@ -81,34 +80,17 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
-.center {
-  border-spacing: 20px;
-  /*margin:0 auto;*/
-  line-height:50px;
-  width: 70%;
-  border-radius: 10px;
-  display: flex;
-  display: -webkit-flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
+
 .side {
   margin:0 auto;
   width: 98%;
   border: 2px solid darkgrey;
   border-radius: 10px;
 }
-table,td,th
-{
-  border:2px solid white;
-}
+
 td
 {   height: 200%;
   text-align:left;
@@ -164,17 +146,110 @@ input[type = checkbox]{
   height: 1px;
   border-top: solid darkgrey 2px;
 }
-.link-right {
-  width: 50px;
-  height: 100%;
-  border-right: solid darkgrey 2px;
+
+.animate {
+  font-size: 50px;
+  margin: 100px 0 0;
+  border-bottom: 2px solid #ccc;
 }
-.bord{
-  margin:0 auto;
-  width: 80%;
-  border: 2px solid darkgrey;
-  border-radius: 10px;
-  font-size: large;
-  color: limegreen;
+
+.animate span {
+  display: inline-block;
+}
+
+.animate span:nth-of-type(2) {
+  animation-delay: .05s;
+}
+.animate span:nth-of-type(3) {
+  animation-delay: .1s;
+}
+.animate span:nth-of-type(4) {
+  animation-delay: .15s;
+}
+.animate span:nth-of-type(5) {
+  animation-delay: .2s;
+}
+.animate span:nth-of-type(6) {
+  animation-delay: .25s;
+}
+.animate span:nth-of-type(7) {
+  animation-delay: .3s;
+}
+.animate span:nth-of-type(8) {
+  animation-delay: .35s;
+}
+.animate span:nth-of-type(9) {
+  animation-delay: .4s;
+}
+.animate span:nth-of-type(10) {
+  animation-delay: .45s;
+}
+.animate span:nth-of-type(11) {
+  animation-delay: .5s;
+}
+.animate span:nth-of-type(12) {
+  animation-delay: .55s;
+}
+.animate span:nth-of-type(13) {
+  animation-delay: .6s;
+}
+.animate span:nth-of-type(14) {
+  animation-delay: .65s;
+}
+.animate span:nth-of-type(15) {
+  animation-delay: .7s;
+}
+.animate span:nth-of-type(16) {
+  animation-delay: .75s;
+}
+.animate span:nth-of-type(17) {
+  animation-delay: .8s;
+}
+.animate span:nth-of-type(18) {
+  animation-delay: .85s;
+}
+.animate span:nth-of-type(19) {
+  animation-delay: .9s;
+}
+.animate span:nth-of-type(20) {
+  animation-delay: .95s;
+}
+
+/* Animation One */
+
+.seven span {
+  color: #1a601f;
+  opacity: 0;
+  transform: translate(-150px, 0) scale(.3);
+  animation: leftRight .5s forwards;
+}
+
+@keyframes leftRight {
+  40% {
+    transform: translate(50px, 0) scale(.7);
+    opacity: 1;
+    color: #1a601f;
+  }
+
+  80% {
+    transform: translate(0) scale(2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0) scale(1);
+    opacity: 1;
+  }
+}
+.background{
+  width:100%;
+  height:100%;  /**宽高100%是为了图片铺满屏幕 */
+  z-index:-1;
+  position: absolute;
+}
+
+.front{
+  z-index:1;
+  position: absolute;
 }
 </style>
