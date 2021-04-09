@@ -2,7 +2,7 @@
   <div id="block" >
     <div v-for="(item,index) in this.$store.getters.getList" v-bind:key="index">
      <table class="abc">
-      <div style="display: inline-block" >
+      <div style="display: inline-block" @click="toDetailPage" >
           <p>{{item.question_description}}</p>
           <p>{{item.question_detail}}</p>
         <div style="display: inline-block">
@@ -20,7 +20,7 @@
         </el-button>
         <br>
         <br>
-        <el-button type="success" plain size="medium">
+        <el-button @click="toDetailPage" type="success" plain size="medium">
           <table>
           <tr>Comments</tr>
           <tr>{{item.number_comment}}</tr>
