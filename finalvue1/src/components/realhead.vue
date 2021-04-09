@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table id="tt" height="0px" style="background: white">
+    <table id="tt" height="0px" style="background: white; position: fixed; z-index:5">
       <td>
         <img src="../assets/logo1.png" width="200px"  >
       </td>

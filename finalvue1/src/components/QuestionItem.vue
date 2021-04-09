@@ -3,8 +3,6 @@
     <div v-for="(item,index) in this.$store.getters.getList" v-bind:key="index">
      <table class="abc">
       <div style="display: inline-block" >
-          <p>try to write title here</p>
-          <p>try to write introduction here test test test test test test test test test</p>
          <p>{{item}} -{{index}}</p>
         <div style="display: inline-block">
           <p>Posted by Qirui 1min ago test test test &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
@@ -52,7 +50,8 @@ export default {
   background: #ffffff;
   border-radius: 10px;
   width: 90%;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+  height: 20%;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 #block {
   margin: 0;

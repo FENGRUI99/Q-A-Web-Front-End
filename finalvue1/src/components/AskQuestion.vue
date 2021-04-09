@@ -1,6 +1,5 @@
 <template>
 <div>
-  <br>
   <el-button id= ask type="success" ><br>Add Questions<br><br></el-button>
 <!--  <div>-->
 <!--    <v-btn-->

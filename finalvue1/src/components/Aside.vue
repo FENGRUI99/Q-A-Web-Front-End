@@ -23,5 +23,6 @@ export default {
 <style scoped>
 .aside{
   width: 400px;
+  position: fixed;
 }
 </style>
