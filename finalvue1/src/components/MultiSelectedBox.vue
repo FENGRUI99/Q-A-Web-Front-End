@@ -1,12 +1,11 @@
 <template>
   <div style="display: inline-block;margin: 0 auto;">
-    <span @click="Sorted">Sorted by</span>
+    <span>Sorted by</span>
     <el-select
       v-model="value"
-      multiple
       filterable
       allow-create
-      default-first-option
+      @change="Sorted"
       placeholder="Likes">
       <el-option
         v-for="item in options"
@@ -39,20 +38,19 @@ export default {
   },
   methods: {
     Sorted () {
-      if (this.value === 'Likes') {
+      if (this.value.toString() === 'Likes') {
         this.axios.post('http://localhost:8080/sortbyLikes').then((response) => {
           this.$store.commit('setList', response.data.entity)
-          alert()
         }).catch((response) => {
           console.log(response)
         })
-      } else if (this.value === 'Time') {
+      } else if (this.value.toString() === 'Time') {
         this.axios.post('http://localhost:8080/sortbyTime').then((response) => {
           this.$store.commit('setList', response.data.entity)
         }).catch((response) => {
           console.log(response)
         })
-      } else if (this.value === 'Comments') {
+      } else if (this.value.toString() === 'Comments') {
         this.axios.post('http://localhost:8080/sortbyAnswers').then((response) => {
           this.$store.commit('setList', response.data.entity)
         }).catch((response) => {

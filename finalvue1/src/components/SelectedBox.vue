@@ -1,7 +1,11 @@
 <template>
   <div style="display: inline-block;margin: 0 10%;">
     <span>Tags Filter</span>
-    <el-select v-model="value" placeholder="Choose">
+    <el-select
+      filterable
+      allow-create
+      multiple
+      v-model="value" placeholder="Choose">
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -19,22 +23,46 @@ export default {
   data () {
     return {
       options: [{
-        value: '选项1',
-        label: '黄金糕'
+        value: 'Test & Coursework',
+        label: 'Test & Coursework'
       }, {
-        value: '选项2',
-        label: '双皮奶'
+        value: 'Software Engi',
+        label: 'Software Engi'
       }, {
-        value: '选项3',
-        label: '蚵仔煎'
+        value: 'Learning Skills',
+        label: 'Learning Skills'
       }, {
-        value: '选项4',
-        label: '龙须面'
+        value: 'Group Project',
+        label: 'Group Project'
       }, {
-        value: '选项5',
-        label: '北京烤鸭'
+        value: 'Internship',
+        label: 'Internship'
+      }, {
+        value: 'Academic Courses',
+        label: 'Academic Courses'
+      }, {
+        value: 'Career',
+        label: 'Career'
+      }, {
+        value: 'Life Study Balance',
+        label: 'Life Study Balance'
+      }, {
+        value: 'Graduate Application',
+        label: 'Graduate Application'
       }],
-      value: ''
+      value: []
+    }
+  },
+  methods: {
+    filtered () {
+      this.axios.post('http://localhost:8080/listbyTag', {
+        request: '',
+        msg: ''}
+      ).then((response) => {
+        this.$store.commit('setList', response.data.entity)
+      }).catch((response) => {
+        console.log(response)
+      })
     }
   }
 }

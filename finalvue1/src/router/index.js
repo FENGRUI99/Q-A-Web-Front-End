@@ -5,6 +5,7 @@ import HomePage from '../views/HomePage'
 import PersonalDetail from '../views/PersonalDetail'
 import Header from '../components/Header'
 import Register from '../views/Register'
+import ProblemDetailPage from '../views/ProblemDetailPage'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/Register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/ProblemDetailPage',
+      name: 'ProblemDetailPage',
+      component: ProblemDetailPage
     }
   ]
 })
