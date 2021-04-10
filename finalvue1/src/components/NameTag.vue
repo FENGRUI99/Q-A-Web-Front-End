@@ -2,12 +2,12 @@
   <div>
     <router-link to="/PersonalDetail">
       <table>
-        <tr>
+        <td>
           <el-avatar :size="30" :src="circleUrl"></el-avatar>
-        </tr>
-        <tr>
-        <el-link :underline="false">Username</el-link>
-        </tr>
+        </td>
+        <td>
+        <el-link :underline="false" style="size: 10px">Username</el-link>
+        </td>
       </table>
     </router-link>
   </div>

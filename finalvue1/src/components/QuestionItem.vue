@@ -21,10 +21,10 @@
      </table>
       </div>
        </td>
-        <td style="margin: auto">
+        <td style="margin-right: 20px">
           <br>
-        <el-button @click="liked(index, item.question_id)" plain size="medium">
-          <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tr>
+        <el-button @click="liked(index, item.question_id)" plain size="medium" id="like" view.setSelected(true);>
+          <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </tr>
           <tr>{{item.likes}}</tr>
         </el-button>
         <br>
@@ -34,6 +34,7 @@
           <tr>{{item.number_comment}}</tr>
         </el-button>
         </td>
+       <td style="width: 10px;"> </td>
       <br>
       <br>
      </table>
@@ -44,7 +45,6 @@
 
 <script>
 import LikeTag from './LikeTag'
-
 export default {
   name: 'QuestionItem',
   components: {
