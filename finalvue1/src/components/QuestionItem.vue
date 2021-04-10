@@ -2,31 +2,36 @@
   <div id="block" >
     <div v-for="(item,index) in this.$store.getters.getList" v-bind:key="index">
      <table class="abc">
+       <td>
+         <br>
       <div style="display: inline-block" @click="toDetailPage" >
           <p>{{item.question_description}}</p>
           <p>{{item.question_detail}}</p>
-        <div style="display: inline-block">
-          <p>Posted by {{item.user_id}} 1min ago test test test &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        </div>
-       <span style="position: relative;margin-right: 35px"> <likeTag></likeTag></span>
-      </div>
-      <div style="display: inline-block">
         <br>
+   <table>
+     <td>
+       <p>Posted by {{item.user_id}} 1min ago test test test &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+     </td>
+     <td>
+       <span>
+         <likeTag></likeTag></span>
+     </td>
+     </table>
+      </div>
+       </td>
+        <td style="margin: auto">
+          <br>
         <el-button @click="liked(index, item.question_id)" plain size="medium">
-          <table>
           <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tr>
           <tr>{{item.likes}}</tr>
-          </table>
         </el-button>
         <br>
         <br>
         <el-button @click="toDetailPage" type="success" plain size="medium">
-          <table>
           <tr>Comments</tr>
           <tr>{{item.number_comment}}</tr>
-          </table>
         </el-button>
-      </div>
+        </td>
       <br>
       <br>
      </table>
