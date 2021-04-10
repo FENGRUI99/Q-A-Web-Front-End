@@ -4,7 +4,7 @@
      <table class="abc">
        <td>
          <br>
-      <div style="display: inline-block; margin: 0 3%" @click="toDetailPage" >
+      <div style="display: inline-block; margin: 0 3%" @click="toDetailPage(item)" >
           <p align="left">{{item.question_description}}ssssssssss
             ssssssssssssssssssssssssssssssssssssssssss
             ssssssssssssssssssssssssssss</p>
@@ -26,10 +26,12 @@
         <el-button @click="liked(index, item.question_id)" plain size="medium">
           <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tr>
           <tr>{{item.likes}}</tr>
+          <router-link to="ProblemDetailPage">联系我们</router-link>
+          <router-view></router-view>
         </el-button>
         <br>
         <br>
-        <el-button @click="toDetailPage" type="success" plain size="medium">
+        <el-button @click="toDetailPage(item)" type="success" plain size="medium">
           <tr>Comments</tr>
           <tr>{{item.number_comment}}</tr>
         </el-button>
@@ -51,10 +53,13 @@ export default {
     'likeTag': LikeTag
   },
   methods: {
-    toDetailPage () {
+    toDetailPage (item) {
       this.$router.push({
         path: '/ProblemDetailPage',
-        name: 'ProblemDetailPage'
+        name: 'ProblemDetailPage',
+        params: {
+          item: item
+        }
       })
     },
     liked (index, questionId) {
