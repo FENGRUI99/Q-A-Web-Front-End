@@ -26,8 +26,6 @@
         <el-button @click="liked(index, item.question_id)" plain size="medium">
           <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tr>
           <tr>{{item.likes}}</tr>
-          <router-link to="ProblemDetailPage">联系我们</router-link>
-          <router-view></router-view>
         </el-button>
         <br>
         <br>

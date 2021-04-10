@@ -9,7 +9,11 @@
 <!--          问题详情框-->
           <div>
             <table>
-<!--              {{item.question_description}}-->
+              {{item.question_description}}
+              <br>
+              <span>
+                Posted by {{item.user_name}} in {{item.time}}
+              </span>
               <br>
               {{item.question_detail}}
             </table>
