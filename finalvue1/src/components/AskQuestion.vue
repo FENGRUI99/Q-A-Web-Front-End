@@ -1,6 +1,11 @@
 <template>
 <div>
-  <el-button type="success" round id= ask ><br>Add Questions<br><br></el-button>
+  <el-button type="success" round id= ask >
+    <table style="width: 100%">
+    <tr style="font-weight: 700;font-size: x-large"> Add </tr>
+    <tr style="font-weight: 900"> Questions </tr>
+    </table>
+  </el-button>
 <!--  <div>-->
 <!--    <v-btn-->
 <!--    class="mx-2"-->

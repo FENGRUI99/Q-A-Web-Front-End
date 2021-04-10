@@ -2,17 +2,17 @@
   <div>
     <table id="tt">
       <td>
-        <img src="../assets/logo1.png" width="200px"  >
+        <img src="../assets/logo1.png" width="100px"  >
       </td>
-      <td>
+      <span>
         <p id="title">ask louder here</p>
-      </td>
+      </span>
       <td>
         <searchBox></searchBox>
       </td>
-      <td>
-        <nameTag></nameTag>
-      </td>
+<!--      <td>-->
+<!--        <nameTag></nameTag>-->
+<!--      </td>-->
     </table>
   </div>
 </template>
@@ -41,7 +41,8 @@ export default {
   margin:0px auto;
   width:100%;
   top:0px;
-  left: 0px
+  left: 0px;
+  height: 20px;
 }
-#title{font-size: xx-large}
+#title{font-size: large}
 </style>

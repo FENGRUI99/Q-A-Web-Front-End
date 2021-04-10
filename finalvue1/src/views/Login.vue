@@ -21,9 +21,11 @@
         </div>
         <div style="width: 70%;margin: auto">
           <div>
-            <table style="width: 100% ;">
-              <tr><div class="link-top" style="line-height:30px;width: 70%" ></div>
-                <BR/></tr>
+            <table style="width: 100%">
+              <tr>
+                <div class="link-top" style="line-height:30px;width: 70%" ></div>
+                <BR/>
+              </tr>
               <tr>Student ID</tr>
               <tr><input type="text" required id="id" value=""/></tr>
               <tr>Password</tr>
@@ -144,13 +146,11 @@ input[type = checkbox]{
 .link-top {
   width: 25%;
   height: 1px;
-  border-top: solid darkgrey 2px;
 }
 
 .animate {
   font-size: 50px;
   margin: 100px 0 0;
-  border-bottom: 2px solid #ccc;
 }
 
 .animate span {

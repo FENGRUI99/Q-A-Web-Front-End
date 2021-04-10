@@ -4,17 +4,19 @@
      <table class="abc">
        <td>
          <br>
-      <div style="display: inline-block" @click="toDetailPage" >
-          <p>{{item.question_description}}</p>
-          <p>{{item.question_detail}}</p>
-        <br>
-   <table>
+      <div style="display: inline-block; margin: 0 3%" @click="toDetailPage" >
+          <p align="left">{{item.question_description}}ssssssssss
+            ssssssssssssssssssssssssssssssssssssssssss
+            ssssssssssssssssssssssssssss</p>
+          <p align="left">{{item.question_detail}}sssssssssssssss
+            sssssssssssssssssssssssssssssssssss
+            sssssssssssssssssssss</p>
+   <table style="width: 100%">
      <td>
-       <p>Posted by {{item.user_id}} 1min ago test test test &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+       <p align="left">Posted by {{item.user_id}} {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
      </td>
      <td>
-       <span>
-         <likeTag></likeTag></span>
+         <likeTag></likeTag>
      </td>
      </table>
       </div>
@@ -35,8 +37,7 @@
       <br>
       <br>
      </table>
-      <br>
-      <br>
+      <div style="height: 10px"></div>
     </div>
   </div>
 </template>

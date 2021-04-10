@@ -1,11 +1,11 @@
 <template>
   <div style="background: #f6f6f6" >
     <el-container>
-      <el-header>
+      <el-header style="height: 40px">
         <header123></header123>
       </el-header>
       <el-container>
-        <el-aside width=28%>
+        <el-aside width=24%>
           <Aside></Aside>
         </el-aside>
         <el-container>
