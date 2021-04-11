@@ -4,34 +4,33 @@
       <div v-for="(item,index) in this.$store.getters.getList.slice(0,count)" v-bind:key="index">
         <table class="abc">
           <td>
-            <br>
-            <div style="display: inline-block; margin: 0 3%" @click="toDetailPage(item)" >
-              <p align="left">{{item.question_description}}</p>
-              <p align="left">{{item.question_detail}}</p>
-              <table style="width: 100%">
-                <td>
-                  <p align="left">Posted by {{item.user_id}} {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                </td>
-                <td>
-                  <likeTag></likeTag>
-                </td>
+            <div style="display: block; margin: 0 3%" @click="toDetailPage(item)" >
+              <li align="left" id="title">{{item.question_description}}</li>
+              <li align="left">{{item.question_detail}}
+                this is data for testing  this is data for testing this is data for testing
+                this is data for testing this is data for testing this is data for testing
+                this is data for testing this is data for testing this is data for testing
+                this is data for testing this is data for testing this is data for testing
+                this is data for testing this is data for testing this is data for testing
+              </li>
+              <table style="width: 100%;">
+                  <td align="left">Posted by {{item.user_id}} {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+              <td><likeTag></likeTag></td>
               </table>
             </div>
           </td>
-          <td style="margin-right: 20px">
-            <br>
-            <el-button @click="liked(index, item.question_id)" plain size="medium">
-              <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </tr>
-              <tr>{{item.likes}}</tr>
+          <td style="padding: 1% 20px">
+            <el-button @click="liked(index, item.question_id)" plain size="medium" id="likes">
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </li>
+              <li>{{item.likes}}</li>
             </el-button>
             <br>
             <br>
             <el-button @click="toDetailPage(item)" type="success" plain size="medium">
-              <tr>Comments</tr>
-              <tr>{{item.number_comment}}</tr>
+              <li>Comments</li>
+              <li>{{item.number_comment}}</li>
             </el-button>
           </td>
-          <td style="width: 10px;"> </td>
           <br>
           <br>
         </table>
@@ -127,7 +126,10 @@ export default {
   background: #ffffff;
   border-radius: 10px;
   width: 90%;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.abc td{
+  margin: auto;
 }
 #block {
   margin: 0;
@@ -153,5 +155,19 @@ export default {
 }
 .loadingStyle{
   font-size: xx-large;
+}
+#likes{
+  border-style: solid;
+  border-color: white;
+}
+#title{
+  font-size: large;
+  font-weight: bold;
+}
+li{
+  list-style: none;
+}
+.blank{
+  height: 10px;
 }
 </style>

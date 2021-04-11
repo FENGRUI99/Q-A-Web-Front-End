@@ -5,37 +5,63 @@
         <header123></header123>
       </el-header>
       <el-container>
-        <el-main>
-<!--          问题详情框-->
-          <div>
-            <table>
-              {{item.question_description}}
-              <br>
-              <span>
-                Posted by {{item.user_name}} in {{item.time}}
-              </span>
-              <br>
+        <el-aside width=70%>
+          <!--          问题详情框-->
+
+            <table class="intro">
+              <tr id="title">
+             {{item.question_description}}
+              </tr>
+              <tr id="small" >
+              Posted by {{item.user_name}} {{item.time}}
+              </tr>
+              <tr>
               {{item.question_detail}}
+                this is data for testing  this is data for testing this is data for testing
+                this is data for testing this is data for testing this is data for testing
+                this is data for testing this is data for testing this is data for testing
+                this is data for testing this is data for testing this is data for testing
+                this is data for testing this is data for testing this is data for testing
+              </tr>
+              <span class="butt">
+                <td>
+            <el-button  plain size="medium" id="likes">
+              <i class="el-icon-star-on"></i>
+             {{item.likes}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes
+            </el-button>
+                </td>
+                <td>
+                <el-button plain size="medium" @click="foldText" type="success">
+                  <i class="el-icon-edit"></i>
+              &nbsp;&nbsp;Answer &nbsp;&nbsp;
+            </el-button>
+                </td>
+                <td style="width: 30%">
+                </td>
+                 <td>
+                  <likeTag></likeTag>
+                </td>
+              </span>
             </table>
-            <el-button plain size="medium">
-              <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tr>
-              <tr>{{item.likes}}</tr>
-            </el-button>
-            <el-button plain size="medium" @click="foldText">
-              <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tr>
-            </el-button>
-          </div>
-<!--          answer question-->
+<!--          -->
+<!--          -->
+<!--          -->
+<!--          -->
+          <!--          answer question-->
           <div v-bind:hidden="isHidden">
-            <input type="text" value="Write your answer here within 200 words">
-            <br>
-            <el-button>
+            <div class="blank"></div>
+            <table class="answer">
+            <input type="text" id="inputValue" value="Write your answer here within 200 words">
+              <div class="blank"></div>
+            <el-button class="butt" type="success">
               Submit
             </el-button>
+              <div class="blank"></div>
+            </table>
           </div>
-<!--          Comments-->
+          <!--          Comments-->
           <div>
-<!--            {{item}}-->
+            <!--            {{item}}-->
             <table>
               {{item.commentList.length}} Answers
               <br>
@@ -49,11 +75,18 @@
 
             </table>
           </div>
+        </el-aside>
+        <el-container>
+        <el-main>
+<p>sadasdsadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasds
+  sadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdsvvsadasds
+  sadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdss</p>
         </el-main>
         <el-footer>
           <footer123></footer123>
         </el-footer>
       </el-container>
+    </el-container>
     </el-container>
   </div>
 </template>
@@ -61,12 +94,13 @@
 <script>
 import RealHead from '../components/realhead'
 import Footer from '../components/Footer'
-
+import LikeTag from '../components/LikeTag'
 export default {
   name: 'ProblemDetailPage',
   components: {
     'header123': RealHead,
-    'footer123': Footer
+    'footer123': Footer,
+    'likeTag': LikeTag
   },
   data () {
     return {
@@ -90,5 +124,56 @@ export default {
 </script>
 
 <style scoped>
+.intro{
+  border: 2px;
+  border-radius: 10px;
+  border-color: #cccccc;
+  border-style:solid;
+  width: 80%;
 
+  margin-left: 8%;
+  background: white;
+  padding: 0 2% ;
+}
+.intro tr{
+  text-align: left;
+}
+.answer{
+  border: 2px;
+  border-radius: 10px;
+  border-color: #cccccc;
+  border-style:solid;
+  width: 80%;
+  margin-left: 8%;
+  background: white;
+  padding: 0 2% ;
+}
+#inputValue{
+  margin-left: -5%;
+  width: 95%;
+  height:100px;
+  margin-top: 2% ;
+}
+.butt{
+  /*text-align: left;*/
+  margin-left: -1%;
+  display:block;
+  /*alignment: left;*/
+  /*width: 20%;*/
+}
+
+#title{
+  font-size: x-large;
+  font-weight: bold;
+}
+.blank{
+  height: 10px;
+}
+#small{
+  font-size: x-small;
+}
+#likes{
+  border-style: solid;
+  border-color: white;
+}
 </style>
