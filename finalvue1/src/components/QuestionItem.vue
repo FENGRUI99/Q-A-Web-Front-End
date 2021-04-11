@@ -1,7 +1,7 @@
 <template>
   <div id="block" >
     <div v-if="this.$store.getters.getIsFind === true">
-      <div v-for="(item,index) in this.$store.getters.getList" v-bind:key="index">
+      <div v-for="(item,index) in this.$store.getters.getList.slice(0,count)" v-bind:key="index">
         <table class="abc">
           <td>
             <br>
@@ -37,6 +37,9 @@
         </table>
         <div style="height: 10px"></div>
       </div>
+      <div class="abc loadingStyle" id = 'load'>
+        Loading ... {{msg.item}}
+      </div>
     </div>
     <div v-else-if="this.$store.getters.getIsFind === false">
       <ul class="notFound">
@@ -57,7 +60,32 @@ export default {
   components: {
     'likeTag': LikeTag
   },
+  data () {
+    return {
+      count: 5,
+      msg: {
+        item: ''
+      }
+    }
+  },
+  mounted: function () {
+    window.addEventListener('scroll', this.handleScroll, true)
+  },
   methods: {
+    handleScroll: function () {
+      let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+      if (clientHeight + scrollTop === scrollHeight) {
+        this.sleep(1000)
+        this.count += 2
+      }
+    },
+    sleep: function (time) {
+      let startTime = new Date().getTime() + parseInt(time, 10)
+      while (new Date().getTime() < startTime) {
+      }
+    },
     toDetailPage (item) {
       this.$router.push({
         path: '/ProblemDetailPage',
@@ -122,5 +150,8 @@ export default {
 }
 .pho{
   width: 50%;
+}
+.loadingStyle{
+  font-size: xx-large;
 }
 </style>

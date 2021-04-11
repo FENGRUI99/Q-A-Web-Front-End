@@ -1,28 +1,24 @@
 <template>
-<!--  <div class="infinite-list-wrapper" style="overflow:auto">-->
-<!--    <div-->
-<!--      class="list"-->
-<!--      v-infinite-scroll="load"-->
-<!--      infinite-scroll-disabled="disabled">-->
-<!--      <li v-for="i in count" v-bind:key="i" class="list-item">-->
-<!--        <questionItem v-bind:index="i"></questionItem>-->
-<!--        <br>-->
-<!--      </li>-->
-<!--    </div>-->
-<!--  </div>-->
-  <div>
+  <div id = "div">
     <questionItem></questionItem>
   </div>
 </template>
 
 <script>
 import QuestionItem from './QuestionItem'
-
+import infiniteScroll from 'vue-infinite-scroll'
 export default {
   name: 'InfiniteScrolling',
-  components: {'questionItem': QuestionItem},
+  components: {
+    'questionItem': QuestionItem,
+    directives: { infiniteScroll }
+  },
   data () {
     return {
+      data: [],
+      busy: false,
+      itemsPerLoad: 1,
+      pageIndex: 1,
       count: 10,
       loading: false
     }
@@ -35,13 +31,26 @@ export default {
       return this.loading || this.noMore
     }
   },
+  mounted: function () {
+    window.addEventListener('scroll', this.handleScroll, true)
+  },
   methods: {
     load () {
       this.loading = true
       setTimeout(() => {
         this.count += 2
         this.loading = false
-      }, 1000)
+      }, 10000)
+    },
+    handleScroll: function () {
+      let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
+      let scrollObj = document.getElementById('div')
+      let scrollTop = scrollObj.scrollTop
+      let scrollHeight = scrollObj.scrollHeight
+      if (scrollTop + clientHeight === scrollHeight) {
+        alert('heh')
+        this.count += 2
+      }
     }
   }
 }

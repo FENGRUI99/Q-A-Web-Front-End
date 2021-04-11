@@ -6,7 +6,6 @@ import PersonalDetail from '../views/PersonalDetail'
 import Header from '../components/Header'
 import Register from '../views/Register'
 import ProblemDetailPage from '../views/ProblemDetailPage'
-
 Vue.use(Router)
 
 export default new Router({
