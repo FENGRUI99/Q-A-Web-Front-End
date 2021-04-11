@@ -23,7 +23,7 @@
        </td>
         <td style="margin-right: 20px">
           <br>
-        <el-button @click="liked(index, item.question_id)" plain size="medium" id="like" view.setSelected(true);>
+        <el-button @click="liked(index, item.question_id)" plain size="medium" id="like">
           <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </tr>
           <tr>{{item.likes}}</tr>
         </el-button>
