@@ -1,44 +1,51 @@
 <template>
   <div id="block" >
-    <div v-for="(item,index) in this.$store.getters.getList" v-bind:key="index">
-     <table class="abc">
-       <td>
-         <br>
-      <div style="display: inline-block; margin: 0 3%" @click="toDetailPage(item)" >
-          <p align="left">{{item.question_description}}ssssssssss
-            ssssssssssssssssssssssssssssssssssssssssss
-            ssssssssssssssssssssssssssss</p>
-          <p align="left">{{item.question_detail}}sssssssssssssss
-            sssssssssssssssssssssssssssssssssss
-            sssssssssssssssssssss</p>
-   <table style="width: 100%">
-     <td>
-       <p align="left">Posted by {{item.user_id}} {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-     </td>
-     <td>
-         <likeTag></likeTag>
-     </td>
-     </table>
-      </div>
-       </td>
-        <td style="margin-right: 20px">
+    <div v-if="this.$store.getters.getIsFind === true">
+      <div v-for="(item,index) in this.$store.getters.getList" v-bind:key="index">
+        <table class="abc">
+          <td>
+            <br>
+            <div style="display: inline-block; margin: 0 3%" @click="toDetailPage(item)" >
+              <p align="left">{{item.question_description}}</p>
+              <p align="left">{{item.question_detail}}</p>
+              <table style="width: 100%">
+                <td>
+                  <p align="left">Posted by {{item.user_id}} {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </td>
+                <td>
+                  <likeTag></likeTag>
+                </td>
+              </table>
+            </div>
+          </td>
+          <td style="margin-right: 20px">
+            <br>
+            <el-button @click="liked(index, item.question_id)" plain size="medium">
+              <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </tr>
+              <tr>{{item.likes}}</tr>
+            </el-button>
+            <br>
+            <br>
+            <el-button @click="toDetailPage(item)" type="success" plain size="medium">
+              <tr>Comments</tr>
+              <tr>{{item.number_comment}}</tr>
+            </el-button>
+          </td>
+          <td style="width: 10px;"> </td>
           <br>
-        <el-button @click="liked(index, item.question_id)" plain size="medium" id="like">
-          <tr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </tr>
-          <tr>{{item.likes}}</tr>
-        </el-button>
-        <br>
-        <br>
-        <el-button @click="toDetailPage(item)" type="success" plain size="medium">
-          <tr>Comments</tr>
-          <tr>{{item.number_comment}}</tr>
-        </el-button>
-        </td>
-       <td style="width: 10px;"> </td>
+          <br>
+        </table>
+        <div style="height: 10px"></div>
+      </div>
+    </div>
+    <div v-else-if="this.$store.getters.getIsFind === false">
+      <ul class="notFound">
+        <li><p>Youe question cannot be found</p></li>
+        <li><p>What about ask a question</p></li>
+      </ul>
       <br>
+      <img src="../assets/cannotfound.jpg" class="pho">
       <br>
-     </table>
-      <div style="height: 10px"></div>
     </div>
   </div>
 </template>
@@ -97,5 +104,23 @@ export default {
 #block {
   margin: 0;
   width:100%;
+}
+.notFound{
+  width: 80%;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 40px 0;
+  font-size: x-large;
+}
+
+.notFound li {
+  list-style: none;
+  margin: 0 20px;
+}
+.notFound li p{
+  alignment: left;
+}
+.pho{
+  width: 50%;
 }
 </style>

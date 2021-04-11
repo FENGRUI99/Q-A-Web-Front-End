@@ -30,7 +30,12 @@ export default {
         msg: ''
       }).then((response) => {
         alert(response.data.entity.length)
-        this.$store.commit('setList', response.data.entity)
+        if (response.data.entity.length === 0) {
+          this.$store.commit('setIsFind', false)
+        } else {
+          this.$store.commit('setList', response.data.entity)
+          this.$store.commit('setIsFind', true)
+        }
       }).catch((response) => {
         console.log(response)
       })

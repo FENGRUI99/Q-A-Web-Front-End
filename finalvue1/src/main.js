@@ -20,7 +20,8 @@ const store = new Vuex.Store({
   state: {
     list: '',
     user_id: '',
-    like_flag: {}
+    like_flag: {},
+    isFind: true
   },
   // vuex中的方法, 在组件中使用commit来调用
   mutations: {
@@ -39,6 +40,9 @@ const store = new Vuex.Store({
     },
     getLikeFlag (state, index) {
       return state.like_flag[state.list[index].question_id]
+    },
+    setIsFind (state, flag) {
+      state.isFind = flag
     }
   },
   // 计算属性
@@ -48,6 +52,9 @@ const store = new Vuex.Store({
     },
     getUserId (state) {
       return state.user_id
+    },
+    getIsFind (state) {
+      return state.isFind
     }
   }
 })
