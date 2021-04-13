@@ -1,7 +1,7 @@
 <template>
   <div id="block" >
     <div v-if="this.$store.getters.getIsFind === true">
-      <div v-for="(item,index) in this.$store.getters.getList.slice(0,count)" v-bind:key="index">
+      <div v-for="(item,index) in this.$store.getters.getList.slice(0, count)" v-bind:key="index">
         <table class="abc">
           <td>
             <div style="display: block; margin: 0 3%" @click="toDetailPage(item)" >
@@ -37,7 +37,11 @@
         <div style="height: 10px"></div>
       </div>
       <div class="abc loadingStyle" id = 'load'>
-        Loading ... {{msg.item}}
+        <div class="animate seven" style="margin: auto;">
+          <span>L</span><span>o</span><span>a</span><span>d</span><span>i</span><span>n</span><span>g</span>
+          <span>&nbsp;</span><span>.</span><span>.</span><span>.</span><span>!</span>
+          <br>
+        </div>
       </div>
     </div>
     <div v-else-if="this.$store.getters.getIsFind === false">
@@ -62,8 +66,8 @@ export default {
   data () {
     return {
       count: 5,
-      msg: {
-        item: ''
+      loading: {
+        check: false
       }
     }
   },
@@ -75,12 +79,15 @@ export default {
       let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
       let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
-      if (clientHeight + scrollTop === scrollHeight) {
-        this.sleep(1000)
+      let loadElement = document.getElementById('load')
+      let footerHeight = scrollHeight - loadElement.offsetTop
+      if (clientHeight + scrollTop + footerHeight > scrollHeight) {
         this.count += 2
+        this.sleep(1000)
+        console.log(this.count)
       }
     },
-    sleep: function (time) {
+    async sleep (time) {
       let startTime = new Date().getTime() + parseInt(time, 10)
       while (new Date().getTime() < startTime) {
       }
@@ -116,6 +123,16 @@ export default {
           console.log(response)
         })
       }
+    }
+  },
+  watch: {
+    loading: {
+      handler (val, oldVal) {
+        console.log(val, oldVal)
+        console.log('-----')
+        this.count += 2
+      },
+      deep: true
     }
   }
 }
@@ -169,5 +186,94 @@ li{
 }
 .blank{
   height: 10px;
+}
+.animate {
+  font-size: xx-large;
+  margin: 100px 0 0;
+}
+.animate span {
+  display: inline-block;
+}
+.animate span:nth-of-type(2) {
+  animation-delay: .05s;
+}
+.animate span:nth-of-type(3) {
+  animation-delay: .1s;
+}
+.animate span:nth-of-type(4) {
+  animation-delay: .15s;
+}
+.animate span:nth-of-type(5) {
+  animation-delay: .2s;
+}
+.animate span:nth-of-type(6) {
+  animation-delay: .25s;
+}
+.animate span:nth-of-type(7) {
+  animation-delay: .3s;
+}
+.animate span:nth-of-type(8) {
+  animation-delay: .35s;
+}
+.animate span:nth-of-type(9) {
+  animation-delay: .4s;
+}
+.animate span:nth-of-type(10) {
+  animation-delay: .45s;
+}
+.animate span:nth-of-type(11) {
+  animation-delay: .5s;
+}
+.animate span:nth-of-type(12) {
+  animation-delay: .55s;
+}
+.animate span:nth-of-type(13) {
+  animation-delay: .6s;
+}
+.animate span:nth-of-type(14) {
+  animation-delay: .65s;
+}
+.animate span:nth-of-type(15) {
+  animation-delay: .7s;
+}
+.animate span:nth-of-type(16) {
+  animation-delay: .75s;
+}
+.animate span:nth-of-type(17) {
+  animation-delay: .8s;
+}
+.animate span:nth-of-type(18) {
+  animation-delay: .85s;
+}
+.animate span:nth-of-type(19) {
+  animation-delay: .9s;
+}
+.animate span:nth-of-type(20) {
+  animation-delay: .95s;
+}
+.seven span {
+  color: #1a601f;
+  opacity: 1;
+  transform: translate(50px, 0) scale(.3);
+  animation: leftRight 1s forwards infinite;
+}
+@keyframes leftRight {
+  from {transform: translatex(0);}
+  50% {transform: translatex(50px);
+  opacity: .5}
+  to {transform: translatex(0);}
+  /*40% {*/
+  /*  transform: translate(50px, 0) scale(.7);*/
+  /*  opacity: 1;*/
+  /*  color: #1a601f;*/
+  /*}*/
+  /*60% {*/
+  /*  transform: translate(0) scale(1.2);*/
+  /*  opacity: 0;*/
+  /*}*/
+  /*80% {*/
+  /*  transform: translate(0) scale(1);*/
+  /*  opacity: 1;*/
+  /*}*/
 }
 </style>
