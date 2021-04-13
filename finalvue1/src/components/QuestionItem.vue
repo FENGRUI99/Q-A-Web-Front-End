@@ -84,7 +84,6 @@ export default {
       if (clientHeight + scrollTop + footerHeight > scrollHeight) {
         this.count += 2
         this.sleep(1000)
-        console.log(this.count)
       }
     },
     async sleep (time) {
