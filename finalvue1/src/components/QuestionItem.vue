@@ -1,7 +1,7 @@
 <template>
   <div id="block" >
     <div v-if="this.$store.getters.getIsFind === true">
-      <div v-for="(item,index) in this.$store.getters.getList.slice(0, count)" v-bind:key="index">
+      <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
           <td>
             <div style="display: block; margin: 0 3%" @click="toDetailPage(item)" >
@@ -76,14 +76,19 @@ export default {
   },
   methods: {
     handleScroll: function () {
-      let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
-      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-      let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
-      let loadElement = document.getElementById('load')
-      let footerHeight = scrollHeight - loadElement.offsetTop
-      if (clientHeight + scrollTop + footerHeight > scrollHeight) {
-        this.count += 2
-        this.sleep(1000)
+      console.log('here')
+      if (document.getElementById('load')) {
+        let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+        let loadElement = document.getElementById('load')
+        let footerHeight = scrollHeight - loadElement.offsetTop
+        if (clientHeight + scrollTop + footerHeight > scrollHeight) {
+          if (this.$store.getters.getList.length > this.count) {
+            this.count += 5
+            this.sleep(1000)
+          }
+        }
       }
     },
     async sleep (time) {

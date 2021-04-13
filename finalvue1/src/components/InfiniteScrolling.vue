@@ -6,12 +6,10 @@
 
 <script>
 import QuestionItem from './QuestionItem'
-import infiniteScroll from 'vue-infinite-scroll'
 export default {
   name: 'InfiniteScrolling',
   components: {
-    'questionItem': QuestionItem,
-    directives: { infiniteScroll }
+    'questionItem': QuestionItem
   },
   data () {
     return {
@@ -29,28 +27,6 @@ export default {
     },
     disabled () {
       return this.loading || this.noMore
-    }
-  },
-  mounted: function () {
-    window.addEventListener('scroll', this.handleScroll, true)
-  },
-  methods: {
-    load () {
-      this.loading = true
-      setTimeout(() => {
-        this.count += 2
-        this.loading = false
-      }, 10000)
-    },
-    handleScroll: function () {
-      let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
-      let scrollObj = document.getElementById('div')
-      let scrollTop = scrollObj.scrollTop
-      let scrollHeight = scrollObj.scrollHeight
-      if (scrollTop + clientHeight === scrollHeight) {
-        alert('heh')
-        this.count += 2
-      }
     }
   }
 }
