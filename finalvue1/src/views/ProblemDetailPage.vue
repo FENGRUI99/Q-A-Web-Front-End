@@ -104,7 +104,7 @@ export default {
   },
   data () {
     return {
-      item: this.$route.params.item,
+      item: {},
       isHidden: true
     }
   },
@@ -119,6 +119,10 @@ export default {
     submit () {
 
     }
+  },
+  created () {
+    let tmp = sessionStorage.getItem('item')
+    this.item = JSON.parse(tmp)
   }
 }
 </script>

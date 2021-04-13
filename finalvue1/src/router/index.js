@@ -39,7 +39,7 @@ export default new Router({
       component: Register
     },
     {
-      path: 'ProblemDetailPage',
+      path: '/ProblemDetailPage',
       name: 'ProblemDetailPage',
       component: ProblemDetailPage
     }

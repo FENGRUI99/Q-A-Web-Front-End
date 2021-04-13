@@ -65,14 +65,6 @@ export default {
         name: 'HomePage'
       })
       this.$store.commit('setUserId', '1824094')
-      this.axios.post('http://localhost:8080/listQuestion', {
-        user_id: this.$store.getters.getUserId,
-        user_name: '1231'
-      }).then((response) => {
-        this.$store.commit('setList', response.data.entity)
-      }).catch((response) => {
-        console.log(response)
-      })
     },
     toRegister () {
       this.$router.push({

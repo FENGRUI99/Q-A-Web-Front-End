@@ -68,8 +68,19 @@ export default {
       count: 5,
       loading: {
         check: false
-      }
+      },
+      item: {}
     }
+  },
+  created () {
+    this.axios.post('http://localhost:8080/listQuestion', {
+      user_id: this.$store.getters.getUserId,
+      user_name: '1231'
+    }).then((response) => {
+      this.$store.commit('setList', response.data.entity)
+    }).catch((response) => {
+      console.log(response)
+    })
   },
   mounted: function () {
     window.addEventListener('scroll', this.handleScroll, true)
@@ -97,11 +108,13 @@ export default {
       }
     },
     toDetailPage (item) {
+      this.item = JSON.stringify(item)
+      sessionStorage.setItem('item', this.item)
       this.$router.push({
         path: '/ProblemDetailPage',
         name: 'ProblemDetailPage',
         params: {
-          item: item
+          item: this.item
         }
       })
     },
