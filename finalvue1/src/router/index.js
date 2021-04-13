@@ -19,7 +19,9 @@ export default new Router({
     {
       path: '/HomePage',
       name: 'HomePage',
-      component: HomePage
+      component: HomePage,
+      children: [
+      ]
     },
     {
       path: '/PersonalDetail',
@@ -37,7 +39,7 @@ export default new Router({
       component: Register
     },
     {
-      path: '/ProblemDetailPage',
+      path: 'ProblemDetailPage',
       name: 'ProblemDetailPage',
       component: ProblemDetailPage
     }
