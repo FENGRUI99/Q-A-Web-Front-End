@@ -9,7 +9,7 @@
       </el-input>
       </td>
       <td>
-      <el-button type="success" icon="el-icon-search" @click="getList">search</el-button>
+      <el-button type="success" icon="el-icon-search" @click="getList">Search</el-button>
       </td>
     </table>
   </div>

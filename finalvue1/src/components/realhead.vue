@@ -47,6 +47,7 @@ export default {
   position: absolute;
   margin-top: 7px;
   font-family: "Helvetica Neue";
+  font-style: italic;
   color: #81D454;
   margin-left: 50px;
 }
