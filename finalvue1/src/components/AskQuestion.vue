@@ -34,5 +34,15 @@ export default {
   /*border-style: solid;*/
   /*border-color: #81D454;*/
 }
+br {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 5px;
+  color: #68a076;
+  font-size: 25px;
+  font-weight: bold;
+  font-style: italic;
+  background: linear-gradient(to top, rgba(69, 198, 230, 0.58) 10.2%, rgba(131, 237, 203, 0.59) 23.8%, #fff 50.7%);
+}
 
 </style>
