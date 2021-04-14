@@ -37,7 +37,7 @@
         </table>
         <div style="height: 10px"></div>
       </div>
-      <div class="abc loadingStyle" id = 'load'>
+      <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>
         <div class="animate seven" style="margin: auto;">
           <span>L</span><span>o</span><span>a</span><span>d</span><span>i</span><span>n</span><span>g</span>
           <span>&nbsp;</span><span>.</span><span>.</span><span>.</span><span>!</span>
@@ -67,8 +67,9 @@ export default {
   data () {
     return {
       count: 5,
+      change: -1,
       loading: {
-        check: false
+        check: true
       },
       item: {}
     }
@@ -95,7 +96,15 @@ export default {
   methods: {
     handleScroll: function () {
       console.log('here')
-      if (document.getElementById('load')) {
+      if (this.change === -1) {
+        this.change = this.$store.getters.getList.length
+      } else if (this.change !== this.$store.getters.getList.length) {
+        console.log(this.$store.getters.getList.likeTag)
+        this.count = 5
+        this.change = this.$store.getters.getList.length
+        this.loading.check = true
+      }
+      if (document.getElementById('load') && this.$store.getters.getList.length > this.count) {
         let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
@@ -107,6 +116,8 @@ export default {
             this.sleep(500)
           }
         }
+      } else {
+        this.loading.check = false
       }
     },
     async sleep (time) {
