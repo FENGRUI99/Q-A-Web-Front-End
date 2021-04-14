@@ -3,11 +3,10 @@
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
-          {{item.question_id}}
           <td>
-            <div style="display: block; margin: 0 3%" @click="toDetailPage(item)" >
-              <li align="left" id="title">{{item.question_description}}</li>
-              <li align="left">{{item.question_detail}}
+            <div style="display: block; margin: 0 3%">
+              <li @click="toDetailPage(item)" align="left" id="title">{{item.question_description}}</li>
+              <li @click="toDetailPage(item)" align="left">{{item.question_detail}}
                 this is data for testing  this is data for testing this is data for testing
                 this is data for testing this is data for testing this is data for testing
                 this is data for testing this is data for testing this is data for testing
@@ -27,7 +26,7 @@
             </el-button>
             <br>
             <br>
-            <el-button @click="toDetailPage(item)" type="success" plain size="medium">
+            <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
               <li>Comments</li>
               <li>{{item.number_comment}}</li>
             </el-button>
@@ -132,7 +131,21 @@ export default {
         path: '/ProblemDetailPage',
         name: 'ProblemDetailPage',
         params: {
-          item: this.item
+          item: this.item,
+          isHidden: true
+        }
+      })
+    },
+    // from comment to detail page
+    toDetailPage1 (item) {
+      this.item = JSON.stringify(item)
+      sessionStorage.setItem('item', this.item)
+      this.$router.push({
+        path: '/ProblemDetailPage',
+        name: 'ProblemDetailPage',
+        params: {
+          item: this.item,
+          isHidden: false
         }
       })
     },
@@ -140,9 +153,7 @@ export default {
       let list = this.$store.getters.getLikedList
       let flag = false
       for (let i = 0; i < list.length; i++) {
-        alert(list)
         if (list[i].toString() === item.question_id.toString()) {
-          alert('true')
           this.$store.commit('changeList', [item.question_id, -1])
           this.$store.commit('changeLikedList', [false, item.question_id])
           flag = true
@@ -157,7 +168,6 @@ export default {
         }
       }
       if (flag === false) {
-        alert(false)
         this.$store.commit('changeList', [item.question_id, 1])
         this.$store.commit('changeLikedList', [true, item.question_id])
         this.axios.post('http://localhost:8080/like', {

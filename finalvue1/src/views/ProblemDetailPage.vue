@@ -63,7 +63,6 @@
           <div>
             <!--            {{item}}-->
             <table>
-              {{item}}
               {{item.commentList.length}} Answers
               <br>
               <div v-if="item.commentList.length >= 1">
@@ -111,6 +110,7 @@ export default {
   created () {
     let tmp = sessionStorage.getItem('item')
     this.item = JSON.parse(tmp)
+    this.isHidden = this.$route.params.isHidden
     this.axios.post('http://localhost:8080/userLike', {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {

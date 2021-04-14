@@ -3,6 +3,7 @@
     <span>Sorted by</span>
     <el-select
       v-model="value"
+      default-first-option
       filterable
       allow-create
       @change="Sorted"
