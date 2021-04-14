@@ -21,7 +21,7 @@
             </div>
           </td>
           <td style="padding: 1% 20px">
-            <el-button @click="liked(item, index)" plain size="medium" id="likes">
+            <el-button @click="liked(item)" plain size="medium" id="likes">
               <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </li>
               <li>{{item.likes}}</li>
             </el-button>
@@ -85,7 +85,6 @@ export default {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setLikedList', response.data.entity)
-      alert(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -126,14 +125,15 @@ export default {
         }
       })
     },
-    liked (item, index) {
+    liked (item) {
       let list = this.$store.getters.getLikedList
       let flag = false
       for (let i = 0; i < list.length; i++) {
-        console.log(list[i])
+        alert(list)
         if (list[i].toString() === item.question_id.toString()) {
           alert('true')
           this.$store.commit('changeList', [item.question_id, -1])
+          this.$store.commit('changeLikedList', [false, item.question_id])
           flag = true
           this.axios.post('http://localhost:8080/like', {
             request: sessionStorage.getItem('user_id') + ' ' + item.question_id,
@@ -148,6 +148,7 @@ export default {
       if (flag === false) {
         alert(false)
         this.$store.commit('changeList', [item.question_id, 1])
+        this.$store.commit('changeLikedList', [true, item.question_id])
         this.axios.post('http://localhost:8080/like', {
           request: sessionStorage.getItem('user_id') + ' ' + item.question_id,
           msg: 1

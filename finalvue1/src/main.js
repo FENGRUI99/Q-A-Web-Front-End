@@ -47,7 +47,19 @@ const store = new Vuex.Store({
         }
       }
     },
-    changeLikedList (state, index) {
+    changeLikedList (state, msg) {
+      let flag = msg[0]
+      let data = msg[1].toString()
+      if (flag === true) {
+        state.liked_list.push(data)
+      } else {
+        for (let i = 0; i < state.liked_list.length; i++) {
+          if (state.liked_list[i] === data) {
+            state.liked_list.splice(i, 1)
+            break
+          }
+        }
+      }
     }
   },
   // 计算属性

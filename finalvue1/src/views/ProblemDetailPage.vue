@@ -25,7 +25,7 @@
               </tr>
               <span class="butt">
                 <td>
-            <el-button  plain size="medium" id="likes">
+            <el-button  @click="liked(item)" plain size="medium" id="likes">
               <i class="el-icon-star-on"></i>
              {{item.likes}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes
             </el-button>
@@ -53,7 +53,7 @@
             <table class="answer">
             <input type="text" id="inputValue" value="Write your answer here within 200 words">
               <div class="blank"></div>
-            <el-button class="butt" type="success">
+            <el-button @click="submit" class="butt" type="success">
               Submit
             </el-button>
               <div class="blank"></div>
@@ -63,16 +63,16 @@
           <div>
             <!--            {{item}}-->
             <table>
+              {{item}}
               {{item.commentList.length}} Answers
               <br>
               <div v-if="item.commentList.length >= 1">
                 <div v-for="(comment,index) in item.commentList" v-bind:key="index">
-                  {{index+1}}--{{comment.comment_dtail}}-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                  {{index+1}}--{{comment.comment_detail}}--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                   <br>
                   Answer by {{comment.user_name}} in aa
                 </div>
               </div>
-
             </table>
           </div>
         </el-aside>
@@ -108,6 +108,17 @@ export default {
       isHidden: true
     }
   },
+  created () {
+    let tmp = sessionStorage.getItem('item')
+    this.item = JSON.parse(tmp)
+    this.axios.post('http://localhost:8080/userLike', {
+      request: sessionStorage.getItem('user_id')
+    }).then((response) => {
+      this.$store.commit('setLikedList', response.data.entity)
+    }).catch((response) => {
+      console.log(response)
+    })
+  },
   methods: {
     foldText () {
       if (this.isHidden === true) {
@@ -117,12 +128,42 @@ export default {
       }
     },
     submit () {
-
+      alert(this.$store.getters.getLikedList)
+    },
+    liked (item) {
+      let list = this.$store.getters.getLikedList
+      let flag = false
+      for (let i = 0; i < list.length; i++) {
+        if (list[i].toString() === item.question_id.toString()) {
+          this.$store.commit('changeList', [item.question_id, -1])
+          this.$store.commit('changeLikedList', [false, item.question_id])
+          this.item.likes -= 1
+          flag = true
+          this.axios.post('http://localhost:8080/like', {
+            request: sessionStorage.getItem('user_id') + ' ' + item.question_id,
+            msg: -1
+          }).then((response) => {
+          }).catch((response) => {
+            console.log(response)
+          })
+          break
+        }
+      }
+      if (flag === false) {
+        console.log(item.commentList)
+        this.$store.commit('changeList', [item.question_id, 1])
+        this.$store.commit('changeLikedList', [true, item.question_id])
+        this.item.likes += 1
+        this.axios.post('http://localhost:8080/like', {
+          request: sessionStorage.getItem('user_id') + ' ' + item.question_id,
+          msg: 1
+        }).then((response) => {
+        }).catch((response) => {
+          console.log(response)
+        })
+      }
+      sessionStorage.setItem('item', JSON.stringify(this.item))
     }
-  },
-  created () {
-    let tmp = sessionStorage.getItem('item')
-    this.item = JSON.parse(tmp)
   }
 }
 </script>
