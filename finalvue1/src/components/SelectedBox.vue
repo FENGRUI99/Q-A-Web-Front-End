@@ -39,7 +39,7 @@ export default {
         value: '5',
         label: 'Internship'
       }, {
-        value: '6s',
+        value: '6',
         label: 'Academic Courses'
       }, {
         value: '7',
