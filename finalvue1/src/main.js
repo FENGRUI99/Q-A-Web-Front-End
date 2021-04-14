@@ -20,25 +20,46 @@ const store = new Vuex.Store({
   state: {
     list: '',
     user_id: '',
-    like_flag: {}
+    isFind: true,
+    liked_list: []
   },
   // vuex中的方法, 在组件中使用commit来调用
   mutations: {
     setList (state, list) {
       state.list = list
-      for (let i = 0; i < list.length; i++) {
-        state.like_flag[list[i].question_id] = false
-      }
     },
     setUserId (state, id) {
       state.user_id = id
     },
-    addLike (state, index, number) {
-      state.list[index].likes += number
-      state.like_flag[state.list[index].question_id] = false
+    setIsFind (state, flag) {
+      state.isFind = flag
     },
-    getLikeFlag (state, index) {
-      return state.like_flag[state.list[index].question_id]
+    setLikedList (state, list) {
+      state.liked_list = list
+    },
+    changeList (state, indexAndData) {
+      let questionId = indexAndData[0]
+      let data = indexAndData[1]
+      for (let i = 0; i < state.list.length; i++) {
+        if (state.list[i].question_id === questionId) {
+          state.list[i].likes += data
+          break
+        }
+      }
+    },
+    changeLikedList (state, msg) {
+      let flag = msg[0]
+      let data = msg[1].toString()
+      if (flag === true) {
+        state.liked_list.push(data)
+      } else {
+        for (let i = 0; i < state.liked_list.length; i++) {
+          if (state.liked_list[i] === data) {
+            state.liked_list.splice(i, 1)
+            break
+          }
+        }
+      }
     }
   },
   // 计算属性
@@ -48,6 +69,12 @@ const store = new Vuex.Store({
     },
     getUserId (state) {
       return state.user_id
+    },
+    getIsFind (state) {
+      return state.isFind
+    },
+    getLikedList (state) {
+      return state.liked_list
     }
   }
 })

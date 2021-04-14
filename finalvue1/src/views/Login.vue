@@ -21,9 +21,11 @@
         </div>
         <div style="width: 70%;margin: auto">
           <div>
-            <table style="width: 100% ;">
-              <tr><div class="link-top" style="line-height:30px;width: 70%" ></div>
-                <BR/></tr>
+            <table style="width: 100%">
+              <tr>
+                <div class="link-top" style="line-height:30px;width: 70%" ></div>
+                <BR/>
+              </tr>
               <tr>Student ID</tr>
               <tr><input type="text" required id="id" value=""/></tr>
               <tr>Password</tr>
@@ -62,15 +64,8 @@ export default {
       this.$router.push({
         name: 'HomePage'
       })
-      this.$store.commit('setUserId', '1824094')
-      this.axios.post('http://localhost:8080/listQuestion', {
-        user_id: this.$store.getters.getUserId,
-        user_name: '1231'
-      }).then((response) => {
-        this.$store.commit('setList', response.data.entity)
-      }).catch((response) => {
-        console.log(response)
-      })
+      this.$store.commit('setUserId', '1822755')
+      sessionStorage.setItem('user_id', '1822755')
     },
     toRegister () {
       this.$router.push({
@@ -144,13 +139,11 @@ input[type = checkbox]{
 .link-top {
   width: 25%;
   height: 1px;
-  border-top: solid darkgrey 2px;
 }
 
 .animate {
   font-size: 50px;
   margin: 100px 0 0;
-  border-bottom: 2px solid #ccc;
 }
 
 .animate span {

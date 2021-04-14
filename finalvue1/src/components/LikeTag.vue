@@ -9,6 +9,8 @@
 <!--    </el-tag>-->
 <!--  </div>-->
   <div>
+    <table>
+    <td>
     <el-tag
       v-for="item in items"
       :key="item.label"
@@ -16,6 +18,18 @@
       effect="plain">
       {{ item.label }}
     </el-tag>
+    </td>
+      <td> &nbsp;&nbsp;&nbsp;</td>
+    <td>
+    <el-tag
+    v-for="item in items2"
+    :key="item.label"
+    :type="item.type"
+    effect="plain">
+    {{ item.label }}
+  </el-tag>
+    </td>
+    </table>
   </div>
 </template>
 
@@ -25,7 +39,9 @@ export default {
   data () {
     return {
       items: [
-        { type: 'success', label: 'Software Eng' },
+        { type: 'success', label: 'Software Engin' }
+      ],
+      items2: [
         { type: 'success', label: 'Coding Test' }
       ]
     }

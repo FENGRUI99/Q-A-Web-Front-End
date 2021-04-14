@@ -1,12 +1,10 @@
 <template>
   <div>
     <table id="tt">
-      <td>
-        <img src="../assets/logo1.png" width="200px"  >
-      </td>
-      <td>
-        <p id="title">ask louder here</p>
-      </td>
+      <img src="../assets/logo1.png" width="200px" class="pho">
+      <td style="width: 20%"></td>
+        <p id="title">Ask Louder Here! </p>
+      <td style="width: 30%"></td>
       <td>
         <searchBox></searchBox>
       </td>
@@ -38,10 +36,23 @@ export default {
   border-color: #ffffff #ffffff #81D454 #ffffff;
   position: fixed;
   z-index:5;
-  margin:0px auto;
+  margin:10px  auto;
   width:100%;
-  top:0px;
-  left: 0px
+  top:-10px;
+  left: 0;
+  padding: 0px 0px 10px 0px ;
 }
-#title{font-size: xx-large}
+#title{
+  font-size: xx-large;
+  position: absolute;
+  margin-top: 7px;
+  font-family: "Helvetica Neue";
+  color: #81D454;
+  margin-left: 50px;
+}
+.pho{
+  position: absolute;
+  margin-top: -15px;
+  margin-left: 3%;
+}
 </style>

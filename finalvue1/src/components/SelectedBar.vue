@@ -1,12 +1,12 @@
 <template>
   <div>
     <div id=bar>
+      <div style="height: 10px"></div>
       <multiSelectedBox></multiSelectedBox>
       <selectedBox></selectedBox>
     </div>
     <div>
-      <br>
-      <br>
+      <div style="height: 10px"></div>
     </div>
   </div>
 </template>
@@ -29,5 +29,6 @@ export default {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   background: #ffffff;
   width: 90%;
+  height: 60px;
 }
 </style>
