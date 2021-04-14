@@ -3,7 +3,10 @@
     <table id="tt">
       <img src="../assets/logo1.png" width="200px" class="pho">
       <td style="width: 20%"></td>
-        <p id="title">Ask Louder Here! </p>
+<!--        <p id="title">Ask Louder Here! </p>-->
+<!--      -->
+      <h1 id="title" data-shadow='Ask Louder Here!'>Ask Louder Here!</h1>
+<!--      -->
       <td style="width: 30%"></td>
       <td>
         <searchBox></searchBox>
@@ -16,6 +19,7 @@
 </template>
 
 <script>
+
 import NameTag from './NameTag'
 import SearchBox from './SearchBox'
 export default {
@@ -43,16 +47,75 @@ export default {
   padding: 0px 0px 10px 0px ;
 }
 #title{
-  font-size: xx-large;
+  /*font-size: xx-large;*/
   position: absolute;
-  margin-top: 7px;
-  font-family: "Helvetica Neue";
-  color: #81D454;
-  margin-left: 50px;
+  margin-top: -5px;
+  /*font-family: "Helvetica Neue";*/
+  /*color: #81D454;*/
+  margin-left: -5px;
 }
 .pho{
   position: absolute;
   margin-top: -15px;
   margin-left: 3%;
+}
+@import url(https://fonts.googleapis.com/css?family=Righteous);
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  text-align: center;
+  background-color: hsl(0, 0%, 100%);
+}
+body:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0;
+  height: 100%;
+}
+
+h1 {
+  display: inline-block;
+  color: #81D454;
+  font-family: 'Righteous', serif;
+  font-size: 3em;
+  text-shadow: .03em .03em 0 hsl(220, 10%, 94%);
+}
+h1:after {
+  content: attr(data-shadow);
+  position: absolute;
+  /*margin-top: 1px;*/
+  margin-left: -25px;
+  width: 100%;
+  top: .06em; left: .6em;
+  z-index: -1;
+  text-shadow: none;
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent 45%,
+      hsl(104, 100%, 53%) 45%,
+      hsl(130, 77%, 19%) 55%,
+      transparent 0
+    );
+  background-size: .1em .1em;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shad-anim 35s linear infinite;
+}
+
+@keyframes shad-anim {
+  0% {background-position: 0 0}
+  0% {background-position: 100% -100%}
 }
 </style>

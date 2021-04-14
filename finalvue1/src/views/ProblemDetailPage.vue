@@ -17,11 +17,6 @@
               </tr>
               <tr>
               {{item.question_detail}}
-                this is data for testing  this is data for testing this is data for testing
-                this is data for testing this is data for testing this is data for testing
-                this is data for testing this is data for testing this is data for testing
-                this is data for testing this is data for testing this is data for testing
-                this is data for testing this is data for testing this is data for testing
               </tr>
               <span class="butt">
                 <td>
@@ -41,7 +36,7 @@
                  <td>
                   <table>
                     <td>
-                      <el-tag
+                      <el-tag type="success"
                         v-for="tag in setQuestion_tags_en(this.item.question_tags)"
                         :key="tag"
                         effect="plain">

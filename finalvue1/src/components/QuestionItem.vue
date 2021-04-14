@@ -7,11 +7,6 @@
             <div style="display: block; margin: 0 3%">
               <li @click="toDetailPage(item)" align="left" id="title">{{item.question_description}}</li>
               <li @click="toDetailPage(item)" align="left">{{item.question_detail}}
-                this is data for testing  this is data for testing this is data for testing
-                this is data for testing this is data for testing this is data for testing
-                this is data for testing this is data for testing this is data for testing
-                this is data for testing this is data for testing this is data for testing
-                this is data for testing this is data for testing this is data for testing
               </li>
               <table style="width: 100%;">
                   <td align="left">Posted by {{item.user_id}} {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
@@ -19,7 +14,7 @@
                 <div>
                   <table>
                     <td>
-                      <el-tag
+                      <el-tag type="success"
                         v-for="tag in setQuestion_tags_en(item.question_tags)"
                         :key="tag"
                         effect="plain">
@@ -59,7 +54,7 @@
     </div>
     <div v-else-if="this.$store.getters.getIsFind === false">
       <ul class="notFound">
-        <li><p>Youe question cannot be found</p></li>
+        <li><p>Your question cannot be found</p></li>
         <li><p>What about ask a question</p></li>
       </ul>
       <br>

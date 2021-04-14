@@ -4,6 +4,11 @@
     <AskQuestion></AskQuestion>
     <br>
     <TopContributors></TopContributors>
+    <div style="position:fixed;width:100px;height:30px;align:right;top:90%;left:12%">
+      <a href="#top">
+        <el-button title="Click back to the top" type="success" class="butt" icon="el-icon-top" circle></el-button>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -24,5 +29,9 @@ export default {
 .aside{
   width: 400px;
   position: fixed;
+}
+.butt{
+  margin-left:20%;
+  margin-top: 10%;
 }
 </style>
