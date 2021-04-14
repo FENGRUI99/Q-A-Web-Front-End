@@ -1,6 +1,6 @@
 <template>
   <div style="display: inline-block;margin: 0 10%;">
-    <span>Tags Filter</span>
+    <span id="Sort">Tags Filter</span>
     <el-select
       filterable
       allow-create
@@ -68,3 +68,14 @@ export default {
   }
 }
 </script>
+<style scoped>
+  #Sort {
+    font-weight: bold;
+    text-align: left;
+    white-space: normal;
+    text-transform: capitalize;
+    font-size: 18px;
+    padding-right: 5px;
+  }
+
+</style>

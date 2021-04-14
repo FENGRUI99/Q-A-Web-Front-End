@@ -1,6 +1,6 @@
 <template>
   <div style="display: inline-block;margin: 0 auto;">
-    <span>Sorted by</span>
+    <span id="Sort">Sorted by</span>
     <el-select
       v-model="value"
       default-first-option
@@ -64,5 +64,13 @@ export default {
 </script>
 
 <style scoped>
+  #Sort {
+    font-weight: bold;
+    text-align: left;
+    white-space: normal;
+    text-transform: capitalize;
+    font-size: 18px;
+    padding-right: 3px;
+  }
 
 </style>

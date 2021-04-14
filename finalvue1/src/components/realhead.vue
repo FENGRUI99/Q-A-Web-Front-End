@@ -3,7 +3,7 @@
     <table id="tt">
       <img src="../assets/logo1.png" width="200px" class="pho">
       <td style="width: 20%"></td>
-        <p id="title">Ask Louder Here! </p>
+      <p  id="title">Ask Louder Here! </p>
       <td style="width: 30%"></td>
       <td>
         <searchBox></searchBox>
@@ -29,30 +29,31 @@ export default {
 </script>
 
 <style scoped>
-#tt {
-  background: white;
-  border: 1px;
-  border-style: solid;
-  border-color: #ffffff #ffffff #81D454 #ffffff;
-  position: fixed;
-  z-index:5;
-  margin:10px  auto;
-  width:100%;
-  top:-10px;
-  left: 0;
-  padding: 0px 0px 10px 0px ;
-}
-#title{
-  font-size: xx-large;
-  position: absolute;
-  margin-top: 7px;
-  font-family: "Helvetica Neue";
-  color: #81D454;
-  margin-left: 50px;
-}
-.pho{
-  position: absolute;
-  margin-top: -15px;
-  margin-left: 3%;
-}
+  #tt {
+    background: white;
+    border: 1px;
+    border-style: solid;
+    border-color: #ffffff #ffffff #81D454 #ffffff;
+    position: fixed;
+    z-index:5;
+    margin:10px  auto;
+    width:100%;
+    top:-10px;
+    left: 0;
+    padding: 0px 0px 10px 0px ;
+  }
+  #title{
+    font-size: xx-large;
+    position: absolute;
+    margin-top: 7px;
+    font-family: "Helvetica Neue";
+    color: #81D454;
+    margin-left: 50px;
+    font-style: italic;
+  }
+  .pho{
+    position: absolute;
+    margin-top: -15px;
+    margin-left: 3%;
+  }
 </style>
