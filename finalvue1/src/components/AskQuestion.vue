@@ -34,10 +34,6 @@ export default {
   width: 50%;
   font-size:27px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-  /*background: #81D454;*/
-  /*border: 1px;*/
-  /*border-style: solid;*/
-  /*border-color: #81D454;*/
   color: #eff1f1;
   font-style: italic;
   font-weight: bolder;
