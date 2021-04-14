@@ -3,6 +3,7 @@
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
+          {{item.question_id}}
           <td>
             <div style="display: block; margin: 0 3%" @click="toDetailPage(item)" >
               <li align="left" id="title">{{item.question_description}}</li>
@@ -20,7 +21,7 @@
             </div>
           </td>
           <td style="padding: 1% 20px">
-            <el-button @click="liked(index, item.question_id)" plain size="medium" id="likes">
+            <el-button @click="liked(item, index)" plain size="medium" id="likes">
               <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </li>
               <li>{{item.likes}}</li>
             </el-button>
@@ -74,10 +75,17 @@ export default {
   },
   created () {
     this.axios.post('http://localhost:8080/listQuestion', {
-      user_id: this.$store.getters.getUserId,
-      user_name: '1231'
+      request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setList', response.data.entity)
+    }).catch((response) => {
+      console.log(response)
+    })
+    this.axios.post('http://localhost:8080/userLike', {
+      request: sessionStorage.getItem('user_id')
+    }).then((response) => {
+      this.$store.commit('setLikedList', response.data.entity)
+      alert(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -97,7 +105,7 @@ export default {
         if (clientHeight + scrollTop + footerHeight > scrollHeight) {
           if (this.$store.getters.getList.length > this.count) {
             this.count += 5
-            this.sleep(1000)
+            this.sleep(500)
           }
         }
       }
@@ -118,24 +126,32 @@ export default {
         }
       })
     },
-    liked (index, questionId) {
-      alert(this.$store.commit('getLikeFlag', index) === false)
-      if (this.$store.commit('getLikeFlag', index) === false) {
-        this.$store.commit('addLike', index, 1)
+    liked (item, index) {
+      let list = this.$store.getters.getLikedList
+      let flag = false
+      for (let i = 0; i < list.length; i++) {
+        console.log(list[i])
+        if (list[i].toString() === item.question_id.toString()) {
+          alert('true')
+          this.$store.commit('changeList', [item.question_id, -1])
+          flag = true
+          this.axios.post('http://localhost:8080/like', {
+            request: sessionStorage.getItem('user_id') + ' ' + item.question_id,
+            msg: -1
+          }).then((response) => {
+          }).catch((response) => {
+            console.log(response)
+          })
+          break
+        }
+      }
+      if (flag === false) {
+        alert(false)
+        this.$store.commit('changeList', [item.question_id, 1])
         this.axios.post('http://localhost:8080/like', {
-          request: questionId,
-          msg: 1}
-        ).then((response) => {
-          console.log(response.data.entity)
-        }).catch((response) => {
-          console.log(response)
-        })
-      } else {
-        this.$store.commit('addLike', index, questionId, -1)
-        this.axios.post('http://localhost:8080/like', {
-          request: questionId,
-          msg: -1}
-        ).then((response) => {
+          request: sessionStorage.getItem('user_id') + ' ' + item.question_id,
+          msg: 1
+        }).then((response) => {
         }).catch((response) => {
           console.log(response)
         })

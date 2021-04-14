@@ -64,7 +64,8 @@ export default {
       this.$router.push({
         name: 'HomePage'
       })
-      this.$store.commit('setUserId', '1824094')
+      this.$store.commit('setUserId', '1822755')
+      sessionStorage.setItem('user_id', '1822755')
     },
     toRegister () {
       this.$router.push({
