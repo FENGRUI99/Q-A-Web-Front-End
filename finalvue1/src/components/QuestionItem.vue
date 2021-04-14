@@ -15,7 +15,20 @@
               </li>
               <table style="width: 100%;">
                   <td align="left">Posted by {{item.user_id}} {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-              <td><likeTag></likeTag></td>
+              <td>
+                <div>
+                  <table>
+                    <td>
+                      <el-tag
+                        v-for="tag in setQuestion_tags_en(item.question_tags)"
+                        :key="tag"
+                        effect="plain">
+                        {{ tag }}
+                      </el-tag>
+                    </td>
+                  </table>
+                </div>
+              </td>
               </table>
             </div>
           </td>
@@ -57,12 +70,8 @@
 </template>
 
 <script>
-import LikeTag from './LikeTag'
 export default {
   name: 'QuestionItem',
-  components: {
-    'likeTag': LikeTag
-  },
   data () {
     return {
       count: 5,
@@ -94,7 +103,6 @@ export default {
   },
   methods: {
     handleScroll: function () {
-      console.log('here')
       if (this.change === -1) {
         this.change = this.$store.getters.getList.length
       } else if (this.change !== this.$store.getters.getList.length) {
@@ -178,6 +186,32 @@ export default {
           console.log(response)
         })
       }
+    },
+    setQuestion_tags_en (msg) {
+      let tagsList = msg.toString().split(',')
+      let ans = []
+      for (let i = 0; i < tagsList.length; i++) {
+        if (tagsList[i] === '1') {
+          ans[i] = 'Test & Coursework'
+        } else if (tagsList[i] === '2') {
+          ans[i] = 'Software Engi'
+        } else if (tagsList[i] === '3') {
+          ans[i] = 'Learning Skills'
+        } else if (tagsList[i] === '4') {
+          ans[i] = 'Group Project'
+        } else if (tagsList[i] === '5') {
+          ans[i] = 'Internship'
+        } else if (tagsList[i] === '6') {
+          ans[i] = 'Academic Courses'
+        } else if (tagsList[i] === '7') {
+          ans[i] = 'Career'
+        } else if (tagsList[i] === '8') {
+          ans[i] = 'Life Study Balance'
+        } else if (tagsList[i] === '9') {
+          ans[i] = 'Graduate Application'
+        }
+      }
+      return ans
     }
   },
   watch: {

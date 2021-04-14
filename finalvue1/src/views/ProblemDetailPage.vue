@@ -39,7 +39,16 @@
                 <td style="width: 30%">
                 </td>
                  <td>
-                  <likeTag></likeTag>
+                  <table>
+                    <td>
+                      <el-tag
+                        v-for="tag in setQuestion_tags_en(this.item.question_tags)"
+                        :key="tag"
+                        effect="plain">
+                        {{ tag }}
+                      </el-tag>
+                    </td>
+                  </table>
                 </td>
               </span>
             </table>
@@ -67,9 +76,14 @@
               <br>
               <div v-if="item.commentList.length >= 1">
                 <div v-for="(comment,index) in item.commentList" v-bind:key="index">
-                  {{index+1}}--{{comment.comment_detail}}--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                  <el-tag>{{index+1}}</el-tag>-{{comment.comment_detail}}--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                   <br>
                   Answer by {{comment.user_name}} in aa
+                </div>
+              </div>
+              <div v-else>
+                <div>
+                  no commment
                 </div>
               </div>
             </table>
@@ -93,13 +107,11 @@
 <script>
 import RealHead from '../components/realhead'
 import Footer from '../components/Footer'
-import LikeTag from '../components/LikeTag'
 export default {
   name: 'ProblemDetailPage',
   components: {
     'header123': RealHead,
-    'footer123': Footer,
-    'likeTag': LikeTag
+    'footer123': Footer
   },
   data () {
     return {
@@ -163,6 +175,32 @@ export default {
         })
       }
       sessionStorage.setItem('item', JSON.stringify(this.item))
+    },
+    setQuestion_tags_en (msg) {
+      let tagsList = msg.toString().split(',')
+      let ans = []
+      for (let i = 0; i < tagsList.length; i++) {
+        if (tagsList[i] === '1') {
+          ans[i] = 'Test & Coursework'
+        } else if (tagsList[i] === '2') {
+          ans[i] = 'Software Engi'
+        } else if (tagsList[i] === '3') {
+          ans[i] = 'Learning Skills'
+        } else if (tagsList[i] === '4') {
+          ans[i] = 'Group Project'
+        } else if (tagsList[i] === '5') {
+          ans[i] = 'Internship'
+        } else if (tagsList[i] === '6') {
+          ans[i] = 'Academic Courses'
+        } else if (tagsList[i] === '7') {
+          ans[i] = 'Career'
+        } else if (tagsList[i] === '8') {
+          ans[i] = 'Life Study Balance'
+        } else if (tagsList[i] === '9') {
+          ans[i] = 'Graduate Application'
+        }
+      }
+      return ans
     }
   }
 }
