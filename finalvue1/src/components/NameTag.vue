@@ -3,7 +3,7 @@
     <router-link to="/PersonalDetail">
       <table>
         <td>
-          <el-avatar :size="30" :src="circleUrl"></el-avatar>
+          <el-avatar :size="30" :src="circleUrl" style="position: fixed;margin-left: -40px"></el-avatar>
         </td>
         <td>
         <el-link :underline="false" style="size: 10px">Username</el-link>

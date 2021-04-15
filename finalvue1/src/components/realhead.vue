@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <table id="tt">
       <img src="../assets/logo1.png" width="200px" class="pho">
       <td style="width: 20%"></td>
@@ -9,6 +10,7 @@
       <!--      -->
       <td style="width: 30%"></td>
       <td>
+        <div style="height: 12px;width: 10px"></div>
         <searchBox></searchBox>
       </td>
       <td>
@@ -48,14 +50,13 @@ export default {
 #title {
   /*font-size: xx-large;*/
   position: absolute;
-  margin-top: -5px;
   /*font-family: "Helvetica Neue";*/
   /*color: #81D454;*/
   margin-left: -5px;
 }
 .pho{
   position: absolute;
-  margin-top: -15px;
+  margin-top: -10px;
   margin-left: 3%;
 }
 @import url(https://fonts.googleapis.com/css?family=Righteous);

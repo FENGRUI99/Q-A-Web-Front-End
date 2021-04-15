@@ -5,7 +5,7 @@
         <header123></header123>
       </el-header>
       <el-container>
-        <el-aside width=70%>
+        <el-aside width=72%>
           <!--          问题详情框-->
 
             <table class="intro">
@@ -55,7 +55,20 @@
           <div v-bind:hidden="isHidden">
             <div class="blank"></div>
             <table class="answer">
-            <input type="text" id="inputValue" value="Write your answer here within 200 words">
+              <div class="blank"></div>
+              <el-input
+                type="textarea"
+                placeholder="Write your answer here within 200 words"
+                v-model="textarea"
+                maxlength="200"
+                show-word-limit
+                resize="none"
+                clearable="true"
+                rows="4"
+              >
+              </el-input>
+
+<!--              <input type="text" id="inputValue" value="Write your answer here within 200 words">-->
               <div class="blank"></div>
             <el-button @click="submit" class="butt" type="success">
               Submit
@@ -83,13 +96,33 @@
               </div>
             </table>
           </div>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
         </el-aside>
         <el-container>
         <el-main>
-          <table class="intro">
+          <table class="aside">
+            <div class="blank"></div>
             <div id="relatedQuestions">Related Questions</div>
             <div>
-              abc
+              <p>abc</p>
+              <p>abc</p>
+              <p>abc</p>
+              <p>abc</p>
+              <p>abc</p>
+              <p>abc</p>
+              <p>abc</p>
+              <p>abc</p>
+
             </div>
           </table>
         </el-main>
@@ -114,7 +147,8 @@ export default {
   data () {
     return {
       item: {},
-      isHidden: true
+      isHidden: true,
+      textarea: ''
     }
   },
   created () {
@@ -206,28 +240,40 @@ export default {
 
 <style scoped>
 .intro{
-  border: 2px;
+  border: 1px;
   border-radius: 10px;
   border-color: #cccccc;
   border-style:solid;
-  width: 80%;
-
+  width: 92%;
   margin-left: 8%;
   background: white;
   padding: 0 2% ;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.aside{
+  border: 1px;
+  border-radius: 10px;
+  border-color: #cccccc;
+  border-style:solid;
+  width: 250px;
+  position: fixed;
+  background: white;
+  padding: 0 2% ;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .intro tr{
   text-align: left;
 }
 .answer{
-  border: 2px;
+  border: 1px;
   border-radius: 10px;
   border-color: #cccccc;
   border-style:solid;
-  width: 80%;
+  width: 92%;
   margin-left: 8%;
   background: white;
   padding: 0 2% ;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 #inputValue{
   margin-left: -5%;
@@ -236,8 +282,7 @@ export default {
   margin-top: 2% ;
 }
 .butt{
-  /*text-align: left;*/
-  margin-left: -1%;
+  /*margin-left: 1%;*/
   display:block;
   /*alignment: left;*/
   /*width: 20%;*/
@@ -258,6 +303,9 @@ export default {
   border-color: white;
 }
 #relatedQuestions{
-
+  border: 1px;
+  border-color: white white #cccccc white;
+  border-style:solid;
+  font-size: 20px;
 }
 </style>
