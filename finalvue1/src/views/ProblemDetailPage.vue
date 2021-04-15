@@ -9,10 +9,10 @@
           <!--          问题详情框-->
 
             <table class="intro">
-              <tr id="title">
+              <tr id="title1">
              {{item.question_description}}
               </tr>
-              <tr id="small" >
+              <tr id="small1" >
               Posted by {{item.user_name}} {{item.time}}
               </tr>
               <tr>
@@ -63,24 +63,31 @@
               <div class="blank"></div>
             </table>
           </div>
+          <br>
           <!--          Comments-->
           <div>
             <!--            {{item}}-->
-            <table>
-              {{item.commentList.length}} Answers
-              <br>
-              <div v-if="item.commentList.length >= 1">
-                <div v-for="(comment,index) in item.commentList" v-bind:key="index">
-                  <el-tag>{{index+1}}</el-tag>-{{comment.comment_detail}}--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                  <br>
-                  Answer by {{comment.user_name}} in aa
+            <table class="intro">
+              <tr id="title">
+               <p style="border-bottom: 3px solid #138b5f; ">{{item.commentList.length}} Answers</p>
+              </tr>
+              <tr>
+                <div v-if="item.commentList.length >= 1">
+                  <div v-for="(comment,index) in item.commentList" v-bind:key="index">
+                    <el-tag color="antiquewhite">{{index+1}}</el-tag>-{{comment.comment_detail}}--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    <br>
+                    <tr id="small" >
+                    Answer by {{comment.user_name}} in aa
+                    </tr>
+                    <br>
+                  </div>
                 </div>
-              </div>
-              <div v-else>
-                <div>
-                  no commment
+                <div v-else>
+                  <div>
+                    no commment
+                  </div>
                 </div>
-              </div>
+            </tr>
             </table>
           </div>
         </el-aside>
@@ -247,10 +254,20 @@ export default {
   font-size: x-large;
   font-weight: bold;
 }
+#title1{
+  font-size: x-large;
+  font-weight: bold;
+}
 .blank{
   height: 10px;
 }
 #small{
+  font-size: x-small;
+  padding-right: 120px;
+  color:gray;
+  font-style: italic;
+}
+#small1{
   font-size: x-small;
 }
 #likes{
