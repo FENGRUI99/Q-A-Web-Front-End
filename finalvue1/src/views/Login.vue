@@ -1,7 +1,7 @@
 <template>
   <div>
-  <div class="background">
-    <img :src="imgSrc" width="100%" height="100%" alt="" />
+  <div class="background" style="left:0;top:0">
+    <img :src="imgSrc"  alt="" />
   </div>
 <!--    <el-header>-->
 <!--      <div>-->
@@ -14,7 +14,7 @@
       <table class = "side p" style="width: 55%;line-height:45px;background: rgba(256,256,256,.5);">
         <div class="animate seven" style="margin: auto;">
           <br>
-          <span>L</span><span>o</span><span>g</span>&nbsp;
+          <span style="color: white">L</span><span style="color: white">o</span><span>g</span>&nbsp;
           <span>i</span><span>n</span>&nbsp;
           <span>L</span><span>o</span><span>u</span><span>d</span><span>e</span><span>r</span><span>!</span>
           <br>
@@ -56,7 +56,7 @@ export default {
   },
   data () {
     return {
-      imgSrc: require('../assets/back.png')
+      imgSrc: require('../assets/BG1.svg')
     }
   },
   methods: {
@@ -144,6 +144,7 @@ input[type = checkbox]{
 .animate {
   font-size: 50px;
   margin: 100px 0 0;
+  color: white;
 }
 
 .animate span {
@@ -235,10 +236,17 @@ input[type = checkbox]{
   }
 }
 .background{
+  margin: 0;
+  padding: 0;
   width:100%;
   height:100%;  /**宽高100%是为了图片铺满屏幕 */
-  z-index:-1;
-  position: absolute;
+  z-index:-100;
+  position: fixed;
+  repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
 }
 
 .front{
