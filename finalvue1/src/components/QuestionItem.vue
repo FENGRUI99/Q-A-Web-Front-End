@@ -5,16 +5,17 @@
         <table class="abc">
           <td>
             <div style="display: block; margin: 0 3%">
-              <li @click="toDetailPage(item)" align="left" id="title">{{item.question_description}}</li>
-              <li @click="toDetailPage(item)" align="left">{{item.question_detail}}
-              </li>
-              <table style="width: 100%;">
-                  <td align="left">Posted by {{item.user_id}} {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+              <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" >{{item.question_description}}</li>
+              <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
+              <table style="width: 60%;">
+                  <td align="left">Posted:</td>
+                  <td align="left" style="color: #7ece54;text-decoration: underline;font-weight: bold;font-style: italic; "> {{item.user_id}} </td>
+                  <td align="left">  {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
               <td>
                 <div>
-                  <table>
+                  <table style="width: 300%;">
                     <td>
-                      <el-tag type="success"
+                      <el-tag type="success" style="font-weight: bold;font-size: 15px"
                         v-for="tag in setQuestion_tags_en(item.question_tags)"
                         :key="tag"
                         effect="plain">
@@ -69,6 +70,7 @@ export default {
   name: 'QuestionItem',
   data () {
     return {
+      avtivecolor: 'color:#b8b8b8',
       count: 5,
       change: -1,
       loading: {
@@ -97,6 +99,16 @@ export default {
     window.addEventListener('scroll', this.handleScroll, true)
   },
   methods: {
+    mouseOver () {
+      this.active = 'background-color:black'
+      // get and change label P
+      var acps = this.$refs.Self.innerText
+      acps.style.color = 'red'
+    },
+    mouseLeave () {
+      this.active = ''
+      this.$refs.acp.style = ''
+    },
     handleScroll: function () {
       if (this.change === -1) {
         this.change = this.$store.getters.getList.length
@@ -223,6 +235,9 @@ export default {
 </script>
 
 <style scoped>
+.Touchable{
+  cursor: pointer;
+}
 .abc {
   background: #ffffff;
   border-radius: 10px;
@@ -264,6 +279,7 @@ export default {
 #title{
   font-size: large;
   font-weight: bold;
+  text-transform: capitalize;
 }
 li{
   list-style: none;
