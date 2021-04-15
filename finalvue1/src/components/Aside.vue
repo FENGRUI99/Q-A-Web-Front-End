@@ -4,11 +4,11 @@
     <AskQuestion></AskQuestion>
     <br>
     <TopContributors></TopContributors>
-    <div style="position:fixed;width:100px;height:30px;align:right;top:90%;left:10%">
+    <dSkeletoniv style="position:fixed;width:100px;height:30px;align:right;top:90%;left:10%">
       <a href="#top">
         <el-button title="Click back to the top" type="success" class="butt" icon="el-icon-top" circle></el-button>
       </a>
-    </div>
+    </dSkeletoniv>
   </div>
 </template>
 
