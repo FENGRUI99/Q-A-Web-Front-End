@@ -86,12 +86,15 @@
         </el-aside>
         <el-container>
         <el-main>
-<p>sadasdsadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasds
-  sadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdsvvsadasds
-  sadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdssadasdss</p>
+          <table class="intro">
+            <div id="relatedQuestions">Related Questions</div>
+            <div>
+              abc
+            </div>
+          </table>
         </el-main>
         <el-footer>
-          <footer123></footer123>
+<!--          <footer123></footer123>-->
         </el-footer>
       </el-container>
     </el-container>
@@ -253,5 +256,8 @@ export default {
 #likes{
   border-style: solid;
   border-color: white;
+}
+#relatedQuestions{
+
 }
 </style>
