@@ -84,14 +84,12 @@
               <tr id="title">
                <p style="border-bottom: 3px solid #299ec7; ">{{item.commentList.length}} Answers</p>
               </tr>
-              <tr>
+              <div>
                 <div v-if="item.commentList.length >= 1">
                   <div v-for="(comment,index) in item.commentList" v-bind:key="index">
                     <el-tag color="#3bc194" style="color: #fffdfd;font-size: 15px;font-weight: bolder">{{index+1}}</el-tag> -  {{comment.comment_detail}}  ||  --aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                     <br>
-                    <tr id="small" >
-                    Answer by {{comment.user_name}} in aa
-                    </tr>
+                    <tr id="small" >Answer by {{comment.user_name}} in aa</tr>
                     <br>
                   </div>
                 </div>
@@ -100,7 +98,7 @@
                     no commment
                   </div>
                 </div>
-            </tr>
+            </div>
             </table>
           </div>
           <br>
