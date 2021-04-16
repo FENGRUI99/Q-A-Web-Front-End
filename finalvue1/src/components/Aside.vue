@@ -4,7 +4,7 @@
     <AskQuestion></AskQuestion>
     <br>
     <TopContributors></TopContributors>
-    <dSkeletoniv style="position:fixed;width:100px;height:30px;align:right;top:90%;left:10%">
+    <dSkeletoniv style="position:fixed;width:100px;height:30px;align:right;top:90%;left:9%">
       <a href="#top">
         <el-button title="Click back to the top" type="success" class="butt" icon="el-icon-top" circle></el-button>
       </a>
@@ -27,11 +27,11 @@ export default {
 
 <style scoped>
 .aside{
-  width: 400px;
+  width: 450px;
   position: fixed;
 }
 .butt{
-  margin-left:20%;
+  margin-left:45%;
   margin-top: 10%;
 }
 </style>

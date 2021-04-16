@@ -1,7 +1,7 @@
 <template>
   <div>
     <table id="t1">
-      <h1>Top Contributors</h1>
+      <h1>Top Louder</h1>
       <table id="tc">
         <tr> CQR </tr>
         <tr>CFR</tr>

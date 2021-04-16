@@ -70,7 +70,7 @@
 
 <!--              <input type="text" id="inputValue" value="Write your answer here within 200 words">-->
               <div class="blank"></div>
-            <el-button @click="submit" class="butt" type="success">
+            <el-button @click="submit" class="butt" type="success" >
               Submit
             </el-button>
               <div class="blank"></div>
@@ -293,6 +293,7 @@ export default {
   display:block;
   /*alignment: left;*/
   /*width: 20%;*/
+  font-weight: bold;
 }
 
 #title{

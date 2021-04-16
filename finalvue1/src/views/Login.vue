@@ -8,15 +8,15 @@
 <!--        <RealHead></RealHead>-->
 <!--      </div>-->
 <!--    </el-header>-->
-    <div>
+    <div  >
       <br>
       <br>
-      <table class = "side p" style="width: 55%;line-height:45px;background: rgba(256,256,256,.5);">
+      <table class = "side p" style="width: 55%;line-height:45px;background: rgba(232,231,231,0.5);box-shadow: #cccccc;-moz-box-shadow: #2c3e50">
         <div class="animate seven" style="margin: auto;">
           <br>
-          <span style="color: white">L</span><span style="color: white">o</span><span>g</span>&nbsp;
-          <span>i</span><span>n</span>&nbsp;
-          <span>L</span><span>o</span><span>u</span><span>d</span><span>e</span><span>r</span><span>!</span>
+          <span style="color: white">L</span><span style="color: white">o</span><span style="color: white">g</span>&nbsp;
+          <span style="color: white">i</span><span style="color: white">n</span>&nbsp;
+          <span style="color: white">L</span><span style="color: white">o</span><span style="color: white">u</span><span style="color: white">d</span><span>e</span><span>r</span><span>!</span>
           <br>
         </div>
         <div style="width: 70%;margin: auto">
