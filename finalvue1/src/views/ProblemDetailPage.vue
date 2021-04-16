@@ -63,7 +63,7 @@
                 maxlength="200"
                 show-word-limit
                 resize="none"
-                clearable="true"
+                clearable=""
                 rows="4"
               >
               </el-input>
