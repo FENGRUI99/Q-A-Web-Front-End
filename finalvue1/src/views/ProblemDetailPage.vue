@@ -87,9 +87,15 @@
               <div>
                 <div v-if="item.commentList.length >= 1">
                   <div v-for="(comment,index) in item.commentList" v-bind:key="index">
-                    <el-tag color="#3bc194" style="color: #fffdfd;font-size: 15px;font-weight: bolder">{{index+1}}</el-tag> -  {{comment.comment_detail}}  ||  --aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    <el-tag color="#3bc194" style="color: #fffdfd;font-size: 15px;font-weight: bolder">{{index+1}}</el-tag> -  {{comment.comment_detail}}
                     <br>
                     <tr id="small" >Answer by {{comment.user_name}} in aa</tr>
+                    <br>
+                  </div>
+                  <div v-if="submit_flag === true">
+                    <el-tag color="#3bc194" style="color: #fffdfd;font-size: 15px;font-weight: bolder">{{item.commentList.length+1}}</el-tag> -  {{this.textarea}}
+                    <br>
+                    <tr>Answer by me in aa</tr>
                     <br>
                   </div>
                 </div>
@@ -118,16 +124,10 @@
           <table class="aside">
             <div class="blank"></div>
             <div id="relatedQuestions">Related Questions</div>
-            <div>
-              <p>abc</p>
-              <p>abc</p>
-              <p>abc</p>
-              <p>abc</p>
-              <p>abc</p>
-              <p>abc</p>
-              <p>abc</p>
-              <p>abc</p>
-
+            <div v-for="(relevant,index) in this.relevant_question" v-bind:key="relevant">
+              <div v-if="index < 5">
+                <p>{{index+1}}--{{relevant.question_description}}</p>
+              </div>
             </div>
           </table>
         </el-main>
@@ -153,7 +153,9 @@ export default {
     return {
       item: {},
       isHidden: true,
-      textarea: ''
+      textarea: '',
+      submit_flag: false,
+      relevant_question: []
     }
   },
   created () {
@@ -167,6 +169,13 @@ export default {
     }).catch((response) => {
       console.log(response)
     })
+    this.axios.post('http://localhost:8080/relevant', {
+      request: this.item.question_tags
+    }).then((response) => {
+      this.relevant_question = response.data.entity
+    }).catch((response) => {
+      console.log(response)
+    })
   },
   methods: {
     foldText () {
@@ -177,7 +186,7 @@ export default {
       }
     },
     submit () {
-      alert(this.$store.getters.getLikedList)
+      this.submit_flag = true
     },
     liked (item) {
       let list = this.$store.getters.getLikedList

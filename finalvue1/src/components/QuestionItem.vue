@@ -127,7 +127,7 @@ export default {
         if (clientHeight + scrollTop + footerHeight > scrollHeight) {
           if (this.$store.getters.getList.length > this.count) {
             this.count += 5
-            this.sleep(500)
+            this.sleep(300)
           }
         }
       } else {

@@ -67,7 +67,6 @@ export default {
         user_id: this.user_id,
         user_psw: this.user_pwd
       }).then((response) => {
-        alert(response.data.code)
         if (response.data.code === '200') {
           this.$router.push({
             name: 'HomePage'
