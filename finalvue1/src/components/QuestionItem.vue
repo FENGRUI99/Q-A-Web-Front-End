@@ -9,7 +9,7 @@
               <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
               <table style="width: 60%;">
                   <td align="left">Posted:</td>
-                  <td align="left" style="color: #7ece54;text-decoration: underline;font-weight: bold;font-style: italic; "> {{item.user_id}} </td>
+                  <td align="left" style="color: #7ece54;text-decoration: underline;font-weight: bold;font-style: italic; "> {{item.user_name}} </td>
                   <td align="left">  {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
               <td>
                 <div>
@@ -195,7 +195,7 @@ export default {
       }
     },
     setQuestion_tags_en (msg) {
-      let tagsList = msg.toString().split(',')
+      let tagsList = msg.toString().split(' ')
       let ans = []
       for (let i = 0; i < tagsList.length; i++) {
         if (tagsList[i] === '1') {

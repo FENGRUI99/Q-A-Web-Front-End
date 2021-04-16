@@ -27,9 +27,9 @@
                 <BR/>
               </tr>
               <tr>Student ID</tr>
-              <tr><input type="text" required id="id" value=""/></tr>
+              <tr><input v-model="user_id" type="text" required id="id" value=""/></tr>
               <tr>Password</tr>
-              <tr><input type="password" required="required" id="password" value=""/></tr>
+              <tr><input v-model="user_pwd" type="password" required="required" id="password" value=""/></tr>
             </table>
           </div>
              <br/>
@@ -56,16 +56,29 @@ export default {
   },
   data () {
     return {
-      imgSrc: require('../assets/BG1.svg')
+      imgSrc: require('../assets/BG1.svg'),
+      user_id: '',
+      user_pwd: ''
     }
   },
   methods: {
     toPage () {
-      this.$router.push({
-        name: 'HomePage'
+      this.axios.post('http://localhost:8080/login', {
+        user_id: this.user_id,
+        user_psw: this.user_pwd
+      }).then((response) => {
+        if (response.code === 200) {
+          this.$router.push({
+            name: 'HomePage'
+          })
+          this.$store.commit('setUserId', this.user_id)
+          sessionStorage.setItem('user_id', this.user_id)
+        } else {
+          alert('Wrong user id or password')
+        }
+      }).catch((response) => {
+        console.log(response)
       })
-      this.$store.commit('setUserId', '1822755')
-      sessionStorage.setItem('user_id', '1822755')
     },
     toRegister () {
       this.$router.push({
