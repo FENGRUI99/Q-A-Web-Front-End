@@ -7,24 +7,24 @@
             <div style="display: block; margin: 0 3%">
               <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" >{{item.question_description}}</li>
               <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
-              <table style="width: 60%;">
-                  <td align="left">Posted:</td>
-                  <td align="left" style="color: #7ece54;text-decoration: underline;font-weight: bold;font-style: italic; "> {{item.user_name}} </td>
-                  <td align="left">  {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-              <td>
-                <div>
-                  <table style="width: 300%;">
-                    <td>
-                      <el-tag type="success" style="font-weight: bold;font-size: 15px"
-                        v-for="tag in setQuestion_tags_en(item.question_tags)"
-                        :key="tag"
-                        effect="plain">
-                        {{ tag }}
-                      </el-tag>
-                    </td>
-                  </table>
-                </div>
-              </td>
+              <table style="width: 60%; padding-top: 10px" align="left" >
+                  <td width="6%" align="left">Posted:</td>
+                  <td class="Fixed" align="left" style="color: #7ece54;text-decoration: underline;font-weight: bold;font-style:italic;font-size: 15px "> {{item.user_name}} </td>
+                  <td class="Fixed" align="left" style="color: rgba(114,113,113,0.91);font-style: italic">  {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                <td>
+                  <div>
+                    <table style="width: 300%;" float="left">
+                      <td align="left">
+                        <el-tag type="success" style="font-weight: bold;font-size: 15px"
+                                v-for="tag in setQuestion_tags_en(item.question_tags)"
+                                :key="tag"
+                                effect="plain">
+                          {{ tag }}
+                        </el-tag>
+                      </td>
+                    </table>
+                  </div>
+                </td>
               </table>
             </div>
           </td>
@@ -127,7 +127,7 @@ export default {
         if (clientHeight + scrollTop + footerHeight > scrollHeight) {
           if (this.$store.getters.getList.length > this.count) {
             this.count += 5
-            this.sleep(300)
+            this.sleep(500)
           }
         }
       } else {
@@ -235,145 +235,149 @@ export default {
 </script>
 
 <style scoped>
-.Touchable{
-  cursor: pointer;
-}
-.abc {
-  background: #ffffff;
-  border-radius: 10px;
-  width: 90%;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-}
-.abc td{
-  margin: auto;
-}
-#block {
-  margin: 0;
-  width:100%;
-}
-.notFound{
-  width: 80%;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 40px 0;
-  font-size: x-large;
-}
 
-.notFound li {
-  list-style: none;
-  margin: 0 20px;
-}
-.notFound li p{
-  alignment: left;
-}
-.pho{
-  width: 50%;
-}
-.loadingStyle{
-  font-size: xx-large;
-}
-#likes{
-  border-style: solid;
-  border-color: white;
-}
-#title{
-  font-size: large;
-  font-weight: bold;
-  text-transform: capitalize;
-}
-li{
-  list-style: none;
-}
-.blank{
-  height: 10px;
-}
-.animate {
-  font-size: xx-large;
-  margin: 100px 0 0;
-}
-.animate span {
-  display: inline-block;
-}
-.animate span:nth-of-type(2) {
-  animation-delay: .05s;
-}
-.animate span:nth-of-type(3) {
-  animation-delay: .1s;
-}
-.animate span:nth-of-type(4) {
-  animation-delay: .15s;
-}
-.animate span:nth-of-type(5) {
-  animation-delay: .2s;
-}
-.animate span:nth-of-type(6) {
-  animation-delay: .25s;
-}
-.animate span:nth-of-type(7) {
-  animation-delay: .3s;
-}
-.animate span:nth-of-type(8) {
-  animation-delay: .35s;
-}
-.animate span:nth-of-type(9) {
-  animation-delay: .4s;
-}
-.animate span:nth-of-type(10) {
-  animation-delay: .45s;
-}
-.animate span:nth-of-type(11) {
-  animation-delay: .5s;
-}
-.animate span:nth-of-type(12) {
-  animation-delay: .55s;
-}
-.animate span:nth-of-type(13) {
-  animation-delay: .6s;
-}
-.animate span:nth-of-type(14) {
-  animation-delay: .65s;
-}
-.animate span:nth-of-type(15) {
-  animation-delay: .7s;
-}
-.animate span:nth-of-type(16) {
-  animation-delay: .75s;
-}
-.animate span:nth-of-type(17) {
-  animation-delay: .8s;
-}
-.animate span:nth-of-type(18) {
-  animation-delay: .85s;
-}
-.animate span:nth-of-type(19) {
-  animation-delay: .9s;
-}
-.animate span:nth-of-type(20) {
-  animation-delay: .95s;
-}
-.seven span {
-  color: #1a601f;
-  opacity: 1;
-  transform: translate(50px, 0) scale(.3);
-  animation: leftRight 1s forwards infinite;
-}
-@keyframes leftRight {
-  from {transform: translatex(0);}
-  50% {transform: translatex(50px);
-  opacity: .5}
-  to {transform: translatex(0);}
-  /*40% {*/
-  /*  transform: translate(50px, 0) scale(.7);*/
-  /*  opacity: 1;*/
-  /*  color: #1a601f;*/
-  /*}*/
-  /*60% {*/
-  /*  transform: translate(0) scale(1.2);*/
-  /*  opacity: 0;*/
-  /*}*/
-  /*80% {*/
-  /*  transform: translate(0) scale(1);*/
-  /*  opacity: 1;*/
-  /*}*/
-}
+  .Fixed{
+    width:30%;
+  }
+  .Touchable{
+    cursor: pointer;
+  }
+  .abc {
+    background: #ffffff;
+    border-radius: 10px;
+    width: 90%;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  }
+  .abc td{
+    margin: auto;
+  }
+  #block {
+    margin: 0;
+    width:100%;
+  }
+  .notFound{
+    width: 80%;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 40px 0;
+    font-size: x-large;
+  }
+
+  .notFound li {
+    list-style: none;
+    margin: 0 20px;
+  }
+  .notFound li p{
+    alignment: left;
+  }
+  .pho{
+    width: 50%;
+  }
+  .loadingStyle{
+    font-size: xx-large;
+  }
+  #likes{
+    border-style: solid;
+    border-color: white;
+  }
+  #title{
+    font-size: large;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  li{
+    list-style: none;
+  }
+  .blank{
+    height: 10px;
+  }
+  .animate {
+    font-size: xx-large;
+    margin: 100px 0 0;
+  }
+  .animate span {
+    display: inline-block;
+  }
+  .animate span:nth-of-type(2) {
+    animation-delay: .05s;
+  }
+  .animate span:nth-of-type(3) {
+    animation-delay: .1s;
+  }
+  .animate span:nth-of-type(4) {
+    animation-delay: .15s;
+  }
+  .animate span:nth-of-type(5) {
+    animation-delay: .2s;
+  }
+  .animate span:nth-of-type(6) {
+    animation-delay: .25s;
+  }
+  .animate span:nth-of-type(7) {
+    animation-delay: .3s;
+  }
+  .animate span:nth-of-type(8) {
+    animation-delay: .35s;
+  }
+  .animate span:nth-of-type(9) {
+    animation-delay: .4s;
+  }
+  .animate span:nth-of-type(10) {
+    animation-delay: .45s;
+  }
+  .animate span:nth-of-type(11) {
+    animation-delay: .5s;
+  }
+  .animate span:nth-of-type(12) {
+    animation-delay: .55s;
+  }
+  .animate span:nth-of-type(13) {
+    animation-delay: .6s;
+  }
+  .animate span:nth-of-type(14) {
+    animation-delay: .65s;
+  }
+  .animate span:nth-of-type(15) {
+    animation-delay: .7s;
+  }
+  .animate span:nth-of-type(16) {
+    animation-delay: .75s;
+  }
+  .animate span:nth-of-type(17) {
+    animation-delay: .8s;
+  }
+  .animate span:nth-of-type(18) {
+    animation-delay: .85s;
+  }
+  .animate span:nth-of-type(19) {
+    animation-delay: .9s;
+  }
+  .animate span:nth-of-type(20) {
+    animation-delay: .95s;
+  }
+  .seven span {
+    color: #1a601f;
+    opacity: 1;
+    transform: translate(50px, 0) scale(.3);
+    animation: leftRight 1s forwards infinite;
+  }
+  @keyframes leftRight {
+    from {transform: translatex(0);}
+    50% {transform: translatex(50px);
+      opacity: .5}
+    to {transform: translatex(0);}
+    /*40% {*/
+    /*  transform: translate(50px, 0) scale(.7);*/
+    /*  opacity: 1;*/
+    /*  color: #1a601f;*/
+    /*}*/
+    /*60% {*/
+    /*  transform: translate(0) scale(1.2);*/
+    /*  opacity: 0;*/
+    /*}*/
+    /*80% {*/
+    /*  transform: translate(0) scale(1);*/
+    /*  opacity: 1;*/
+    /*}*/
+  }
 </style>
