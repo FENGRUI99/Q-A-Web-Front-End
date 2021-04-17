@@ -1,67 +1,67 @@
 <template>
   <div id="block" >
-    <div v-if="this.$store.getters.getIsFind === true">
-      <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
-        <table class="abc">
-          <td>
-            <div style="display: block; margin: 0 3%">
-              <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" >{{item.question_description}}</li>
-              <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
-              <table style="width: 60%; padding-top: 10px" align="left" >
-                  <td width="6%" align="left">Posted:</td>
-                  <td class="Fixed" align="left" style="color: #7ece54;text-decoration: underline;font-weight: bold;font-style:italic;font-size: 15px "> {{item.user_name}} </td>
-                  <td class="Fixed" align="left" style="color: rgba(114,113,113,0.91);font-style: italic">  {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                <td>
-                  <div>
-                    <table style="width: 300%;" float="left">
-                      <td align="left">
-                        <el-tag type="success" style="font-weight: bold;font-size: 15px"
-                                v-for="tag in setQuestion_tags_en(item.question_tags)"
-                                :key="tag"
-                                effect="plain">
-                          {{ tag }}
-                        </el-tag>
-                      </td>
-                    </table>
-                  </div>
-                </td>
-              </table>
-            </div>
-          </td>
-          <td style="padding: 1% 20px">
-            <el-button @click="liked(item)" plain size="medium" id="likes">
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </li>
-              <li>{{item.likes}}</li>
-            </el-button>
+      <div v-if="this.$store.getters.getIsFind === true">
+        <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
+          <table class="abc">
+            <td>
+              <div style="display: block; margin: 0 3%">
+                <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" >{{item.question_description}}</li>
+                <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
+                <table style="width: 60%; padding-top: 10px" align="left" >
+                    <td width="6%" align="left">Posted:</td>
+                    <td class="Fixed" align="left" style="color: #7ece54;text-decoration: underline;font-weight: bold;font-style:italic;font-size: 15px "> {{item.user_name}} </td>
+                    <td class="Fixed" align="left" style="color: rgba(114,113,113,0.91);font-style: italic">  {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  <td>
+                    <div>
+                      <table style="width: 300%;" float="left">
+                        <td align="left">
+                          <el-tag type="success" style="font-weight: bold;font-size: 15px"
+                                  v-for="tag in setQuestion_tags_en(item.question_tags)"
+                                  :key="tag"
+                                  effect="plain">
+                            {{ tag }}
+                          </el-tag>
+                        </td>
+                      </table>
+                    </div>
+                  </td>
+                </table>
+              </div>
+            </td>
+            <td style="padding: 1% 20px">
+              <el-button @click="liked(item)" plain size="medium" id="likes">
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </li>
+                <li>{{item.likes}}</li>
+              </el-button>
+              <br>
+              <br>
+              <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
+                <li>Comments</li>
+                <li>{{item.number_comment}}</li>
+              </el-button>
+            </td>
             <br>
             <br>
-            <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
-              <li>Comments</li>
-              <li>{{item.number_comment}}</li>
-            </el-button>
-          </td>
-          <br>
-          <br>
-        </table>
-        <div style="height: 10px"></div>
-      </div>
-      <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>
-        <div class="animate seven" style="margin: auto;">
-          <span>L</span><span>o</span><span>a</span><span>d</span><span>i</span><span>n</span><span>g</span>
-          <span>&nbsp;</span><span>.</span><span>.</span><span>.</span><span>!</span>
-          <br>
+          </table>
+          <div style="height: 10px"></div>
+        </div>
+        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>
+          <div class="animate seven" style="margin: auto;">
+            <span>L</span><span>o</span><span>a</span><span>d</span><span>i</span><span>n</span><span>g</span>
+            <span>&nbsp;</span><span>.</span><span>.</span><span>.</span><span>!</span>
+            <br>
+          </div>
         </div>
       </div>
-    </div>
-    <div v-else-if="this.$store.getters.getIsFind === false">
-      <ul class="notFound">
-        <li><p>Your question cannot be found</p></li>
-        <li><p>What about ask a question</p></li>
-      </ul>
-      <br>
-      <img src="../assets/cannotfound.jpg" class="pho">
-      <br>
-    </div>
+      <div v-else-if="this.$store.getters.getIsFind === false">
+        <ul class="notFound">
+          <li><p>Your question cannot be found</p></li>
+          <li><p>What about ask a question</p></li>
+        </ul>
+        <br>
+        <img src="../assets/cannotfound.jpg" class="pho">
+        <br>
+      </div>
   </div>
 </template>
 
