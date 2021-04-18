@@ -12,7 +12,7 @@
               <tr id="title1">
              {{item.question_description}}
               </tr>
-              <tr id="small1" >
+              <tr class="small" >
               Posted by {{item.user_name}} {{item.time}}
               </tr>
               <tr>
@@ -86,10 +86,10 @@
               </tr>
               <div>
                 <div v-if="item.commentList.length >= 1">
-                  <div v-for="(comment,index) in item.commentList" v-bind:key="index">
-                    <el-tag color="#3bc194" style="color: #fffdfd;font-size: 15px;font-weight: bolder">{{index+1}}</el-tag> -  {{comment.comment_detail}}
+                  <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
+                    <el-tag color="#3bc194" id="tagItem">{{index+1}}</el-tag> -  {{comment.comment_detail}}
                     <br>
-                    <tr id="small" >Answer by {{comment.user_name}} in aa</tr>
+                    <tr class="small" >Answer by {{comment.user_name}} in aa</tr>
                     <br>
                   </div>
                   <div v-if="submit_flag === true">
@@ -253,6 +253,15 @@ export default {
 </script>
 
 <style scoped>
+  #tagItem{
+    color: #fffdfd;
+    font-size: 15px;
+    font-weight: bolder;
+    text-align: left;
+    margin: 0 auto 10px;
+    /*display: flex;*/
+    float: left;
+  }
 .intro{
   border: 1px;
   border-radius: 10px;
@@ -314,15 +323,14 @@ export default {
 .blank{
   height: 10px;
 }
-#small{
+.small{
   font-size: x-small;
   padding-right: 120px;
   color:gray;
   font-style: italic;
+  margin-top: 4px;
 }
-#small1{
-  font-size: x-small;
-}
+
 #likes{
   border-style: solid;
   border-color: white;

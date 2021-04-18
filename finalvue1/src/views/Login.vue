@@ -16,7 +16,7 @@
           <br>
           <span style="color: white">L</span><span style="color: white">o</span><span style="color: white">g</span>&nbsp;
           <span style="color: white">i</span><span style="color: white">n</span>&nbsp;
-          <span style="color: white">L</span><span style="color: white">o</span><span style="color: white">u</span><span style="color: white">d</span><span>e</span><span>r</span><span>!</span>
+          <span style="color: white">L</span><span style="color: white">o</span><span style="color: white">u</span><span style="color: white">d</span><span style="color: white">e</span><span style="color: white">r</span><span style="color: white">!</span>
           <br>
         </div>
         <div style="width: 70%;margin: auto">

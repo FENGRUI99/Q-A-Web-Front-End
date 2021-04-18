@@ -2,8 +2,8 @@
 <div>
   <el-button type="success" round id= ask >
     <table style="width: 100%">
-    <tr style="font-weight: 800;font-size: x-large;text-align: left"> Add </tr>
-    <tr style="font-weight: 900"> Questions </tr>
+    <tr style="font-size:30px；font-size: x-large;text-align: left"> Add </tr>
+    <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
     </table>
   </el-button>
 <!--  <div>-->
@@ -37,7 +37,7 @@ export default {
   color: #eff1f1;
   font-style: italic;
   font-weight: bolder;
-  background: #00b57c;
+  background: rgba(102, 188, 53, 0.78);
 
 }
 </style>

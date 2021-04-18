@@ -27,7 +27,7 @@ export default {
 
 <style scoped>
 .aside{
-  width: 450px;
+  width: 30%;
   position: fixed;
 }
 .butt{
