@@ -68,6 +68,7 @@ export default {
         user_psw: this.user_pwd
       }).then((response) => {
         if (response.data.code === '200') {
+          sessionStorage.setItem('user_info', JSON.stringify(response.data.entity))
           this.$router.push({
             name: 'HomePage'
           })

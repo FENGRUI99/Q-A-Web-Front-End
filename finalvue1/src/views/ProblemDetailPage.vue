@@ -84,7 +84,7 @@
             <!--            {{item}}-->
             <table class="intro">
               <tr id="title">
-               <p style="border-bottom: 3px solid #299ec7; ">{{item.commentList.length}} Answers</p>
+               <p style="border-bottom: 3px solid #299ec7; ">{{comment_number}} Answers</p>
               </tr>
               <div>
                 <div v-if="item.commentList.length >= 1">
@@ -92,12 +92,6 @@
                     <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>
                     <p style="text-align: left;padding-left: 50px">{{comment.comment_detail}}</p>
                     <tr class="small" >Answer by {{comment.user_name}} in aa</tr>
-                  </div>
-                  <div style=" text-align: left" v-if="submit_flag === true">
-                    <el-tag color="#81D454" style="color: #fffdfd;font-size: 15px;font-weight: bolder;">{{item.commentList.length+1}}</el-tag> &nbsp;&nbsp; {{this.myComment}}
-                    <br>
-                    <tr>Answer by me in aa</tr>
-                    <br>
                   </div>
                 </div>
                 <div v-else>
@@ -171,6 +165,8 @@ export default {
       isHidden: true,
       textarea: '',
       myComment: '',
+      comment_number: 0,
+      user_info: {},
       submit_flag: false,
       relevant_question: []
     }
@@ -178,6 +174,9 @@ export default {
   created () {
     let tmp = sessionStorage.getItem('item')
     this.item = JSON.parse(tmp)
+    let tmp1 = sessionStorage.getItem('user_info')
+    this.user_info = JSON.parse(tmp1)
+    this.comment_number = this.item.commentList.length
     this.isHidden = this.$route.params.isHidden
     this.axios.post('http://localhost:8080/userLike', {
       request: sessionStorage.getItem('user_id')
@@ -206,17 +205,20 @@ export default {
       this.submit_flag = true
       this.isHidden = true
       this.myComment = this.textarea
+      this.comment_number += 1
       this.textarea = ''
+      this.item.commentList.push({ 'comment_id': '-1', 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': null })
+      sessionStorage.setItem('item', JSON.stringify(this.item))
       this.axios.post('http://localhost:8080/comment', {
         user_id: sessionStorage.getItem('user_id'),
-        user_name: 'cfr',
+        user_name: this.user_info.user_name,
         comment_detail: this.myComment,
         question_id: this.item.question_id
       }).then((response) => {
-        alert(response.data.code)
       }).catch((response) => {
         console.log(response)
       })
+      // location.reload()
     },
     liked (item) {
       let list = this.$store.getters.getLikedList
