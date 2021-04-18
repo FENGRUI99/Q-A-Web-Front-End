@@ -1,5 +1,5 @@
 <template>
-  <div style="background: #f6f6f6" >
+  <div>
     <el-container>
       <el-header style="height: 40px">
         <header123></header123>
@@ -87,14 +87,14 @@
               <div>
                 <div v-if="item.commentList.length >= 1">
                   <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
-                    <el-tag color="#3bc194" id="tagItem">{{index+1}}</el-tag>
+                    <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>
                     <p style="text-align: left;padding-left: 50px">{{comment.comment_detail}}</p>
                     <br>
                     <tr class="small" >Answer by {{comment.user_name}} in aa</tr>
                     <br>
                   </div>
-                  <div v-if="submit_flag === true">
-                    <el-tag color="#3bc194" style="color: #fffdfd;font-size: 15px;font-weight: bolder">{{item.commentList.length+1}}</el-tag> -  {{this.myComment}}
+                  <div style=" text-align: left" v-if="submit_flag === true">
+                    <el-tag color="#81D454" style="color: #fffdfd;font-size: 15px;font-weight: bolder;">{{item.commentList.length+1}}</el-tag> &nbsp;&nbsp; {{this.myComment}}
                     <br>
                     <tr>Answer by me in aa</tr>
                     <br>
@@ -125,10 +125,10 @@
           <table class="aside">
             <div class="blank"></div>
             <div id="relatedQuestions">Related Questions</div>
-            <div v-for="(relevant,index) in this.relevant_question" v-bind:key="index">
+            <div class="website" v-for="(relevant,index) in this.relevant_question" v-bind:key="index">
               <div v-if="index < 5">
                 <div @click="toAnotherQuestion(index)">
-                  <p>{{index+1}}--{{relevant.question_description}}</p>
+                  <p >{{index+1}}--{{relevant.question_description}}</p>
                   <div v-if="relevant.commentList === null">
                     <p>wait for your answer</p>
                   </div>
@@ -367,5 +367,10 @@ export default {
   border-color: white white #cccccc white;
   border-style:solid;
   font-size: 20px;
+}
+.website{
+  color: #81D454;
+  cursor: pointer;
+  text-align: left;
 }
 </style>
