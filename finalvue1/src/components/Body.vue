@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width: 90%">
     <selectedBar></selectedBar>
     <infiniteScrolling></infiniteScrolling>
   </div>

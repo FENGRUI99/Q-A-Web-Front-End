@@ -4,7 +4,7 @@
         <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
           <table class="abc">
             <td>
-              <div style="display: block; margin: 0 3%">
+              <div style="display: block; margin: 0 1%">
                 <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" >{{item.question_description}}</li>
                 <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
                 <table style="width: 100%; padding-top: 10px" align="left" >
@@ -12,14 +12,14 @@
                     <td v-for="tag in setQuestion_tags_en(item.question_tags)"
                   :key="tag"
                   effect="plain">
-                      <el-tag type="success" style="font-weight: bold;font-size: 15px;text-align: left;margin-top: 5px;border-radius: 10px;background: white;border-width: 2px"
+                      <el-tag type="success" style="font-weight: bold;font-size: 13px;text-align: left;margin-top: 5px;border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454"
                                   >  {{ tag }}
                           </el-tag>
                     </td>
                 </table>
               </div>
             </td>
-            <td style="padding: 1% 20px">
+            <td style="padding: 1% 20px 1% 0;">
               <el-button @click="liked(item)" plain size="medium" id="likes">
                 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </li>
                 <li>{{item.likes}}</li>
