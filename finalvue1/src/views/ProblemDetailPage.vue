@@ -127,7 +127,15 @@
             <div id="relatedQuestions">Related Questions</div>
             <div v-for="(relevant,index) in this.relevant_question" v-bind:key="index">
               <div v-if="index < 5">
-                <p @click="toAnotherQuestion(index)">{{index+1}}--{{relevant.question_description}}</p>
+                <div @click="toAnotherQuestion(index)">
+                  <p>{{index+1}}--{{relevant.question_description}}</p>
+                  <div v-if="relevant.commentList === null">
+                    <p>wait for your answer</p>
+                  </div>
+                  <div v-else>
+                    {{relevant.commentList.length}} answer
+                  </div>
+                </div>
               </div>
             </div>
           </table>
