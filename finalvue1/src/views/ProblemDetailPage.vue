@@ -6,7 +6,7 @@
       </el-header>
       <el-container>
         <el-aside width=72%>
-          <!--          问题详情框-->
+          <!--          Detail Question area-->
 
             <table class="intro">
               <tr id="title1">
@@ -87,17 +87,20 @@
               <div>
                 <div v-if="item.commentList.length >= 1">
                   <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
-                    <el-tag color="#3bc194" id="tagItem">{{index+1}}</el-tag>
-                    <p style="text-align: left;padding-left: 50px">{{comment.comment_detail}}</p>
+                    <el-tag color="#3bc194" class="tagItem">{{index+1}}</el-tag>
+                    <p style="text-align: left;padding-left: 50px;font-size: 18px">{{comment.comment_detail}}</p>
                     <br>
                     <tr class="small" >Answer by {{comment.user_name}} in aa</tr>
+                    <el-divider></el-divider>
                     <br>
                   </div>
                   <div v-if="submit_flag === true">
-                    <el-tag color="#3bc194" style="color: #fffdfd;font-size: 15px;font-weight: bolder">{{item.commentList.length+1}}</el-tag> -  {{this.myComment}}
+                    <el-tag color="#3bc194" class="tagItem">{{item.commentList.length+1}}</el-tag>
+                    <p style="text-align: left;padding-left: 50px; font-size: 18px">{{this.myComment}}</p>
                     <br>
-                    <tr>Answer by me in aa</tr>
+                    <tr class="small" >Answer by me in aab</tr>
                     <br>
+                    <el-divider></el-divider>
                   </div>
                 </div>
                 <div v-else>
@@ -127,7 +130,7 @@
             <div id="relatedQuestions">Related Questions</div>
             <div v-for="(relevant,index) in this.relevant_question" v-bind:key="index">
               <div v-if="index < 5">
-                <p @click="toAnotherQuestion(index)">{{index+1}}--{{relevant.question_description}}</p>
+                <p @click="toAnotherQuestion(index)" style="cursor: pointer; ">{{index+1}}--{{relevant.question_description}}</p>
               </div>
             </div>
           </table>
@@ -270,9 +273,8 @@ export default {
   }
 }
 </script>
-
 <style scoped>
-#tagItem{
+.tagItem{
   color: #fffdfd;
   font-size: 15px;
   font-weight: bolder;
@@ -338,6 +340,7 @@ export default {
 #title1{
   font-size: x-large;
   font-weight: bold;
+  text-transform: capitalize;
 }
 .blank{
   height: 10px;
