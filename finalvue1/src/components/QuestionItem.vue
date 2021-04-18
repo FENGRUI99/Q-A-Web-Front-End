@@ -13,9 +13,9 @@
                     <td class="Fixed" align="left" style="color: rgba(114,113,113,0.91);font-style: italic">  {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                   <td>
                     <div>
-                      <table style="width: 300%;" float="left">
+                      <table style="width: 300%;table-layout: fixed" float="left">
                         <td align="left">
-                          <el-tag type="success" style="font-weight: bold;font-size: 15px"
+                          <el-tag type="success" style="font-weight: bold;font-size: 15px;text-align: left;margin-top: 5px"
                                   v-for="tag in setQuestion_tags_en(item.question_tags)"
                                   :key="tag"
                                   effect="plain">
