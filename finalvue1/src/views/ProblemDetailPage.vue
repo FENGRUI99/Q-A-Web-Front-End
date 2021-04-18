@@ -87,7 +87,8 @@
               <div>
                 <div v-if="item.commentList.length >= 1">
                   <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
-                    <el-tag color="#3bc194" id="tagItem">{{index+1}}</el-tag> -  {{comment.comment_detail}}
+                    <el-tag color="#3bc194" id="tagItem">{{index+1}}</el-tag>
+                    <p style="text-align: left;padding-left: 50px">{{comment.comment_detail}}</p>
                     <br>
                     <tr class="small" >Answer by {{comment.user_name}} in aa</tr>
                     <br>
@@ -253,15 +254,15 @@ export default {
 </script>
 
 <style scoped>
-  #tagItem{
-    color: #fffdfd;
-    font-size: 15px;
-    font-weight: bolder;
-    text-align: left;
-    margin: 0 auto 10px;
-    /*display: flex;*/
-    float: left;
-  }
+#tagItem{
+  color: #fffdfd;
+  font-size: 15px;
+  font-weight: bolder;
+  text-align: left;
+  margin: 0 auto;
+  /*display: flex;*/
+  float: left;
+}
 .intro{
   border: 1px;
   border-radius: 10px;

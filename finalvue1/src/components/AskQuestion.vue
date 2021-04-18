@@ -2,7 +2,7 @@
 <div>
   <el-button type="success" round id= ask >
     <table style="width: 100%">
-    <tr style="font-size:30px；font-size: x-large;text-align: left"> Add </tr>
+    <tr style="font-size:30px;x-large; text-align: left"> Add </tr>
     <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
     </table>
   </el-button>
