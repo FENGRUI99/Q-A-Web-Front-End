@@ -1,5 +1,5 @@
 <template>
-  <div style="display: inline-block;margin: 0 10%;">
+  <div style="display: inline-block;margin: 0 5%;">
     <span id="Sort">Tags Filter</span>
     <el-select
       filterable
