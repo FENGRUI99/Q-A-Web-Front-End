@@ -10,7 +10,7 @@
 
             <table class="intro">
               <tr id="title1">
-             {{item.question_description}}
+             {{item.question_description}}？
               </tr>
               <tr class="small" >
               Posted by {{item.user_name}} {{item.time}}
@@ -130,7 +130,8 @@
             <div id="relatedQuestions">Related Questions</div>
             <div v-for="(relevant,index) in this.relevant_question" v-bind:key="index">
               <div v-if="index < 5">
-                <p @click="toAnotherQuestion(index)" style="cursor: pointer; ">{{index+1}}--{{relevant.question_description}}</p>
+                <p @click="toAnotherQuestion(index)" style="cursor: pointer; text-align: left;text-transform: capitalize;"><a style="color: #e38053">「{{index+1}}」</a> {{relevant.question_description}}</p>
+                <el-divider></el-divider>
               </div>
             </div>
           </table>
@@ -338,7 +339,7 @@ export default {
   font-weight: bold;
 }
 #title1{
-  font-size: x-large;
+  font-size: 30px;
   font-weight: bold;
   text-transform: capitalize;
 }
@@ -362,5 +363,7 @@ export default {
   border-color: white white #cccccc white;
   border-style:solid;
   font-size: 20px;
+  font-weight: bold;
+  font-family: "Noto Sans Old Italic";
 }
 </style>
