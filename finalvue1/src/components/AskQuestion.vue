@@ -34,7 +34,7 @@ export default {
   width: 50%;
   font-size:27px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-  color: #eff1f1;
+  color: white;
   font-style: italic;
   font-weight: bolder;
 

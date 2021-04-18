@@ -85,21 +85,17 @@
                <p style="border-bottom: 3px solid #299ec7; ">{{item.commentList.length}} Answers</p>
               </tr>
               <div>
-                <div v-if="item.commentList.length >= 1">
+                <div v-if="item.commentList.length >= 1" style="margin-top:2px ">
                   <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
-                    <el-tag color="#3bc194" class="tagItem">{{index+1}}</el-tag>
+                    <el-tag color="#78e635" class="tagItem">{{index+1}}</el-tag>
                     <p style="text-align: left;padding-left: 50px;font-size: 18px">{{comment.comment_detail}}</p>
-                    <br>
-                    <tr class="small" >Answer by {{comment.user_name}} in aa</tr>
-                    <el-divider></el-divider>
-                    <br>
+                    <tr class="small2" >Answer by {{comment.user_name}} in aa</tr>
+                    <el-divider ></el-divider>
                   </div>
                   <div v-if="submit_flag === true">
-                    <el-tag color="#3bc194" class="tagItem">{{item.commentList.length+1}}</el-tag>
+                    <el-tag color="#78e635" class="tagItem">{{item.commentList.length+1}}</el-tag>
                     <p style="text-align: left;padding-left: 50px; font-size: 18px">{{this.myComment}}</p>
-                    <br>
                     <tr class="small" >Answer by me in aab</tr>
-                    <br>
                     <el-divider></el-divider>
                   </div>
                 </div>
@@ -275,6 +271,13 @@ export default {
 }
 </script>
 <style scoped>
+.el-divider--horizontal {
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin: 4px 0;
+}
+
 .tagItem{
   color: #fffdfd;
   font-size: 15px;
@@ -289,10 +292,10 @@ export default {
   border-radius: 10px;
   border-color: #cccccc;
   border-style:solid;
-  width: 92%;
-  margin-left: 8%;
+  width: 80%;
+  margin-left: 18%;
   background: white;
-  padding: 0 2% ;
+  padding: 0 10px ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .aside{
@@ -314,8 +317,8 @@ export default {
   border-radius: 10px;
   border-color: #cccccc;
   border-style:solid;
-  width: 92%;
-  margin-left: 8%;
+  width: 80%;
+  margin-left: 18%;
   background: white;
   padding: 0 2% ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
@@ -337,6 +340,8 @@ export default {
 #title{
   font-size: x-large;
   font-weight: bold;
+  margin: 2px;
+  padding: 3px;
 }
 #title1{
   font-size: 30px;
@@ -351,7 +356,14 @@ export default {
   padding-right: 120px;
   color:gray;
   font-style: italic;
-  margin-top: 4px;
+}
+.small2{
+  font-size: x-small;
+  padding-right: 120px;
+  color:gray;
+  font-style: italic;
+  margin-top:1px;
+  padding-left: 500px;
 }
 
 #likes{
