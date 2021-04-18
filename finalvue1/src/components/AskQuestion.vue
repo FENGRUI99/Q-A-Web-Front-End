@@ -37,7 +37,6 @@ export default {
   color: #eff1f1;
   font-style: italic;
   font-weight: bolder;
-  background: rgba(102, 188, 53, 0.78);
 
 }
 </style>
