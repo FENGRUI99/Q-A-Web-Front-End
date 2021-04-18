@@ -94,7 +94,7 @@
                     <br>
                   </div>
                   <div v-if="submit_flag === true">
-                    <el-tag color="#3bc194" style="color: #fffdfd;font-size: 15px;font-weight: bolder">{{item.commentList.length+1}}</el-tag> -  {{this.textarea}}
+                    <el-tag color="#3bc194" style="color: #fffdfd;font-size: 15px;font-weight: bolder">{{item.commentList.length+1}}</el-tag> -  {{this.myComment}}
                     <br>
                     <tr>Answer by me in aa</tr>
                     <br>
@@ -125,9 +125,9 @@
           <table class="aside">
             <div class="blank"></div>
             <div id="relatedQuestions">Related Questions</div>
-            <div v-for="(relevant,index) in this.relevant_question" v-bind:key="relevant">
+            <div v-for="(relevant,index) in this.relevant_question" v-bind:key="index">
               <div v-if="index < 5">
-                <p>{{index+1}}--{{relevant.question_description}}</p>
+                <p @click="toAnotherQuestion(index)">{{index+1}}--{{relevant.question_description}}</p>
               </div>
             </div>
           </table>
@@ -155,6 +155,7 @@ export default {
       item: {},
       isHidden: true,
       textarea: '',
+      myComment: '',
       submit_flag: false,
       relevant_question: []
     }
@@ -188,6 +189,19 @@ export default {
     },
     submit () {
       this.submit_flag = true
+      this.isHidden = true
+      this.myComment = this.textarea
+      this.textarea = ''
+      this.axios.post('http://localhost:8080/comment', {
+        user_id: sessionStorage.getItem('user_id'),
+        user_name: 'cfr',
+        comment_detail: this.myComment,
+        question_id: this.item.question_id
+      }).then((response) => {
+        alert(response.data.code)
+      }).catch((response) => {
+        console.log(response)
+      })
     },
     liked (item) {
       let list = this.$store.getters.getLikedList
@@ -248,6 +262,10 @@ export default {
         }
       }
       return ans
+    },
+    toAnotherQuestion (index) {
+      sessionStorage.setItem('item', JSON.stringify(this.relevant_question[index]))
+      location.reload()
     }
   }
 }

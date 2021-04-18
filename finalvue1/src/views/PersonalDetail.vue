@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1>PersonalDetail</h1>
-  </div>
+  <el-skeleton />
 </template>
 
 <script>

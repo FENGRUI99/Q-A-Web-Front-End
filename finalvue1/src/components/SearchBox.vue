@@ -29,7 +29,6 @@ export default {
         request: this.input.toString(),
         msg: ''
       }).then((response) => {
-        alert(response.data.entity.length)
         if (response.data.entity.length === 0) {
           this.$store.commit('setIsFind', false)
         } else {
