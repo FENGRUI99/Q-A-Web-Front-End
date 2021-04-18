@@ -9,20 +9,24 @@
           <!--          问题详情框-->
 
             <table class="intro">
+              <div class="blank"></div>
               <tr id="title1">
              {{item.question_description}}
               </tr>
-              <tr class="small" >
-              Posted by {{item.user_name}} {{item.time}}
+              <div class="blank"></div>
+              <tr class="small">
+                Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
               </tr>
+              <div class="blank"></div>
               <tr>
               {{item.question_detail}}
               </tr>
+              <div class="blank"></div>
               <span class="butt">
                 <td>
             <el-button  @click="liked(item)" plain size="medium" id="likes">
               <i class="el-icon-star-on"></i>
-             {{item.likes}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes
+             {{item.likes}}&nbsp;Likes
             </el-button>
                 </td>
                 <td>
@@ -67,10 +71,8 @@
                 rows="4"
               >
               </el-input>
-
-<!--              <input type="text" id="inputValue" value="Write your answer here within 200 words">-->
               <div class="blank"></div>
-            <el-button @click="submit" class="butt" type="success" >
+            <el-button @click="submit" size="medium" class="butt" style="width: 125px;" type="success" >
               Submit
             </el-button>
               <div class="blank"></div>
@@ -89,9 +91,7 @@
                   <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
                     <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>
                     <p style="text-align: left;padding-left: 50px">{{comment.comment_detail}}</p>
-                    <br>
                     <tr class="small" >Answer by {{comment.user_name}} in aa</tr>
-                    <br>
                   </div>
                   <div style=" text-align: left" v-if="submit_flag === true">
                     <el-tag color="#81D454" style="color: #fffdfd;font-size: 15px;font-weight: bolder;">{{item.commentList.length+1}}</el-tag> &nbsp;&nbsp; {{this.myComment}}
@@ -119,23 +119,30 @@
           <br>
           <br>
           <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
         </el-aside>
         <el-container>
         <el-main>
           <table class="aside">
             <div class="blank"></div>
             <div id="relatedQuestions">Related Questions</div>
+            <div class="blank"></div>
             <div class="website" v-for="(relevant,index) in this.relevant_question" v-bind:key="index">
               <div v-if="index < 5">
                 <div @click="toAnotherQuestion(index)">
-                  <p >{{index+1}}--{{relevant.question_description}}</p>
+                  <li style="cursor: pointer;">{{relevant.question_description}}</li>
                   <div v-if="relevant.commentList === null">
-                    <p>wait for your answer</p>
+                    <li>wait for your answer</li>
                   </div>
-                  <div v-else>
-                    {{relevant.commentList.length}} answer
-                  </div>
+                  <li v-else  class="commit">
+                    {{relevant.commentList.length}} Answers
+                  </li>
                 </div>
+                <div class="blank"></div>
               </div>
             </div>
           </table>
@@ -308,7 +315,7 @@ export default {
   width: 250px;
   position: fixed;
   background: white;
-  padding: 0 2% ;
+  padding: 0 1% ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .intro tr{
@@ -334,8 +341,6 @@ export default {
 .butt{
   /*margin-left: 1%;*/
   display:block;
-  /*alignment: left;*/
-  /*width: 20%;*/
   font-weight: bold;
 }
 
@@ -344,7 +349,7 @@ export default {
   font-weight: bold;
 }
 #title1{
-  font-size: x-large;
+  font-size: 28px;
   font-weight: bold;
 }
 .blank{
@@ -367,10 +372,16 @@ export default {
   border-color: white white #cccccc white;
   border-style:solid;
   font-size: 20px;
+  text-align: left;
 }
 .website{
   color: #81D454;
-  cursor: pointer;
   text-align: left;
+}
+.commit{
+  color:gray;
+}
+li{
+  list-style: none;
 }
 </style>

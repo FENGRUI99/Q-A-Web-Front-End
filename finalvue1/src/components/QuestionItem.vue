@@ -7,24 +7,15 @@
               <div style="display: block; margin: 0 3%">
                 <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" >{{item.question_description}}</li>
                 <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
-                <table style="width: 60%; padding-top: 10px" align="left" >
-                    <td width="6%" align="left">Posted:</td>
-                    <td class="Fixed" align="left" style="color: #7ece54;text-decoration: underline;font-weight: bold;font-style:italic;font-size: 15px "> {{item.user_name}} </td>
-                    <td class="Fixed" align="left" style="color: rgba(114,113,113,0.91);font-style: italic">  {{item.time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-                  <td>
-                    <div>
-                      <table style="width: 300%;table-layout: fixed" float="left">
-                        <td align="left">
-                          <el-tag type="success" style="font-weight: bold;font-size: 15px;text-align: left;margin-top: 5px"
-                                  v-for="tag in setQuestion_tags_en(item.question_tags)"
-                                  :key="tag"
-                                  effect="plain">
-                            {{ tag }}
+                <table style="width: 100%; padding-top: 10px" align="left" >
+                  <td style="text-align: left">Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span>  {{item.time}}</td>
+                    <td v-for="tag in setQuestion_tags_en(item.question_tags)"
+                  :key="tag"
+                  effect="plain">
+                      <el-tag type="success" style="font-weight: bold;font-size: 15px;text-align: left;margin-top: 5px;border-radius: 10px;background: white;border-width: 2px"
+                                  >  {{ tag }}
                           </el-tag>
-                        </td>
-                      </table>
-                    </div>
-                  </td>
+                    </td>
                 </table>
               </div>
             </td>
