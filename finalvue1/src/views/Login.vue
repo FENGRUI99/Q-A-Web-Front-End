@@ -1,15 +1,21 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div>
 <!--    <div v-if="cover === 0">-->
-    <div class="background" style="left:0;top:0;z-index:20" id = 'cover'>
+
+    <div class="background" style="left:0;top:0;z-index:1" id = 'cover'>
       <img :src="imgSrc"  alt="" />
     </div>
+  <div class="background" style="z-index: 20; width: 50%;height: 60%; margin: 30px" id = 'cover2'>
+    <div style="text-align: center;width: 60%; margin: auto" id="logo">
+      <img :src="logo"  alt="" />
+      </div>
+  </div>
 <!--    <el-header>-->
 <!--      <div>-->
 <!--        <RealHead></RealHead>-->
 <!--      </div>-->
 <!--    </el-header>-->
-    <div>
+    <div id = 'home'>
       <br>
       <br>
       <div style="width: 20%; margin: auto">
@@ -31,32 +37,29 @@
         </div>
         <div style="width: 80%;margin: auto">
           <div>
-            <table style="width: 100%">
-              <tr>
+            <td style="width: 100%">
                 <td colspan="2">
 <!--                  <div class="link-top" style="line-height:30px;width: 70%" ></div>-->
                   <br>
                 </td>
-              </tr>
-              <tr><td>
-                <div style="border-right: 3px solid dimgray">
-                  <table style="text-align: left">
-                    <tr>Student ID</tr>
-                    <tr><input v-model="user_id" type="text" required id="id" value=""/></tr>
-                    <tr>Password</tr>
-                    <tr><input v-model="user_pwd" type="password" required="required" id="password" value=""/></tr>
-                    <tr><br></tr>
-                    <tr><button style="font-size: large; color: white" v-on:click="toPage">Login</button></tr>
-                  </table>
+            <ul style="  display : inline ;" id="table">
+<li>
+                <div style="border-right: 3px solid dimgray;width: 50%">
+                  <ul>
+                    <li>Student ID</li>
+                   <li><el-input v-model="user_id" placeholder="请输入内容"></el-input></li>
+                    <li>Password</li>
+                    <li><el-input v-model="user_pwd" placeholder="请输入内容"></el-input></li>
+                    <li><button style="font-size: large; color: white" v-on:click="toPage">Login</button></li>
+                  </ul>
                 </div>
-              </td>
-                <td>
-                  <div style="width: 80%; margin: auto; padding: 0px; font-weight: bold; color: #302e2e">
+</li>
+            <li  style="width: 50%; margin: 0 -10px; padding: 0px; font-weight: bold; color: #302e2e">
                     Over 1000 questions proposed and got solved<br>
                     Now it's your turn to ask louder here
-                  </div>
-                </td></tr>
-            </table>
+
+            </li>
+            </ul>
           </div>
              <br/>
 <!--          <div style="clear:both;text-align: center">-->
@@ -93,6 +96,8 @@ export default {
   mounted() {
     document.addEventListener("click", e=>{
       document.getElementById('cover').style.zIndex = '-100'
+      document.getElementById('logo').style.zIndex = '-100'
+      // document.getElementById('home').style.zIndex = '200'
     })
   },
   methods: {
@@ -138,7 +143,8 @@ img{
 }
 
 td
-{   height: 100%;
+{
+  /*height: 100%;*/
   text-align:left;
 }
 button:hover{
@@ -323,5 +329,9 @@ input[type = checkbox]{
 .front{
   z-index:1;
   position: absolute;
+}
+li{
+  list-style: none;
+  text-align: left;
 }
 </style>

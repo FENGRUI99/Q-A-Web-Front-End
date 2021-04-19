@@ -3,8 +3,18 @@
     <div class="background" style="left:0;top:0">
       <img :src="imgSrc"  alt="" />
     </div>
+    <br>
+    <br>
+    <div style="width: 20%; margin: auto">
+      <img :src="logo"  alt="" />
+    </div>
+    <br>
     <div  class="side" style="width: 60%;line-height:45px;background: rgba(232,231,231,0.5);box-shadow: #cccccc;-moz-box-shadow: #2c3e50">
       <table style="margin: auto">
+        <div style="text-align: left">
+          <button class="button" style=" border-bottom:3px solid green;width: 15%;font-weight:bold; font-size: x-large; padding: 10px" disabled>Log in</button>
+          <button class="button" style="width: 15%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</button>
+        </div>
         <tr style="vertical-align:top; width: 90%">
           <td><sign-up-info></sign-up-info></td>
           <td><InterestTag></InterestTag></td>
@@ -25,6 +35,7 @@ export default {
   },
   data () {
     return {
+      logo: require('../assets/logo1.png'),
       imgSrc: require('../assets/background.jpg')
     }
   }
@@ -55,5 +66,24 @@ img{
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
+}
+.button:hover{
+  border: 1px;
+  height: 45px;
+  width: 20%;
+  border-radius: 0px;
+  background: none;
+  color: black;
+  border-bottom:3px solid green;
+  font-weight: bold;
+}
+.button{
+  border: 1px;
+  height: 45px;
+  width: 20%;
+  border-radius: 0px;
+  background: none;
+  color: black;
+  outline: none;
 }
 </style>
