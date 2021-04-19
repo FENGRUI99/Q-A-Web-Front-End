@@ -1,4 +1,4 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <div>
 <!--    <div v-if="cover === 0">-->
     <div class="background" style="left:0;top:0;z-index:20" id = 'cover'>
@@ -87,11 +87,11 @@ export default {
       coverSrc: require('../assets/cover.png'),
       logo: require('../assets/logo1.png'),
       user_id: '',
-      user_pwd: '',
+      user_pwd: ''
     }
   },
-  mounted() {
-    document.addEventListener("click", e=>{
+  mounted () {
+    document.addEventListener('click', e => {
       document.getElementById('cover').style.zIndex = '-100'
     })
   },
