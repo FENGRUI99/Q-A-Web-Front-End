@@ -1,77 +1,33 @@
 <template>
   <div>
-<!--    <div v-if="cover === 0">-->
-
-    <div class="background" style="left:0;top:0;z-index:1" id = 'cover'>
+    <div class="background" style="left:0;top:0;  ">
       <img :src="imgSrc"  alt="" />
     </div>
-<!--  <div class="background" style="z-index: 20; width: 50%;height: 60%; margin: 30px" id = 'cover2'>-->
-    <div style="text-align: center;width: 60%; margin: auto" id="logo">
+    <div style="width: 17%; margin: -40px auto 10px auto">
       <img :src="logo"  alt="" />
     </div>
-<!--  </div>-->
-<!--    <el-header>-->
-<!--      <div>-->
-<!--        <RealHead></RealHead>-->
-<!--      </div>-->
-<!--    </el-header>-->
-    <div id = 'home'>
-      <br>
-      <br>
-      <div style="width: 20%; margin: auto">
-        <img :src="logo"  alt="" />
+    <br>
+    <div id="total">
+      <div style="text-align: left">
+        <button class="button" style=" border-bottom:3px solid green;width: 19%;font-weight:bold; font-size: x-large; padding: 10px; margin-left: 1%" disabled>Log in</button>
+        <button class="button" style="width: 19%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</button>
       </div>
       <br>
-      <div>
-      <table class = "side p" style="width: 45%;line-height:45px;background: rgba(232,231,231,0.5);box-shadow: #cccccc;-moz-box-shadow: #2c3e50">
-<!--        <div class="animate seven" style="margin: auto;">-->
-<!--          <br>-->
-<!--          <span style="color: white">L</span><span style="color: white">o</span><span style="color: white">g</span>&nbsp;-->
-<!--          <span style="color: white">i</span><span style="color: white">n</span>&nbsp;-->
-<!--          <span style="color: white">L</span><span style="color: white">o</span><span style="color: white">u</span><span style="color: white">d</span><span style="color: white">e</span><span style="color: white">r</span><span style="color: white">!</span>-->
-<!--          <br>-->
-<!--        </div>-->
-        <div style="text-align: left">
-          <button class="button" style=" border-bottom:3px solid green;width: 15%;font-weight:bold; font-size: x-large; padding: 10px" disabled>Log in</button>
-          <button class="button" style="width: 15%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</button>
-        </div>
+      <ul style="float:left; border: 3px;border-color: white #cccccc white white;border-style:solid;padding-right: 3%;width: 40%">
+        <li>Student ID</li>
+        <li><el-input  v-model="user_id" placeholder="enter your student id"></el-input></li>
+        <li>Password</li>
+        <li><el-input  v-model="user_pwd" placeholder="enter your password"></el-input></li>
         <br>
-<!--/*        <div style="width: 100%;margin: auto">*/-->
-<!--            <td style="width: 100%">-->
-<!--                <td colspan="2" style="width: 50%">-->
-<!--&lt;!&ndash;                  <div class="link-top" style="line-height:30px;width: 70%" ></div>&ndash;&gt;-->
-<!--                  <br>-->
-<!--                </td>-->
-<!--              <td>-->
-          <ul style="display: inline">
-            <li>
-            <ul>
-                    <li>Student ID</li>
-                   <li><el-input v-model="user_id" placeholder="请输入内容"></el-input></li>
-                    <li>Password</li>
-                    <li><el-input v-model="user_pwd" placeholder="请输入内容"></el-input></li>
-                    <li><button style="font-size: large; color: white" v-on:click="toPage">Login</button></li>
-            </ul>
-              </li>
-            <li  style="width: 80%; margin: 0 -10px; padding: 0px; font-weight: bold; color: #302e2e">
-              Over 1000 questions proposed and got solved<br>
-              Now it's your turn to ask louder here
-
-            </li>
-          </ul>
-
-<!--          <div style="clear:both;text-align: center">-->
-
-<!--            <button style="font-size: large; color: white" v-on:click="toPage">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-<!--            <button style="font-size: large; color: white"  v-on:click="toRegister">Sign up</button>-->
-
-<!--          </div>-->
-          <br/>
-      </table><br/><br/>
-      <iframe src="/foot" width="100%" height="50%" frameborder="0"></iframe>
-      </div>
+        <li><el-button type="success" v-on:click="toPage" style="height: 40px"> Login  </el-button></li>
+      </ul>
+      <ul style="float:right;width: 40%;color: darkblue;font-weight: bold">
+        <li style="width: 90%;">Over 1000 questions proposed and got solved.</li>
+        <li style="width: 90%;">Now it's your turn to ask louder here</li>
+      </ul>
+      <div style="clear:both"></div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -90,13 +46,6 @@ export default {
       user_id: '',
       user_pwd: ''
     }
-  },
-  mounted () {
-    document.addEventListener('click', e => {
-      document.getElementById('cover').style.zIndex = '-100'
-      document.getElementById('logo').style.zIndex = '-300'
-      // document.getElementById('home').style.zIndex = '200'
-    })
   },
   methods: {
     toPage () {
@@ -325,12 +274,20 @@ input[type = checkbox]{
   -webkit-background-size: cover;
 }
 
-.front{
-  z-index:1;
-  position: absolute;
-}
 li{
   list-style: none;
   text-align: left;
+}
+#total{
+  z-index: -20;
+  width: 45%;
+  margin:0 auto;
+  background: #fffdfd;
+  border: 1px;
+  border-color:#cccccc;
+  border-style:solid;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
 }
 </style>

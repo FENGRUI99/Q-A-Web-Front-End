@@ -7,13 +7,14 @@ import Header from '../components/Header'
 import Register from '../views/Register'
 import ProblemDetailPage from '../views/ProblemDetailPage'
 import Register2 from '../views/Register2'
+import Title from '../components/Title'
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/Login',
       name: 'Login',
       component: Login
     },
@@ -48,6 +49,11 @@ export default new Router({
       path: '/Register2',
       name: 'Register2',
       component: Register2
+    },
+    {
+      path: '/',
+      name: 'Title',
+      component: Title
     }
   ]
 })
