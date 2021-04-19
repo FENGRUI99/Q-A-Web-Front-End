@@ -4,7 +4,7 @@
       <div class="background" style="left:0;top:0;">
         <img :src="imgSrc"  alt="" />
       </div>
-      <div style="width: 30%; margin-left: 10%; z-index: 10">
+      <div style="width: 35%; margin-left: 10%; z-index: 10">
         <img :src="logo"  alt="" />
         <p style="color: white;font-size: 22px;text-align: left">  Over 1000 questions proposed and got solved<br>
           Now it's your turn to ask louder here </p>
