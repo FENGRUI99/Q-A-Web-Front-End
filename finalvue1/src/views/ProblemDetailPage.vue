@@ -91,7 +91,7 @@
                   <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
                     <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>
                     <p style="text-align: left;padding-left: 50px">{{comment.comment_detail}}</p>
-                    <tr class="small" >Answer by {{comment.user_name}} in aa</tr>
+                    <tr class="small" >Answer by {{comment.user_name}} {{comment.create_time}}</tr>
                   </div>
                 </div>
                 <div v-else>
@@ -207,7 +207,7 @@ export default {
       this.myComment = this.textarea
       this.comment_number += 1
       this.textarea = ''
-      this.item.commentList.push({ 'comment_id': '-1', 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': null })
+      this.item.commentList.push({ 'comment_id': '-1', 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': 'now' })
       sessionStorage.setItem('item', JSON.stringify(this.item))
       this.axios.post('http://localhost:8080/comment', {
         user_id: sessionStorage.getItem('user_id'),
@@ -218,7 +218,6 @@ export default {
       }).catch((response) => {
         console.log(response)
       })
-      // location.reload()
     },
     liked (item) {
       let list = this.$store.getters.getLikedList
