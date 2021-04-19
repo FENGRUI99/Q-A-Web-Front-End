@@ -151,7 +151,6 @@ input{
   font-weight: bolder;
   color: black;
   font-size: x-large;
-
 }
 input:focus{
   border-color: limegreen;

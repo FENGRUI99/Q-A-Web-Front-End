@@ -5,7 +5,7 @@
           <table class="abc">
             <td>
               <div style="display: block; margin: 0 1%">
-                <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" >{{item.question_description}}</li>
+                <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
                 <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
                 <table style="width: 100%; padding-top: 10px" align="left" >
                   <td style="text-align: left">Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span>  {{item.time}}</td>
@@ -44,7 +44,10 @@
           </div>
         </div>
       </div>
-      <div v-else-if="this.$store.getters.getIsFind === false">
+      <div v-else class = "abc loadingStyle">
+        到底啦
+      </div>
+      <div v-if="this.$store.getters.getIsFind === false">
         <ul class="notFound">
           <li><p>Your question cannot be found</p></li>
           <li><p>What about ask a question</p></li>

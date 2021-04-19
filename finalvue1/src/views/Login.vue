@@ -1,47 +1,80 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
   <div>
-  <div class="background" style="left:0;top:0">
-    <img :src="imgSrc"  alt="" />
-  </div>
+    <div v-if="cover === 0">
+    <div class="background" style="left:0;top:0">
+      <img :src="imgSrc"  alt="" />
+    </div>
 <!--    <el-header>-->
 <!--      <div>-->
 <!--        <RealHead></RealHead>-->
 <!--      </div>-->
 <!--    </el-header>-->
-    <div  >
+    <div>
       <br>
       <br>
-      <table class = "side p" style="width: 55%;line-height:45px;background: rgba(232,231,231,0.5);box-shadow: #cccccc;-moz-box-shadow: #2c3e50">
-        <div class="animate seven" style="margin: auto;">
-          <br>
-          <span style="color: white">L</span><span style="color: white">o</span><span style="color: white">g</span>&nbsp;
-          <span style="color: white">i</span><span style="color: white">n</span>&nbsp;
-          <span style="color: white">L</span><span style="color: white">o</span><span style="color: white">u</span><span style="color: white">d</span><span style="color: white">e</span><span style="color: white">r</span><span style="color: white">!</span>
-          <br>
+      <div style="width: 20%; margin: auto">
+        <img :src="logo"  alt="" />
+      </div>
+      <br>
+      <div>
+      <table class = "side p" style="width: 45%;line-height:45px;background: rgba(232,231,231,0.5);box-shadow: #cccccc;-moz-box-shadow: #2c3e50">
+<!--        <div class="animate seven" style="margin: auto;">-->
+<!--          <br>-->
+<!--          <span style="color: white">L</span><span style="color: white">o</span><span style="color: white">g</span>&nbsp;-->
+<!--          <span style="color: white">i</span><span style="color: white">n</span>&nbsp;-->
+<!--          <span style="color: white">L</span><span style="color: white">o</span><span style="color: white">u</span><span style="color: white">d</span><span style="color: white">e</span><span style="color: white">r</span><span style="color: white">!</span>-->
+<!--          <br>-->
+<!--        </div>-->
+        <div style="text-align: left">
+          <button class="button" style=" border-bottom:3px solid green;width: 15%;font-weight:bold; font-size: x-large; padding: 10px" disabled>Log in</button>
+          <button class="button" style="width: 15%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</button>
         </div>
-        <div style="width: 70%;margin: auto">
+        <div style="width: 80%;margin: auto">
           <div>
             <table style="width: 100%">
               <tr>
-                <div class="link-top" style="line-height:30px;width: 70%" ></div>
-                <BR/>
+                <td colspan="2">
+<!--                  <div class="link-top" style="line-height:30px;width: 70%" ></div>-->
+                  <br>
+                </td>
               </tr>
-              <tr>Student ID</tr>
-              <tr><input v-model="user_id" type="text" required id="id" value=""/></tr>
-              <tr>Password</tr>
-              <tr><input v-model="user_pwd" type="password" required="required" id="password" value=""/></tr>
+              <tr><td>
+                <div style="border-right: 3px solid dimgray">
+                  <table style="text-align: left">
+                    <tr>Student ID</tr>
+                    <tr><input v-model="user_id" type="text" required id="id" value=""/></tr>
+                    <tr>Password</tr>
+                    <tr><input v-model="user_pwd" type="password" required="required" id="password" value=""/></tr>
+                    <tr><br></tr>
+                    <tr><button style="font-size: large; color: white" v-on:click="toPage">Login</button></tr>
+                  </table>
+                </div>
+              </td>
+                <td>
+                  <div style="width: 80%; margin: auto; padding: 0px; font-weight: bold; color: #302e2e">
+                    Over 1000 questions proposed and got solved<br>
+                    Now it's your turn to ask louder here
+                  </div>
+                </td></tr>
             </table>
           </div>
              <br/>
-          <div style="clear:both;text-align: center">
+<!--          <div style="clear:both;text-align: center">-->
 
-            <button style="font-size: large; color: white" v-on:click="toPage">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button style="font-size: large; color: white"  v-on:click="toRegister">Sign up</button>
+<!--            <button style="font-size: large; color: white" v-on:click="toPage">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--            <button style="font-size: large; color: white"  v-on:click="toRegister">Sign up</button>-->
 
-          </div>
+<!--          </div>-->
           <br/></div>
       </table><br/><br/>
       <iframe src="/foot" width="100%" height="50%" frameborder="0"></iframe>
+      </div>
+    </div>
+    </div>
+    <div v-else>
+      <div class="background" style="left:0;top:0">
+        <img :src="imgSrc"  alt="" />
+      </div>
     </div>
   </div>
 </template>
@@ -56,10 +89,20 @@ export default {
   },
   data () {
     return {
-      imgSrc: require('../assets/BG1.svg'),
+      imgSrc: require('../assets/background.jpg'),
+      coverSrc: require('../assets/cover.png'),
+      logo: require('../assets/logo1.png'),
       user_id: '',
-      user_pwd: ''
+      user_pwd: '',
+      cover: 1
     }
+  },
+  mounted() {
+    document.addEventListener("click", e=>{
+      if (this.cover === 1){
+        this.cover = 0
+      }
+    })
   },
   methods: {
     toPage () {
@@ -90,9 +133,12 @@ export default {
   }
 }
 </script>
-
 <style scoped>
-
+img{
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+}
 .side {
   margin:0 auto;
   width: 98%;
@@ -101,30 +147,50 @@ export default {
 }
 
 td
-{   height: 200%;
+{   height: 100%;
   text-align:left;
 }
 button:hover{
   border: 1px;
   height: 45px;
-  width: 20%;
   border-radius: 5px;
   background: limegreen;
   color: white;
 }
+
 button{
   border: 1px;
   height: 45px;
-  width: 20%;
+  width: 40%;
   border-radius: 5px;
-  background: green;
+  border: 1px solid darkgrey;
+  background: #6add6a;
   color: white;
 }
+.button:hover{
+  border: 1px;
+  height: 45px;
+  width: 20%;
+  border-radius: 0px;
+  background: none;
+  color: black;
+  border-bottom:3px solid green;
+  font-weight: bold;
+}
+.button{
+  border: 1px;
+  height: 45px;
+  width: 20%;
+  border-radius: 0px;
+  background: none;
+  color: black;
+  outline: none;
+}
 input{
-  width: 60%;
+  width: 70%;
   outline-style: none ;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 1px;
   /*padding: 13px 14px;*/
   /*width: 620px;*/
   font-size: 30px;
@@ -134,9 +200,9 @@ input{
 
 .p{
   font-family:Arial, sans-serif;
-  font-weight: bolder;
+  /*font-weight: bold;*/
   color: black;
-  font-size: x-large;
+  font-size: large;
 
 }
 input:focus{
