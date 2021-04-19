@@ -1,30 +1,41 @@
 <template>
 <div>
-  <el-button type="success" round id= ask >
+  <el-button type="success"  @click="foldText" id= ask >
     <table style="width: 100%">
-    <tr style="font-size:30px;x-large; text-align: left"> Add </tr>
+    <tr style="font-size:30px; text-align: left"> Add </tr>
     <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
     </table>
   </el-button>
-<!--  <div>-->
-<!--    <v-btn-->
-<!--    class="mx-2"-->
-<!--    fab-->
-<!--    dark-->
-<!--    large-->
-<!--    color="cyan"-->
-<!--  >-->
-<!--    <v-icon dark>-->
-<!--      mdi-pencil-->
-<!--    </v-icon>-->
-<!--  </v-btn>--s-->
-<!--  </div>-->
+  <div v-bind:hidden="isHidden" class="askQ" >
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+    <p>aaa</p>
+  </div>
+
 </div>
 </template>
 
 <script>
 export default {
-  name: 'AskQuestion'
+  name: 'AskQuestion',
+
+  data () {
+    return {
+      isHidden: true
+    }
+  },
+
+  methods: {
+    foldText () {
+      if (this.isHidden === true) {
+        this.isHidden = false
+      } else {
+        this.isHidden = true
+      }
+    }
+  }
 }
 </script>
 
@@ -37,6 +48,13 @@ export default {
   color: white;
   font-style: italic;
   font-weight: bolder;
+
+}
+.askQ{
+  width: 150%;
+  background: #dde7db;
+  position: absolute;
+  margin-left: 92%;
 
 }
 </style>
