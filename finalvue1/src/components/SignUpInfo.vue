@@ -93,7 +93,7 @@ export default {
     },
     checkUsername: function () {
       let id = document.getElementById('user_name')
-      let reg = /^[a-zA-Z0-9_-]{4,16}$/
+      let reg = /^[a-zA-Z0-9_-]{4,12}$/
       if (this.user_name.length === 0) {
         id.className = 'nothing'
       } else if (reg.test(this.user_name)) {

@@ -8,7 +8,7 @@
                 <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
                 <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
                 <table style="width: 100%; padding-top: 10px" align="left" >
-                  <td style="text-align: left">Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span>  {{item.time}}</td>
+                  <td style="text-align: left; color: gray;font-size: 14px">Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span>  {{item.time}}</td>
                     <td v-for="tag in setQuestion_tags_en(item.question_tags)"
                   :key="tag"
                   effect="plain">

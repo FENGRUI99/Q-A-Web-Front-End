@@ -5,11 +5,11 @@
     <div class="background" style="left:0;top:0;z-index:1" id = 'cover'>
       <img :src="imgSrc"  alt="" />
     </div>
-  <div class="background" style="z-index: 20; width: 50%;height: 60%; margin: 30px" id = 'cover2'>
+<!--  <div class="background" style="z-index: 20; width: 50%;height: 60%; margin: 30px" id = 'cover2'>-->
     <div style="text-align: center;width: 60%; margin: auto" id="logo">
       <img :src="logo"  alt="" />
-      </div>
-  </div>
+    </div>
+<!--  </div>-->
 <!--    <el-header>-->
 <!--      <div>-->
 <!--        <RealHead></RealHead>-->
@@ -35,40 +35,38 @@
           <button class="button" style=" border-bottom:3px solid green;width: 15%;font-weight:bold; font-size: x-large; padding: 10px" disabled>Log in</button>
           <button class="button" style="width: 15%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</button>
         </div>
-        <div style="width: 80%;margin: auto">
-          <div>
-            <td style="width: 100%">
-                <td colspan="2">
-<!--                  <div class="link-top" style="line-height:30px;width: 70%" ></div>-->
-                  <br>
-                </td>
-            <ul style="  display : inline ;" id="table">
-<li>
-                <div style="border-right: 3px solid dimgray;width: 50%">
-                  <ul>
+        <br>
+<!--/*        <div style="width: 100%;margin: auto">*/-->
+<!--            <td style="width: 100%">-->
+<!--                <td colspan="2" style="width: 50%">-->
+<!--&lt;!&ndash;                  <div class="link-top" style="line-height:30px;width: 70%" ></div>&ndash;&gt;-->
+<!--                  <br>-->
+<!--                </td>-->
+<!--              <td>-->
+          <ul style="display: inline">
+            <li>
+            <ul>
                     <li>Student ID</li>
                    <li><el-input v-model="user_id" placeholder="请输入内容"></el-input></li>
                     <li>Password</li>
                     <li><el-input v-model="user_pwd" placeholder="请输入内容"></el-input></li>
                     <li><button style="font-size: large; color: white" v-on:click="toPage">Login</button></li>
-                  </ul>
-                </div>
-</li>
-            <li  style="width: 50%; margin: 0 -10px; padding: 0px; font-weight: bold; color: #302e2e">
-                    Over 1000 questions proposed and got solved<br>
-                    Now it's your turn to ask louder here
+            </ul>
+              </li>
+            <li  style="width: 80%; margin: 0 -10px; padding: 0px; font-weight: bold; color: #302e2e">
+              Over 1000 questions proposed and got solved<br>
+              Now it's your turn to ask louder here
 
             </li>
-            </ul>
-          </div>
-             <br/>
+          </ul>
+
 <!--          <div style="clear:both;text-align: center">-->
 
 <!--            <button style="font-size: large; color: white" v-on:click="toPage">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
 <!--            <button style="font-size: large; color: white"  v-on:click="toRegister">Sign up</button>-->
 
 <!--          </div>-->
-          <br/></div>
+          <br/>
       </table><br/><br/>
       <iframe src="/foot" width="100%" height="50%" frameborder="0"></iframe>
       </div>
@@ -96,7 +94,7 @@ export default {
   mounted () {
     document.addEventListener('click', e => {
       document.getElementById('cover').style.zIndex = '-100'
-      document.getElementById('logo').style.zIndex = '-100'
+      document.getElementById('logo').style.zIndex = '-300'
       // document.getElementById('home').style.zIndex = '200'
     })
   },
@@ -107,7 +105,8 @@ export default {
         user_psw: this.user_pwd
       }).then((response) => {
         if (response.data.code === '200') {
-          sessionStorage.setItem('user_info', JSON.stringify(response.data.entity))
+          let tmp = JSON.stringify(response.data.entity[0])
+          sessionStorage.setItem('user_info', tmp)
           this.$router.push({
             name: 'HomePage'
           })
@@ -184,7 +183,7 @@ button{
   outline: none;
 }
 input{
-  width: 70%;
+  /*width: 70%;*/
   outline-style: none ;
   border: 1px solid #ccc;
   border-radius: 1px;
