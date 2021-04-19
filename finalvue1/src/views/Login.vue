@@ -10,7 +10,7 @@
     <div id="total">
       <div style="text-align: left">
         <button class="button" style=" border-bottom:3px solid green;width: 19%;font-weight:bold; font-size: x-large; padding: 10px; margin-left: 1%" disabled>Log in</button>
-        <button class="button" style="width: 19%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</button>
+        <button class="button" style="width: 20%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</button>
       </div>
       <br>
       <ul style="float:left; border: 3px;border-color: white #cccccc white white;border-style:solid;padding-right: 3%;width: 40%">
