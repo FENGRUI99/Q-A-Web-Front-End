@@ -1,7 +1,7 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div>
-    <div v-if="cover === 0">
-    <div class="background" style="left:0;top:0">
+<!--    <div v-if="cover === 0">-->
+    <div class="background" style="left:0;top:0;z-index:20" id = 'cover'>
       <img :src="imgSrc"  alt="" />
     </div>
 <!--    <el-header>-->
@@ -71,12 +71,6 @@
       </div>
     </div>
     </div>
-    <div v-else>
-      <div class="background" style="left:0;top:0">
-        <img :src="imgSrc"  alt="" />
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -94,14 +88,11 @@ export default {
       logo: require('../assets/logo1.png'),
       user_id: '',
       user_pwd: '',
-      cover: 1
     }
   },
   mounted() {
     document.addEventListener("click", e=>{
-      if (this.cover === 1){
-        this.cover = 0
-      }
+      document.getElementById('cover').style.zIndex = '-100'
     })
   },
   methods: {
