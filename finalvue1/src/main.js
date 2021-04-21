@@ -27,6 +27,9 @@ const store = new Vuex.Store({
   mutations: {
     setList (state, list) {
       state.list = list
+      for (let i = 0; i < list.length; i++) {
+        Vue.set(state.list[i], 'like_flag', false)
+      }
     },
     setUserId (state, id) {
       state.user_id = id

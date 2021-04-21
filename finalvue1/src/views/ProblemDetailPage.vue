@@ -24,10 +24,18 @@
               <div class="blank"></div>
               <span class="butt">
                 <td>
-            <el-button  @click="liked(item)" plain size="medium" id="likes">
-              <i class="el-icon-star-on"></i>
-             {{item.likes}}&nbsp;Likes
-            </el-button>
+                  <div v-if="item.like_flag === true">
+                    <el-button  @click="liked(item)" plain size="medium" id="likes">
+                    <i class="el-icon-star-on"></i>
+                    {{item.likes}}&nbsp;Likes
+                    </el-button>
+                  </div>
+                  <div v-else>
+                    <el-button  @click="liked(item)" plain size="medium">
+                    <i class="el-icon-star-on"></i>
+                    {{item.likes}}&nbsp;Likes
+                    </el-button>
+                  </div>
                 </td>
                 <td>
                 <el-button plain size="medium" @click="foldText" type="success">
@@ -228,6 +236,7 @@ export default {
           this.$store.commit('changeLikedList', [false, item.question_id])
           this.item.likes -= 1
           flag = true
+          this.item.like_flag = false
           this.axios.post('http://localhost:8080/like', {
             request: sessionStorage.getItem('user_id') + ' ' + item.question_id,
             msg: -1
@@ -239,7 +248,6 @@ export default {
         }
       }
       if (flag === false) {
-        console.log(item.commentList)
         this.$store.commit('changeList', [item.question_id, 1])
         this.$store.commit('changeLikedList', [true, item.question_id])
         this.item.likes += 1
@@ -250,6 +258,7 @@ export default {
         }).catch((response) => {
           console.log(response)
         })
+        this.item.like_flag = true
       }
       sessionStorage.setItem('item', JSON.stringify(this.item))
     },

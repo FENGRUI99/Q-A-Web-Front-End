@@ -20,10 +20,19 @@
               </div>
             </td>
             <td style="padding: 1% 20px 1% 0;">
-              <el-button @click="liked(item)" plain size="medium" id="likes">
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </li>
-                <li>{{item.likes}}</li>
-              </el-button>
+              {{item.question_id}}--{{item.like_flag}}
+              <div v-if="item.like_flag === true">
+                <el-button @click="liked(item)" plain size="medium" id="likes">
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </li>
+                  <li>{{item.likes}}</li>
+                </el-button>
+              </div>
+              <div v-else>
+                <el-button @click="liked(item)" plain size="medium">
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </li>
+                  <li>{{item.likes}}</li>
+                </el-button>
+              </div>
               <br>
               <br>
               <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
@@ -71,6 +80,23 @@ export default {
         check: true
       },
       item: {}
+    }
+  },
+  beforeUpdate: function () {
+    let num = 0
+    for (let i = 0; i < this.$store.state.list.length; i++) {
+      for (let j = 0; j < this.$store.state.liked_list.length; j++) {
+        if (this.$store.state.list[i].question_id.toString() === this.$store.state.liked_list[j]) {
+          num += 1
+          this.$store.state.list[i].like_flag = true
+          break
+        } else if (this.$store.state.list[i].like_flag === true) {
+          this.$store.state.list[i].like_flag = false
+        }
+      }
+      if (num >= this.$store.state.liked_list.length) {
+        break
+      }
     }
   },
   created () {
