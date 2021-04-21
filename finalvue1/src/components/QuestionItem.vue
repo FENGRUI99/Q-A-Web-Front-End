@@ -22,14 +22,16 @@
             <td style="padding: 1% 20px 1% 0;">
               {{item.question_id}}--{{item.like_flag}}
               <div v-if="item.like_flag === true">
-                <el-button @click="liked(item)" plain size="medium" id="likes">
-                  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </li>
+                <el-button @click="liked(item)" plain size="medium" id="likes" type="warning" onmousedown="myFunction()">
+                  <li><i class="el-icon-star-on"></i>
+                  &nbsp;Likes&nbsp; </li>
                   <li>{{item.likes}}</li>
                 </el-button>
               </div>
               <div v-else>
                 <el-button @click="liked(item)" plain size="medium">
-                  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp; </li>
+                  <li> <i class="el-icon-star-off"></i>
+                  &nbsp;Likes&nbsp; </li>
                   <li>{{item.likes}}</li>
                 </el-button>
               </div>
@@ -241,6 +243,7 @@ export default {
       return ans
     }
   },
+
   watch: {
     loading: {
       handler (val, oldVal) {

@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Vuex from 'vuex'
+import 'keen-ui/dist/keen-ui.css'
 
 Vue.config.productionTip = false
 

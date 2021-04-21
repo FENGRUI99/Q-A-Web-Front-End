@@ -32,7 +32,7 @@
                   </div>
                   <div v-else>
                     <el-button  @click="liked(item)" plain size="medium">
-                    <i class="el-icon-star-on"></i>
+                      <i class="el-icon-star-off"></i>
                     {{item.likes}}&nbsp;Likes
                     </el-button>
                   </div>
