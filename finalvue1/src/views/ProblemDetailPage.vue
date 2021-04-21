@@ -145,6 +145,11 @@
                   </li>
                 </div>
                 <div class="blank"></div>
+                <table style="position:fixed;width:100px;height:30px;align:right;top:90%;right:-2%">
+                  <a href="#top">
+                    <el-button title="Click back to the top" type="success" class="butt" icon="el-icon-top" circle></el-button>
+                  </a>
+                </table>
               </div>
             </div>
           </table>

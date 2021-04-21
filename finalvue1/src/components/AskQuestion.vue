@@ -7,11 +7,45 @@
     </table>
   </el-button>
   <div v-bind:hidden="isHidden" class="askQ" >
-    <p>aaa</p>
-    <p>aaa</p>
-    <p>aaa</p>
-    <p>aaa</p>
-    <p>aaa</p>
+    <ul style="margin:0 auto;width: 80%">
+<!--      question title-->
+      <li>
+      <el-input @input="discText"
+        type="textarea"
+        placeholder="Write your question"
+        v-model="textarea"
+        maxlength="200"
+        show-word-limit
+        resize="none"
+        clearable=""
+        rows="4"
+      >
+      </el-input>
+      </li>
+<!--      details about the question-->
+      <li v-bind:hidden="isHidden">
+        <el-input
+          type="textarea"
+          placeholder="Write your description"
+          v-model="text"
+          maxlength="200"
+          show-word-limit
+          resize="none"
+          clearable=""
+          rows="2"
+        >
+        </el-input>
+    </li>
+      <li>
+        <el-button type="primary">ask question</el-button>
+      </li>
+    </ul>
+
+ <ul>
+   <li>
+
+   </li>
+ </ul>
   </div>
 
 </div>
@@ -23,7 +57,10 @@ export default {
 
   data () {
     return {
-      isHidden: true
+      isHidden: true,
+      describeIsHidden: true,
+      textarea: '',
+      text: ''
     }
   },
 
@@ -33,6 +70,13 @@ export default {
         this.isHidden = false
       } else {
         this.isHidden = true
+      }
+    },
+    discText () {
+      if (this.describeIsHidden === true) {
+        this.describeIsHidden = false
+      } else {
+        this.describeIsHidden = true
       }
     }
   }
@@ -56,5 +100,8 @@ export default {
   position: absolute;
   margin-left: 92%;
 
+}
+li{
+  list-style: none;
 }
 </style>
