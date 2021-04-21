@@ -25,8 +25,8 @@
               <span class="butt">
                 <td>
                   <div v-if="item.like_flag === true">
-                    <el-button  @click="liked(item)" plain size="medium" id="likes">
-                    <i class="el-icon-star-on"></i>
+                    <el-button id="likes"  @click="liked(item)" plain size="medium" class="like2" :class="{like2:button_color===index}" @onmouseover="mouseDown ('red')" type="warning" >
+                      <i class="el-icon-star-on"></i>
                     {{item.likes}}&nbsp;Likes
                     </el-button>
                   </div>
@@ -181,7 +181,8 @@ export default {
       comment_number: 0,
       user_info: {},
       submit_flag: false,
-      relevant_question: []
+      relevant_question: [],
+      button_color: ' '
     }
   },
   created () {
@@ -293,6 +294,9 @@ export default {
       }
       return ans
     },
+    mouseDown (index) {
+      this.button_color = index
+    },
     toAnotherQuestion (index) {
       sessionStorage.setItem('item', JSON.stringify(this.relevant_question[index]))
       location.reload()
@@ -378,10 +382,6 @@ export default {
   margin-top: 4px;
 }
 
-#likes{
-  border-style: solid;
-  border-color: white;
-}
 #relatedQuestions{
   border: 1px;
   border-color: white white #cccccc white;
@@ -398,5 +398,12 @@ export default {
 }
 li{
   list-style: none;
+}
+.like2{
+  color: white;
+  background-color:#E6A441;
+}
+#likes{
+
 }
 </style>

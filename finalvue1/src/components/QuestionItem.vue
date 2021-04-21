@@ -20,16 +20,15 @@
               </div>
             </td>
             <td style="padding: 1% 20px 1% 0;">
-              {{item.question_id}}--{{item.like_flag}}
               <div v-if="item.like_flag === true">
-                <el-button @click="liked(item)" plain size="medium" id="likes" type="warning" onmousedown="myFunction()">
+                <el-button @click="liked(item)" @ onmouseover="mouseDown ('red')" plain size="medium" id="likes" type="warning" :class="{like2:button_color===index}" class="like2">
                   <li><i class="el-icon-star-on"></i>
                   &nbsp;Likes&nbsp; </li>
                   <li>{{item.likes}}</li>
                 </el-button>
               </div>
               <div v-else>
-                <el-button @click="liked(item)" plain size="medium">
+                <el-button @click="liked(item)" plain size="medium"  >
                   <li> <i class="el-icon-star-off"></i>
                   &nbsp;Likes&nbsp; </li>
                   <li>{{item.likes}}</li>
@@ -71,6 +70,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'QuestionItem',
   data () {
@@ -81,7 +81,8 @@ export default {
       loading: {
         check: true
       },
-      item: {}
+      item: {},
+      button_color: ' '
     }
   },
   beforeUpdate: function () {
@@ -241,9 +242,11 @@ export default {
         }
       }
       return ans
+    },
+    mouseDown (index) {
+      this.button_color = index
     }
   },
-
   watch: {
     loading: {
       handler (val, oldVal) {
@@ -256,7 +259,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 
   .Fixed{
@@ -402,5 +404,9 @@ export default {
     /*  transform: translate(0) scale(1);*/
     /*  opacity: 1;*/
     /*}*/
+  }
+  .like2{
+    color: white;
+    background-color:#E6A441;
   }
 </style>
