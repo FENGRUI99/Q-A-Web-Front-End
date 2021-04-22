@@ -1,69 +1,77 @@
 <template>
   <div id="block" >
-      <div v-if="this.$store.getters.getIsFind === true">
-        <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
-          <table class="abc">
-            <td>
-              <div style="display: block; margin: 0 1%">
-                <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
-                <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
-                <table style="width: 100%; padding-top: 10px" align="left" >
-                  <td style="text-align: left; color: gray;font-size: 14px">Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span>  {{item.time}}</td>
-                    <td v-for="tag in setQuestion_tags_en(item.question_tags)"
-                  :key="tag"
-                  effect="plain">
-                      <el-tag type="success" style="font-weight: bold;font-size: 13px;text-align: left;margin-top: 5px;border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454"
-                                  >  {{ tag }}
-                          </el-tag>
-                    </td>
-                </table>
-              </div>
-            </td>
-            <td style="padding: 1% 20px 1% 0;">
-              <div v-if="item.like_flag === true">
-                <el-button @click="liked(item)" @ onmouseover="mouseDown ('red')" plain size="medium" id="likes" type="warning" :class="{like2:button_color===index}" class="like2">
-                  <li><i class="el-icon-star-on"></i>
-                  &nbsp;Likes&nbsp; </li>
-                  <li>{{item.likes}}</li>
-                </el-button>
-              </div>
-              <div v-else>
-                <el-button @click="liked(item)" plain size="medium"  >
-                  <li> <i class="el-icon-star-off"></i>
-                  &nbsp;Likes&nbsp; </li>
-                  <li>{{item.likes}}</li>
-                </el-button>
-              </div>
-              <br>
-              <br>
-              <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
-                <li>Comments</li>
-                <li>{{item.number_comment}}</li>
-              </el-button>
-            </td>
+    <div v-if="this.$store.getters.getIsFind === true">
+      <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
+        <table class="abc">
+          <td>
+            <div style="display: block; margin: 0 1%">
+              <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
+              <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
+              <table style="width: 100%; padding-top: 10px" align="left" >
+                <td style="text-align: left; color: gray;font-size: 14px">Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span>  {{item.time}}</td>
+                <td v-for="tag in setQuestion_tags_en(item.question_tags)"
+                    :key="tag"
+                    effect="plain">
+                  <el-tag type="success" style="font-weight: bold;font-size: 13px;text-align: left;margin-top: 5px;border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454"
+                  >  {{ tag }}
+                  </el-tag>
+                </td>
+              </table>
+            </div>
+          </td>
+          <td style="padding: 1% 20px 1% 0;">
+            <div v-if="item.like_flag === true">
+              <button @click="liked(item)" @ onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
+                <br>
+                <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+              </button>
+              <!--                <el-button @click="liked(item)" @ onmouseover="mouseDown ('red')" plain size="medium" id="likes" type="warning" :class="{like2:button_color===index}" class="like2">-->
+              <!--                  <li><i class="el-icon-star-on"></i>-->
+              <!--                  &nbsp;Likes&nbsp; </li>-->
+              <!--                  <li>{{item.likes}}</li>-->
+              <!--                </el-button>-->
+            </div>
+            <div v-else>
+              <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
+                <br>
+                <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+              </button>
+              <!--                <el-button @click="liked(item)" plain size="medium"  >-->
+              <!--                  <li> <i class="el-icon-star-off"></i>-->
+              <!--                  &nbsp;Likes&nbsp; </li>-->
+              <!--                  <li>{{item.likes}}</li>-->
+              <!--                </el-button>-->
+            </div>
             <br>
             <br>
-          </table>
-          <div style="height: 10px"></div>
-        </div>
-<!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
-        <div class="abc loadingStyle" id = 'load' >
-          <a-skeleton :paragraph="{ rows: 4 }" loading="loading.check" active style="padding-left: 5px"/>
-          <p>Loading</p>
-        </div>
+            <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
+              <li>Comments</li>
+              <li>{{item.number_comment}}</li>
+            </el-button>
+          </td>
+          <br>
+          <br>
+        </table>
+        <div style="height: 10px"></div>
       </div>
-      <div v-else class = "abc loadingStyle">
-        到底啦
+      <!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
+      <div class="abc loadingStyle" id = 'load' >
+        <a-skeleton :paragraph="{ rows: 4 }" loading="loading.check" active style="padding-left: 5px"/>
+        <p>Loading</p>
       </div>
-      <div v-if="this.$store.getters.getIsFind === false">
-        <ul class="notFound">
-          <li><p>Your question cannot be found</p></li>
-          <li><p>What about ask a question</p></li>
-        </ul>
-        <br>
-        <img src="../assets/cannotfound.jpg" class="pho">
-        <br>
-      </div>
+    </div>
+    <div v-else class = "abc loadingStyle">
+      到底啦
+    </div>
+    <div v-if="this.$store.getters.getIsFind === false">
+      <ul class="notFound">
+        <li><p>Your question cannot be found</p></li>
+        <li><p>What about ask a question</p></li>
+      </ul>
+      <br>
+      <img src="../assets/cannotfound.jpg" class="pho">
+      <br>
+    </div>
   </div>
 </template>
 
@@ -73,14 +81,14 @@ export default {
   name: 'QuestionItem',
   data () {
     return {
-      avtivecolor: 'color:#b8b8b8',
       count: 5,
       change: -1,
       loading: {
         check: true
       },
       item: {},
-      button_color: ' '
+      button_color: ' ',
+      activeClass: false
     }
   },
   beforeUpdate: function () {
@@ -243,6 +251,11 @@ export default {
     },
     mouseDown (index) {
       this.button_color = index
+    },
+    gethome () {
+      setTimeout(() => {
+        this.activeClass = true
+      }, 200)
     }
   },
   watch: {
@@ -259,152 +272,141 @@ export default {
 </script>
 <style scoped>
 
-  .Fixed{
-    width:30%;
-  }
-  .Touchable{
-    cursor: pointer;
-  }
-  .abc {
-    background: #ffffff;
-    border-radius: 10px;
-    width: 90%;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  }
-  .abc td{
-    margin: auto;
-  }
-  #block {
-    margin: 0;
-    width:100%;
-  }
-  .notFound{
-    width: 80%;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 40px 0;
-    font-size: x-large;
-  }
+.Touchable{
+  cursor: pointer;
+}
+.abc {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 90%;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.abc td{
+  margin: auto;
+}
+#block {
+  margin: 0;
+  width:100%;
+}
+.notFound{
+  width: 80%;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 40px 0;
+  font-size: x-large;
+}
 
-  .notFound li {
-    list-style: none;
-    margin: 0 20px;
-  }
-  .notFound li p{
-    alignment: left;
-  }
-  .pho{
-    width: 50%;
-  }
-  .loadingStyle{
-    font-size: xx-large;
-  }
-  #likes{
-    border-style: solid;
-    border-color: white;
-  }
-  #title{
-    font-size: large;
-    font-weight: bold;
-    text-transform: capitalize;
-  }
-  li{
-    list-style: none;
-  }
-  .blank{
-    height: 10px;
-  }
-  .animate {
-    font-size: xx-large;
-    margin: 100px 0 0;
-  }
-  .animate span {
-    display: inline-block;
-  }
-  .animate span:nth-of-type(2) {
-    animation-delay: .05s;
-  }
-  .animate span:nth-of-type(3) {
-    animation-delay: .1s;
-  }
-  .animate span:nth-of-type(4) {
-    animation-delay: .15s;
-  }
-  .animate span:nth-of-type(5) {
-    animation-delay: .2s;
-  }
-  .animate span:nth-of-type(6) {
-    animation-delay: .25s;
-  }
-  .animate span:nth-of-type(7) {
-    animation-delay: .3s;
-  }
-  .animate span:nth-of-type(8) {
-    animation-delay: .35s;
-  }
-  .animate span:nth-of-type(9) {
-    animation-delay: .4s;
-  }
-  .animate span:nth-of-type(10) {
-    animation-delay: .45s;
-  }
-  .animate span:nth-of-type(11) {
-    animation-delay: .5s;
-  }
-  .animate span:nth-of-type(12) {
-    animation-delay: .55s;
-  }
-  .animate span:nth-of-type(13) {
-    animation-delay: .6s;
-  }
-  .animate span:nth-of-type(14) {
-    animation-delay: .65s;
-  }
-  .animate span:nth-of-type(15) {
-    animation-delay: .7s;
-  }
-  .animate span:nth-of-type(16) {
-    animation-delay: .75s;
-  }
-  .animate span:nth-of-type(17) {
-    animation-delay: .8s;
-  }
-  .animate span:nth-of-type(18) {
-    animation-delay: .85s;
-  }
-  .animate span:nth-of-type(19) {
-    animation-delay: .9s;
-  }
-  .animate span:nth-of-type(20) {
-    animation-delay: .95s;
-  }
-  .seven span {
-    color: #1a601f;
-    opacity: 1;
-    transform: translate(50px, 0) scale(.3);
-    animation: leftRight 1s forwards infinite;
-  }
-  @keyframes leftRight {
-    from {transform: translatex(0);}
-    50% {transform: translatex(50px);
-      opacity: .5}
-    to {transform: translatex(0);}
-    /*40% {*/
-    /*  transform: translate(50px, 0) scale(.7);*/
-    /*  opacity: 1;*/
-    /*  color: #1a601f;*/
-    /*}*/
-    /*60% {*/
-    /*  transform: translate(0) scale(1.2);*/
-    /*  opacity: 0;*/
-    /*}*/
-    /*80% {*/
-    /*  transform: translate(0) scale(1);*/
-    /*  opacity: 1;*/
-    /*}*/
-  }
-  .like2{
-    color: white;
-    background-color:#E6A441;
-  }
+.notFound li {
+  list-style: none;
+  margin: 0 20px;
+}
+.notFound li p{
+  alignment: left;
+}
+.pho{
+  width: 50%;
+}
+.loadingStyle{
+  font-size: xx-large;
+}
+#likes{
+  border-style: solid;
+  border-color: white;
+}
+#title{
+  font-size: large;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+li{
+  list-style: none;
+}
+.blank{
+  height: 10px;
+}
+.animate {
+  font-size: xx-large;
+  margin: 100px 0 0;
+}
+.animate span {
+  display: inline-block;
+}
+.animate span:nth-of-type(2) {
+  animation-delay: .05s;
+}
+.animate span:nth-of-type(3) {
+  animation-delay: .1s;
+}
+.animate span:nth-of-type(4) {
+  animation-delay: .15s;
+}
+.animate span:nth-of-type(5) {
+  animation-delay: .2s;
+}
+.animate span:nth-of-type(6) {
+  animation-delay: .25s;
+}
+.animate span:nth-of-type(7) {
+  animation-delay: .3s;
+}
+.animate span:nth-of-type(8) {
+  animation-delay: .35s;
+}
+.animate span:nth-of-type(9) {
+  animation-delay: .4s;
+}
+.animate span:nth-of-type(10) {
+  animation-delay: .45s;
+}
+.animate span:nth-of-type(11) {
+  animation-delay: .5s;
+}
+.animate span:nth-of-type(12) {
+  animation-delay: .55s;
+}
+.animate span:nth-of-type(13) {
+  animation-delay: .6s;
+}
+.animate span:nth-of-type(14) {
+  animation-delay: .65s;
+}
+.animate span:nth-of-type(15) {
+  animation-delay: .7s;
+}
+.animate span:nth-of-type(16) {
+  animation-delay: .75s;
+}
+.animate span:nth-of-type(17) {
+  animation-delay: .8s;
+}
+.animate span:nth-of-type(18) {
+  animation-delay: .85s;
+}
+.animate span:nth-of-type(19) {
+  animation-delay: .9s;
+}
+.animate span:nth-of-type(20) {
+  animation-delay: .95s;
+}
+.like2{
+  color: #E6A441;
+  background-color:white;
+  border-style: solid;
+  border-color: white;
+  font-size: 18px;
+  margin-bottom: -5%;
+}
+.bubbly-button {
+  margin-top: 0%;
+  margin-bottom: -5%;
+  color: black;
+  background-color: white;
+  border-style: solid;
+  border-color: white;
+  font-size: 18px;
+}
+.bubbly-button:active {
+  transform: scale(0.9);
+  color: #dd4d24;
+}
 </style>

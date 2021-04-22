@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div @click="toDetailPage (item)">
+  <div @click="toDetailPage (item)">
       <div class="background" style="left:0;top:0;">
         <img :src="imgSrc"  alt="" />
       </div>
@@ -9,8 +8,8 @@
         <p style="color: white;font-size: 22px;text-align: left">  Over 1000 questions proposed and got solved<br>
           Now it's your turn to ask louder here </p>
       </div>
-    </div>
-    </div>
+      <div style="height: 400px; width: 100%;"></div>
+  </div>
 </template>
 
 <script>
