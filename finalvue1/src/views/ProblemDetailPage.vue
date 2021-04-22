@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background: #f6f6f6">
     <el-container>
       <el-header style="height: 40px">
         <header123></header123>
@@ -11,7 +11,7 @@
             <table class="intro">
               <div class="blank"></div>
               <tr id="title1">
-             {{item.question_description}}
+             {{item.question_description}}？
               </tr>
               <div class="blank"></div>
               <tr class="small">
@@ -24,18 +24,10 @@
               <div class="blank"></div>
               <span class="butt">
                 <td>
-                  <div v-if="item.like_flag === true">
-                    <el-button  @click="liked(item)" plain size="medium" id="likes">
-                    <i class="el-icon-star-on"></i>
-                    {{item.likes}}&nbsp;Likes
-                    </el-button>
-                  </div>
-                  <div v-else>
-                    <el-button  @click="liked(item)" plain size="medium">
-                      <i class="el-icon-star-off"></i>
-                    {{item.likes}}&nbsp;Likes
-                    </el-button>
-                  </div>
+            <el-button  @click="liked(item)" plain size="medium" id="likes">
+              <i class="el-icon-star-on"></i>
+             {{item.likes}}&nbsp;Likes
+            </el-button>
                 </td>
                 <td>
                 <el-button plain size="medium" @click="foldText" type="success">
@@ -91,15 +83,16 @@
           <div>
             <!--            {{item}}-->
             <table class="intro">
-              <tr id="title">
-               <p style="border-bottom: 3px solid #299ec7; ">{{comment_number}} Answers</p>
-              </tr>
+<!--               <span id="title">-->
+               <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>
+<!--               </span>-->
               <div>
-                <div v-if="item.commentList.length >= 1">
+                <div v-if="item.commentList.length >= 1" style="margin-top:2px ">
                   <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
                     <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>
-                    <p style="text-align: left;padding-left: 50px">{{comment.comment_detail}}</p>
-                    <tr class="small" >Answer by {{comment.user_name}} {{comment.create_time}}</tr>
+                    <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
+                    <p class="small2" >Answer by <a style="color: #44d929;font-weight: bold">{{comment.user_name}}</a> in aa</p>
+                    <el-divider id="divider"></el-divider>
                   </div>
                 </div>
                 <div v-else>
@@ -145,11 +138,6 @@
                   </li>
                 </div>
                 <div class="blank"></div>
-                <table style="position:fixed;width:100px;height:30px;align:right;top:90%;right:-2%">
-                  <a href="#top">
-                    <el-button title="Click back to the top" type="success" class="butt" icon="el-icon-top" circle></el-button>
-                  </a>
-                </table>
               </div>
             </div>
           </table>
@@ -220,7 +208,7 @@ export default {
       this.myComment = this.textarea
       this.comment_number += 1
       this.textarea = ''
-      this.item.commentList.push({ 'comment_id': '-1', 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': 'now' })
+      this.item.commentList.push({ 'comment_id': '-1', 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': null })
       sessionStorage.setItem('item', JSON.stringify(this.item))
       this.axios.post('http://localhost:8080/comment', {
         user_id: sessionStorage.getItem('user_id'),
@@ -231,6 +219,7 @@ export default {
       }).catch((response) => {
         console.log(response)
       })
+      // location.reload()
     },
     liked (item) {
       let list = this.$store.getters.getLikedList
@@ -241,7 +230,6 @@ export default {
           this.$store.commit('changeLikedList', [false, item.question_id])
           this.item.likes -= 1
           flag = true
-          this.item.like_flag = false
           this.axios.post('http://localhost:8080/like', {
             request: sessionStorage.getItem('user_id') + ' ' + item.question_id,
             msg: -1
@@ -253,6 +241,7 @@ export default {
         }
       }
       if (flag === false) {
+        console.log(item.commentList)
         this.$store.commit('changeList', [item.question_id, 1])
         this.$store.commit('changeLikedList', [true, item.question_id])
         this.item.likes += 1
@@ -263,7 +252,6 @@ export default {
         }).catch((response) => {
           console.log(response)
         })
-        this.item.like_flag = true
       }
       sessionStorage.setItem('item', JSON.stringify(this.item))
     },
@@ -302,6 +290,12 @@ export default {
 </script>
 
 <style scoped>
+.el-divider--horizontal {
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin: 10px 0;
+}
 #tagItem{
   color: #fffdfd;
   font-size: 15px;
@@ -310,16 +304,18 @@ export default {
   margin: 0 auto;
   /*display: flex;*/
   float: left;
+  margin-top: 1%;
+  margin-left: 30px;
 }
 .intro{
   border: 1px;
   border-radius: 10px;
   border-color: #cccccc;
   border-style:solid;
-  width: 92%;
-  margin-left: 8%;
+  width: 80%;
+  margin-left: 18%;
   background: white;
-  padding: 0 2% ;
+  padding: 0 10px ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .aside{
@@ -330,7 +326,7 @@ export default {
   width: 250px;
   position: fixed;
   background: white;
-  padding: 0 1% ;
+  padding: 0 2% ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .intro tr{
@@ -341,8 +337,8 @@ export default {
   border-radius: 10px;
   border-color: #cccccc;
   border-style:solid;
-  width: 92%;
-  margin-left: 8%;
+  width: 80%;
+  margin-left: 18%;
   background: white;
   padding: 0 2% ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
@@ -362,10 +358,13 @@ export default {
 #title{
   font-size: x-large;
   font-weight: bold;
+  margin:5px ;
+
 }
 #title1{
   font-size: 28px;
   font-weight: bold;
+  text-transform: capitalize;
 }
 .blank{
   height: 10px;
@@ -376,6 +375,15 @@ export default {
   color:gray;
   font-style: italic;
   margin-top: 4px;
+}
+.small2{
+  font-size: x-small;
+  color:gray;
+  font-style: italic;
+  margin:1px;
+  padding-left: 600px;
+  text-align: right;
+
 }
 
 #likes{

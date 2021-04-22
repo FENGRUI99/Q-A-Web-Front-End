@@ -47,12 +47,10 @@
           </table>
           <div style="height: 10px"></div>
         </div>
-        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>
-          <div class="animate seven" style="margin: auto;">
-            <span>L</span><span>o</span><span>a</span><span>d</span><span>i</span><span>n</span><span>g</span>
-            <span>&nbsp;</span><span>.</span><span>.</span><span>.</span><span>!</span>
-            <br>
-          </div>
+<!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
+        <div class="abc loadingStyle" id = 'load' >
+          <a-skeleton :paragraph="{ rows: 4 }" loading="loading.check" active style="padding-left: 5px"/>
+          <p>Loading</p>
         </div>
       </div>
       <div v-else class = "abc loadingStyle">

@@ -8,14 +8,15 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Vuex from 'vuex'
-import 'keen-ui/dist/keen-ui.css'
-
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
 Vue.config.productionTip = false
 
 Vue.use(router)
 Vue.use(Element)
 Vue.use(VueAxios, axios)
 Vue.use(Vuex)
+Vue.use(Antd)
 
 const store = new Vuex.Store({
   state: {
