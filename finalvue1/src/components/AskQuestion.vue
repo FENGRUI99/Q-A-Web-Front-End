@@ -9,33 +9,37 @@
   <div v-bind:hidden="isHidden" class="askQ" >
     <ul style="margin:0 auto;width: 80%">
 <!--      question title-->
-      <li>
-      <el-input @input="discText"
-        type="textarea"
-        placeholder="Write your question"
-        v-model="textarea"
-        maxlength="200"
-        show-word-limit
-        resize="none"
-        clearable=""
-        rows="4"
-      >
-      </el-input>
-      </li>
+      <div>
+        <li>
+          <el-input
+            type="textarea"
+            placeholder="Write your question"
+            v-model="textarea"
+            maxlength="200"
+            show-word-limit
+            resize="none"
+            clearable=""
+            rows="4"
+            >
+          </el-input>
+        </li>
+      </div>
 <!--      details about the question-->
-      <li v-bind:hidden="isHidden">
-        <el-input
-          type="textarea"
-          placeholder="Write your description"
-          v-model="text"
-          maxlength="200"
-          show-word-limit
-          resize="none"
-          clearable=""
-          rows="2"
-        >
-        </el-input>
-    </li>
+      <div v-bind:hidden="describeIsHidden">
+        <li>
+          <el-input
+            type="textarea"
+            placeholder="Write your description"
+            v-model="text"
+            maxlength="200"
+            show-word-limit
+            resize="none"
+            clearable=""
+            rows="2"
+          >
+          </el-input>
+        </li>
+      </div>
       <li>
         <el-button type="primary">ask question</el-button>
       </li>
@@ -47,7 +51,6 @@
    </li>
  </ul>
   </div>
-
 </div>
 </template>
 
@@ -63,7 +66,6 @@ export default {
       text: ''
     }
   },
-
   methods: {
     foldText () {
       if (this.isHidden === true) {
@@ -71,12 +73,16 @@ export default {
       } else {
         this.isHidden = true
       }
-    },
-    discText () {
-      if (this.describeIsHidden === true) {
-        this.describeIsHidden = false
-      } else {
-        this.describeIsHidden = true
+    }
+  },
+  watch: {
+    textarea: {
+      handler () {
+        if (this.textarea.length === 0) {
+          this.describeIsHidden = true
+        } else {
+          this.describeIsHidden = false
+        }
       }
     }
   }
