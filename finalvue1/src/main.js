@@ -10,6 +10,8 @@ import VueAxios from 'vue-axios'
 import Vuex from 'vuex'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
+import vBlur from 'v-blur'
+
 Vue.config.productionTip = false
 
 Vue.use(router)
@@ -17,13 +19,19 @@ Vue.use(Element)
 Vue.use(VueAxios, axios)
 Vue.use(Vuex)
 Vue.use(Antd)
-
+Vue.use(vBlur)
 const store = new Vuex.Store({
   state: {
     list: '',
     user_id: '',
     isFind: true,
-    liked_list: []
+    liked_list: [],
+    blur: false,
+    blurConfig: {
+      isBlurred: false,
+      opacity: 1,
+      filter: 'blur(5px)'
+    }
   },
   // vuex中的方法, 在组件中使用commit来调用
   mutations: {
@@ -41,6 +49,13 @@ const store = new Vuex.Store({
     },
     setLikedList (state, list) {
       state.liked_list = list
+    },
+    setBlur (state) {
+      if (state.blurConfig.isBlurred === false) {
+        state.blurConfig.isBlurred = true
+      } else {
+        state.blurConfig.isBlurred = false
+      }
     },
     changeList (state, indexAndData) {
       let questionId = indexAndData[0]
@@ -80,6 +95,9 @@ const store = new Vuex.Store({
     },
     getLikedList (state) {
       return state.liked_list
+    },
+    getBlur (state) {
+      return state.blurConfig
     }
   }
 })

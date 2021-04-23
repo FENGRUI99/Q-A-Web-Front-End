@@ -1,13 +1,13 @@
 <template>
 <div>
-  <el-button type="success"  @click="foldText" id= ask >
-    <table style="width: 100%">
+  <el-button type="success"  @click="foldText" id= ask v-blur = this.$store.getters.getBlur>
+    <table style="width: 100%" >
     <tr style="font-size:30px; text-align: left"> Add </tr>
     <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
     </table>
   </el-button>
-  <div v-bind:hidden="isHidden" class="askQ" >
-    <ul style="margin:0 auto;width: 80%">
+  <div v-bind:hidden="isHidden" class="askQ" v-blur = false>
+    <ul style="margin:0 auto;width: 80%; z-index: 100">
 <!--      question title-->
       <div>
         <li>
@@ -72,6 +72,10 @@ export default {
       } else {
         this.isHidden = true
       }
+      this.blurBackG()
+    },
+    blurBackG () {
+      this.$store.commit('setBlur')
     }
   },
   watch: {
@@ -108,5 +112,14 @@ export default {
 }
 li{
   list-style: none;
+}
+.blur{
+  -webkit-filter: blur(5px); /* Chrome, Opera */
+
+  -moz-filter: blur(5px);
+
+  -ms-filter: blur(5px);
+
+  filter: blur(5px);
 }
 </style>

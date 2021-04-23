@@ -1,5 +1,5 @@
 <template>
-  <div id="block" >
+  <div id="block" v-blur = this.$store.getters.getBlur style="z-index: -100">
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">

@@ -1,5 +1,5 @@
 <template>
-  <div style="background: #f6f6f6" >
+  <div style="background: #f6f6f6">
     <el-container>
       <el-header height="15px">
         <header123></header123>
@@ -25,7 +25,6 @@ import RealHead from '../components/realhead'
 import Body from '../components/Body'
 import Footer from '../components/Footer'
 import Aside from '../components/Aside'
-
 export default {
   name: 'HomePage',
   components: {

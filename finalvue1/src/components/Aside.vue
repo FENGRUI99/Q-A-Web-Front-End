@@ -1,9 +1,9 @@
 <template>
-  <div class="aside" >
+  <div class="aside">
     <br>
     <AskQuestion></AskQuestion>
     <br>
-    <TopContributors></TopContributors>
+    <TopContributors v-blur = this.$store.getters.getBlur></TopContributors>
     <table style="position:fixed;width:100px;height:30px;align:right;top:90%;left:9%">
       <a href="#top">
         <el-button title="Click back to the top" type="success" class="butt" icon="el-icon-top" circle></el-button>
@@ -15,7 +15,6 @@
 <script>
 import AskQuestion from './AskQuestion'
 import TopContributors from './TopContributors'
-
 export default {
   name: 'Aside',
   components: {
