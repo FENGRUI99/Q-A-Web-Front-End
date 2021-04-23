@@ -1,19 +1,19 @@
 <template>
   <div>
-
     <table id="tt">
-      <img src="../assets/logo1.png" width="200px" class="pho">
+      <img src="../assets/logo1.png" width="200px" style="margin: auto" class="pho">
       <td style="width: 20%"></td>
       <!--        <p id="title">Ask Louder Here! </p>-->
       <!--      -->
-      <h1 id="title" data-shadow='Ask Louder Here!'>Ask Louder Here!</h1>
+      <h1 id="title" data-shadow='Ask Louder Here!' style="margin-top: 10px;">Ask Louder Here!</h1>
       <!--      -->
       <td style="width: 30%"></td>
       <td>
-        <div style="height: 12px;width: 10px"></div>
+        <div style=";width: 10px;margin-top: 20px;"></div>
         <searchBox></searchBox>
+        <div style="height: 10px;"></div>
       </td>
-      <td>
+      <td style="margin: auto">
         <nameTag></nameTag>
       </td>
     </table>
@@ -41,11 +41,11 @@ export default {
   border-color: #ffffff #ffffff #81D454 #ffffff;
   position: fixed;
   z-index:5;
-  margin:10px  auto;
+  margin:0px  auto;
   width:100%;
   top:-10px;
   left: 0;
-  padding: 0px 0px 10px 0px ;
+  padding: 0px 0px 0px 0px ;
 }
 #title {
   /*font-size: xx-large;*/

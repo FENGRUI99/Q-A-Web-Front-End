@@ -43,7 +43,6 @@
               <!--                </el-button>-->
             </div>
             <br>
-            <br>
             <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
               <li>Comments</li>
               <li>{{item.number_comment}}</li>
