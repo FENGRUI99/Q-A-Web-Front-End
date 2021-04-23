@@ -8,11 +8,30 @@
               <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
               <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
               <table style="width: 100%; padding-top: 10px" align="left" >
-                <td style="text-align: left; color: gray;font-size: 14px">Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span>  {{item.time}}</td>
-                <td v-for="tag in setQuestion_tags_en(item.question_tags)"
+                <td style="width: 50%;">
+                <UL class=fm>
+                  <LI style="text-align: left; color: gray;font-size: 14px;margin-left: -3%;position: absolute;"> Posted by <A href="#"><span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> </A> {{item.time}}
+                    <ul class="idinfo">
+                      <li >
+                        id: {{ item.user_id }}
+                      </li>
+                      <li >
+                        likes: {{item.user_info}}
+                      </li>
+                      <li>
+                        email: {{item.user_mail}}
+                      </li>
+                      <li >
+                        XJTLU student
+                      </li>
+                    </ul>
+                  </LI>
+                </UL>
+                </td>
+                <td style="width: 30%;text-align: right;padding-bottom: 10px;margin-top: -50px" v-for="tag in setQuestion_tags_en(item.question_tags)"
                     :key="tag"
                     effect="plain">
-                  <el-tag type="success" style="font-weight: bold;font-size: 13px;text-align: left;margin-top: 5px;border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454"
+                  <el-tag type="success" style="font-weight: bold;font-size: 13px;text-align: left;margin-top: 5px;border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454;"
                   >  {{ tag }}
                   </el-tag>
                 </td>
@@ -33,7 +52,7 @@
             </div>
             <div v-else>
               <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
-                <br>
+               <br>
                 <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
               </button>
               <!--                <el-button @click="liked(item)" plain size="medium"  >-->
@@ -407,5 +426,22 @@ li{
 .bubbly-button:active {
   transform: scale(0.9);
   color: #dd4d24;
+}
+.fm { list-style-type: none;text-align: left;}/*设置盒子的行高，去掉标记，设置背景颜色*/
+.fm a { text-align:left;}/*设置A标签为块元素不显示，宽度，居中*/
+.fm a:hover { color:#CCC;text-decoration:none;font-weight:bold; }  /* 当有鼠标悬停在链接上的颜色 */
+.fm li ul {  list-style-type: none; left: -999em;  }
+.fm li:hover ul { left: auto; }
+.fm li.sfhover ul { left: auto; }
+#content { clear: left; }
+.idinfo{
+  border: 1.5px solid #cccccc;
+  border-radius: 10px;
+  background: white;
+  height: auto;
+  width: auto;
+  position: absolute;
+  padding: 3% 5%;
+  margin-left: 10%;
 }
 </style>
