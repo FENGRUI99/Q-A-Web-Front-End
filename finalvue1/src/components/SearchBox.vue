@@ -5,7 +5,8 @@
       <el-input
         placeholder="search something..."
         prefix-icon="el-icon-search"
-        v-model="input">
+        v-model="input"
+        @keyup.enter.native="getList">
       </el-input>
       </td>
       <td>

@@ -1,5 +1,6 @@
 <template>
-  <div @click="toDetailPage (item)">
+  <div>
+    <div @click="toDetailPage">
       <div class="background" style="left:0;top:0;">
         <img :src="imgSrc"  alt="" />
       </div>
@@ -9,6 +10,7 @@
           Now it's your turn to ask louder here </p>
       </div>
       <div style="height: 400px; width: 100%;"></div>
+    </div>
   </div>
 </template>
 
@@ -24,17 +26,18 @@ export default {
     }
   },
   methods: {
-    toDetailPage (item) {
-      this.item = JSON.stringify(item)
-      sessionStorage.setItem('item', this.item)
+    toDetailPage () {
       this.$router.push({
         path: '/Login',
-        name: 'Login',
-        params: {
-          item: this.item
-        }
+        name: 'Login'
       })
     }
+  },
+  mounted () {
+    window.addEventListener('keyup', this.toDetailPage)
+  },
+  destroyed () {
+    window.removeEventListener('keyup', this.toDetailPage)
   }
 }
 </script>
@@ -59,4 +62,5 @@ img{
   -moz-background-size: cover;
   -webkit-background-size: cover;
 }
+
 </style>

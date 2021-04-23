@@ -57,7 +57,6 @@
 <script>
 export default {
   name: 'AskQuestion',
-
   data () {
     return {
       isHidden: true,
