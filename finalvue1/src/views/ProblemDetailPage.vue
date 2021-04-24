@@ -1,5 +1,5 @@
 <template>
-  <div style="background: #f6f6f6">
+  <div style="background: #f6f6f6;border-radius: 10px">
     <el-container>
       <el-header style="height: 40px">
         <header123></header123>
@@ -10,16 +10,14 @@
 
             <table class="intro">
               <div class="blank"></div>
-              <tr id="title1">
-             {{item.question_description}}？
-              </tr>
+              <tr id="title1" ><td class="top_chart">{{item.question_description}} ？</td></tr>
               <div class="blank"></div>
               <tr class="small">
-                Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
+                <td class="top_chart">Posted by <span style="color: #81D454;text-decoration:underline">{{item.user_name}}</span> {{item.time}}</td>
               </tr>
               <div class="blank"></div>
-              <tr>
-              {{item.question_detail}}
+              <tr id="title">
+                <td class="top_chart">{{item.question_detail}}</td>
               </tr>
               <div class="blank"></div>
               <span class="butt">
@@ -72,7 +70,7 @@
               >
               </el-input>
               <div class="blank"></div>
-            <el-button @click="submit" size="medium" class="butt" style="width: 125px;" type="success" >
+            <el-button @click="submit" size="medium" class="butt" style="width: 125px;margin-left: 20px" type="success" >
               Submit
             </el-button>
               <div class="blank"></div>
@@ -91,7 +89,7 @@
                   <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
                     <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>
                     <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
-                    <p class="small2" >Answer by <a style="color: #44d929;font-weight: bold">{{comment.user_name}}</a> in aa</p>
+                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
                     <el-divider id="divider"></el-divider>
                   </div>
                 </div>
@@ -128,7 +126,7 @@
             <div class="blank"></div>
             <div class="website" v-for="(relevant,index) in this.relevant_question" v-bind:key="index">
               <div v-if="index < 5">
-                <div @click="toAnotherQuestion(index)">
+                <div @click="toAnotherQuestion(index)" style="padding-left: 10px">
                   <li style="cursor: pointer;">{{relevant.question_description}}</li>
                   <div v-if="relevant.commentList === null">
                     <li>wait for your answer</li>
@@ -290,6 +288,10 @@ export default {
 </script>
 
 <style scoped>
+.top_chart{
+  padding-left: 25px;
+}
+
 .el-divider--horizontal {
   display: block;
   height: 1px;
@@ -305,29 +307,26 @@ export default {
   /*display: flex;*/
   float: left;
   margin-top: 1%;
-  margin-left: 30px;
+  margin-left: 20px;
 }
 .intro{
-  border: 1px;
-  border-radius: 10px;
-  border-color: #cccccc;
-  border-style:solid;
   width: 80%;
   margin-left: 18%;
-  background: white;
+  background: #ffffff;
   padding: 0 10px ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border: 1px  gray;
+  border-radius: 10px;
 }
 .aside{
-  border: 1px;
   border-radius: 10px;
   border-color: #cccccc;
-  border-style:solid;
   width: 250px;
   position: fixed;
   background: white;
-  padding: 0 2% ;
+  padding: 5px 5% ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  padding-left: 5px;
 }
 .intro tr{
   text-align: left;
@@ -357,14 +356,17 @@ export default {
 
 #title{
   font-size: x-large;
-  font-weight: bold;
-  margin:5px ;
+  margin:5%;
+  font-family: Arial;
+  font-size: 16px;
 
 }
 #title1{
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 1.5em;
+  font-weight: bolder;
   text-transform: capitalize;
+  font-family:Arial, sans-serif;
+  word-spacing: 2px;
 }
 .blank{
   height: 10px;
@@ -380,10 +382,10 @@ export default {
   font-size: x-small;
   color:gray;
   font-style: italic;
-  margin:1px;
-  padding-left: 600px;
+  padding-left: 500px;
   text-align: right;
-
+  margin-bottom: 10px;
+  margin-right: 30px;
 }
 
 #likes{

@@ -73,10 +73,17 @@
         <div style="height: 10px"></div>
       </div>
       <!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
-      <div class="abc loadingStyle" id = 'load' >
-        <a-skeleton :paragraph="{ rows: 4 }" loading="loading.check" active style="padding-left: 5px"/>
-        <p>Loading</p>
-      </div>
+
+        <a-skeleton :paragraph="{ rows: 2 ,width: 250}" loading active style="padding-left: 5px" class="abc loadingStyle" id = 'load'/>
+        <a-progress
+        :stroke-color="{
+        '0%': '#a9e7dd',
+        '100%': '#87d068',
+      }"
+        :percent="60"
+        status="active"
+      />
+
     </div>
     <div v-else class = "abc loadingStyle">
       到底啦

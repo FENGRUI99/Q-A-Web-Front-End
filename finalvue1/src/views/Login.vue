@@ -21,9 +21,9 @@
         <br>
         <li><el-button type="success" v-on:click="toPage" style="height: 40px"> Login  </el-button></li>
       </ul>
-      <ul style="float:right;width: 40%;color: darkblue;font-weight: bold">
-        <li style="width: 90%;">Over 1000 questions proposed and got solved.</li>
-        <li style="width: 90%;">Now it's your turn to ask louder here</li>
+      <ul style="float: left;width: 55%;color: darkblue;font-weight: bold">
+        <li style="width: 90%; font-size: 1.5em">Over 1000 questions proposed and got solved.</li>
+        <li style="width: 90%;font-size: 1.5em">Now it's your turn to ask louder here</li>
       </ul>
       <div style="clear:both"></div>
     </div>
