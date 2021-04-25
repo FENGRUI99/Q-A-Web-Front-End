@@ -82,6 +82,17 @@ export default {
         this.list[num].select = 0
         document.getElementById(id).className = 'button'
       }
+      let first = 1
+      for (let i = 0; i < 9; i++) {
+        if (this.list[i].select === 1) {
+          if (first === 1) {
+            this.$store.state.user_tags = (i + 1)
+            first = 0
+          } else {
+            this.$store.state.user_tags += ',' + (i + 1)
+          }
+        }
+      }
     }
   }
   // methods: {
