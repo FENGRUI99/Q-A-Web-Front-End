@@ -26,6 +26,9 @@
       </div>
 <!--      details about the question-->
       <div v-bind:hidden="describeIsHidden">
+        <div>
+          <uploadPic></uploadPic>
+        </div>
         <li>
           <el-input
             type="textarea"
@@ -55,6 +58,8 @@
 </template>
 
 <script>
+import uploadPic from './uploadPic'
+
 export default {
   name: 'AskQuestion',
   data () {
@@ -64,6 +69,9 @@ export default {
       textarea: '',
       text: ''
     }
+  },
+  components: {
+    'uploadPic': uploadPic
   },
   methods: {
     foldText () {
