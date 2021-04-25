@@ -1,18 +1,20 @@
 <template>
   <div>
-    <table style="text-align:left; border:1px solid white" class="p">
-      <tr>StudentID</tr>
-      <tr><input v-model ="user_id" type = "text" id="user_id" name = "user_id" pattern = "^\d{7}$" required></tr>
-      <tr>Password</tr>
-      <tr><input v-model ="user_pwd" type="password" id="user_psw" name="user_psw" pattern = "^[A-Za-z0-9]{4,7}?$" required></tr>
-      <tr>Password Confirm</tr>
-      <tr><input v-model ="user_pwd1" type="password" id="user_psw1" name="user_psw1" required></tr>
-      <tr>Username</tr>
-      <tr><input v-model ="user_name" type="text" id="user_name" name="user_name" pattern = "^[a-zA-Z0-9_-]{4,16}$" required></tr>
-      <tr>Your Email</tr>
-      <tr><input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required></tr>
-      <tr><button style="padding: 12px 20px">&nbsp;Log in&nbsp;</button></tr><br/>
-    </table>
+    <br>
+<!--    <ul style="float:left; border: 3px;border-color: white #cccccc white white;border-style:solid;padding-right: 3%; padding-bottom: 15%;text-align: left" class="p">-->
+    <li style="float: left;">StudentID&nbsp;&nbsp;</li><div style="float: left;" id = idCheck></div>
+    <li><el-input @blur="checkDupID" v-model ="user_id" type = "text" id="user_id" name = "user_id" pattern = "^\d{7}$" placeholder="enter your student id" required></el-input></li>
+    <li style="float: left;">Password&nbsp;&nbsp;</li><div style="float: left;" id = pswCheck></div>
+    <li><el-input v-model ="user_pwd" type="password" id="user_psw" name="user_psw" pattern = "^[A-Za-z0-9]{4,7}?$" placeholder="set up your password" required></el-input></li>
+    <li style="float: left;">Password Confirm&nbsp;&nbsp;</li><div style="float: left;" id = psw1check></div>
+    <li><el-input v-model ="user_pwd1" type="password" id="user_psw1" name="user_psw1" placeholder="type again your password" required></el-input></li>
+    <li style="float: left;">Username&nbsp;&nbsp;</li><div style="float: left;" id = namecheck></div>
+    <li><el-input v-model ="user_name" type="text" id="user_name" name="user_name" pattern = "^[a-zA-Z0-9_-]{4,16}$" placeholder="4-12" required></el-input></li>
+    <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div>
+    <li><el-input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required></el-input></li>
+      <br>
+    <li><el-button style="padding: 12px 20px; opacity: 1.0">&nbsp;Log in&nbsp;</el-button></li><br/>
+<!--    </ul>-->
   </div>
 </template>
 
@@ -58,60 +60,90 @@ export default {
   },
   methods: {
     checkID: function () {
-      let id = document.getElementById('user_id')
+      let id = document.getElementById('idCheck')
       let reg = /^\d{7}$/
       console.log(this.user_id.length)
       if (this.user_id.length === 0) {
-        id.className = 'nothing'
+        id.className = '-status nothing'
       } else if (reg.test(this.user_id)) {
-        id.className = 'right'
+        id.className = '-status correct'
       } else {
-        id.className = 'wrong'
+        id.className = '-status incorrect'
       }
     },
+    checkDupID: function () {
+      this.axios.post('http://localhost:8080/checkID', {
+        user_id: this.user_id
+      }).then((response) => {
+        alert(response.data.code)
+        if (response.data.code === '400') {
+          alert('The id has already been used')
+        }
+      }).catch((response) => {
+        console.log(response)
+      })
+    },
     checkPsw: function () {
-      let id = document.getElementById('user_psw')
+      let id = document.getElementById('pswCheck')
       let reg = /^[A-Za-z0-9]{4,30}?$/
+      if (this.user_pwd === this.user_pwd1 && reg.test(this.user_pwd)) {
+        document.getElementById('psw1check').className = '-status correct'
+      } else if (this.user_pwd1.length !== 0) {
+        document.getElementById('psw1check').className = '-status incorrect'
+      }
       if (this.user_pwd.length === 0) {
-        id.className = 'nothing'
+        id.className = '-status nothing'
       } else if (reg.test(this.user_pwd)) {
-        id.className = 'right'
+        id.className = '-status correct'
       } else {
-        id.className = 'wrong'
+        id.className = '-status incorrect'
       }
     },
     checkPsw1: function () {
-      let id = document.getElementById('user_psw1')
+      let id = document.getElementById('psw1check')
       let reg = /^[A-Za-z0-9]{4,30}?$/
       if (this.user_pwd1.length === 0) {
-        id.className = 'nothing'
+        id.className = '-status nothing'
       } else if (this.user_pwd === this.user_pwd1 && reg.test(this.user_pwd)) {
-        id.className = 'right'
+        id.className = '-status correct'
       } else {
-        id.className = 'wrong'
+        id.className = '-status incorrect'
       }
     },
     checkUsername: function () {
-      let id = document.getElementById('user_name')
+      let id = document.getElementById('namecheck')
       let reg = /^[a-zA-Z0-9_-]{4,12}$/
       if (this.user_name.length === 0) {
-        id.className = 'nothing'
+        id.className = '-status nothing'
       } else if (reg.test(this.user_name)) {
-        id.className = 'right'
+        id.className = '-status correct'
       } else {
-        id.className = 'wrong'
+        id.className = '-status incorrect'
       }
     },
     checkEmail: function () {
-      let id = document.getElementById('user_mail')
+      let id = document.getElementById('mailcheck')
       let reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
-      if (this.user_mail === 0) {
-        id.className = 'nothing'
+      if (this.user_mail.length === 0) {
+        console.log(123213)
+        id.className = '-status nothing'
       } else if (reg.test(this.user_mail)) {
-        id.className = 'right'
+        id.className = '-status correct'
       } else {
-        id.className = 'wrong'
+        id.className = '-status incorrect'
       }
+    },
+    regiser: function () {
+      this.axios.post('http://localhost:8080/register', {
+        user_id: this.user_id,
+        user_mail: this.user_mail,
+        user_name: this.user_name,
+        user_psw: this.user_pwd,
+        user_tags: this.user_tags
+      }).then((response) => {
+      }).catch((response) => {
+        console.log(response)
+      })
     }
   }
 }
@@ -122,48 +154,51 @@ table,td,th
 {
   padding: 5px 0;
 }
-input{
-  width: 60%;
-  outline-style: none ;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  /*padding: 13px 14px;*/
-  /*width: 620px;*/
-  font-size: 30px;
-  font-weight: 700;
-  color:darkgreen;
+li{
+  margin-bottom: 1%;
 }
+/*input{*/
+/*  width: 100%;*/
+/*  outline-style: none ;*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 1px;*/
+/*  !*padding: 13px 14px;*!*/
+/*  !*width: 620px;*!*/
+/*  font-size: 30px;*/
+/*  font-weight: 700;*/
+/*  color:darkgreen;*/
+/*}*/
 .p{
   font-family:Arial, sans-serif;
   /*font-weight: bold;*/
   color: black;
-  font-size: large;
+  font-size: x-large;
 }
 .right{
   border-color: limegreen;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(50,205,50,.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(50,205,50,.6)
+  /*outline: 0;*/
+  /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(50,205,50,.6);*/
+  /*box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(50,205,50,.6)*/
 }
 .wrong{
   border-color: darkred;
-  outline: 0;
-  color:darkred;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(205,50,50,.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(205,50,50,.6)
+  /*outline: 0;*/
+  /*color:darkred;*/
+  /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(205,50,50,.6);*/
+  /*box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(205,50,50,.6)*/
 }
 .nothing{
   border: 1px solid #ccc;
-  outline: 0;
-  -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(205,50,50,.6);
-  box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(205,50,50,.6)
+  /*outline: 0;*/
+  /*-webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(205,50,50,.6);*/
+  /*box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(205,50,50,.6)*/
 }
 button{
   display: inline-block;
   /*height: 45px;*/
   /*width: 20%;*/
   border-radius: 10px;
-  padding: 10px;
+  padding: 2px;
   font-size: x-large;
   background: #70e05b;
   color: white;
@@ -178,5 +213,25 @@ button:hover{
   background: #44d929;
   color: white;
   border: 1px solid darkgrey;
+}
+li{
+  list-style: none;
+  text-align: left;
+}
+input[type = checkbox]{
+  zoom:1%;
+  opacity: 0.5;
+}
+.correct:before {
+  content: '\2714';
+  color: #008100;
+}
+.incorrect:before {
+  content: '\2716';
+  color: #b20610;
+}
+.nothing:before {
+  content: '';
+  color: #b20610;
 }
 </style>

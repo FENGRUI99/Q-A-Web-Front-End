@@ -2,15 +2,28 @@
   <div>
     <table style="border:1px solid white">
       <tr style="text-align:left">
-      <td style="font-size: x-large">&nbsp;Choose Interested Tags</td>
+<!--      <td style="font-size: x-large">&nbsp;Choose Interested Tags</td>-->
       </tr>
-      <div v-for="(item, i) in this.list" v-bind:key="i">
-      <td v-if="i===0"><button class="tag">{{list[0].tag}}</button></td>
-      <td v-if="i%2 == 1">
-        <button class="tag">{{item.tag}}</button>
-        <button class="tag">{{list[i+1].tag}}</button>
-      </td>
-      </div>
+        <tr><td><button class="tag" @click="tags(0)" id = 'tags_0'>Graduate Application</button></td></tr>
+        <tr><td>
+          <button class="tag" @click="tags(1)" id = 'tags_1'>Academic Courses</button>
+          <button class="tag" @click="tags(2)" id = 'tags_2'>Software Engi</button>
+        </td></tr>
+      <tr><td>
+        <button class="tag" @click="tags(3)" id = 'tags_3'>Life Study Balance</button>
+        <button class="tag" @click="tags(4)" id = 'tags_4'>Learning Skills</button>
+      </td></tr>
+      <tr><td>
+        <button class="tag" @click="tags(5)" id = 'tags_5'>Test & Coursework</button>
+        <button class="tag" @click="tags(6)" id = 'tags_6'>Career</button>
+      </td></tr>
+      <tr><td>
+        <button class="tag" @click="tags(7)" id = 'tags_7'>Group Project</button>
+        <button class="tag" @click="tags(8)" id = 'tags_8'>Internship</button>
+      </td></tr>
+      <tr v-if = moreTwo style="color: red"><td>
+        you can only select not more than two interested tags
+      </td></tr>
     </table>
   </div>
 
@@ -31,7 +44,43 @@ export default {
         {tag: 'Career', select: 0},
         {tag: 'Group Project', select: 0},
         {tag: 'Internship', select: 0}
-      ]
+      ],
+      moreTwo: 0
+    }
+  },
+  methods: {
+    step: function (i) {
+      console.log(28389789789)
+      return 'step' + i
+    },
+    tags (num) {
+      let id = 'tags_' + num
+      if (this.list[num].select === 0) {
+        let two = 0
+        for (let i = 0; i < 9; i++) {
+          if (this.list[i].select === 1) {
+            two = two + 1
+          }
+        }
+        if (two < 2) {
+          this.list[num].select = 1
+          document.getElementById(id).className = 'click'
+        } else {
+          this.moreTwo = 1
+        }
+      } else {
+        let two = 0
+        for (let i = 0; i < 9; i++) {
+          if (this.list[i].select === 1) {
+            two = two + 1
+          }
+        }
+        if (two < 3) {
+          this.moreTwo = 0
+        }
+        this.list[num].select = 0
+        document.getElementById(id).className = 'button'
+      }
     }
   }
   // methods: {
@@ -44,16 +93,35 @@ export default {
 table,td,th
 {
   padding: 5px 0;
+  text-align: left;
 }
 button{
   display: inline-block;
   /*height: 45px;*/
   /*width: 20%;*/
-  padding: 10px;
-  font-size: x-large;
+  padding: 2px;
+  font-size: large;
   background: #8ae779;
   color: white;
+  border-radius: 3px;
   border: 1px solid darkgrey;
+  opacity: 1.0;
+}
+button:hover{
+  /*display: inline-block;*/
+  /*height: 45px;*/
+  /*width: 20%;*/
+  /*padding: 10px;*/
+  /*font-size: x-large;*/
+  background: #44d929;
+  color: white;
+  border: 1px solid darkgrey;
+}
+.click {
+  background: springgreen;
+}
+.unclick {
+  background: #8ae779;
 }
 .p{
   font-family:Arial, sans-serif;

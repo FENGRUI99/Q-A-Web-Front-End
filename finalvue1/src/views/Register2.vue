@@ -3,23 +3,32 @@
     <div class="background" style="left:0;top:0">
       <img :src="imgSrc"  alt="" />
     </div>
-    <br>
-    <br>
     <div style="width: 20%; margin: auto">
       <img :src="logo"  alt="" />
     </div>
     <br>
-    <div  class="side" style="width: 60%;line-height:45px;background: rgba(232,231,231,0.5);box-shadow: #cccccc;-moz-box-shadow: #2c3e50">
-      <table style="margin: auto">
+    <div id = total class="side">
         <div style="text-align: left">
-          <button class="button" style=" border-bottom:3px solid green;width: 15%;font-weight:bold; font-size: x-large; padding: 10px" disabled>Log in</button>
-          <button class="button" style="width: 15%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</button>
+          <button class="button" style="width: 19%; font-family: Arial, sans-serif;font-size: x-large; padding: 10px; margin-left: 1%" v-on:click="toLog">Login</button>
+          <button class="button" style="border-bottom:3px solid green;width: 20%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px; font-weight:bold;" disabled >Sign up</button>
         </div>
-        <tr style="vertical-align:top; width: 90%">
-          <td><sign-up-info></sign-up-info></td>
-          <td><InterestTag></InterestTag></td>
-        </tr>
-      </table>
+<!--      <ul style="margin: auto">-->
+<!--        <div style="text-align: left">-->
+<!--          <button class="button" style=" border-bottom:3px solid green;width: 19%;font-weight:bold; font-size: x-large; padding: 10px; margin-left: 1%" disabled>Log in</button>-->
+<!--          <button class="button" style="width: 20%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</button>-->
+<!--        </div>-->
+<!--        <tr style="vertical-align:top; width: 90%">-->
+      <ul style="float:left; width: 45%; opacity: 1.0">
+        <sign-up-info></sign-up-info>
+      </ul>
+      <ul style="float:left; width: 50%">
+        <br>
+        <div style = "text-align: left">Choose Interested Tags</div>
+         <InterestTag></InterestTag>
+      </ul>
+      <div style="clear:both"></div>
+<!--        </tr>-->
+<!--      </ul>-->
     </div>
   </div>
 </template>
@@ -37,6 +46,14 @@ export default {
     return {
       logo: require('../assets/logo1.png'),
       imgSrc: require('../assets/background.jpg')
+    }
+  },
+  methods: {
+    toLog () {
+      this.$router.push({
+        path: '/Login',
+        name: 'Login'
+      })
     }
   }
 }
@@ -85,5 +102,17 @@ img{
   background: none;
   color: black;
   outline: none;
+}
+#total{
+  z-index: -20;
+  width: 45%;
+  margin:0 auto;
+  background: #fffdfd;
+  border: 1px;
+  border-color:#cccccc;
+  border-style:solid;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
 }
 </style>

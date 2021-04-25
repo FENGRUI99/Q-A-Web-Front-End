@@ -70,8 +70,8 @@ export default {
     },
     toRegister () {
       this.$router.push({
-        path: '/Register',
-        name: 'Register'
+        path: '/Register2',
+        name: 'Register2'
       })
     }
   }
