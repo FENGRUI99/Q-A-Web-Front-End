@@ -1,5 +1,5 @@
 <template>
-  <div style="background: #f6f6f6;border-radius: 10px">
+  <div style="background: #f6f6f6;">
     <el-container>
       <el-header style="height: 40px">
         <header123></header123>
@@ -16,7 +16,7 @@
                 <td class="top_chart">Posted by <span style="color: #81D454;text-decoration:underline">{{item.user_name}}</span> {{item.time}}</td>
               </tr>
               <div class="blank"></div>
-              <tr id="title">
+              <tr id="detail">
                 <td class="top_chart">{{item.question_detail}}</td>
               </tr>
               <div class="blank"></div>
@@ -59,6 +59,7 @@
             <table class="answer">
               <div class="blank"></div>
               <el-input
+                style="padding-left: 10px;padding-right: 5px"
                 type="textarea"
                 placeholder="Write your answer here within 200 words"
                 v-model="textarea"
@@ -67,6 +68,7 @@
                 resize="none"
                 clearable=""
                 rows="4"
+                size="medium"
               >
               </el-input>
               <div class="blank"></div>
@@ -315,32 +317,38 @@ export default {
   background: #ffffff;
   padding: 0 10px ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  border: 1px  gray;
-  border-radius: 10px;
-}
-.aside{
+  border: 2px solid ;
   border-radius: 10px;
   border-color: #cccccc;
+  border-collapse: separate;
+}
+
+.intro tr{
+  text-align: left;
+}
+.aside{
   width: 250px;
   position: fixed;
   background: white;
   padding: 5px 5% ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   padding-left: 5px;
-}
-.intro tr{
-  text-align: left;
-}
-.answer{
-  border: 1px;
+  border-collapse: separate;
+  border: 2px solid grey;
   border-radius: 10px;
   border-color: #cccccc;
-  border-style:solid;
+}
+.answer{
   width: 80%;
   margin-left: 18%;
   background: white;
   padding: 0 2% ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border-collapse: separate;
+  border: 2px solid grey;
+  border-radius: 10px;
+  border-color: #cccccc;
+
 }
 #inputValue{
   margin-left: -5%;
@@ -354,11 +362,12 @@ export default {
   font-weight: bold;
 }
 
-#title{
+#detail{
   font-size: x-large;
   margin:5%;
   font-family: Arial;
   font-size: 16px;
+  border-radius:100px;
 
 }
 #title1{
@@ -367,6 +376,7 @@ export default {
   text-transform: capitalize;
   font-family:Arial, sans-serif;
   word-spacing: 2px;
+
 }
 .blank{
   height: 10px;
@@ -398,6 +408,7 @@ export default {
   border-style:solid;
   font-size: 20px;
   text-align: left;
+  border-radius: 10px;
 }
 .website{
   color: #81D454;
