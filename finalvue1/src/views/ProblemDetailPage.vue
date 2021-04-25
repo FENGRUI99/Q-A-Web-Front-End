@@ -210,7 +210,7 @@ export default {
       this.textarea = ''
       this.item.commentList.push({ 'comment_id': '-1', 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': null })
       sessionStorage.setItem('item', JSON.stringify(this.item))
-      this.axios.post('http://localhost:8080/comment', {
+      this.axios.post('http://localhost:8080/publishComment', {
         user_id: sessionStorage.getItem('user_id'),
         user_name: this.user_info.user_name,
         comment_detail: this.myComment,

@@ -44,7 +44,7 @@
         </li>
       </div>
       <li>
-        <el-button type="primary">ask question</el-button>
+        <el-button @click="submit" type="primary">ask question</el-button>
       </li>
     </ul>
 
@@ -84,6 +84,19 @@ export default {
     },
     blurBackG () {
       this.$store.commit('setBlur')
+    },
+    submit () {
+      this.axios.post('http://localhost:8080/publishQuestion', {
+        user_id: sessionStorage.getItem('user_id'),
+        user_name: JSON.parse(sessionStorage.getItem('user_info')).user_name,
+        question_description: this.textarea,
+        question_detail: this.text,
+        question_tags: '1,3'
+      }).then((response) => {
+        console.log(response.data.code)
+      }).catch((response) => {
+        console.log(response)
+      })
     }
   },
   watch: {
