@@ -317,7 +317,7 @@ export default {
   background: #ffffff;
   padding: 0 10px ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  border: 2px solid ;
+  border: 1.5px solid ;
   border-radius: 10px;
   border-color: #cccccc;
   border-collapse: separate;
@@ -330,13 +330,11 @@ export default {
   width: 250px;
   position: fixed;
   background: white;
-  padding: 5px 5% ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  padding-left: 5px;
+  padding: 0 5px;
   border-collapse: separate;
-  border: 2px solid grey;
+  border: 1.5px solid #cccccc;
   border-radius: 10px;
-  border-color: #cccccc;
 }
 .answer{
   width: 80%;
@@ -345,9 +343,8 @@ export default {
   padding: 0 2% ;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   border-collapse: separate;
-  border: 2px solid grey;
+  border: 1.5px solid #cccccc;
   border-radius: 10px;
-  border-color: #cccccc;
 
 }
 #inputValue{
@@ -408,7 +405,6 @@ export default {
   border-style:solid;
   font-size: 20px;
   text-align: left;
-  border-radius: 10px;
 }
 .website{
   color: #81D454;

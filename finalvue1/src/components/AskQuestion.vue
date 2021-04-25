@@ -6,8 +6,8 @@
     <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
     </table>
   </el-button>
-  <div v-bind:hidden="isHidden" class="askQ" v-blur = false>
-    <ul style="margin:0 auto;width: 80%; z-index: 100">
+  <div v-bind:hidden="isHidden" class="askQ" v-blur = false style="position: absolute;z-index: 100;">
+    <ul style="margin:0 auto;width: 80%; ">
 <!--      question title-->
       <div>
         <li>
@@ -35,7 +35,7 @@
             show-word-limit
             resize="none"
             clearable=""
-            rows="2"
+            rows="3"
           >
           </el-input>
         </li>
