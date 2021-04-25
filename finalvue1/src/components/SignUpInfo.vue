@@ -13,7 +13,7 @@
     <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div>
     <li><el-input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required></el-input></li>
       <br>
-    <li><el-button style="padding: 12px 20px; opacity: 1.0">&nbsp;Log in&nbsp;</el-button></li><br/>
+    <li><el-button @click="regiser" style="padding: 12px 20px; opacity: 1.0">&nbsp;Sign up&nbsp;</el-button></li><br/>
 <!--    </ul>-->
   </div>
 </template>
@@ -139,7 +139,7 @@ export default {
         user_mail: this.user_mail,
         user_name: this.user_name,
         user_psw: this.user_pwd,
-        user_tags: this.user_tags
+        user_tags: this.$store.getters.getUserTags
       }).then((response) => {
       }).catch((response) => {
         console.log(response)

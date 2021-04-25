@@ -45,6 +45,7 @@ export default {
         {tag: 'Group Project', select: 0},
         {tag: 'Internship', select: 0}
       ],
+      choose_tags: '',
       moreTwo: 0
     }
   },

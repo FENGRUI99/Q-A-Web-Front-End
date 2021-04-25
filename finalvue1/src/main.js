@@ -31,7 +31,8 @@ const store = new Vuex.Store({
       isBlurred: false,
       opacity: 1,
       filter: 'blur(5px)'
-    }
+    },
+    user_tags: ''
   },
   // vuex中的方法, 在组件中使用commit来调用
   mutations: {
@@ -56,6 +57,9 @@ const store = new Vuex.Store({
       } else {
         state.blurConfig.isBlurred = false
       }
+    },
+    setUser_tags (state, tags) {
+      state.user_tags = tags
     },
     changeList (state, indexAndData) {
       let questionId = indexAndData[0]
@@ -98,6 +102,9 @@ const store = new Vuex.Store({
     },
     getBlur (state) {
       return state.blurConfig
+    },
+    getUserTags (state) {
+      return state.user_tags
     }
   }
 })
