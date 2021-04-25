@@ -1,5 +1,8 @@
 <template>
   <div style="background: #f6f6f6">
+<!--    <div class="background" style="left:0;top:0;  ">-->
+<!--      <img :src="require('../assets/background.jpg')"  alt="" class="blur-content" />-->
+<!--    </div>-->
     <el-container>
       <el-header height="15px">
         <header123></header123>
@@ -38,5 +41,14 @@ export default {
 </script>
 
 <style scoped>
-
+.blur-content{
+  backdrop-filter:saturate(150%) blur(8px);
+  -webkit-backdrop-filter:saturate(150%) blur(8px);
+  background-color:rgba(0,0,0,.3);
+  z-index: 1;
+}
+.blur-content::before{
+  filter:blur(5px);
+  z-index: -1;
+}
 </style>
