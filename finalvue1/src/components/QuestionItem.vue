@@ -1,5 +1,5 @@
 <template>
-  <div id="block" style="z-index: -100">
+  <div id="block" style="z-index: -100" >
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
@@ -10,7 +10,7 @@
               <table style="width: 100%; padding-top: 10px" align="left" >
                 <td style="width: 50%;">
                 <UL class=fm>
-                  <LI style="text-align: left; color: gray;font-size: 14px;margin-left: -3%;position: absolute;"> Posted by <A href="#"><span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> </A> {{item.time}}
+                  <LI style="text-align: left; color: gray;font-size: 14px;margin-left: -10%;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
                     <ul class="idinfo">
                       <li >
                         id: {{ item.user_id }}
@@ -448,7 +448,7 @@ li{
   height: auto;
   width: auto;
   position: absolute;
-  padding: 3% 5%;
-  margin-left: 10%;
+  padding: 1% 2%;
+  margin-left: 0%;
 }
 </style>
