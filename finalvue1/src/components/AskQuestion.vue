@@ -56,6 +56,19 @@
           >
           </el-input>
         </li>
+        <el-select
+          filterable
+          allow-create
+          multiple
+          @change="filtered"
+          v-model="value" placeholder="Choose">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </div>
       <li>
         <el-button @click="submit" type="primary">ask question</el-button>
@@ -79,7 +92,36 @@ export default {
       describeIsHidden: true,
       textarea: '',
       text: '',
-      fileList: []
+      fileList: [],
+      options: [{
+        value: '1',
+        label: 'Test & Coursework'
+      }, {
+        value: '2',
+        label: 'Software Engi'
+      }, {
+        value: '3',
+        label: 'Learning Skills'
+      }, {
+        value: '4',
+        label: 'Group Project'
+      }, {
+        value: '5',
+        label: 'Internship'
+      }, {
+        value: '6',
+        label: 'Academic Courses'
+      }, {
+        value: '7',
+        label: 'Career'
+      }, {
+        value: '8',
+        label: 'Life Study Balance'
+      }, {
+        value: '9',
+        label: 'Graduate Application'
+      }],
+      value: []
     }
   },
   methods: {
@@ -95,7 +137,7 @@ export default {
       this.$store.commit('setBlur')
     },
     submit () {
-      if (this.text.length === 0 || this.textarea.length === 0) {
+      if (this.text.length === 0 || this.textarea.length === 0 || this.value.length === 0) {
         alert('Cannot be null')
         return
       }
@@ -130,7 +172,7 @@ export default {
           'user_name': JSON.parse(sessionStorage.getItem('user_info')).user_name,
           'question_description': this.textarea,
           'question_detail': this.text,
-          'question_tags': '1,3'
+          'question_tags': this.value.toString()
         }).then(res => {
           if (res.data.code === 200) {
             alert('finish')
