@@ -97,6 +97,8 @@ export default {
       }).catch((response) => {
         console.log(response)
       })
+      this.isHidden = true
+      this.blurBackG()
     }
   },
   watch: {

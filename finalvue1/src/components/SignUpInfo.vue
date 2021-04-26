@@ -144,6 +144,9 @@ export default {
       }).catch((response) => {
         console.log(response)
       })
+      this.$router.push({
+        name: 'Login'
+      })
     }
   }
 }
