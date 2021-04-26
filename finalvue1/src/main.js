@@ -26,6 +26,7 @@ const store = new Vuex.Store({
     user_id: '',
     isFind: true,
     liked_list: [],
+    img_list: [],
     blur: false,
     blurConfig: {
       isBlurred: false,
@@ -84,6 +85,9 @@ const store = new Vuex.Store({
           }
         }
       }
+    },
+    setImgList (state, msg) {
+      state.img_list = msg
     }
   },
   // 计算属性
@@ -105,6 +109,9 @@ const store = new Vuex.Store({
     },
     getUserTags (state) {
       return state.user_tags
+    },
+    getImgList (state) {
+      return state.img_list
     }
   }
 })

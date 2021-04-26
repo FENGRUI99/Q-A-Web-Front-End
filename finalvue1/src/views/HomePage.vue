@@ -1,6 +1,5 @@
 <template>
-  <div>
-  <div style="background: #f6f6f6" v-if = !this.$store.state.blurConfig.isBlurred>
+  <div style="background: #f6f6f6">
     <el-container>
       <el-header height="15px">
         <header123></header123>
@@ -19,27 +18,6 @@
         </el-container>
       </el-container>
     </el-container>
-  </div>
-  <div style="background: #f6f6f6" v-if = this.$store.state.blurConfig.isBlurred @mousewheel.prevent = 'rollImg' >
-    <el-container>
-      <el-header height="15px">
-        <header123></header123>
-      </el-header>
-      <el-container>
-        <el-aside width=27.5%>
-          <Aside></Aside>
-        </el-aside>
-        <el-container>
-          <el-main>
-            <body123></body123>
-          </el-main>
-          <el-footer>
-            <footer123></footer123>
-          </el-footer>
-        </el-container>
-      </el-container>
-    </el-container>
-  </div>
   </div>
 </template>
 <script>
@@ -54,12 +32,6 @@ export default {
     'body123': Body,
     'footer123': Footer,
     'Aside': Aside
-  },
-  mounted: function () {
-    window.addEventListener('click', (e) => {
-      let classn = e.target.id
-      console.log(classn)
-    })
   }
 }
 
@@ -76,16 +48,8 @@ export default {
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
-.blur-content{
+.blur-content::before{
   filter:blur(5px);
-}
-.background {
-  filter: blur(4px);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.foreground {
-  backdrop-filter: blur(10px);
+  z-index: -1;
 }
 </style>

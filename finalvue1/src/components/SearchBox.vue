@@ -39,7 +39,6 @@ export default {
       }).catch((response) => {
         console.log(response)
       })
-      console.log(this.$store.state.list)
     }
   }
 }

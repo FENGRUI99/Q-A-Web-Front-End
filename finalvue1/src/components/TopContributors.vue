@@ -1,5 +1,5 @@
 <template>
-  <div v-blur = this.$store.getters.getBlur>
+  <div>
     <table id="t1">
       <h1>Top Louder</h1>
       <table id="tc">

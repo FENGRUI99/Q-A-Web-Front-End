@@ -1,5 +1,5 @@
 <template>
-  <div id="block" style="z-index: -100">
+  <div id="block" style="z-index: -100" >
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
@@ -7,10 +7,16 @@
             <div style="display: block; margin: 0 1%">
               <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
               <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
+              <div class="demo-image" v-if="getImage(item.question_id) === true">
+                <el-image
+                  style="width: 200px; height: 200px"
+                  :src="'data:image/png;base64,' + localStorage.getItem(item.question_id)"
+                ></el-image>
+              </div>
               <table style="width: 100%; padding-top: 10px" align="left" >
-                <td>
+                <td style="width: 50%;">
                 <UL class=fm>
-                  <LI style="text-align: left; color: gray;font-size: 14px;margin-left: -10%;margin-right: 35%;width: auto;"> Posted by <a style="color: #81D454;text-decoration:underline;">{{item.user_name}}</a> {{item.time}}
+                  <LI style="text-align: left; color: gray;font-size: 14px;margin-left: -10%;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
                     <ul class="idinfo">
                       <li >
                         id: {{ item.user_id }}
@@ -52,8 +58,8 @@
             </div>
             <div v-else>
               <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
-              <br>
-               <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+               <br>
+                <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
               </button>
               <!--                <el-button @click="liked(item)" plain size="medium"  >-->
               <!--                  <li> <i class="el-icon-star-off"></i>-->
@@ -103,7 +109,10 @@ export default {
       },
       item: {},
       button_color: ' ',
-      activeClass: false
+      activeClass: false,
+      pic: null,
+      fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
+      flag: false
     }
   },
   beforeUpdate: function () {
@@ -138,6 +147,11 @@ export default {
     }).catch((response) => {
       console.log(response)
     })
+    this.axios.post('http://localhost:8080/imglist').then((response) => {
+      this.$store.commit('setImgList', response.data.entity)
+    }).catch((response) => {
+      console.log(response)
+    })
   },
   mounted: function () {
     window.addEventListener('scroll', this.handleScroll, true)
@@ -157,7 +171,6 @@ export default {
       if (this.change === -1) {
         this.change = this.$store.getters.getList.length
       } else if (this.change !== this.$store.getters.getList.length) {
-        console.log(this.$store.getters.getList.likeTag)
         this.count = 5
         this.change = this.$store.getters.getList.length
         this.loading.check = true
@@ -271,6 +284,23 @@ export default {
       setTimeout(() => {
         this.activeClass = true
       }, 200)
+    },
+    getImage (questionId) {
+      let imgList = this.$store.getters.getImgList
+      for (let i = 0; i < imgList.length; i++) {
+        if (questionId === imgList[i].toString()) {
+          this.axios.post('http://localhost:8080/img', {
+            request: questionId
+          }).then((response) => {
+            console.log(response.data.entity.length)
+            localStorage.setItem(questionId, JSON.stringify(response.data.entity))
+          }).catch((response) => {
+            console.log(response)
+          })
+          return true
+        }
+      }
+      return false
     }
   },
   watch: {
