@@ -97,6 +97,11 @@ export default {
       }).catch((response) => {
         console.log(response)
       })
+      this.isHidden = true
+      this.describeIsHidden = true
+      this.blurBackG()
+      this.textarea = null
+      this.text = null
     }
   },
   watch: {
