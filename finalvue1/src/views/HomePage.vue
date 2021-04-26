@@ -1,8 +1,5 @@
 <template>
   <div style="background: #f6f6f6">
-<!--    <div class="background" style="left:0;top:0;  ">-->
-<!--      <img :src="require('../assets/background.jpg')"  alt="" class="blur-content" />-->
-<!--    </div>-->
     <el-container>
       <el-header height="15px">
         <header123></header123>
@@ -46,6 +43,10 @@ export default {
   -webkit-backdrop-filter:saturate(150%) blur(8px);
   background-color:rgba(0,0,0,.3);
   z-index: 1;
+}
+.dialog {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 .blur-content::before{
   filter:blur(5px);
