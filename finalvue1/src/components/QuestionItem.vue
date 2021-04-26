@@ -1,5 +1,5 @@
 <template>
-  <div id="block" style="z-index: -100" >
+  <div id="block" style="z-index: -100">
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
@@ -8,9 +8,9 @@
               <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
               <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
               <table style="width: 100%; padding-top: 10px" align="left" >
-                <td style="width: 50%;">
+                <td>
                 <UL class=fm>
-                  <LI style="text-align: left; color: gray;font-size: 14px;margin-left: -10%;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
+                  <LI style="text-align: left; color: gray;font-size: 14px;margin-left: -10%;margin-right: 35%;width: auto;"> Posted by <a style="color: #81D454;text-decoration:underline;">{{item.user_name}}</a> {{item.time}}
                     <ul class="idinfo">
                       <li >
                         id: {{ item.user_id }}
@@ -52,8 +52,8 @@
             </div>
             <div v-else>
               <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
-               <br>
-                <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+              <br>
+               <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
               </button>
               <!--                <el-button @click="liked(item)" plain size="medium"  >-->
               <!--                  <li> <i class="el-icon-star-off"></i>-->

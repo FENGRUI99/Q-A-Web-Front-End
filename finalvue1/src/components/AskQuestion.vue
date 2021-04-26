@@ -1,6 +1,9 @@
 <template>
 <div>
-  <el-button type="success"  @click="foldText" id= ask v-blur = this.$store.getters.getBlur>
+  <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
+    <div class="foreground" style="width: 1000%;margin-left: 0%;margin-top:-10%;height: 800px;float: right;position: absolute"></div>
+  </div>
+  <el-button type="success"  @click="foldText" id= ask>
     <table style="width: 100%" >
     <tr style="font-size:30px; text-align: left"> Add </tr>
     <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
@@ -148,4 +151,13 @@ li{
 
   filter: blur(5px);
 }
+.background {
+  filter: blur(4px);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.foreground {
+  backdrop-filter: blur(10px);
+} /* No .wrapper needed! */
 </style>

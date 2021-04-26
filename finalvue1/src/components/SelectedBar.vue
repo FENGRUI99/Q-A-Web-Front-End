@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id=bar>
+    <div id=bar v-blur = this.$store.getters.getBlur>
       <div style="height: 10px"></div>
       <multiSelectedBox></multiSelectedBox>
       <selectedBox></selectedBox>

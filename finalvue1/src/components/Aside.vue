@@ -3,10 +3,11 @@
     <br>
     <AskQuestion></AskQuestion>
     <br>
-    <TopContributors v-blur = this.$store.getters.getBlur></TopContributors>
+    <TopContributors></TopContributors>
     <table style="position:fixed;width:100px;height:30px;align:right;top:90%;left:9%">
       <a href="#top">
-        <el-button title="Click back to the top" type="success" class="butt" icon="el-icon-top" circle></el-button>
+        <el-button title="Click back to the top" type="success" class="butt" icon="el-icon-top" v-if = this.$store.state.blurConfig.isBlurred circle v-blur = this.$store.getters.getBlur disabled></el-button>
+        <el-button title="Click back to the top" type="success" class="butt" icon="el-icon-top" v-if = !this.$store.state.blurConfig.isBlurred circle></el-button>
       </a>
     </table>
   </div>
