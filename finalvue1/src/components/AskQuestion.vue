@@ -9,10 +9,8 @@
     <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
     </table>
   </el-button>
-  <div v-bind:hidden="isHidden" class="askQ" v-blur = false style="position: absolute;z-index: 100;">
-    <ul style="margin:0 auto;width: 80%; ">
+  <ul v-bind:hidden="isHidden" class="askQ" v-blur = false style="position: absolute;z-index: 100;margin:0 100%;width: 100%;">
 <!--      question title-->
-      <div>
         <li>
           <el-input
             type="textarea"
@@ -26,12 +24,9 @@
             >
           </el-input>
         </li>
-      </div>
 <!--      details about the question-->
-      <div v-bind:hidden="describeIsHidden">
-        <div>
-          <uploadPic></uploadPic>
-        </div>
+      <ul v-bind:hidden="describeIsHidden">
+         <li> <uploadPic></uploadPic></li>
         <li>
           <el-input
             type="textarea"
@@ -45,7 +40,7 @@
           >
           </el-input>
         </li>
-      </div>
+      </ul>
       <li>
         <el-button @click="submit" type="primary">ask question</el-button>
       </li>
@@ -56,7 +51,6 @@
 
    </li>
  </ul>
-  </div>
 </div>
 </template>
 
