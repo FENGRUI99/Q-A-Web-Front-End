@@ -203,6 +203,10 @@ export default {
       }
     },
     submit () {
+      if (this.textarea.length === 0) {
+        alert('Cannot be null!')
+        return null
+      }
       this.submit_flag = true
       this.isHidden = true
       this.myComment = this.textarea
@@ -241,7 +245,6 @@ export default {
         }
       }
       if (flag === false) {
-        console.log(item.commentList)
         this.$store.commit('changeList', [item.question_id, 1])
         this.$store.commit('changeLikedList', [true, item.question_id])
         this.item.likes += 1

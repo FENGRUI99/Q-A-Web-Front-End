@@ -98,7 +98,10 @@ export default {
         console.log(response)
       })
       this.isHidden = true
+      this.describeIsHidden = true
       this.blurBackG()
+      this.textarea = null
+      this.text = null
     }
   },
   watch: {
