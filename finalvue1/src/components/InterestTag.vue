@@ -7,10 +7,14 @@
         <tr><td><button class="tag" @click="tags(0)" id = 'tags_0'>Graduate Application</button></td></tr>
         <tr><td>
           <button class="tag" @click="tags(1)" id = 'tags_1'>Academic Courses</button>
+        </td></tr>
+      <tr><td>
           <button class="tag" @click="tags(2)" id = 'tags_2'>Software Engi</button>
         </td></tr>
       <tr><td>
         <button class="tag" @click="tags(3)" id = 'tags_3'>Life Study Balance</button>
+      </td></tr>
+      <tr><td>
         <button class="tag" @click="tags(4)" id = 'tags_4'>Learning Skills</button>
       </td></tr>
       <tr><td>

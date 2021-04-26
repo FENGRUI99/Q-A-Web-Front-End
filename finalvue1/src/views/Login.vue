@@ -17,7 +17,7 @@
         <li>Student ID</li>
         <li><el-input  v-model="user_id" placeholder="enter your student id"></el-input></li>
         <li>Password</li>
-        <li><el-input  v-model="user_pwd" placeholder="enter your password" @keyup.enter.native="toPage"></el-input></li>
+        <li><el-input  v-model="user_pwd"  placeholder="enter your password" show-password @keyup.enter.native="toPage" ></el-input></li>
         <br>
         <li><el-button type="success" v-on:click="toPage" style="height: 40px"> Login  </el-button></li>
       </ul>
