@@ -58,7 +58,6 @@
           filterable
           allow-create
           multiple
-          @change="filtered"
           v-model="value" placeholder="Choose">
           <el-option
             v-for="item in options"
@@ -162,7 +161,6 @@ export default {
       this.fileList.forEach((file) => {
         formData.append('files', file.raw)
       })
-      console.log(formData.get('files'))
       if (formData.get('files') === null) {
         this.axios.post('http://localhost:8080/publishQuestion', {
           'user_id': sessionStorage.getItem('user_id'),
