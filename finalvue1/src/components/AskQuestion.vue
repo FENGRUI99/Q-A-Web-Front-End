@@ -1,16 +1,16 @@
 <template>
 <div>
-  <el-button type="success"  @click="foldText" id= ask v-blur = this.$store.getters.getBlur>
-    <table style="width: 100%" >
+  <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
+    <div class="foreground" style="width: 1000%;margin-left: 0%;margin-top:-10%;height: 800px;float: right;position: absolute"></div>
+    </div>
+  <el-button type="success"  @click="foldText" id= ask>  <table style="width: 100%" >
     <tr style="font-size:30px; text-align: left"> Add </tr>
     <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
     </table>
   </el-button>
-  <div v-bind:hidden="isHidden" class="askQ" v-blur = false style="position: absolute;z-index: 100;">
-    <ul style="margin:0 auto;width: 80%; ">
+  <ul v-bind:hidden="isHidden" class="askQ" v-blur = false>
 <!--      question title-->
       <div>
-        <li>
           <el-input
             type="textarea"
             placeholder="Write your question"
@@ -19,14 +19,13 @@
             show-word-limit
             resize="none"
             clearable=""
-            rows="4"
+            rows="3"
             >
           </el-input>
-        </li>
+        <div class="blank"></div>
       </div>
 <!--      details about the question-->
       <div v-bind:hidden="describeIsHidden">
-        <div>
           <el-upload
             class=""
             action="#"
@@ -42,7 +41,6 @@
             <el-button size="small" type="primary">点击上传</el-button>
             <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
           </el-upload>
-        </div>
         <li>
           <el-input
             type="textarea"
@@ -57,7 +55,7 @@
           </el-input>
         </li>
       </div>
-      <li>
+      <li style="text-align: left;">
         <el-button @click="submit" type="primary">ask question</el-button>
       </li>
     </ul>
@@ -65,7 +63,6 @@
    <li>
    </li>
  </ul>
-  </div>
 </div>
 </template>
 
@@ -189,21 +186,23 @@ export default {
 }
 .askQ{
   width: 150%;
-  background: #dde7db;
+  background: #f6f6f6;
   position: absolute;
   margin-left: 92%;
-
+  margin-top: -70px;
+  z-index: 100;
+  padding: 5%;
 }
 li{
   list-style: none;
 }
-.blur{
-  -webkit-filter: blur(5px); /* Chrome, Opera */
-
-  -moz-filter: blur(5px);
-
-  -ms-filter: blur(5px);
-
-  filter: blur(5px);
+.foreground {
+backdrop-filter: blur(10px);
+} /* No .wrapper needed! */
+.blank{
+  height: 10px;
+}
+.ans{
+  border: #f6f6f6 solid 1px;
 }
 </style>
