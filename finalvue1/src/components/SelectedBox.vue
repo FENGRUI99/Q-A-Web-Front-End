@@ -1,7 +1,7 @@
 <template>
   <div style="display: inline-block;margin: 0 5%;">
     <span id="Sort">Tags Filter</span>
-    <el-select
+    <el-select v-blur = this.$store.getters.getBlur
       filterable
       allow-create
       multiple

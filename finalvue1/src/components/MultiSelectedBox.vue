@@ -1,7 +1,7 @@
 <template>
   <div style="display: inline-block;margin: 0 auto;">
     <span id="Sort">Sorted by</span>
-    <el-select
+    <el-select v-blur = this.$store.getters.getBlur
       v-model="value"
       default-first-option
       filterable
