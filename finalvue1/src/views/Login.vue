@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="background" style="left:0;top:0;  ">
+    <div class="background" >
       <img :src="imgSrc"  alt="" />
     </div>
-    <div style="width: 17%; margin: -40px auto 10px auto">
+    <div style="width: 17%;height: 5%; margin: -40px auto 10px auto ;z-index: -1;background-attachment: fixed;background-repeat:no-repeat;">
       <img :src="logo"  alt="" />
     </div>
     <br>
@@ -261,17 +261,21 @@ input[type = checkbox]{
   }
 }
 .background{
+  left:0;
+  top:0;
   margin: 0;
   padding: 0;
   width:100%;
   height:100%;  /**宽高100%是为了图片铺满屏幕 */
-  z-index:-100;
+  z-index:-1;
   position: fixed;
   repeat: no-repeat;
-  background-attachment: fixed;
+  attachment: fixed;
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
+  overflow: auto;
+
 }
 
 li{

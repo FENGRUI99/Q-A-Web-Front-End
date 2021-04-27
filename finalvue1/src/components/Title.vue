@@ -4,12 +4,12 @@
       <div class="background" style="left:0;top:0;">
         <img :src="imgSrc"  alt="" />
       </div>
-      <div style="width: 35%; margin-left: 10%; z-index: 10">
+      <div class="logo">
         <img :src="logo"  alt="" />
         <p style="color: white;font-size: 22px;text-align: left">  Over 1000 questions proposed and got solved<br>
           Now it's your turn to ask louder here </p>
       </div>
-      <div style="height: 400px; width: 100%;"></div>
+<!--      <div style="height: 100px; width: 100%;"></div>-->
     </div>
   </div>
 </template>
@@ -43,18 +43,30 @@ export default {
 </script>
 
 <style scoped>
+.logo{
+  width: 30%;
+  position: fixed;
+  repeat: no-repeat;
+  background-attachment: fixed;
+  margin-left: 10%;
+  margin-top: 5%;
+}
 img{
   width: 100%;
   height: 100%;
   vertical-align: top;
 }
-
+div{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 .background{
   margin: 0;
   padding: 0;
   width:100%;
   height:100%;  /**宽高100%是为了图片铺满屏幕 */
-  z-index:-100;
+  z-index:-1;
   position: fixed;
   repeat: no-repeat;
   background-attachment: fixed;
