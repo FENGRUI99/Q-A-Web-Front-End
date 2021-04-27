@@ -7,6 +7,12 @@
             <div style="display: block; margin: 0 1%">
               <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
               <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
+              <div class="demo-image" v-if="getImage(item.question_id) === true">
+                <el-image
+                  style="width: 200px; height: 200px"
+                  :src="'data:image/png;base64,' + localStorage.getItem(item.question_id)"
+                ></el-image>
+              </div>
               <table style="width: 100%; padding-top: 10px" align="left" >
                 <td style="width: 50%;">
                 <UL class=fm>
@@ -113,7 +119,10 @@ export default {
       },
       item: {},
       button_color: ' ',
-      activeClass: false
+      activeClass: false,
+      pic: null,
+      fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
+      flag: false
     }
   },
   beforeUpdate: function () {
@@ -148,6 +157,11 @@ export default {
     }).catch((response) => {
       console.log(response)
     })
+    this.axios.post('http://localhost:8080/imglist').then((response) => {
+      this.$store.commit('setImgList', response.data.entity)
+    }).catch((response) => {
+      console.log(response)
+    })
   },
   mounted: function () {
     window.addEventListener('scroll', this.handleScroll, true)
@@ -167,7 +181,6 @@ export default {
       if (this.change === -1) {
         this.change = this.$store.getters.getList.length
       } else if (this.change !== this.$store.getters.getList.length) {
-        console.log(this.$store.getters.getList.likeTag)
         this.count = 5
         this.change = this.$store.getters.getList.length
         this.loading.check = true
@@ -281,6 +294,23 @@ export default {
       setTimeout(() => {
         this.activeClass = true
       }, 200)
+    },
+    getImage (questionId) {
+      let imgList = this.$store.getters.getImgList
+      for (let i = 0; i < imgList.length; i++) {
+        if (questionId === imgList[i].toString()) {
+          this.axios.post('http://localhost:8080/img', {
+            request: questionId
+          }).then((response) => {
+            console.log(response.data.entity.length)
+            localStorage.setItem(questionId, JSON.stringify(response.data.entity))
+          }).catch((response) => {
+            console.log(response)
+          })
+          return true
+        }
+      }
+      return false
     }
   },
   watch: {

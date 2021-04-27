@@ -20,6 +20,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'uploadPic',
   data () {
@@ -37,13 +38,14 @@ export default {
         }
       }
       this.fileList = arr
+      this.$store.commit('setFormData', this.fileList)
     },
     handlePreview (file) {
-      // console.log(file)
       console.log(file)
     },
     handleChange (fileList) {
       this.fileList.push(fileList)
+      this.$store.commit('setFormData', this.fileList)
     },
     uploadFile () {
       if (this.fileList.length === 0) {
@@ -55,15 +57,13 @@ export default {
       this.fileList.forEach((file) => {
         formData.append('files', file.raw)
       })
-      console.log(formData.getAll('files'))
-      this.axios.post('http://localhost:8080/img', {
-        formData
-      }).then((response) => {
-        console.log(response.data.code)
-      }).catch((response) => {
-        console.log(response)
+      this.axios.post('http://localhost:8080/img', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
+        if (res.data.code === 0) {
+          this.$router.go(-1)
+        }
+      }).catch(error => {
+        alert('更新用户数据失败' + error)
       })
-      // this.fileList = []
     },
     handleExceed (files, fileList) {
       this.$message.warning('文件个数超出限制')

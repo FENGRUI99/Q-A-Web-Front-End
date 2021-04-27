@@ -27,7 +27,21 @@
 <!--      details about the question-->
       <div v-bind:hidden="describeIsHidden">
         <div>
-          <uploadPic></uploadPic>
+          <el-upload
+            class=""
+            action="#"
+            :show-file-list="true"
+            :auto-upload="false"
+            :on-preview="handlePreview"
+            :on-remove="removeFile"
+            :file-list="fileList"
+            :http-request="uploadFile"
+            :on-change="handleChange"
+            :on-exceed="handleExceed"
+            list-type="picture">
+            <el-button size="small" type="primary">点击上传</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+          </el-upload>
         </div>
         <li>
           <el-input
@@ -47,10 +61,8 @@
         <el-button @click="submit" type="primary">ask question</el-button>
       </li>
     </ul>
-
  <ul>
    <li>
-
    </li>
  </ul>
   </div>
@@ -58,7 +70,6 @@
 </template>
 
 <script>
-import uploadPic from './uploadPic'
 
 export default {
   name: 'AskQuestion',
@@ -67,11 +78,9 @@ export default {
       isHidden: true,
       describeIsHidden: true,
       textarea: '',
-      text: ''
+      text: '',
+      fileList: []
     }
-  },
-  components: {
-    'uploadPic': uploadPic
   },
   methods: {
     foldText () {
@@ -86,22 +95,71 @@ export default {
       this.$store.commit('setBlur')
     },
     submit () {
-      this.axios.post('http://localhost:8080/publishQuestion', {
-        user_id: sessionStorage.getItem('user_id'),
-        user_name: JSON.parse(sessionStorage.getItem('user_info')).user_name,
-        question_description: this.textarea,
-        question_detail: this.text,
-        question_tags: '1,3'
-      }).then((response) => {
-        console.log(response.data.code)
-      }).catch((response) => {
-        console.log(response)
+      if (this.text.length === 0 || this.textarea.length === 0) {
+        alert('Cannot be null')
+        return
+      }
+      this.uploadFile()
+    },
+    removeFile (file) {
+      // 移除文件时，要重新给fileList赋值
+      const arr = []
+      for (let i = 0; i < this.fileList.length; i++) {
+        if (this.fileList[i].uid !== file.uid) {
+          arr.push(this.fileList[i])
+        }
+      }
+      this.fileList = arr
+    },
+    handlePreview (file) {
+      console.log(file)
+    },
+    handleChange (fileList) {
+      this.fileList.push(fileList)
+    },
+    uploadFile () {
+      const formData = new FormData()
+      // 因为要传一个文件数组过去，所以要循环append
+      this.fileList.forEach((file) => {
+        formData.append('files', file.raw)
       })
+      console.log(formData.get('files'))
+      if (formData.get('files') === null) {
+        this.axios.post('http://localhost:8080/publishQuestion', {
+          'user_id': sessionStorage.getItem('user_id'),
+          'user_name': JSON.parse(sessionStorage.getItem('user_info')).user_name,
+          'question_description': this.textarea,
+          'question_detail': this.text,
+          'question_tags': '1,3'
+        }).then(res => {
+          if (res.data.code === 200) {
+            alert('finish')
+          }
+        }).catch(error => {
+          alert('更新用户数据失败' + error)
+        })
+      } else {
+        formData.append('user_id', sessionStorage.getItem('user_id'))
+        formData.append('user_name', JSON.parse(sessionStorage.getItem('user_info')).user_name)
+        formData.append('question_description', this.textarea)
+        formData.append('question_detail', this.text)
+        formData.append('question_tags', '1,3')
+        this.axios.post('http://localhost:8080/publishQuestionWP', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
+          if (res.data.code === 200) {
+            alert('finish')
+          }
+        }).catch(error => {
+          alert('更新用户数据失败' + error)
+        })
+      }
       this.isHidden = true
       this.describeIsHidden = true
       this.blurBackG()
-      this.textarea = null
-      this.text = null
+      this.textarea = ''
+      this.text = ''
+    },
+    handleExceed (files, fileList) {
+      this.$message.warning('文件个数超出限制')
     }
   },
   watch: {
