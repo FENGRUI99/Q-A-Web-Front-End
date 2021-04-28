@@ -26,8 +26,8 @@
       <div style="display: inline-block;">questions proposed and got solved</div>
       <div style="display: inline-block;">  Now it's your turn to ask louder here </div>
       </div>
-      </div>
       <div style="height: 400px; width: 100%;"></div>
+      </div>
     </div>
 </template>
 
