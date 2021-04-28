@@ -1,5 +1,6 @@
 <template>
   <div id="block" style="z-index: -100" >
+    <button @click="test">test for picture loading</button>
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
@@ -118,9 +119,9 @@ export default {
       item: {},
       button_color: ' ',
       activeClass: false,
-      pic: {},
       fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
-      flag: false
+      flag: false,
+      pic: {}
     }
   },
   beforeUpdate: function () {
@@ -232,6 +233,7 @@ export default {
     },
     liked (item) {
       let list = this.$store.getters.getLikedList
+      console.log(list)
       let flag = false
       for (let i = 0; i < list.length; i++) {
         if (list[i].toString() === item.question_id.toString()) {
@@ -298,18 +300,31 @@ export default {
       let imgList = this.$store.getters.getImgList
       for (let i = 0; i < imgList.length; i++) {
         if (questionId === imgList[i].toString()) {
-          console.log(questionId + 'yes')
-          this.axios.post('http://localhost:8080/img', {
-            request: questionId
-          }).then((response) => {
-            this.$set(this.pic, questionId, response.data.entity[0].toString())
-          }).catch((response) => {
-            console.log(response)
-          })
+          if (localStorage.getItem(questionId) === null) {
+            this.axios.post('http://localhost:8080/img', {
+              request: questionId
+            }).then((response) => {
+              this.$set(this.pic, questionId, response.data.entity[0].toString())
+              let tmp = JSON.stringify(response.data.entity)
+              localStorage.setItem(questionId, tmp)
+            }).catch((response) => {
+              console.log(response)
+            })
+          } else {
+            this.$set(this.pic, questionId, this.getPic0(questionId))
+          }
           return true
         }
       }
       return false
+    },
+    getPic0 (questionId) {
+      let pic = JSON.parse(localStorage.getItem(questionId))
+      return pic[0]
+    },
+    test () {
+      localStorage.clear()
+      alert('clear local storage')
     }
   },
   watch: {
