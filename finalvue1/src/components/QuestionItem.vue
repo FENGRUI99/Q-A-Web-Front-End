@@ -3,20 +3,19 @@
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
-          <td>
-            <div style="display: block; margin: 0 1%">
+          <td style="width: 100%;">
+            <div style="margin: 1% 3%;width: 97%;">
               <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
-              <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
-              <li class="demo-image" v-if="getImage(item.question_id) === true">
-                <el-image
-                  style="width: 400px; height: 200px"
-                  v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
+              <li @click="toDetailPage(item)" align="left">
+                <el-image v-if="getImage(item.question_id) === true"
+                          style="width: 100px; height: 100px;"
+                          v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                 ></el-image>
+                {{item.question_detail}}
               </li>
-              <table style="width: 100%; padding-top: 10px" align="left" >
-                <td style="width: 50%;">
+              <li style="float: left;margin-left: -7%">
                 <UL class=fm>
-                  <LI style="text-align: left; color: gray;font-size: 14px;margin-left: -10%;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
+                  <LI style=" color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
                     <ul class="idinfo">
                       <li >
                         id: {{ item.user_id }}
@@ -33,21 +32,19 @@
                     </ul>
                   </LI>
                 </UL>
-                </td>
-                <td style="width: 30%;text-align: right;padding-bottom: 10px;margin-top: -50px" v-for="tag in setQuestion_tags_en(item.question_tags)"
+              </li>
+                <li style="text-align: right;float: right;display:inline-block;margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
                     :key="tag"
                     effect="plain">
                   <el-tag type="success" style="font-weight: bold;font-size: 13px;text-align: left;margin-top: 5px;border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454;"
                   >  {{ tag }}
                   </el-tag>
-                </td>
-              </table>
+                </li>
             </div>
           </td>
-          <td style="padding: 1% 20px 1% 0;">
+          <td style="margin:0 5px 5px 5px;float:right;width: 120px;" >
             <div v-if="item.like_flag === true">
               <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
-                <br>
                 <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
               </button>
               <!--                <el-button @click="liked(item)" @ onmouseover="mouseDown ('red')" plain size="medium" id="likes" type="warning" :class="{like2:button_color===index}" class="like2">-->
@@ -58,8 +55,7 @@
             </div>
             <div v-else>
               <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
-               <br>
-                <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+                 <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
               </button>
               <!--                <el-button @click="liked(item)" plain size="medium"  >-->
               <!--                  <li> <i class="el-icon-star-off"></i>-->
@@ -69,8 +65,9 @@
             </div>
             <br>
             <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
-              <li>Comments</li>
-              <div v-if="item.commentList.length === 1">
+              <table>
+             <td><i class="el-icon-edit"></i></td>
+          <td><div v-if="item.commentList.length === 1">
                 <div v-if="item.commentList[0].comment_detail === null">
                   <li>{{0}}</li>
                 </div>
@@ -81,9 +78,10 @@
               <div v-else>
                 <li>{{item.commentList.length}}</li>
               </div>
+          </td>
+              </table>
             </el-button>
           </td>
-          <br>
           <br>
         </table>
         <div style="height: 10px"></div>
@@ -92,7 +90,7 @@
       <div><a-skeleton :paragraph="{ rows: 3 ,width: [650,650,200]}" :title="{width: 450}" loading active style="padding-left: 5px;border-radius:10px " class="abc loadingStyle" id = 'load'/></div>
     </div>
     <div v-else class = "abc loadingStyle">
-      到底啦
+      there is no questions
     </div>
     <div v-if="this.$store.getters.getIsFind === false">
       <ul class="notFound">
@@ -329,7 +327,7 @@ export default {
 <style scoped>
 
 .Touchable{
-  cursor: pointer;
+  height: auto;
 }
 .abc {
   background: #ffffff;
@@ -481,5 +479,9 @@ li{
   position: absolute;
   padding: 1% 2%;
   margin-left: 0%;
+}
+.demo-image{
+  width: 100px;
+  height: 100px;
 }
 </style>
