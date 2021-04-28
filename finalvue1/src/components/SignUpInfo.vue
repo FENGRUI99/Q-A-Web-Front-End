@@ -12,7 +12,9 @@
     <li><el-input v-model ="user_name" type="text" id="user_name" name="user_name" pattern = "^[a-zA-Z0-9_-]{4,16}$" placeholder="4-12" required></el-input></li>
     <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div>
     <li><el-input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required></el-input></li>
-      <br>
+    <li><el-input v-model ="validation" type="text"></el-input></li>
+    <el-button @click="sendEmail">send Email</el-button>
+    <br>
     <li><el-button @click="regiser" style="padding: 12px 20px; opacity: 4">&nbsp;Sign up&nbsp;</el-button></li><br/>
 <!--    </ul>-->
   </div>
@@ -28,7 +30,8 @@ export default {
       user_pwd: '',
       user_pwd1: '',
       user_name: '',
-      user_mail: ''
+      user_mail: '',
+      validation: ''
     }
   },
   watch: {
@@ -139,13 +142,27 @@ export default {
         user_mail: this.user_mail,
         user_name: this.user_name,
         user_psw: this.user_pwd,
-        user_tags: this.$store.getters.getUserTags
+        user_tags: this.$store.getters.getUserTags,
+        code: this.validation
       }).then((response) => {
+        if (response.data.code === '200') {
+          this.$router.push({
+            name: 'Login'
+          })
+        } else {
+          alert('wrong validation code')
+        }
+        console.log(response.data.code)
       }).catch((response) => {
         console.log(response)
       })
-      this.$router.push({
-        name: 'Login'
+    },
+    sendEmail: function () {
+      this.axios.post('http://localhost:8080/sendEmail', {
+        request: this.user_mail
+      }).then((response) => {
+      }).catch((response) => {
+        console.log(response)
       })
     }
   }

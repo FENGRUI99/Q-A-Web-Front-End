@@ -40,9 +40,9 @@ const store = new Vuex.Store({
   mutations: {
     setList (state, list) {
       state.list = list
-      for (let i = 0; i < list.length; i++) {
-        Vue.set(state.list[i], 'like_flag', false)
-      }
+      // for (let i = 0; i < list.length; i++) {
+      //   Vue.set(state.list[i], 'like_flag', false)
+      // }
     },
     setUserId (state, id) {
       state.user_id = id
@@ -69,6 +69,11 @@ const store = new Vuex.Store({
       for (let i = 0; i < state.list.length; i++) {
         if (state.list[i].question_id === questionId) {
           state.list[i].likes += data
+          if (data === 1) {
+            state.list[i].like_flag = '1'
+          } else {
+            state.list[i].like_flag = '0'
+          }
           break
         }
       }
