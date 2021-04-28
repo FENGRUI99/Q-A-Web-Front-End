@@ -9,8 +9,8 @@
               <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
               <div class="demo-image" v-if="getImage(item.question_id) === true">
                 <el-image
-                  style="width: 200px; height: 200px"
-                  :src="'data:image/png;base64,' + localStorage.getItem(item.question_id)"
+                  style="width: 400px; height: 200px"
+                  v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                 ></el-image>
               </div>
               <table style="width: 100%; padding-top: 10px" align="left" >
@@ -46,7 +46,7 @@
           </td>
           <td style="padding: 1% 20px 1% 0;">
             <div v-if="item.like_flag === true">
-              <button @click="liked(item)" @ onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
+              <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
                 <br>
                 <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
               </button>
@@ -70,7 +70,17 @@
             <br>
             <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
               <li>Comments</li>
-              <li>{{item.commentList.length}}</li>
+              <div v-if="item.commentList.length === 1">
+                <div v-if="item.commentList[0].comment_detail === null">
+                  <li>{{0}}</li>
+                </div>
+                <div v-else>
+                  <li>{{item.commentList.length}}</li>
+                </div>
+              </div>
+              <div v-else>
+                <li>{{item.commentList.length}}</li>
+              </div>
             </el-button>
           </td>
           <br>
@@ -120,7 +130,7 @@ export default {
       item: {},
       button_color: ' ',
       activeClass: false,
-      pic: null,
+      pic: {},
       fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
       flag: false
     }
@@ -159,6 +169,7 @@ export default {
     })
     this.axios.post('http://localhost:8080/imglist').then((response) => {
       this.$store.commit('setImgList', response.data.entity)
+      console.log(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -299,11 +310,11 @@ export default {
       let imgList = this.$store.getters.getImgList
       for (let i = 0; i < imgList.length; i++) {
         if (questionId === imgList[i].toString()) {
+          console.log(questionId + 'yes')
           this.axios.post('http://localhost:8080/img', {
             request: questionId
           }).then((response) => {
-            console.log(response.data.entity.length)
-            localStorage.setItem(questionId, JSON.stringify(response.data.entity))
+            this.$set(this.pic, questionId, response.data.entity[0].toString())
           }).catch((response) => {
             console.log(response)
           })

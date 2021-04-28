@@ -1,16 +1,16 @@
 <template>
 <div>
-  <el-button type="success"  @click="foldText" id= ask v-blur = this.$store.getters.getBlur>
-    <table style="width: 100%" >
+  <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
+    <div class="foreground" style="width: 1000%;margin-left: 0%;margin-top:-10%;height: 800px;float: right;position: absolute"></div>
+    </div>
+  <el-button type="success"  @click="foldText" id= ask>  <table style="width: 100%" >
     <tr style="font-size:30px; text-align: left"> Add </tr>
     <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
     </table>
   </el-button>
-  <div v-bind:hidden="isHidden" class="askQ" v-blur = false style="position: absolute;z-index: 100;">
-    <ul style="margin:0 auto;width: 80%; ">
+  <ul v-bind:hidden="isHidden" class="askQ" v-blur = false>
 <!--      question title-->
       <div>
-        <li>
           <el-input
             type="textarea"
             placeholder="Write your question"
@@ -19,14 +19,13 @@
             show-word-limit
             resize="none"
             clearable=""
-            rows="4"
+            rows="3"
             >
           </el-input>
-        </li>
+        <div class="blank"></div>
       </div>
 <!--      details about the question-->
       <div v-bind:hidden="describeIsHidden">
-        <div>
           <el-upload
             class=""
             action="#"
@@ -42,7 +41,6 @@
             <el-button size="small" type="primary">点击上传</el-button>
             <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
           </el-upload>
-        </div>
         <li>
           <el-input
             type="textarea"
@@ -56,8 +54,20 @@
           >
           </el-input>
         </li>
+        <el-select
+          filterable
+          allow-create
+          multiple
+          v-model="value" placeholder="Choose">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </div>
-      <li>
+      <li style="text-align: left;">
         <el-button @click="submit" type="primary">ask question</el-button>
       </li>
     </ul>
@@ -65,7 +75,6 @@
    <li>
    </li>
  </ul>
-  </div>
 </div>
 </template>
 
@@ -79,7 +88,36 @@ export default {
       describeIsHidden: true,
       textarea: '',
       text: '',
-      fileList: []
+      fileList: [],
+      options: [{
+        value: '1',
+        label: 'Test & Coursework'
+      }, {
+        value: '2',
+        label: 'Software Engi'
+      }, {
+        value: '3',
+        label: 'Learning Skills'
+      }, {
+        value: '4',
+        label: 'Group Project'
+      }, {
+        value: '5',
+        label: 'Internship'
+      }, {
+        value: '6',
+        label: 'Academic Courses'
+      }, {
+        value: '7',
+        label: 'Career'
+      }, {
+        value: '8',
+        label: 'Life Study Balance'
+      }, {
+        value: '9',
+        label: 'Graduate Application'
+      }],
+      value: []
     }
   },
   methods: {
@@ -95,7 +133,7 @@ export default {
       this.$store.commit('setBlur')
     },
     submit () {
-      if (this.text.length === 0 || this.textarea.length === 0) {
+      if (this.text.length === 0 || this.textarea.length === 0 || this.value.length === 0) {
         alert('Cannot be null')
         return
       }
@@ -123,14 +161,13 @@ export default {
       this.fileList.forEach((file) => {
         formData.append('files', file.raw)
       })
-      console.log(formData.get('files'))
       if (formData.get('files') === null) {
         this.axios.post('http://localhost:8080/publishQuestion', {
           'user_id': sessionStorage.getItem('user_id'),
           'user_name': JSON.parse(sessionStorage.getItem('user_info')).user_name,
           'question_description': this.textarea,
           'question_detail': this.text,
-          'question_tags': '1,3'
+          'question_tags': this.value.toString()
         }).then(res => {
           if (res.data.code === 200) {
             alert('finish')
@@ -189,21 +226,23 @@ export default {
 }
 .askQ{
   width: 150%;
-  background: #dde7db;
+  background: #f6f6f6;
   position: absolute;
   margin-left: 92%;
-
+  margin-top: -70px;
+  z-index: 100;
+  padding: 5%;
 }
 li{
   list-style: none;
 }
-.blur{
-  -webkit-filter: blur(5px); /* Chrome, Opera */
-
-  -moz-filter: blur(5px);
-
-  -ms-filter: blur(5px);
-
-  filter: blur(5px);
+.foreground {
+backdrop-filter: blur(10px);
+} /* No .wrapper needed! */
+.blank{
+  height: 10px;
+}
+.ans{
+  border: #f6f6f6 solid 1px;
 }
 </style>

@@ -1,5 +1,10 @@
 <template>
-  <el-skeleton />
+  <JwChat-index
+    :taleList="list"
+    @enter="bindEnter"
+    v-model="inputMsg"
+    :toolConfig="tool"
+  />
 </template>
 
 <script>

@@ -11,7 +11,7 @@ import Vuex from 'vuex'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import vBlur from 'v-blur'
-
+import Chat from 'jwchat'
 Vue.config.productionTip = false
 
 Vue.use(router)
@@ -20,6 +20,7 @@ Vue.use(VueAxios, axios)
 Vue.use(Vuex)
 Vue.use(Antd)
 Vue.use(vBlur)
+Vue.use(Chat)
 const store = new Vuex.Store({
   state: {
     list: '',

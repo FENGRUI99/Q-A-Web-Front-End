@@ -83,24 +83,33 @@
           <div>
             <!--            {{item}}-->
             <table class="intro">
-<!--               <span id="title">-->
-               <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>
-<!--               </span>-->
-              <div>
-                <div v-if="item.commentList.length >= 1" style="margin-top:2px ">
-                  <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
-                    <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>
-                    <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
-                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
-                    <el-divider id="divider"></el-divider>
-                  </div>
+              <div v-if="item.commentList.length === 1">
+                <div v-if="item.commentList[0].comment_detail === null">
+                  <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number-1}} Answers</p>
                 </div>
                 <div v-else>
-                  <div>
-                    no commment
+                  <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>
+                  <div v-if="item.commentList.length >= 1" style="margin-top:2px ">
+                    <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
+                      <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>
+                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
+                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
+                      <el-divider id="divider"></el-divider>
+                    </div>
                   </div>
                 </div>
-            </div>
+              </div>
+              <div v-else>
+                <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>
+                <div v-if="item.commentList.length >= 1" style="margin-top:2px ">
+                  <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
+                    <el-tag color="#81D454" id="tagItem1">{{index+1}}</el-tag>
+                    <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
+                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
+                    <el-divider></el-divider>
+                  </div>
+                </div>
+              </div>
             </table>
           </div>
           <br>
@@ -304,6 +313,17 @@ export default {
   margin: 10px 0;
 }
 #tagItem{
+  color: #fffdfd;
+  font-size: 15px;
+  font-weight: bolder;
+  text-align: left;
+  margin: 0 auto;
+  /*display: flex;*/
+  float: left;
+  margin-top: 1%;
+  margin-left: 20px;
+}
+#tagItem1{
   color: #fffdfd;
   font-size: 15px;
   font-weight: bolder;
