@@ -45,6 +45,7 @@
                 <el-select
                   style="width: 88%;"
                   multiple
+                  :multiple-limit=2
                   v-model="value" placeholder="Choose">
                   <el-option
                     v-for="item in options"
