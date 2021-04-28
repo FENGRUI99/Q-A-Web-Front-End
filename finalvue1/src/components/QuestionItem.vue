@@ -7,12 +7,12 @@
             <div style="display: block; margin: 0 1%">
               <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
               <li @click="toDetailPage(item)" align="left" class="Touchable">{{item.question_detail}}</li>
-              <div class="demo-image" v-if="getImage(item.question_id) === true">
+              <li class="demo-image" v-if="getImage(item.question_id) === true">
                 <el-image
                   style="width: 400px; height: 200px"
                   v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                 ></el-image>
-              </div>
+              </li>
               <table style="width: 100%; padding-top: 10px" align="left" >
                 <td style="width: 50%;">
                 <UL class=fm>
