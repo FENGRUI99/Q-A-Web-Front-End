@@ -1,5 +1,6 @@
 <template>
-  <div style="background: #f6f6f6">
+  <div>
+  <div v-if = !this.$store.state.blurConfig.isBlurred style="background: #f6f6f6">
     <el-container>
       <el-header height="15px">
         <header123></header123>
@@ -18,6 +19,27 @@
         </el-container>
       </el-container>
     </el-container>
+  </div>
+    <div v-else style="background: #f6f6f6" @mousewheel.prevent>
+      <el-container>
+        <el-header height="15px">
+          <header123></header123>
+        </el-header>
+        <el-container>
+          <el-aside width=27.5%>
+            <Aside></Aside>
+          </el-aside>
+          <el-container>
+            <el-main>
+              <body123></body123>
+            </el-main>
+            <el-footer>
+              <footer123></footer123>
+            </el-footer>
+          </el-container>
+        </el-container>
+      </el-container>
+    </div>
   </div>
 </template>
 <script>

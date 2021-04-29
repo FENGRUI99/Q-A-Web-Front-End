@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
-    <div class="foreground" style="width: 1000%;margin-left: 0%;margin-top:-10%;height: 800px;float: right;position: absolute"></div>
+    <div class="foreground" style="width: 1000%;margin-left: 0%;margin-top:-10%;height: 2000px;float: right;position: absolute;"></div>
     </div>
   <v-btn
     color= #A5D6A7
@@ -255,9 +255,10 @@ export default {
   background: #f6f6f6;
   position: absolute;
   margin-left: 92%;
-  margin-top: -70px;
-  z-index: 100;
+  margin-top: -20px;
+  z-index: 999;
   padding: 5%;
+  box-shadow:5px 5px 10px #797676
 }
 li{
   list-style: none;
