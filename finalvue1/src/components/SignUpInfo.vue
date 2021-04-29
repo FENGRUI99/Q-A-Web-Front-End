@@ -4,18 +4,21 @@
 <!--    <ul style="float:left; border: 3px;border-color: white #cccccc white white;border-style:solid;padding-right: 3%; padding-bottom: 15%;text-align: left" class="p">-->
     <li style="float: left;">StudentID&nbsp;&nbsp;</li><div style="float: left;" id = idCheck></div>
     <li><el-input @blur="checkDupID" v-model ="user_id" type = "text" id="user_id" name = "user_id" pattern = "^\d{7}$" placeholder="enter your student id" required></el-input></li>
-    <li style="float: left;">Password&nbsp;&nbsp;</li><div style="float: left;" id = pswCheck></div>
-    <li><el-input v-model ="user_pwd" type="password" id="user_psw" name="user_psw" pattern = "^[A-Za-z0-9]{4,7}?$" placeholder="set up your password" required></el-input></li>
-    <li style="float: left;">Password Confirm&nbsp;&nbsp;</li><div style="float: left;" id = psw1check></div>
-    <li><el-input v-model ="user_pwd1" type="password" id="user_psw1" name="user_psw1" placeholder="type again your password" required></el-input></li>
+<!--    -->
+    <li style="float: left; width: 45%"><div style="float: left">Password&nbsp;&nbsp;</div><div style="float: left" id = pswCheck></div></li><li style="float: left;width:45%;margin-left: 10%"><div style="float: left">Confirm&nbsp;&nbsp;</div><div style="float: left;" id = psw1check></div></li>
+    <li style="float: left; width: 45%"><el-input v-model ="user_pwd" type="password" id="user_psw" name="user_psw" pattern = "^[A-Za-z0-9]{4,7}?$" placeholder="set up your password" required></el-input></li>
+<!--    -->
+    <li style="float: left; width: 45%;margin-left: 10%"><el-input v-model ="user_pwd1" type="password" id="user_psw1" name="user_psw1" placeholder="type again your password" required></el-input></li>
+    <!--    -->
+    <div style="clear: both"></div>
     <li style="float: left;">Username&nbsp;&nbsp;</li><div style="float: left;" id = namecheck></div>
     <li><el-input v-model ="user_name" type="text" id="user_name" name="user_name" pattern = "^[a-zA-Z0-9_-]{4,16}$" placeholder="4-12" required></el-input></li>
     <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div>
     <li><el-input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required></el-input></li>
-    <li><el-input v-model ="validation" type="text" required></el-input></li>
-    <br>
-    <li><el-button @click="sendEmail" style="padding: 12px 20px; opacity: 4">&nbsp;send Email&nbsp;</el-button></li><br/>
-    <li><el-button @click="regiser" style="padding: 12px 20px; opacity: 4">&nbsp;Sign up&nbsp;</el-button></li><br/>
+    <li style="float: left;">Verification Code&nbsp;&nbsp;</li><div style="clear: both"></div>
+    <li style="float: left; width: 45%"><el-input v-model ="validation" type="text" required></el-input></li>
+    <li style="float: right; width: 45%; margin-left: 10%"><el-button @click="sendEmail" style="padding: 5px; opacity: 4; font-size: large; margin-top: 5%;border-radius: 2px">&nbsp;send Email&nbsp;</el-button></li><br/><div style="clear: both"></div><br>
+    <li style="width: 200%; margin:auto"><el-button @click="regiser" style="padding: 12px 20px; opacity: 4">&nbsp;Sign up&nbsp;</el-button></li><br/>
 <!--    </ul>-->
   </div>
 </template>
@@ -30,7 +33,8 @@ export default {
       user_pwd: '',
       user_pwd1: '',
       user_name: '',
-      user_mail: ''
+      user_mail: '',
+      validation: ''
     }
   },
   watch: {
@@ -141,13 +145,27 @@ export default {
         user_mail: this.user_mail,
         user_name: this.user_name,
         user_psw: this.user_pwd,
-        user_tags: this.$store.getters.getUserTags
+        user_tags: this.$store.getters.getUserTags,
+        code: this.validation
       }).then((response) => {
+        if (response.data.code === '200') {
+          this.$router.push({
+            name: 'Login'
+          })
+        } else {
+          alert('wrong validation code')
+        }
+        console.log(response.data.code)
       }).catch((response) => {
         console.log(response)
       })
-      this.$router.push({
-        name: 'Login'
+    },
+    sendEmail: function () {
+      this.axios.post('http://localhost:8080/sendEmail', {
+        request: this.user_mail
+      }).then((response) => {
+      }).catch((response) => {
+        console.log(response)
       })
     }
   }
