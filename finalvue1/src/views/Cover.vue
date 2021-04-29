@@ -8,13 +8,11 @@
         <source src="../assets/louderVideo.mp4" type="video/mp4"/>
       </video>
     </div>
-    <div class="logo">
-      <div style="width: 35%; margin-left: 8%; z-index: 10">
-        <img :src="logo"  alt="" />
-      </div>
-      <br>
-      <br>
-      <div style="width: 55%; margin-left: 8%; z-index: 10;color: white;font-size: 22px;display: inline-block;font-family: 'DIN Alternate';">
+    <div style="width: 35%; margin-left: 8%; z-index: 10; position: absolute">
+      <img :src="logo"  alt="" />
+    </div>
+    <div class="logo" >
+      <div style="width: 55%; margin-left: 8%; z-index: 10;color: white;font-size: 30px;display: inline-block;font-family: 'DIN Alternate';">
         <div style="margin-right: 3%;display: inline-block;">Over</div>
         <li class="number">
           <span class="animate" id='digit1'>1 2 3 4 5 6 7 8 9 0</span>
@@ -41,15 +39,27 @@ export default {
   data () {
     return {
       vedioCanPlay: false,
-      fixStyle: ''
+      fixStyle: '',
+      imgSrc: require('../assets/background.jpg'),
+      coverSrc: require('../assets/cover.png'),
+      logo: require('../assets/logo1.png'),
+      item: {}
     }
   },
   methods: {
     canplay () {
       this.vedioCanPlay = true
+    },
+    toDetailPage () {
+      this.$router.push({
+        path: '/Login',
+        name: 'Login'
+      })
     }
   },
-  mounted: function () {
+  mounted:
+    window.addEventListener('keyup', this.toDetailPage),
+  function () {
     window.onresize = () => {
       const windowWidth = document.body.clientWidth
       const windowHeight = document.body.clientHeight
@@ -77,6 +87,9 @@ export default {
       }
     }
     window.onresize()
+  },
+  destroyed () {
+    window.removeEventListener('keyup', this.toDetailPage)
   }
 }
 
@@ -84,11 +97,12 @@ export default {
 
 <style scoped>
 .video-container {
-  position: relative;
-  height: 100%;
-  width: 101%;
-  margin-top: -7%;
+  position: absolute;
+  height: 105%;
+  width: 111%;
+  margin-left: -5%;
   overflow: hidden;
+  margin-top: -5%;
 }
 
 .video-container .poster img{
@@ -107,7 +121,133 @@ export default {
   width: 100%;
 }
 .logo{
-  z-index: 10;
+  width: 100%;
   position: absolute;
+  repeat: no-repeat;
+  background-attachment: fixed;
+}
+img{
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+}
+div{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.background{
+  margin: 0;
+  padding: 0;
+  width:100%;
+  height:100%;  /**宽高100%是为了图片铺满屏幕 */
+  z-index:-1;
+  position: fixed;
+  repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+}
+.number {
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  line-height: 1em;
+  display: inline-block;
+  font-size: 30px;
+  margin-bottom: -5px;
+  font-family: "DIN Alternate";
+  position: relative;
+  color: white;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+span {
+  position: relative;
+}
+.animate {
+  -webkit-animation: spinit 0.1s 4;
+  -moz-animation: spinit 0.1s 4;
+  animation: spinit 0.1s 4;
+}
+.animate2 {
+  -webkit-animation: spinit 0.2s 5;
+  -moz-animation: spinit 0.2s 5;
+  animation: spinit 0.2s 5;
+}
+.animate3 {
+  -webkit-animation: spinit 0.3s 5.5;
+  -moz-animation: spinit 0.3s 5.5;
+  animation: spinit 0.3s 5.5;
+}
+.animate4 {
+  -webkit-animation: spinit 0.35s 6;
+  -moz-animation: spinit 0.35s 6;
+  animation: spinit 0.35s 6;
+}
+.animate5 {
+  -webkit-animation: spinit 0.2s 6.5;
+  -moz-animation: spinit 0.2s 6.5;
+  animation: spinit 0.2s 6.5;
+}
+@-webkit-keyframes spinit {
+  0% {
+    top: 0em;
+  }
+  50% {
+    top: -5em;
+  }
+  100% {
+    top: -9em;
+  }
+}
+@-moz-keyframes spinit {
+  0% {
+    top: 0em;
+  }
+  50% {
+    top: -5em;
+  }
+  100% {
+    top: -9em;
+  }
+}
+@keyframes spinit {
+  0% {
+    top: 0em;
+  }
+  50% {
+    top: -5em;
+  }
+  100% {
+    top: -9em;
+  }
+}
+
+/* Setting the required value to top will make the spinner end at that number */
+
+#digit1 {
+  top: 0em;
+  /* -4em means 5 will be the number */
+}
+#digit2 {
+  top: -9em;
+  /* -4em means 5 will be the number */
+}
+#digit3 {
+  top: -9em;
+  /* -4em means 5 will be the number */
+}
+#digit3 {
+  top: -9em;
+  /* -4em means 5 will be the number */
+}
+li{
+  list-style: none;
+  text-align: left;
+}
+div{
+  text-align: left;
 }
 </style>
