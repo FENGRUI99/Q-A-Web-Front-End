@@ -150,6 +150,7 @@ export default {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setList', response.data.entity)
+      console.log(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -338,7 +339,7 @@ export default {
       }
     },
     getLikeFlag (index) {
-      return this.$store.getters.getList[index].like_flag.toString()
+      return this.$store.getters.getList[index].like_flag
     },
     test () {
       localStorage.clear()
