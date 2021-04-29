@@ -59,7 +59,7 @@
 <!--          -->
 <!--          -->
           <!--          answer question-->
-          <div v-bind:hidden="isHidden">
+          <div v-bind:hidden="!isHidden">
             <div class="blank"></div>
             <table class="answer">
               <div class="blank"></div>
@@ -178,7 +178,7 @@ export default {
   data () {
     return {
       item: {},
-      isHidden: true,
+      isHidden: false,
       textarea: '',
       myComment: '',
       comment_number: 0,

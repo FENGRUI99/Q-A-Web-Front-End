@@ -1,6 +1,9 @@
 <template>
   <div id="block" style="z-index: -100" >
     <button @click="test">test for picture loading</button>
+    <div>
+      <el-backtop></el-backtop>
+    </div>
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
@@ -12,7 +15,7 @@
                           style="width: 100px; height: 100px;"
                           v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                 ></el-image>
-                {{item.question_detail}}
+                {{item.question_detail}},,{{item.question_tags}}
               </li>
               <li style="float: left;margin-left: -7%">
                 <UL class=fm>
@@ -217,7 +220,7 @@ export default {
         name: 'ProblemDetailPage',
         params: {
           item: this.item,
-          isHidden: true
+          isHidden: false
         }
       })
     },
@@ -230,7 +233,7 @@ export default {
         name: 'ProblemDetailPage',
         params: {
           item: this.item,
-          isHidden: false
+          isHidden: true
         }
       })
     },
@@ -265,7 +268,7 @@ export default {
       }
     },
     setQuestion_tags_en (msg) {
-      let tagsList = msg.toString().split(' ')
+      let tagsList = msg.toString().split(',')
       let ans = []
       for (let i = 0; i < tagsList.length; i++) {
         if (tagsList[i] === '1') {
