@@ -28,8 +28,7 @@ export default {
       user_pwd: '',
       user_pwd1: '',
       user_name: '',
-      user_mail: '',
-      validation: ''
+      user_mail: ''
     }
   },
   watch: {
@@ -140,27 +139,13 @@ export default {
         user_mail: this.user_mail,
         user_name: this.user_name,
         user_psw: this.user_pwd,
-        user_tags: this.$store.getters.getUserTags,
-        code: this.validation
+        user_tags: this.$store.getters.getUserTags
       }).then((response) => {
-        if (response.data.code === '200') {
-          this.$router.push({
-            name: 'Login'
-          })
-        } else {
-          alert('wrong validation code')
-        }
-        console.log(response.data.code)
       }).catch((response) => {
         console.log(response)
       })
-    },
-    sendEmail: function () {
-      this.axios.post('http://localhost:8080/sendEmail', {
-        request: this.user_mail
-      }).then((response) => {
-      }).catch((response) => {
-        console.log(response)
+      this.$router.push({
+        name: 'Login'
       })
     }
   }

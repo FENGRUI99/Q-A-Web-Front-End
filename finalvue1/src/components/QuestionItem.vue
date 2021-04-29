@@ -44,17 +44,25 @@
             </div>
           </td>
           <td style="margin:0 5px 5px 5px;float:right;width: 120px;" >
-            <div v-bind:key="keyValue">
-              <div v-if="list[index].like_flag.toString() === '1'">
-                <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
-                  <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
-                </button>
-              </div>
-              <div v-else>
-                <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
-                  <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
-                </button>
-              </div>
+            <div v-if="item.like_flag === true">
+              <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
+                <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+              </button>
+              <!--                <el-button @click="liked(item)" @ onmouseover="mouseDown ('red')" plain size="medium" id="likes" type="warning" :class="{like2:button_color===index}" class="like2">-->
+              <!--                  <li><i class="el-icon-star-on"></i>-->
+              <!--                  &nbsp;Likes&nbsp; </li>-->
+              <!--                  <li>{{item.likes}}</li>-->
+              <!--                </el-button>-->
+            </div>
+            <div v-else>
+              <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
+                 <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+              </button>
+              <!--                <el-button @click="liked(item)" plain size="medium"  >-->
+              <!--                  <li> <i class="el-icon-star-off"></i>-->
+              <!--                  &nbsp;Likes&nbsp; </li>-->
+              <!--                  <li>{{item.likes}}</li>-->
+              <!--                </el-button>-->
             </div>
             <br>
             <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
@@ -123,24 +131,20 @@ export default {
       activeClass: false,
       fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
       flag: false,
-      keyValue: 0,
-      pic: {},
-      list: []
+      pic: {}
     }
   },
   beforeUpdate: function () {
     let num = 0
-    for (let i = 0; i < this.list.length; i++) {
+    for (let i = 0; i < this.$store.state.list.length; i++) {
       for (let j = 0; j < this.$store.state.liked_list.length; j++) {
-        if (this.list[i].question_id.toString() === this.$store.state.liked_list[j]) {
+        if (this.$store.state.list[i].question_id.toString() === this.$store.state.liked_list[j]) {
           num += 1
-          this.$store.state.list[i].like_flag = '1'
-          this.list[i].like_flag = '1'
+          this.$store.state.list[i].like_flag = true
           break
+        } else if (this.$store.state.list[i].like_flag === true) {
+          this.$store.state.list[i].like_flag = false
         }
-        // else if (list[i].like_flag === true) {
-        //   this.$store.state.list[i].like_flag = false
-        // }
       }
       if (num >= this.$store.state.liked_list.length) {
         break
@@ -152,8 +156,6 @@ export default {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setList', response.data.entity)
-      this.list = response.data.entity
-      console.log(this.list)
     }).catch((response) => {
       console.log(response)
     })
@@ -173,15 +175,6 @@ export default {
   },
   mounted: function () {
     window.addEventListener('scroll', this.handleScroll, true)
-    setTimeout(this.refresh, 10)
-    console.log('timeout')
-    if (this.timer) {
-      clearInterval(this.timer)
-    } else {
-      this.timer = setInterval(() => {
-        this.refresh()
-      }, 6000)
-    }
   },
   methods: {
     mouseOver () {
@@ -250,6 +243,7 @@ export default {
     },
     liked (item) {
       let list = this.$store.getters.getLikedList
+      console.log(list)
       let flag = false
       for (let i = 0; i < list.length; i++) {
         if (list[i].toString() === item.question_id.toString()) {
@@ -277,7 +271,6 @@ export default {
           console.log(response)
         })
       }
-      this.list = this.$store.state.list
     },
     setQuestion_tags_en (msg) {
       let tagsList = msg.toString().split(' ')
@@ -339,19 +332,10 @@ export default {
       let pic = JSON.parse(localStorage.getItem(questionId))
       return pic[0]
     },
-    refresh () {
-      if (this.keyValue < 10) {
-        this.keyValue += 1
-        console.log(this.keyValue)
-      }
-    },
     test () {
       localStorage.clear()
-      this.refresh()
+      alert('clear local storage')
     }
-  },
-  destroyed () {
-    clearInterval(this.timer)
   },
   watch: {
     loading: {
