@@ -45,7 +45,7 @@
           </td>
           <td style="margin:0 5px 5px 5px;float:right;width: 120px;" >
             <div v-bind:key="keyValue">
-              <div v-if="list[index].like_flag.toString() === '1'">
+              <div v-if="getLikeFlag(index) === '1'">
                 <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
                   <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
                 </button>
@@ -124,18 +124,16 @@ export default {
       fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
       flag: false,
       keyValue: 0,
-      pic: {},
-      list: []
+      pic: {}
     }
   },
   beforeUpdate: function () {
     let num = 0
-    for (let i = 0; i < this.list.length; i++) {
+    for (let i = 0; i < this.$store.state.list.length; i++) {
       for (let j = 0; j < this.$store.state.liked_list.length; j++) {
-        if (this.list[i].question_id.toString() === this.$store.state.liked_list[j]) {
+        if (this.$store.state.list[i].question_id.toString() === this.$store.state.liked_list[j]) {
           num += 1
           this.$store.state.list[i].like_flag = '1'
-          this.list[i].like_flag = '1'
           break
         }
         // else if (list[i].like_flag === true) {
@@ -152,8 +150,6 @@ export default {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setList', response.data.entity)
-      this.list = response.data.entity
-      console.log(this.list)
     }).catch((response) => {
       console.log(response)
     })
@@ -166,15 +162,12 @@ export default {
     })
     this.axios.post('http://localhost:8080/imglist').then((response) => {
       this.$store.commit('setImgList', response.data.entity)
-      console.log(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
   },
   mounted: function () {
     window.addEventListener('scroll', this.handleScroll, true)
-    setTimeout(this.refresh, 10)
-    console.log('timeout')
     if (this.timer) {
       clearInterval(this.timer)
     } else {
@@ -277,7 +270,6 @@ export default {
           console.log(response)
         })
       }
-      this.list = this.$store.state.list
     },
     setQuestion_tags_en (msg) {
       let tagsList = msg.toString().split(' ')
@@ -345,9 +337,11 @@ export default {
         console.log(this.keyValue)
       }
     },
+    getLikeFlag (index) {
+      return this.$store.getters.getList[index].like_flag.toString()
+    },
     test () {
       localStorage.clear()
-      this.refresh()
     }
   },
   destroyed () {
