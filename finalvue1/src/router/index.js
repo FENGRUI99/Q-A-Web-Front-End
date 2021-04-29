@@ -7,8 +7,8 @@ import Header from '../components/Header'
 import Register from '../views/Register'
 import ProblemDetailPage from '../views/ProblemDetailPage'
 import Register2 from '../views/Register2'
-import Title from '../components/Title'
-// import Cover from '../views/Cover'
+// import Title from '../components/Title'
+import Cover from '../views/Cover'
 Vue.use(Router)
 
 export default new Router({
@@ -53,8 +53,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'Title',
-      component: Title
+      name: 'Cover',
+      component: Cover
     }
   ]
 })
