@@ -19,7 +19,7 @@
                 <td class="top_chart">{{item.question_detail}}</td>
               </tr>
               <div class="blank"></div>
-              <span class="butt">
+              <span class="butt" style="width: 100%;margin-left: 5%">
                 <td>
                   <div v-if="item.like_flag === '1'">
                     <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
@@ -32,11 +32,26 @@
                     </button>
                   </div>
                 </td>
+                <td style="width: 2%;"></td>
                 <td>
-                <el-button plain size="medium" @click="foldText" type="success">
-                  <i class="el-icon-edit"></i>
-              &nbsp;&nbsp;Answer &nbsp;&nbsp;
-            </el-button>
+                  <v-row
+                  align="center"
+                  justify="space-around"
+                  >
+                  <v-btn
+                    tile
+                    color="success"
+                  >
+                    <v-icon left>
+                      mdi-pencil
+                    </v-icon>
+                    Edit
+                  </v-btn>
+                  </v-row>
+<!--                <el-button plain size="medium" @click="foldText" type="success">-->
+<!--                  <i class="el-icon-edit"></i>-->
+<!--              &nbsp;&nbsp;Answer &nbsp;&nbsp;-->
+<!--            </el-button>-->
                 </td>
                 <td style="width: 30%">
                 </td>
@@ -178,7 +193,7 @@ export default {
   data () {
     return {
       item: {},
-      isHidden: false,
+      isHidden: true,
       textarea: '',
       myComment: '',
       comment_number: 0,
@@ -471,6 +486,5 @@ li{
   border-style: solid;
   border-color: white;
   font-size: 18px;
-  margin-bottom: -5%;
 }
 </style>

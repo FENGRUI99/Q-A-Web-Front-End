@@ -7,7 +7,7 @@ import Header from '../components/Header'
 import Register from '../views/Register'
 import ProblemDetailPage from '../views/ProblemDetailPage'
 import Register2 from '../views/Register2'
-// import Title from '../components/Title'
+import Title from '../components/Title'
 import Cover from '../views/Cover'
 Vue.use(Router)
 
@@ -52,9 +52,14 @@ export default new Router({
       component: Register2
     },
     {
-      path: '/',
+      path: '/Cover',
       name: 'Cover',
       component: Cover
+    },
+    {
+      path: '/',
+      name: 'Title',
+      component: Title
     }
   ]
 })

@@ -1,9 +1,6 @@
 <template>
-  <div id="block" style="z-index: -100" >
+  <div id="block" >
     <button @click="test">test for picture loading</button>
-    <div>
-      <el-backtop></el-backtop>
-    </div>
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
@@ -15,22 +12,22 @@
                           style="width: 100px; height: 100px;"
                           v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                 ></el-image>
-                {{item.question_detail}},,{{item.question_tags}}
+                {{item.question_detail}}
               </li>
-              <li style="float: left;margin-left: -7%">
+              <li style="float: left;">
                 <UL class=fm>
-                  <LI style=" color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
+                  <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
                     <ul class="idinfo">
                       <li >
                         id: {{ item.user_id }}
                       </li>
-                      <li >
+                      <li>
                         likes: {{item.user_info}}
                       </li>
                       <li>
                         email: {{item.user_mail}}
                       </li>
-                      <li >
+                      <li>
                         XJTLU student
                       </li>
                     </ul>
@@ -268,7 +265,7 @@ export default {
       }
     },
     setQuestion_tags_en (msg) {
-      let tagsList = msg.toString().split(',')
+      let tagsList = msg.toString().split(' ')
       let ans = []
       for (let i = 0; i < tagsList.length; i++) {
         if (tagsList[i] === '1') {

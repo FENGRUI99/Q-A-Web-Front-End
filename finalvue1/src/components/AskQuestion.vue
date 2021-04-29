@@ -3,12 +3,17 @@
   <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
     <div class="foreground" style="width: 1000%;margin-left: 0%;margin-top:-10%;height: 800px;float: right;position: absolute"></div>
     </div>
-  <el-button type="success"  @click="foldText" id= ask>
+  <v-btn
+    color= #A5D6A7
+    elevation="3"
+    @click="foldText"
+    x-large
+    id="ask">
     <table style="width: 100%" >
       <tr style="font-size:30px; text-align: left"> Add </tr>
       <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
     </table>
-  </el-button>
+  </v-btn>
   <ul v-bind:hidden="isHidden" class="askQ" v-blur = false>
 <!--      question title-->
       <div>
@@ -41,7 +46,7 @@
             :on-change="handleChange"
             :on-exceed="handleExceed"
             list-type="picture">
-            <table style="width: 200%;margin-left: -50%">
+            <table style="width: 200%;margin-left: -45%">
               <td style="text-align: left;">
                 <el-select
                   style="width: 88%;"
@@ -77,11 +82,20 @@
     </el-collapse-transition>
     <div class="blank"></div>
     <li style="display: inline-block;">
-      <el-button @click="foldText" type="success" style="width: 120px;">close</el-button>
+      <v-btn
+        color= #A5D6A7
+        elevation="3"
+      @click="foldText"
+        style="width: 130px;">close </v-btn>
     </li>
     <li style="display:inline-block;width: 25%;"></li>
     <li style="display: inline-block;">
-      <el-button @click="submit" type="success" style="width: 120px;" >ask question</el-button>
+      <v-btn
+        color= #A5D6A7
+        elevation="3"
+        @click="submit"
+        style="width: 130px;"
+      >ask question</v-btn>
     </li>
   </ul>
   <ul>
@@ -229,13 +243,12 @@ export default {
 <style scoped>
 #ask{
   margin: auto;
-  width: 50%;
+  width: 65%;
+  height: 100px;
   font-size:27px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-  color: white;
   font-style: italic;
   font-weight: bolder;
-
 }
 .askQ{
   width: 150%;

@@ -12,6 +12,11 @@ import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import vBlur from 'v-blur'
 import Chat from 'jwchat'
+import Vuetify from 'vuetify'
+import vuetify from '@/plugins/vuetify'
+// import 'vuetify/dist/vuetify.min.css'
+// import colors from 'vuetify/lib/util/colors'
+
 Vue.config.productionTip = false
 
 Vue.use(router)
@@ -21,6 +26,7 @@ Vue.use(Vuex)
 Vue.use(Antd)
 Vue.use(vBlur)
 Vue.use(Chat)
+Vue.use(Vuetify)
 const store = new Vuex.Store({
   state: {
     list: '',
@@ -119,8 +125,22 @@ const store = new Vuex.Store({
 
 /* eslint-disable no-new */
 new Vue({
+  vuetify,
   el: '#app',
   store: store,
   router,
   render: h => h(App)
 })
+
+// export default new Vuetify({
+//   theme: {
+//     themes: {
+//       light: {
+//         primary: colors.red.darken1, // #E53935
+//         secondary: colors.red.lighten4, // #FFCDD2
+//         accent: colors.indigo.base, // #3F51B5
+//         green2: colors.green.lighten1
+//       }
+//     }
+//   }
+// })

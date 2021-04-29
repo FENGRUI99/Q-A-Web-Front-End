@@ -1,18 +1,36 @@
 <template>
-  <div class="homepage-hero-module">
+  <div class="homepage-hero-module" @mousewheel.prevent>
     <div class="video-container">
       <div :style="fixStyle" class="filter">
         <!--内容-->
       </div>
       <video :style="fixStyle" autoplay loop muted class="fillWidth" v-on:canplay="canplay">
         <source src="../assets/louderVideo.mp4" type="video/mp4"/>
-        浏览器不支持 video 标签，建议升级浏览器。
-<!--        <source src="../assets/video/G1w.webm" type="video/webm"/>-->
-<!--        浏览器不支持 video 标签，建议升级浏览器。-->
       </video>
-<!--      <div class="poster hidden" v-if="!vedioCanPlay">-->
-<!--        <img :style="fixStyle" src="../assets/video/G1.jpg" alt="">-->
-<!--      </div>-->
+    </div>
+    <div class="logo">
+      <div style="width: 35%; margin-left: 8%; z-index: 10">
+        <img :src="logo"  alt="" />
+      </div>
+      <br>
+      <br>
+      <div style="width: 55%; margin-left: 8%; z-index: 10;color: white;font-size: 22px;display: inline-block;font-family: 'DIN Alternate';">
+        <div style="margin-right: 3%;display: inline-block;">Over</div>
+        <li class="number">
+          <span class="animate" id='digit1'>1 2 3 4 5 6 7 8 9 0</span>
+        </li>
+        <li class="number">
+          <span class="animate2" id='digit2'>1 2 3 4 5 6 7 8 9 0</span>
+        </li>
+        <li class="number">
+          <span class="animate3" id='digit3'>1 2 3 4 5 6 7 8 9 0</span>
+        </li>
+        <li class="number">
+          <span class="animate4" id='digit4'>1 2 3 4 5 6 7 8 9 0</span>
+        </li>
+        <div style="display: inline-block;">questions proposed and got solved</div>
+        <div style="display: inline-block;">  Now it's your turn to ask louder here </div>
+      </div>
     </div>
   </div>
 </template>
@@ -65,10 +83,11 @@ export default {
 </script>
 
 <style scoped>
-.homepage-hero-module,
 .video-container {
   position: relative;
-  height: 100vh;
+  height: 100%;
+  width: 101%;
+  margin-top: -7%;
   overflow: hidden;
 }
 
@@ -86,5 +105,9 @@ export default {
 
 .fillWidth {
   width: 100%;
+}
+.logo{
+  z-index: 10;
+  position: absolute;
 }
 </style>

@@ -52,5 +52,4 @@ export default {
   filter:blur(5px);
   z-index: -1;
 }
-
 </style>

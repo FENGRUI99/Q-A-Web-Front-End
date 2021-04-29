@@ -1,7 +1,7 @@
 <template>
   <div>
     <table>
-      <td width="75%">
+      <td width="72%">
       <el-input
         placeholder="search something..."
         prefix-icon="el-icon-search"
@@ -9,8 +9,13 @@
         @keyup.enter.native="getList">
       </el-input>
       </td>
+      <td width="3%"></td>
       <td>
-      <el-button type="success" icon="el-icon-search" @click="getList">Search</el-button>
+        <v-btn
+          color= #A5D6A7
+          elevation="3"
+          @click="getList">Search
+        </v-btn>
       </td>
     </table>
   </div>
