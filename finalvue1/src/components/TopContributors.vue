@@ -11,9 +11,8 @@
     <br>
 <!--    <table id="t2">-->
       <div id="t2">
-        <el-carousel height="200px" arrow="always" direction="vertical" :autoplay="true" style="border-radius:10px;">
+        <el-carousel  height="250px" indicator-position="none" :autoplay="true" style="border-radius:10px;">
           <el-carousel-item v-for="item in imgList" :key="item.id">
-
             <img :src="item.img" style="height:100%;width:100%;z-index: -1;color: transparent" alt="Hot tag">
             <h1><a-icon type="loading" />Tag:   {{item.title}}</h1>
           </el-carousel-item>
@@ -76,13 +75,13 @@ export default {
   #t1{
     /*margin: 5% 30%; */
     margin:auto;
-    background:#ffffff; width:65%; height:150px;
+    background:#ffffff; width:55%; height:150px;
     border-radius: 10px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
   }
   #t2{
     margin: auto;
-    background:#ffffff; width:50%; height:150px;
+    background:#ffffff; width:60%; height:150px;
     border-radius: 10px;
   ;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, 0.04)

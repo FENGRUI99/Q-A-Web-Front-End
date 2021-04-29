@@ -3,7 +3,8 @@
       <div class="swiper-container">
         <swiper class="swiper" :options="swiperOption">
           <swiper-slide class="swiper-slide" v-for="swlp in nameList2" :key="swlp.id">
-            <h3 class="small" style="line-height: 120px;height: 20px"><a-icon type="sound" theme="twoTone" two-tone-color="red" />{{ swlp.title }}</h3>
+              <h1>Top louder</h1>
+            <h3 class="small" style="line-height: 60px"><a-icon type="sound" theme="twoTone" two-tone-color="red" />   {{swlp.title}}</h3>
           </swiper-slide>
           <div class="swiper-pagination"  slot="pagination"></div>   <!-- 分页 -->
         </swiper>
@@ -41,6 +42,13 @@ export default {
         slidesPerView: 2,
         spaceBetween: 30,
         direction: 'vertical',
+        coverflowEffect: {
+          rotate: 10,
+          stretch: 2,
+          depth: 150,
+          modifier: 2,
+          slideShadows: false
+        },
         // 显示分页
         pagination: {
           el: '.swiper-pagination',
@@ -49,10 +57,10 @@ export default {
         //
         // 自动轮播
         autoplay: {
-          delay: 1500
+          delay: 1000
         },
         // 开启循环模式
-        // loop: true,
+        loop: true,
         // 开启鼠标滚轮控制Swiper切换
         mousewheel: true
       }
@@ -63,17 +71,27 @@ export default {
 
 <style scoped>
   .swiper-container{
-
-    width: 300px;
-
+    width: 79%;
     height: 200px;
-
+  }
+  .li{
+    line-height: 10px;
   }
 
   .swiper-slide {
-    height: 100px;
-    line-height: 100px;
     background: #ace3b0;
+    border-radius: 10px;
+    height: 20px;
+  }
+  h1 {
+    color: #090606;
+    font-size: 19px;
+    font-style: italic;
+    padding-bottom: 0px;
+    background: linear-gradient(to top, rgba(69, 198, 230, 0.58) 10.2%, rgba(131, 237, 203, 0.59) 23.8%, #ebf1ef 50.7%);
+    text-shadow: #20caf6 0 0 5px;
+    margin-bottom: -1px;
+    border-radius: 10px;
   }
 
 </style>

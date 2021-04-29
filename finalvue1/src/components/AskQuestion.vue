@@ -3,9 +3,10 @@
   <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
     <div class="foreground" style="width: 1000%;margin-left: 0%;margin-top:-10%;height: 800px;float: right;position: absolute"></div>
     </div>
-  <el-button type="success"  @click="foldText" id= ask>  <table style="width: 100%" >
-    <tr style="font-size:30px; text-align: left"> Add </tr>
-    <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
+  <el-button type="success"  @click="foldText" id= ask>
+    <table style="width: 100%" >
+      <tr style="font-size:30px; text-align: left"> Add </tr>
+      <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
     </table>
   </el-button>
   <ul v-bind:hidden="isHidden" class="askQ" v-blur = false>

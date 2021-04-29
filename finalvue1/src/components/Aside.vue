@@ -1,7 +1,7 @@
 <template>
   <div class="aside">
     <br>
-    <AskQuestion></AskQuestion>
+    <AskQuestion style="padding-left: 5px"></AskQuestion>
     <br>
     <TopContributors v-blur = this.$store.getters.getBlur style="width: 90%;padding-left:60px" ></TopContributors>
     <table style="position:fixed;width:100px;height:30px;align:right;top:90%;left:9%">
@@ -28,12 +28,12 @@ export default {
 
 <style scoped>
 .aside{
-  width: 30%;
+  width: 28%;
   position: fixed;
   margin-left: 3.5%;
 }
 .butt{
-  margin-left:45%;
+  margin-left:55%;
   margin-top: 10%;
 }
 </style>
