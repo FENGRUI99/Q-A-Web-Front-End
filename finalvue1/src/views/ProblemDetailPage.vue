@@ -7,7 +7,6 @@
       <el-container>
         <el-aside width=72%>
           <!--          问题详情框-->
-
             <table class="intro">
               <div class="blank"></div>
               <tr id="title1" ><td class="top_chart">{{item.question_description}} ？</td></tr>
@@ -22,10 +21,16 @@
               <div class="blank"></div>
               <span class="butt">
                 <td>
-            <el-button  @click="liked(item)" plain size="medium" id="likes">
-              <i class="el-icon-star-on"></i>
-             {{item.likes}}&nbsp;Likes
-            </el-button>
+                  <div v-if="item.like_flag === '1'">
+                    <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
+                      <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+                    </button>
+                  </div>
+                  <div v-else>
+                    <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
+                      <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+                    </button>
+                  </div>
                 </td>
                 <td>
                 <el-button plain size="medium" @click="foldText" type="success">
@@ -243,6 +248,7 @@ export default {
           this.$store.commit('changeList', [item.question_id, -1])
           this.$store.commit('changeLikedList', [false, item.question_id])
           this.item.likes -= 1
+          this.item.like_flag = '0'
           flag = true
           this.axios.post('http://localhost:8080/like', {
             request: sessionStorage.getItem('user_id') + ' ' + item.question_id,
@@ -258,6 +264,7 @@ export default {
         this.$store.commit('changeList', [item.question_id, 1])
         this.$store.commit('changeLikedList', [true, item.question_id])
         this.item.likes += 1
+        this.item.like_flag = '1'
         this.axios.post('http://localhost:8080/like', {
           request: sessionStorage.getItem('user_id') + ' ' + item.question_id,
           msg: 1
@@ -293,6 +300,11 @@ export default {
         }
       }
       return ans
+    },
+    gethome () {
+      setTimeout(() => {
+        this.activeClass = true
+      }, 200)
     },
     toAnotherQuestion (index) {
       sessionStorage.setItem('item', JSON.stringify(this.relevant_question[index]))
@@ -439,5 +451,26 @@ export default {
 }
 li{
   list-style: none;
+}
+.bubbly-button {
+  margin-top: 0%;
+  margin-bottom: -5%;
+  color: black;
+  background-color: white;
+  border-style: solid;
+  border-color: white;
+  font-size: 18px;
+}
+.bubbly-button:active {
+  transform: scale(0.9);
+  color: #dd4d24;
+}
+.like2{
+  color: #E6A441;
+  background-color:white;
+  border-style: solid;
+  border-color: white;
+  font-size: 18px;
+  margin-bottom: -5%;
 }
 </style>
