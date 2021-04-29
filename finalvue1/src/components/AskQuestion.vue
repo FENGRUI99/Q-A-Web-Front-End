@@ -22,10 +22,12 @@
             rows="3"
             >
           </el-input>
-        <div class="blank"></div>
       </div>
 <!--      details about the question-->
-      <div v-bind:hidden="describeIsHidden">
+    <el-collapse-transition>
+      <div v-show="describeIsHidden">
+        <div style="width: 100%;height: auto;">
+          <div class="blank"></div>
           <el-upload
             class=""
             action="#"
@@ -38,10 +40,26 @@
             :on-change="handleChange"
             :on-exceed="handleExceed"
             list-type="picture">
-            <el-button size="small" type="primary">点击上传</el-button>
-            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+            <table style="width: 200%;margin-left: -50%">
+              <td style="text-align: left;">
+                <el-select
+                  style="width: 88%;"
+                  multiple
+                  :multiple-limit=2
+                  v-model="value" placeholder="Choose">
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+              </td>
+              <td style="width: 25%;"><i class="el-icon-picture" style="font-size: 20px;position:relative;"></i></td>
+              <!--            <div slot="tip" class="el-upload__tip"> Only .jpg or .png documents，no more than 500kb</div>-->
+            </table>
           </el-upload>
-        <li>
+          <div class="blank"></div>
           <el-input
             type="textarea"
             placeholder="Write your description"
@@ -50,31 +68,25 @@
             show-word-limit
             resize="none"
             clearable=""
-            rows="3"
+            rows="4"
           >
           </el-input>
-        </li>
-        <el-select
-          filterable
-          allow-create
-          multiple
-          v-model="value" placeholder="Choose">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
+        </div>
       </div>
-      <li style="text-align: left;">
-        <el-button @click="submit" type="primary">ask question</el-button>
-      </li>
-    </ul>
- <ul>
-   <li>
-   </li>
- </ul>
+    </el-collapse-transition>
+    <div class="blank"></div>
+    <li style="display: inline-block;">
+      <el-button @click="foldText" type="success" style="width: 120px;">close</el-button>
+    </li>
+    <li style="display:inline-block;width: 25%;"></li>
+    <li style="display: inline-block;">
+      <el-button @click="submit" type="success" style="width: 120px;" >ask question</el-button>
+    </li>
+  </ul>
+  <ul>
+    <li>
+    </li>
+  </ul>
 </div>
 </template>
 
@@ -85,7 +97,7 @@ export default {
   data () {
     return {
       isHidden: true,
-      describeIsHidden: true,
+      describeIsHidden: false,
       textarea: '',
       text: '',
       fileList: [],
@@ -203,9 +215,9 @@ export default {
     textarea: {
       handler () {
         if (this.textarea.length === 0) {
-          this.describeIsHidden = true
-        } else {
           this.describeIsHidden = false
+        } else {
+          this.describeIsHidden = true
         }
       }
     }
@@ -244,5 +256,20 @@ backdrop-filter: blur(10px);
 }
 .ans{
   border: #f6f6f6 solid 1px;
+}
+.transition-box {
+  margin-bottom: 10px;
+  width: 200px;
+  height: 100px;
+  border-radius: 4px;
+  background-color: #409EFF;
+  text-align: center;
+  color: #fff;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  margin-right: 20px;
+}
+.tag{
+  width: 100%;
 }
 </style>
