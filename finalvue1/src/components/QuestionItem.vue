@@ -1,5 +1,8 @@
 <template>
   <div id="block" style="z-index: -100" >
+<!--    <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>-->
+<!--      <div class="foreground" style="width: 1000%;margin-left: 0%;margin-top:-10%;height: 800px;float: right;position: fixed;z-index: 1"></div>-->
+<!--    </div>-->
     <button @click="test">test for picture loading</button>
     <div>
       <el-backtop></el-backtop>
@@ -8,13 +11,13 @@
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
           <td style="width: 100%;">
-            <div style="margin: 1% 3%;width: 97%;">
+            <div style="margin: 1% 3%;width: 97%">
               <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
               <li @click="toDetailPage(item)" align="left">
-                <el-image v-if="getImage(item.question_id) === true"
+                <img v-if="getImage(item.question_id) === true"
                           style="width: 100px; height: 100px;"
                           v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
-                ></el-image>
+                >
                 {{item.question_detail}},,{{item.question_tags}}
               </li>
               <li style="float: left;margin-left: -7%">
@@ -514,5 +517,8 @@ li{
 .demo-image{
   width: 100px;
   height: 100px;
+}
+.foreground {
+  backdrop-filter: blur(10px);
 }
 </style>
