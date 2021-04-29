@@ -145,4 +145,7 @@ button:hover{
   color: black;
   font-size: x-large;
 }
+  .tag{
+    font-weight: bold;
+  }
 </style>

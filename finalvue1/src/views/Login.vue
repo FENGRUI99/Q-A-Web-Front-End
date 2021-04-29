@@ -9,21 +9,22 @@
     <br>
     <div id="total">
       <div style="text-align: left">
-        <button class="button" style=" border-bottom:3px solid green;width: 19%;font-weight:bold; font-size: x-large; padding: 10px; margin-left: 1%" disabled>Log in</button>
-        <button class="button" style="width: 20%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</button>
+        <el-button type="success" class="button" style=" border-bottom:3px solid green;width: 19%;font-weight:bold; font-size: x-large; padding: 10px;" disabled>Log in</el-button>
+        <el-button type="success" plain class="button" style="width: 20%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</el-button>
       </div>
       <br>
-      <ul style="float:left; border: 3px;border-color: white #cccccc white white;border-style:solid;padding-right: 3%;width: 40%">
+      <ul style="float:left; padding-right: 3%;width: 40%">
         <li>Student ID</li>
         <li><el-input  v-model="user_id" placeholder="enter your student id"></el-input></li>
         <li>Password</li>
         <li><el-input  v-model="user_pwd"  placeholder="enter your password" show-password @keyup.enter.native="toPage" ></el-input></li>
         <br>
-        <li><el-button type="success" v-on:click="toPage" style="height: 40px"> Login  </el-button></li>
+        <li style="text-align: center"><el-button type="success" v-on:click="toPage" style="height: 40px;"> Login  </el-button></li>
       </ul>
-      <ul style="float: left;width: 55%;color: darkblue;font-weight: bold">
-        <li style="width: 90%; font-size: 1.5em">Over 1000 questions proposed and got solved.</li>
-        <li style="width: 90%;font-size: 1.5em">Now it's your turn to ask louder here</li>
+      <ul style="float:left;padding-left: 5%"> <el-divider direction="vertical"></el-divider></ul>
+      <ul style="float: left;width: 50%;color: darkblue;font-weight: bold">
+        <li class="rightSide">Over 1000 questions proposed and got solved.</li>
+        <li class="rightSide">Now it's your turn to ask louder here</li>
       </ul>
       <div style="clear:both"></div>
     </div>
@@ -78,6 +79,16 @@ export default {
 }
 </script>
 <style scoped>
+  .ul {
+    display:inline-block;
+  }
+.el-divider--vertical{
+  width: 1px;
+  height: 15em;
+}
+.rightSide{
+  font-size: 1.5em;
+}
 img{
   width: 100%;
   height: 100%;
@@ -274,7 +285,6 @@ input[type = checkbox]{
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
-  overflow: auto;
 
 }
 
@@ -284,7 +294,7 @@ li{
 }
 #total{
   z-index: -20;
-  width: 45%;
+  width: 50%;
   margin:0 auto;
   background: #fffdfd;
   border: 1px;
@@ -292,6 +302,6 @@ li{
   border-style:solid;
   border-radius: 10px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  opacity: 0.8;
+  opacity: 0.9;
 }
 </style>

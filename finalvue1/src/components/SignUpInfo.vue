@@ -13,7 +13,7 @@
     <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div>
     <li><el-input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required></el-input></li>
       <br>
-    <li><el-button @click="regiser" style="padding: 12px 20px; opacity: 4">&nbsp;Sign up&nbsp;</el-button></li><br/>
+    <li><el-button type="success" @click="regiser" style="padding: 12px 20px; opacity: 4">&nbsp;Sign up&nbsp;</el-button></li><br/>
 <!--    </ul>-->
   </div>
 </template>

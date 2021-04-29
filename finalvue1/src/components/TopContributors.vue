@@ -1,18 +1,18 @@
 <template>
   <div>
-    <table id="t1">
-      <el-carousel height="200px" direction="vertical" :autoplay="true" style="border-radius:10px;">
-        <el-carousel-item v-for="item in nameList2" :key="item">
-          <h1>Top Louder</h1>
-          <h3 class="medium"><a-icon type="sound" theme="twoTone" two-tone-color="red" />  {{ item.title }}</h3>
-        </el-carousel-item>
-      </el-carousel>
-    </table>
+
+<!--      <el-carousel height="130px" width="200px" :autoplay="true" type="card" style="border-radius:10px; ">-->
+<!--        <el-carousel-item  width="300px" v-for="item in nameList2" :key="item" style="border-radius:10px;">-->
+<!--          <h1>Top Louder</h1>-->
+<!--          <h3 class="small"><a-icon type="sound" theme="twoTone" two-tone-color="red" />{{ item.title }}</h3>-->
+<!--        </el-carousel-item>-->
+<!--      </el-carousel>-->
+      <Swiper></Swiper>
     <br>
 <!--    <table id="t2">-->
       <div id="t2">
-        <el-carousel height="300px" arrow="always" direction="vertical" :autoplay="true" style="border-radius:10px;">
-          <el-carousel-item v-for="item in imgList" :key="item">
+        <el-carousel height="200px" arrow="always" direction="vertical" :autoplay="true" style="border-radius:10px;">
+          <el-carousel-item v-for="item in imgList" :key="item.id">
 
             <img :src="item.img" style="height:100%;width:100%;z-index: -1;color: transparent" alt="Hot tag">
             <h1><a-icon type="loading" />Tag:   {{item.title}}</h1>
@@ -25,9 +25,13 @@
 
 <script>
 import AskQuestion from './AskQuestion'
+import Swiper from './Swiper'
 export default {
   name: 'TopContributors',
-  components: {AskQuestion},
+  components: {
+    'AskQuestion': AskQuestion,
+    'Swiper': Swiper
+  },
   data () {
     return {
       carouseId: 0,
@@ -35,11 +39,6 @@ export default {
         {img: require('../assets/tag1.jpeg'), title: 'Test', id: 0},
         {img: require('../assets/tag2.jpeg'), title: 'Engineering', id: 1},
         {img: require('../assets/tag3.jpeg'), title: 'Skill', id: 2}
-      ],
-      nameList2: [
-        {title: 'YRM', id: 0},
-        {title: 'CFR', id: 1},
-        {title: 'CQR', id: 2}
       ]
     }
   }
@@ -57,9 +56,9 @@ export default {
   }
   .el-carousel__item h3 {
     color: #ffffff;
-    font-size: 3em;
+    font-size: 1em;
     opacity: 0.75;
-    line-height: 150px;
+    line-height: 100px;
     margin: 0;
     font-family: Helvetica;
   }
@@ -77,9 +76,8 @@ export default {
   #t1{
     /*margin: 5% 30%; */
     margin:auto;
-    background:#ffffff; width:50%; height:150px;
+    background:#ffffff; width:65%; height:150px;
     border-radius: 10px;
-
     box-shadow: 10px 10px 10px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
   }
   #t2{
@@ -91,7 +89,7 @@ export default {
   }
   h1 {
     color: #090606;
-    font-size: 25px;
+    font-size: 15px;
     font-style: italic;
     padding-bottom: 0px;
     background: linear-gradient(to top, rgba(69, 198, 230, 0.58) 10.2%, rgba(131, 237, 203, 0.59) 23.8%, #ebf1ef 50.7%);

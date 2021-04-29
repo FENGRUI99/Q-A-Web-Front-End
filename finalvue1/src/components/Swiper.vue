@@ -38,13 +38,6 @@ export default {
         effect: 'coverflow',
         grabCursor: true,
         centeredSlides: true,
-        coverflowEffect: {
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true
-        },
         slidesPerView: 2,
         spaceBetween: 30,
         direction: 'vertical',
@@ -53,11 +46,7 @@ export default {
           el: '.swiper-pagination',
           clickable: true // 允许分页点击跳转
         },
-        // 设置点击箭头
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        },
+        //
         // 自动轮播
         autoplay: {
           delay: 1500
@@ -77,21 +66,14 @@ export default {
 
     width: 300px;
 
-    height: 300px;
+    height: 200px;
 
   }
-  .swiper {
-    height: auto;}
 
   .swiper-slide {
     height: 100px;
     line-height: 100px;
     background: #ace3b0;
   }
-  .swiper-slide:nth-child(2n) {
-    height: 40%;
-  }
-  .swiper-slide:nth-child(3n) {
-    height: 20%;
-  }
+
 </style>

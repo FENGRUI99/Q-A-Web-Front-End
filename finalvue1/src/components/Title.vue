@@ -4,30 +4,32 @@
       <div class="background" style="left:0;top:0;">
         <img :src="imgSrc"  alt="" />
       </div>
+      <div class="logo">
       <div style="width: 35%; margin-left: 8%; z-index: 10">
         <img :src="logo"  alt="" />
       </div>
       <br>
       <br>
-      <div style="width: 50%; margin-left: 8%; z-index: 10;color: white;font-size: 22px;display: inline-block;font-family: 'DIN Alternate';">
-      <div style="margin-right: 3%;display: inline-block;">Over</div>
-      <li class="number">
-      <span class="animate" id='digit1'>1 2 3 4 5 6 7 8 9 0</span>
-      </li>
-      <li class="number">
-      <span class="animate2" id='digit2'>1 2 3 4 5 6 7 8 9 0</span>
-      </li>
-      <li class="number">
-      <span class="animate3" id='digit3'>1 2 3 4 5 6 7 8 9 0</span>
-      </li>
-      <li class="number">
-      <span class="animate4" id='digit4'>1 2 3 4 5 6 7 8 9 0</span>
-      </li>
-      <div style="display: inline-block;">questions proposed and got solved</div>
-      <div style="display: inline-block;">  Now it's your turn to ask louder here </div>
+      <div style="width: 55%; margin-left: 8%; z-index: 10;color: white;font-size: 22px;display: inline-block;font-family: 'DIN Alternate';">
+        <div style="margin-right: 3%;display: inline-block;">Over</div>
+        <li class="number">
+        <span class="animate" id='digit1'>1 2 3 4 5 6 7 8 9 0</span>
+        </li>
+        <li class="number">
+        <span class="animate2" id='digit2'>1 2 3 4 5 6 7 8 9 0</span>
+        </li>
+        <li class="number">
+        <span class="animate3" id='digit3'>1 2 3 4 5 6 7 8 9 0</span>
+        </li>
+        <li class="number">
+        <span class="animate4" id='digit4'>1 2 3 4 5 6 7 8 9 0</span>
+        </li>
+        <div style="display: inline-block;">questions proposed and got solved</div>
+        <div style="display: inline-block;">  Now it's your turn to ask louder here </div>
       </div>
       </div>
-      <div style="height: 400px; width: 100%;"></div>
+      </div>
+<!--      <div style="height: 100px; width: 100%;"></div>-->
     </div>
 </template>
 
@@ -60,18 +62,29 @@ export default {
 </script>
 
 <style scoped>
+.logo{
+  width: 70%;
+  position: fixed;
+  repeat: no-repeat;
+  background-attachment: fixed;
+  margin-left: 10%;
+}
 img{
   width: 100%;
   height: 100%;
   vertical-align: top;
 }
-
+div{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 .background{
   margin: 0;
   padding: 0;
   width:100%;
   height:100%;  /**宽高100%是为了图片铺满屏幕 */
-  z-index:-100;
+  z-index:-1;
   position: fixed;
   repeat: no-repeat;
   background-attachment: fixed;

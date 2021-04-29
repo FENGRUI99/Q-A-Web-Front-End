@@ -3,7 +3,7 @@
     <br>
     <AskQuestion></AskQuestion>
     <br>
-    <TopContributors v-blur = this.$store.getters.getBlur></TopContributors>
+    <TopContributors v-blur = this.$store.getters.getBlur style="width: 90%;padding-left:60px" ></TopContributors>
     <table style="position:fixed;width:100px;height:30px;align:right;top:90%;left:9%">
       <a href="#top">
         <el-button title="Click back to the top" type="success" class="butt" icon="el-icon-top" v-if = this.$store.state.blurConfig.isBlurred circle v-blur = this.$store.getters.getBlur disabled></el-button>
@@ -28,9 +28,9 @@ export default {
 
 <style scoped>
 .aside{
-  width: 29%;
+  width: 30%;
   position: fixed;
-  margin-left: 4.5%;
+  margin-left: 3.5%;
 }
 .butt{
   margin-left:45%;

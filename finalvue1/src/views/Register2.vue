@@ -21,7 +21,7 @@
       <ul style="float:left; width: 45%; opacity: 1.0">
         <sign-up-info></sign-up-info>
       </ul>
-      <ul style="float:left; width: 50%">
+      <ul style="float:left; width: 55%">
         <br>
         <div style = "text-align: left">Choose Interested Tags</div>
          <InterestTag></InterestTag>
@@ -113,6 +113,6 @@ img{
   border-style:solid;
   border-radius: 10px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 </style>
