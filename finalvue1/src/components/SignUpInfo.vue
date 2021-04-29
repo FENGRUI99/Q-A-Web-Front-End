@@ -12,7 +12,9 @@
     <li><el-input v-model ="user_name" type="text" id="user_name" name="user_name" pattern = "^[a-zA-Z0-9_-]{4,16}$" placeholder="4-12" required></el-input></li>
     <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div>
     <li><el-input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required></el-input></li>
-      <br>
+    <li><el-input v-model ="validation" type="text" required></el-input></li>
+    <br>
+    <li><el-button @click="sendEmail" style="padding: 12px 20px; opacity: 4">&nbsp;send Email&nbsp;</el-button></li><br/>
     <li><el-button @click="regiser" style="padding: 12px 20px; opacity: 4">&nbsp;Sign up&nbsp;</el-button></li><br/>
 <!--    </ul>-->
   </div>

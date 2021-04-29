@@ -16,7 +16,7 @@
             type="textarea"
             placeholder="Write your question"
             v-model="textarea"
-            maxlength="200"
+            maxlength="100"
             show-word-limit
             resize="none"
             clearable=""

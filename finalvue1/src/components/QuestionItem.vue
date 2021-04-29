@@ -44,25 +44,17 @@
             </div>
           </td>
           <td style="margin:0 5px 5px 5px;float:right;width: 120px;" >
-            <div v-if="item.like_flag === true">
-              <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
-                <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
-              </button>
-              <!--                <el-button @click="liked(item)" @ onmouseover="mouseDown ('red')" plain size="medium" id="likes" type="warning" :class="{like2:button_color===index}" class="like2">-->
-              <!--                  <li><i class="el-icon-star-on"></i>-->
-              <!--                  &nbsp;Likes&nbsp; </li>-->
-              <!--                  <li>{{item.likes}}</li>-->
-              <!--                </el-button>-->
-            </div>
-            <div v-else>
-              <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
-                 <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
-              </button>
-              <!--                <el-button @click="liked(item)" plain size="medium"  >-->
-              <!--                  <li> <i class="el-icon-star-off"></i>-->
-              <!--                  &nbsp;Likes&nbsp; </li>-->
-              <!--                  <li>{{item.likes}}</li>-->
-              <!--                </el-button>-->
+            <div v-bind:key="keyValue">
+              <div v-if="getLikeFlag(index) === '1'">
+                <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
+                  <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+                </button>
+              </div>
+              <div v-else>
+                <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
+                  <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+                </button>
+              </div>
             </div>
             <br>
             <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
@@ -89,7 +81,15 @@
       </div>
       <!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
 
-      <div style=" "><a-skeleton :paragraph="{ rows: 3 ,width: [650,650,200]}" :title="{width: 450}" loading active style="padding-left: 5px;border-radius:10px " class="abc loadingStyle" id = 'load'/></div>
+      <div style="margin-left:5px "><a-skeleton :paragraph="{ rows: 3 ,width: [650,650,200]}" :title="{width: 450}" loading active style="padding-left: 5px;border-radius:10px " class="abc loadingStyle" id = 'load'/></div>
+        <a-progress
+        :stroke-color="{
+        '0%': '#a9e7dd',
+        '100%': '#87d068',
+      }"
+        :percent="60"
+        status="active"
+      />
 
     </div>
     <div v-else class = "abc loadingStyle">
@@ -123,6 +123,7 @@ export default {
       activeClass: false,
       fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
       flag: false,
+      keyValue: 0,
       pic: {}
     }
   },
@@ -132,11 +133,12 @@ export default {
       for (let j = 0; j < this.$store.state.liked_list.length; j++) {
         if (this.$store.state.list[i].question_id.toString() === this.$store.state.liked_list[j]) {
           num += 1
-          this.$store.state.list[i].like_flag = true
+          this.$store.state.list[i].like_flag = '1'
           break
-        } else if (this.$store.state.list[i].like_flag === true) {
-          this.$store.state.list[i].like_flag = false
         }
+        // else if (list[i].like_flag === true) {
+        //   this.$store.state.list[i].like_flag = false
+        // }
       }
       if (num >= this.$store.state.liked_list.length) {
         break
@@ -148,6 +150,7 @@ export default {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setList', response.data.entity)
+      console.log(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -160,13 +163,19 @@ export default {
     })
     this.axios.post('http://localhost:8080/imglist').then((response) => {
       this.$store.commit('setImgList', response.data.entity)
-      console.log(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
   },
   mounted: function () {
     window.addEventListener('scroll', this.handleScroll, true)
+    if (this.timer) {
+      clearInterval(this.timer)
+    } else {
+      this.timer = setInterval(() => {
+        this.refresh()
+      }, 6000)
+    }
   },
   methods: {
     mouseOver () {
@@ -235,7 +244,6 @@ export default {
     },
     liked (item) {
       let list = this.$store.getters.getLikedList
-      console.log(list)
       let flag = false
       for (let i = 0; i < list.length; i++) {
         if (list[i].toString() === item.question_id.toString()) {
@@ -324,10 +332,21 @@ export default {
       let pic = JSON.parse(localStorage.getItem(questionId))
       return pic[0]
     },
+    refresh () {
+      if (this.keyValue < 10) {
+        this.keyValue += 1
+        console.log(this.keyValue)
+      }
+    },
+    getLikeFlag (index) {
+      return this.$store.getters.getList[index].like_flag
+    },
     test () {
       localStorage.clear()
-      alert('clear local storage')
     }
+  },
+  destroyed () {
+    clearInterval(this.timer)
   },
   watch: {
     loading: {
