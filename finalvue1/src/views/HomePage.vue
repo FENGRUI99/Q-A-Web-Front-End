@@ -1,5 +1,8 @@
 <template>
   <div>
+<!--    <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>-->
+<!--      <div class="foreground" style="width: 1000%;margin-top:-20%;height: 2000px;float: right;position: absolute;"></div>-->
+<!--    </div>-->
   <div v-if = !this.$store.state.blurConfig.isBlurred style="background: #f6f6f6">
     <el-container>
       <el-header height="15px">
@@ -73,5 +76,9 @@ export default {
 .blur-content::before{
   filter:blur(5px);
   z-index: -1;
+}
+.foreground {
+  backdrop-filter: saturate(150%) blur(10px);
+  background-color:rgba(50,50,50,0.3);
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div>
     <table id="tt">
-      <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
-         <div class="foreground" style="width: 2000px;height: 80px;position: absolute;margin-top: -15%;z-index: 20;"></div>
-        </div>
+<!--      <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>-->
+<!--         <div class="foreground" style="width: 2000px;height: 80px;position: absolute;margin-top: -15%;z-index: 20;"></div>-->
+<!--        </div>-->
       <img src="../assets/logo1.png" width="200px" style="margin: auto" class="pho">
       <td style="width: 20%"></td>
       <!--        <p id="title">Ask Louder Here! </p>-->
@@ -122,6 +122,7 @@ h1:after {
 
 }
 .foreground {
-  backdrop-filter: blur(10px);
-} /* No .wrapper needed! */
+  backdrop-filter: saturate(150%) blur(10px);
+  background-color:rgba(50,50,50,0.3);
+}/* No .wrapper needed! */
 </style>

@@ -8,10 +8,10 @@
             <div style="margin: 1% 3%;width: 97%;">
               <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
               <li @click="toDetailPage(item)" align="left">
-                <el-image v-if="getImage(item.question_id) === true"
+                <img v-if="getImage(item.question_id) === true"
                           style="width: 100px; height: 100px;"
                           v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
-                ></el-image>
+                >
                 {{item.question_detail}}
               </li>
               <li style="float: left;">
@@ -511,5 +511,9 @@ li{
 .demo-image{
   width: 100px;
   height: 100px;
+}
+.foreground {
+  backdrop-filter: saturate(150%) blur(10px);
+  background-color:rgba(50,50,50,0.3);
 }
 </style>

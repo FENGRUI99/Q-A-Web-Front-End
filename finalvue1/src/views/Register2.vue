@@ -9,8 +9,8 @@
     <br>
     <div id = total class="side">
         <div style="text-align: left">
-          <button class="button" style="width: 19%; font-family: Arial, sans-serif;font-size: x-large; padding: 10px; margin-left: 1%" v-on:click="toLog">Login</button>
-          <button class="button" style="border-bottom:3px solid green;width: 20%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px; font-weight:bold;" disabled >Sign up</button>
+          <button class="button" style="width: 15%; font-family: Arial, sans-serif;font-size: x-large; padding: 10px; margin-left: 1%" v-on:click="toLog">Login</button>
+          <button class="button" style="border-bottom:3px solid green;width: 15%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px; font-weight:bold;" disabled >Sign up</button>
         </div>
 <!--      <ul style="margin: auto">-->
 <!--        <div style="text-align: left">-->
@@ -18,10 +18,10 @@
 <!--          <button class="button" style="width: 20%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</button>-->
 <!--        </div>-->
 <!--        <tr style="vertical-align:top; width: 90%">-->
-      <ul style="float:left; width: 45%; opacity: 1.0">
+      <ul style="float:left; width: 35%; margin-left: 10%; opacity: 1.0">
         <sign-up-info></sign-up-info>
       </ul>
-      <ul style="float:left; width: 55%">
+      <ul style="float:left; width: 45%; margin-left: 10%">
         <br>
         <div style = "text-align: left">Choose Interested Tags</div>
          <InterestTag></InterestTag>
@@ -105,7 +105,7 @@ img{
 }
 #total{
   z-index: -20;
-  width: 45%;
+  width: 65%;
   margin:0 auto;
   background: #fffdfd;
   border: 1px;

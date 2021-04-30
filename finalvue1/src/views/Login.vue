@@ -1,7 +1,12 @@
 <template>
-  <div>
-    <div class="background" >
-      <img :src="imgSrc"  alt="" />
+  <div @mousewheel.prevent>
+    <div class="video-container">
+      <div :style="fixStyle" class="filter">
+        <!--内容-->
+      </div>
+      <video :style="fixStyle" autoplay loop muted class="fillWidth" v-on:canplay="canplay">
+        <source src="../assets/louvered.mp4" type="video/mp4"/>
+      </video>
     </div>
     <div style="width: 17%;height: 5%; margin: -40px auto 10px auto ;z-index: -1;background-attachment: fixed;background-repeat:no-repeat;">
       <img :src="logo"  alt="" />
@@ -49,6 +54,9 @@ export default {
     }
   },
   methods: {
+    canplay () {
+      this.vedioCanPlay = true
+    },
     toPage () {
       this.axios.post('http://localhost:8080/login', {
         user_id: this.user_id,
@@ -74,6 +82,35 @@ export default {
         path: '/Register2',
         name: 'Register2'
       })
+    }
+  },
+  mounted () {
+    window.onresize = () => {
+      const windowWidth = document.body.clientWidth
+      const windowHeight = document.body.clientHeight
+      const windowAspectRatio = windowHeight / windowWidth
+      let videoWidth
+      let videoHeight
+      if (windowAspectRatio < 0.5625) {
+        videoWidth = windowWidth
+        videoHeight = videoWidth * 0.5625
+        this.fixStyle = {
+          height: windowWidth * 0.5625 + 'px',
+          width: windowWidth + 'px',
+          'margin-bottom': (windowHeight - videoHeight) / 2 + 'px',
+          'margin-left': 'initial'
+        }
+      } else {
+        videoHeight = windowHeight
+        videoWidth = videoHeight / 0.5625
+        this.fixStyle = {
+          height: windowHeight + 'px',
+          width: windowHeight / 0.5625 + 'px',
+          'margin-left': (windowWidth - videoWidth) / 2 + 'px',
+          'margin-bottom': 'initial'
+        }
+      }
+      window.onresize()
     }
   }
 }
@@ -304,4 +341,28 @@ li{
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   opacity: 0.9;
 }
+  .video-container {
+    position: absolute;
+    height: 105%;
+    width: 111%;
+    margin-left: -5%;
+    overflow: hidden;
+    margin-top: -5%;
+  }
+
+  .video-container .poster img{
+    z-index: 0;
+    position: absolute;
+  }
+
+  .video-container .filter {
+    z-index: 1;
+    position: absolute;
+    background: rgba(0, 0, 0, 0);
+    width: 100%;
+  }
+
+  .fillWidth {
+    width: 100%;
+  }
 </style>

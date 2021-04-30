@@ -14,7 +14,6 @@
         :value="item.value">
       </el-option>
     </el-select>
-
   </div>
 </template>
 
@@ -77,5 +76,4 @@ export default {
     font-size: 18px;
     padding-right: 5px;
   }
-
 </style>

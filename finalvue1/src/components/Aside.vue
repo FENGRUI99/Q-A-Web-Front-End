@@ -1,5 +1,9 @@
 <template>
-  <div class="aside">
+  <div>
+    <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
+      <div class="foreground" style="width: 1000%;margin-top:-10%;height: 2000px;float: right;position: absolute;"></div>
+    </div>
+    <div class="aside">
     <br>
     <AskQuestion style="padding-left: 5px"></AskQuestion>
     <br>
@@ -11,6 +15,7 @@
         <el-button title="Click back to the top" type="success" class="butt" icon="el-icon-top" circle></el-button>
       </a>
     </table>
+    </div>
   </div>
 </template>
 
@@ -35,5 +40,9 @@ export default {
 .butt{
   margin-left:55%;
   margin-top: 10%;
+}
+.foreground {
+  backdrop-filter: saturate(150%) blur(10px);
+  background-color:rgba(50,50,50,0.3);
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
 <div>
-  <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
-    <div class="foreground" style="width: 1000%;margin-left: 0%;margin-top:-10%;height: 2000px;float: right;position: absolute;"></div>
-    </div>
+<!--  <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>-->
+<!--    <div class="foreground" style="width: 1000%;margin-top:-10%;height: 2000px;float: right;position: absolute;"></div>-->
+<!--    </div>-->
   <v-btn
     color= #A5D6A7
     elevation="3"
@@ -264,7 +264,8 @@ li{
   list-style: none;
 }
 .foreground {
-backdrop-filter: blur(10px);
+  backdrop-filter: saturate(150%) blur(10px);
+  background-color:rgba(50,50,50,0.3);
 } /* No .wrapper needed! */
 .blank{
   height: 10px;
