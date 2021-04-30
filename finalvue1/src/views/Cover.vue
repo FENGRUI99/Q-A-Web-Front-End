@@ -87,6 +87,7 @@ export default {
       }
     }
     window.onresize()
+
   },
   destroyed () {
     window.removeEventListener('keyup', this.toDetailPage)
