@@ -9,15 +9,19 @@
 <!--      </el-carousel>-->
       <Swiper></Swiper>
     <br>
+    <br>
+<!--    <h3 style="height: 10%;font-size: 30px  " >Hot tags</h3>-->
 <!--    <table id="t2">-->
       <div id="t2">
-        <el-carousel  height="250px" indicator-position="none" :autoplay="true" style="border-radius:10px;">
-          <el-carousel-item v-for="item in imgList" :key="item.id">
+        <h3 style="height: 30px;font-size: 30px  " >Hot tags</h3>
+        <el-carousel  height="250px" indicator-position="none" :autoplay="true" style="border-bottom-left-radius:10px;border-bottom-right-radius: 10px">
+          <el-carousel-item v-for="item in imgList" :key="item.id" label="hahah">
             <img :src="item.img" style="height:100%;width:100%;z-index: -1;color: transparent" alt="Hot tag">
             <h1><a-icon type="loading" />Tag:   {{item.title}}</h1>
           </el-carousel-item>
         </el-carousel>
       </div>
+
 <!--    </table>-->
   </div>
 </template>
@@ -35,9 +39,9 @@ export default {
     return {
       carouseId: 0,
       imgList: [
-        {img: require('../assets/tag1.jpeg'), title: 'Test', id: 0},
-        {img: require('../assets/tag2.jpeg'), title: 'Engineering', id: 1},
-        {img: require('../assets/tag3.jpeg'), title: 'Skill', id: 2}
+        {img: require('../assets/tag1.jpg'), title: 'Test', id: 0},
+        {img: require('../assets/tag2.jpg'), title: 'Engineering', id: 1},
+        {img: require('../assets/tag3.jpg'), title: 'Skill', id: 2}
       ]
     }
   }
@@ -94,5 +98,10 @@ export default {
     background: linear-gradient(to top, rgba(69, 198, 230, 0.58) 10.2%, rgba(131, 237, 203, 0.59) 23.8%, #ebf1ef 50.7%);
     text-shadow: #20caf6 0 0 5px;
     margin-bottom: -1px;
+  }
+  h3{
+    color: #515151;
+    font-weight: 700;
+    /*border-left: 10px #7043ba solid;*/
   }
 </style>

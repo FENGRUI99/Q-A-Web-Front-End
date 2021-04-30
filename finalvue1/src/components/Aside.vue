@@ -7,8 +7,10 @@
     <br>
     <AskQuestion style="padding-left: 5px"></AskQuestion>
     <br>
+    <br>
     <TopContributors v-blur = this.$store.getters.getBlur style="width: 90%;padding-left:60px" ></TopContributors>
     </div>
+
   </div>
 </template>
 
