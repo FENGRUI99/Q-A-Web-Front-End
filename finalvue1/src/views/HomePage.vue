@@ -3,10 +3,10 @@
 <!--    <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>-->
 <!--      <div class="foreground" style="width: 1000%;margin-top:-20%;height: 2000px;float: right;position: absolute;"></div>-->
 <!--    </div>-->
-    <div class="background1"  >
+    <div class="background1" >
       <img :src="imgSrc"  alt="" />
     </div>
-  <div v-if = !this.$store.state.blurConfig.isBlurred style="background: #f6f6f6">
+  <div v-if = !this.$store.state.blurConfig.isBlurred style="z-index: 10;position: relative" >
     <el-container>
       <el-header height="15px">
         <header123></header123>
@@ -26,7 +26,7 @@
       </el-container>
     </el-container>
   </div>
-    <div v-else style="background: #f6f6f6" @mousewheel.prevent>
+  <div v-else  @mousewheel.prevent style="z-index: 10;position: relative">
       <el-container>
         <el-header height="15px">
           <header123></header123>
@@ -95,18 +95,18 @@ export default {
   left: 0;
   width:100%;
   height:100%;
-  z-index:-1;
+  z-index:0;
   zoom: 1.1;
-  /*transform:translateX(-10px);*/
+  transform:translateX(-100px);
   /*transform:translatey(50px);*/
-  background-color: #fff;
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  background-position: center 0;
-  background-size: 100% 100%;
-  opacity:5%;
+  /*background-color: #fff;*/
+  /*background-repeat: repeat;*/
+  /*background-size: cover;*/
+  /*-webkit-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-position: center 0;*/
+  /*background-size: 100% 100%;*/
+  opacity:30%;
 
 }
 </style>

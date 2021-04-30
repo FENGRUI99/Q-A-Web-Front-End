@@ -198,7 +198,7 @@ export default {
         if (clientHeight + scrollTop + footerHeight > scrollHeight) {
           if (this.$store.getters.getList.length > this.count) {
             this.count += 5
-            this.sleep(500)
+            this.sleep(300)
           }
         }
       } else {
@@ -266,7 +266,7 @@ export default {
       }
     },
     setQuestion_tags_en (msg) {
-      let tagsList = msg.toString().split(' ')
+      let tagsList = msg.toString().split(',')
       let ans = []
       for (let i = 0; i < tagsList.length; i++) {
         if (tagsList[i] === '1') {
