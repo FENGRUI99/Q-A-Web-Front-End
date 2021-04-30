@@ -4,7 +4,9 @@
       <tr style="text-align:left">
 <!--      <td style="font-size: x-large">&nbsp;Choose Interested Tags</td>-->
       </tr>
-        <tr><td><button class="tag" @click="tags(0)" id = 'tags_0'>Graduate Application</button></td></tr>
+        <tr><td>
+        </td></tr>
+          <button class="tag" @click="tags(0)" id = 'tags_0'>Graduate Application</button>
         <tr><td>
           <button class="tag" @click="tags(1)" id = 'tags_1'>Academic Courses</button>&nbsp;
           <button class="tag" @click="tags(2)" id = 'tags_2'>Software Engi</button>
@@ -105,7 +107,6 @@ export default {
 table,td,th
 {
   padding: 5px 0;
-  padding-top: 10px;
   text-align: left;
 }
 button{
@@ -114,11 +115,13 @@ button{
   /*width: 20%;*/
   padding: 2px;
   font-size: large;
-  background: #8ae779;
-  color: white;
+  background: white;
+  color: #8ae779;
   border-radius: 3px;
-  border: 1px solid darkgrey;
+  border: 1px solid #f6f6f6;
   opacity: 1.0;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 button:hover{
   /*display: inline-block;*/
@@ -131,10 +134,12 @@ button:hover{
   border: 1px solid darkgrey;
 }
 .click {
-  background: springgreen;
+  background: #8ae779;
+  font-weight: bold;
+  color: white;
 }
 .unclick {
-  background: #8ae779;
+  background: #cccccc;
 }
 .p{
   font-family:Arial, sans-serif;

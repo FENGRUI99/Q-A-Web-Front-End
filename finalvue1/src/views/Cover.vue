@@ -5,7 +5,7 @@
         <!--内容-->
       </div>
       <video :style="fixStyle" autoplay loop muted class="fillWidth" v-on:canplay="canplay">
-        <source src="../assets/louvered.mp4" type="video/mp4"/>
+        <source src="../assets/lviedo.mp4" type="video/mp4"/>
       </video>
     </div>
     <div style="width: 35%; margin-left: 8%; z-index: 10; position: absolute">

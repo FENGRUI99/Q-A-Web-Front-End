@@ -5,10 +5,10 @@
         <!--内容-->
       </div>
       <video :style="fixStyle" autoplay loop muted class="fillWidth" v-on:canplay="canplay">
-        <source src="../assets/louvered.mp4" type="video/mp4"/>
+        <source src="../assets/lviedo.mp4" type="video/mp4"/>
       </video>
     </div>
-    <div style="width: 17%;height: 5%; margin: -40px auto 10px auto ;z-index: -1;background-attachment: fixed;background-repeat:no-repeat;">
+    <div style="position:relative; z-index: 10;margin:0 auto;width: 20%; background-attachment: fixed;background-repeat:no-repeat;">
       <img :src="logo"  alt="" />
     </div>
     <br>
@@ -24,7 +24,13 @@
         <li>Password</li>
         <li><el-input  v-model="user_pwd"  placeholder="enter your password" show-password @keyup.enter.native="toPage" ></el-input></li>
         <br>
-        <li style="text-align: center"><el-button type="success" v-on:click="toPage" style="height: 40px;"> Login  </el-button></li>
+        <li><v-btn
+          color="success"
+          @click="toPage"
+          style="float: left"
+        >
+          Login</v-btn></li>
+<!--        <li style="text-align: center"><el-button type="success" v-on:click="toPage" style="height: 40px;"> Login  </el-button></li>-->
       </ul>
       <ul style="float:left;padding-left: 5%"> <el-divider direction="vertical"></el-divider></ul>
       <ul style="float: left;width: 50%;color: darkblue;font-weight: bold">
@@ -332,7 +338,7 @@ li{
 #total{
   z-index: -20;
   width: 50%;
-  margin:0 auto;
+  margin:0px auto;
   background: #fffdfd;
   border: 1px;
   border-color:#cccccc;

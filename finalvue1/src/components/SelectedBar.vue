@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div id=bar>
+    <div class=bar v-if="this.$store.state.blurConfig.isBlurred" hidden="true">
+      <div style="height: 10px"></div>
+      <multiSelectedBox></multiSelectedBox>
+      <selectedBox></selectedBox>
+    </div>
+    <div class=bar v-else>
       <div style="height: 10px"></div>
       <multiSelectedBox></multiSelectedBox>
       <selectedBox></selectedBox>
@@ -24,7 +29,7 @@ export default {
 </script>
 
 <style scoped>
-#bar{
+.bar{
   border-radius: 10px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   background: #ffffff;

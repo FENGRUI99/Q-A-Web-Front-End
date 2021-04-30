@@ -1,8 +1,8 @@
 <template>
 <div>
-<!--  <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>-->
-<!--    <div class="foreground" style="width: 1000%;margin-top:-10%;height: 2000px;float: right;position: absolute;"></div>-->
-<!--    </div>-->
+  <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
+    <div class="foreground" style="width: 1000%;margin-top:-10%;margin-left:-100%;height: 2000px;float: right;position: absolute;"></div>
+    </div>
   <v-btn
     color= #A5D6A7
     elevation="3"
@@ -255,7 +255,7 @@ export default {
   background: #f6f6f6;
   position: absolute;
   margin-left: 92%;
-  margin-top: -20px;
+  margin-top: -100px;
   z-index: 999;
   padding: 5%;
   box-shadow:5px 5px 10px #797676

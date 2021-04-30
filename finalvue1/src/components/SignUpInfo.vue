@@ -2,23 +2,36 @@
   <div>
     <br>
 <!--    <ul style="float:left; border: 3px;border-color: white #cccccc white white;border-style:solid;padding-right: 3%; padding-bottom: 15%;text-align: left" class="p">-->
-    <li style="float: left;">StudentID&nbsp;&nbsp;</li><div style="float: left;" id = idCheck></div>
-    <li><el-input @blur="checkDupID" v-model ="user_id" type = "text" id="user_id" name = "user_id" pattern = "^\d{7}$" placeholder="enter your student id" required></el-input></li>
+    <li style="float: left;">Student ID&nbsp;&nbsp;</li><div style="float: left;" id = idCheck></div>
+    <li><el-input @blur="checkDupID" v-model ="user_id" type = "text" id="user_id" name = "user_id" pattern = "^\d{7}$" placeholder="Enter your student ID" required></el-input></li>
 <!--    -->
     <li style="float: left; width: 45%"><div style="float: left">Password&nbsp;&nbsp;</div><div style="float: left" id = pswCheck></div></li><li style="float: left;width:45%;margin-left: 10%"><div style="float: left">Confirm&nbsp;&nbsp;</div><div style="float: left;" id = psw1check></div></li>
-    <li style="float: left; width: 45%"><el-input v-model ="user_pwd" type="password" id="user_psw" name="user_psw" pattern = "^[A-Za-z0-9]{4,7}?$" placeholder="set up your password" required></el-input></li>
+    <li style="float: left; width: 45%"><el-input v-model ="user_pwd" type="password" id="user_psw" name="user_psw" pattern = "^[A-Za-z0-9]{4,7}?$" placeholder="Password" required></el-input></li>
 <!--    -->
-    <li style="float: left; width: 45%;margin-left: 10%"><el-input v-model ="user_pwd1" type="password" id="user_psw1" name="user_psw1" placeholder="type again your password" required></el-input></li>
+    <li style="float: left; width: 45%;margin-left: 10%"><el-input v-model ="user_pwd1" type="password" id="user_psw1" name="user_psw1" placeholder="Type again" required></el-input></li>
     <!--    -->
     <div style="clear: both"></div>
     <li style="float: left;">Username&nbsp;&nbsp;</li><div style="float: left;" id = namecheck></div>
-    <li><el-input v-model ="user_name" type="text" id="user_name" name="user_name" pattern = "^[a-zA-Z0-9_-]{4,16}$" placeholder="4-12" required></el-input></li>
-    <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div>
-    <li><el-input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required></el-input></li>
+    <li><el-input v-model ="user_name" type="text" id="user_name" name="user_name" pattern = "^[a-zA-Z0-9_-]{4,16}$" placeholder="4-12 letters" required></el-input></li>
+    <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div><div style="clear: both"></div>
+    <li style="float: left"><el-input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+$" placeholder="Exp xx.xx18" style="width:45%;float: left" required></el-input><span style="float: right;margin-top:5%;text-align: inherit"> @student.xjtlu.edu.cn</span></li>
+    <!--    -->
     <li style="float: left;">Verification Code&nbsp;&nbsp;</li><div style="clear: both"></div>
-    <li style="float: left; width: 45%"><el-input v-model ="validation" type="text" required></el-input></li>
-    <li style="float: right; width: 45%; margin-left: 10%"><el-button @click="sendEmail" style="padding: 5px; opacity: 4; font-size: large; margin-top: 5%;border-radius: 2px">&nbsp;send Email&nbsp;</el-button></li><br/><div style="clear: both"></div><br>
-    <li style="width: 200%; margin:auto"><el-button @click="regiser" style="padding: 12px 20px; opacity: 4">&nbsp;Sign up&nbsp;</el-button></li><br/>
+    <li style="float: left; width: 45%"><el-input v-model ="validation" type="text" placeholder="Code" required></el-input></li>
+    <li><v-btn
+      color="success"
+      @click="sendEmail"
+      style="float: right"
+    >
+      Send Email</v-btn></li>
+<!--    <li style="float: right; width: 45%; margin-left: 10%"><el-button @click="sendEmail" style="padding: 5px; opacity: 4; font-size: large; margin-top: 5%;border-radius: 2px">&nbsp;send Email&nbsp;</el-button></li><br/>-->
+    <li style=" float: right; margin-right: -127%;margin-top: 0.4%">
+        <v-btn
+          color="success"
+          @click="regiser"
+          >
+      Sign up</v-btn>
+    </li><br/>
 <!--    </ul>-->
   </div>
 </template>
@@ -129,7 +142,7 @@ export default {
     },
     checkEmail: function () {
       let id = document.getElementById('mailcheck')
-      let reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+      let reg = /^[a-zA-Z0-9_-]+$/
       if (this.user_mail.length === 0) {
         console.log(123213)
         id.className = '-status nothing'
@@ -216,30 +229,31 @@ li{
   /*-webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(205,50,50,.6);*/
   /*box-shadow: inset 0 0px 0px rgba(0,0,0,.075),0 0 0px rgba(205,50,50,.6)*/
 }
-button{
-  display: inline-block;
-  /*height: 45px;*/
-  /*width: 20%;*/
-  border-radius: 10px;
-  padding: 2px;
-  font-size: x-large;
-  background: #70e05b;
-  color: white;
-  border: 1px solid darkgrey;
-}
-button:hover{
-  display: inline-block;
-  /*height: 45px;*/
-  /*width: 20%;*/
-  padding: 10px;
-  font-size: x-large;
-  background: #44d929;
-  color: white;
-  border: 1px solid darkgrey;
-}
+/*button{*/
+/*  display: inline-block;*/
+/*  !*height: 45px;*!*/
+/*  !*width: 20%;*!*/
+/*  border-radius: 0px;*/
+/*  padding: 2px;*/
+/*  font-size: x-large;*/
+/*  background: #70e05b;*/
+/*  color: white;*/
+/*  border: 1px solid darkgrey;*/
+/*}*/
+/*button:hover{*/
+/*  display: inline-block;*/
+/*  !*height: 45px;*!*/
+/*  !*width: 20%;*!*/
+/*  padding: 10px;*/
+/*  font-size: x-large;*/
+/*  background: #44d929;*/
+/*  color: white;*/
+/*  border: 1px solid darkgrey;*/
+/*}*/
 li{
   list-style: none;
   text-align: left;
+  margin-top: -1%;
 }
 input[type = checkbox]{
   zoom:1%;

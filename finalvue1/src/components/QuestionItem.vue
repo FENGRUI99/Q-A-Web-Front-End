@@ -1,5 +1,6 @@
 <template>
   <div id="block" >
+    <div>  <el-backtop></el-backtop></div>
     <button @click="test">test for picture loading</button>
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
