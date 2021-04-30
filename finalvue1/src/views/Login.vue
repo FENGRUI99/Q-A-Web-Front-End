@@ -56,7 +56,9 @@ export default {
       coverSrc: require('../assets/cover.png'),
       logo: require('../assets/logo1.png'),
       user_id: '',
-      user_pwd: ''
+      user_pwd: '',
+      fixStyle: '',
+      vedioCanPlay: false
     }
   },
   methods: {
@@ -116,7 +118,7 @@ export default {
           'margin-bottom': 'initial'
         }
       }
-      window.onresize()
+      // window.onresize()
     }
   }
 }

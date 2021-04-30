@@ -40,6 +40,7 @@ export default {
         } else {
           this.$store.commit('setList', response.data.entity)
           this.$store.commit('setIsFind', true)
+          console.log(response.data.entity)
         }
       }).catch((response) => {
         console.log(response)

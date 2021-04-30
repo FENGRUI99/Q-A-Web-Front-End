@@ -17,19 +17,28 @@
               <div class="blank"></div>
               <tr id="detail">
                 <td class="top_chart">{{item.question_detail}}</td>
+                {{pic_number}}--cfr
+                <div v-if="pic_flag === true">
+                  <div v-for="(picture,pic_index) in pic" v-bind:key="pic_index">
+                    <img
+                         style="width: 100px; height: 100px;"
+                         v-bind:src="'data:image/png;base64,' + picture"
+                    >
+                  </div>
+                </div>
               </tr>
               <div class="blank"></div>
               <span class="butt" style="width: 100%;margin-left: 5%">
                 <td>
                   <div v-if="item.like_flag === '1'">
-                    <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
-                      <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
-                    </button>
-                  </div>
-                  <div v-else>
-                    <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
-                      <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
-                    </button>
+<!--                    <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
+<!--                      <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <div v-else>-->
+<!--                    <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
+<!--                      <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
+<!--                    </button>-->
                   </div>
                 </td>
                 <td style="width: 2%;"></td>
@@ -199,7 +208,10 @@ export default {
       comment_number: 0,
       user_info: {},
       submit_flag: false,
-      relevant_question: []
+      relevant_question: [],
+      pic: {},
+      pic_number: 0,
+      pic_flag: false
     }
   },
   created () {
@@ -223,6 +235,21 @@ export default {
     }).catch((response) => {
       console.log(response)
     })
+  },
+  mounted () {
+    this.axios.post('http://localhost:8080/imglist').then((response) => {
+      this.$store.commit('setImgList', response.data.entity)
+    }).catch((response) => {
+      console.log(response)
+    })
+    let imgList = this.$store.getters.getImgList
+    for (let i = 0; i < imgList.length; i++) {
+      if (this.item.question_id === imgList[i].toString()) {
+        this.pic_flag = true
+        this.pic = JSON.parse(localStorage.getItem(this.item.question_id))
+        this.pic_number = this.pic.length
+      }
+    }
   },
   methods: {
     foldText () {

@@ -4,11 +4,11 @@
 <!--      <div class="foreground" style="width: 1000%;margin-top:-10%;height: 2000px;float: right;position: fixed;"></div>-->
 <!--    </div>-->
     <div class="aside">
-      <br>
-      <AskQuestion style="margin-left: 10%"></AskQuestion>
-      <br>
-      <br>
-      <TopContributors v-blur = this.$store.getters.getBlur style="width: 90%;padding-left:60px" ></TopContributors>
+    <br>
+    <AskQuestion style="padding-left: 5px"></AskQuestion>
+    <br>
+    <br>
+    <TopContributors v-blur = this.$store.getters.getBlur style="width: 90%;padding-left:60px" ></TopContributors>
     </div>
 
   </div>
@@ -28,7 +28,7 @@ export default {
 
 <style scoped>
 .aside{
-  width: 31%;
+  width: 28%;
   position: fixed;
   margin-left: 3.5%;
 }
