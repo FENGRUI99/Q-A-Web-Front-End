@@ -4,7 +4,7 @@
         <swiper class="swiper" :options="swiperOption">
           <swiper-slide class="swiper-slide" v-for="swlp in nameList2" :key="swlp.id">
               <h1>Top louder</h1>
-            <h3 class="small" style="line-height: 60px"><a-icon type="sound" theme="twoTone" two-tone-color="red" />   {{swlp.title}}</h3>
+            <h3 class="small" style="line-height: 60px"> {{swlp.title}}<a-icon type="rocket" theme="twoTone" two-tone-color="#eb2f96" :style="{ fontSize: '30px', color: 'blue' }" /></h3>
           </swiper-slide>
           <div class="swiper-pagination"  slot="pagination"></div>   <!-- 分页 -->
         </swiper>
@@ -57,7 +57,7 @@ export default {
         //
         // 自动轮播
         autoplay: {
-          delay: 1000
+          delay: 500
         },
         // 开启循环模式
         loop: true,
