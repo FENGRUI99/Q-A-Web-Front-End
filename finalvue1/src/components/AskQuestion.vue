@@ -32,39 +32,92 @@
 <!--      details about the question-->
     <el-collapse-transition>
       <div v-show="describeIsHidden">
-        <div style="width: 100%;height: auto;">
+        <div style="width: 100%;height: auto;text-align: left">
           <div class="blank"></div>
           <el-upload
-            class=""
             action="#"
-            :show-file-list="true"
+            list-type="picture-card"
+            :before-upload="beforeAvatarUpload"
             :auto-upload="false"
             :on-preview="handlePreview"
             :on-remove="removeFile"
-            :file-list="fileList"
             :http-request="uploadFile"
             :on-change="handleChange"
             :on-exceed="handleExceed"
-            list-type="picture">
-            <table style="width: 200%;margin-left: -45%">
-              <td style="text-align: left;">
-                <el-select
-                  style="width: 88%;"
-                  multiple
-                  :multiple-limit=2
-                  v-model="value" placeholder="Choose">
-                  <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
-                  </el-option>
-                </el-select>
-              </td>
-              <td style="width: 25%;"><i class="el-icon-picture" style="font-size: 20px;position:relative;"></i></td>
-              <!--            <div slot="tip" class="el-upload__tip"> Only .jpg or .png documents，no more than 500kb</div>-->
-            </table>
+            :before-remove="beforeRemove"
+            :file-list="fileList"
+            multiple
+            :limit="3"
+          >
+            <i slot="default" class="el-icon-plus"></i>
+            <div slot="file" slot-scope="{file}">
+              <img
+                class="el-upload-list__item-thumbnail"
+                :src="file.url" alt=""
+              >
+              <span class="el-upload-list__item-actions">
+        <span
+          class="el-upload-list__item-preview"
+          @click="handlePictureCardPreview(file)"
+        >
+          <i class="el-icon-zoom-in"></i>
+        </span>
+        <span
+          v-if="!disabled"
+          class="el-upload-list__item-delete"
+          @click="handleRemove(file)"
+        >
+          <i class="el-icon-delete"></i>
+        </span>
+      </span>
+            </div>
           </el-upload>
+          <el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="dialogImageUrl" alt="">
+          </el-dialog>
+          <el-select
+            style="width: 88%;"
+            multiple
+            :multiple-limit=2
+            v-model="value" placeholder="Choose">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+<!--          <el-upload-->
+<!--            class=""-->
+<!--            action="#"-->
+<!--            :show-file-list="true"-->
+<!--            :auto-upload="false"-->
+<!--            :on-preview="handlePreview"-->
+<!--            :on-remove="removeFile"-->
+<!--            :file-list="fileList"-->
+<!--            :http-request="uploadFile"-->
+<!--            :on-change="handleChange"-->
+<!--            :on-exceed="handleExceed"-->
+<!--            list-type="picture">-->
+<!--            <table style="width: 200%;margin-left: -45%">-->
+<!--              <td style="text-align: left;">-->
+<!--                <el-select-->
+<!--                  style="width: 88%;"-->
+<!--                  multiple-->
+<!--                  :multiple-limit=2-->
+<!--                  v-model="value" placeholder="Choose">-->
+<!--                  <el-option-->
+<!--                    v-for="item in options"-->
+<!--                    :key="item.value"-->
+<!--                    :label="item.label"-->
+<!--                    :value="item.value">-->
+<!--                  </el-option>-->
+<!--                </el-select>-->
+<!--              </td>-->
+<!--              <td style="width: 25%;"><i class="el-icon-picture" style="font-size: 20px;position:relative;"></i></td>-->
+<!--              &lt;!&ndash;            <div slot="tip" class="el-upload__tip"> Only .jpg or .png documents，no more than 500kb</div>&ndash;&gt;-->
+<!--            </table>-->
+<!--          </el-upload>-->
           <div class="blank"></div>
           <el-input
             type="textarea"
@@ -116,6 +169,9 @@ export default {
       textarea: '',
       text: '',
       fileList: [],
+      dialogImageUrl: '',
+      dialogVisible: false,
+      disabled: false,
       options: [{
         value: '1',
         label: 'Test & Coursework'
@@ -148,6 +204,40 @@ export default {
     }
   },
   methods: {
+    handleRemove (file) {
+      if (this.fileList.indexOf(this.baseImg + file.url)) {
+        this.fileList.splice(this.fileList.indexOf(this.baseImg + file.url), 1)
+      }
+      // 删除
+      for (let key in file) {
+        delete file[key]
+      }
+    },
+    handleExceed (files, fileList) {
+      this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
+    },
+    beforeRemove (file, fileList) {
+      return this.$confirm(`确定移除 ${file.name} ？`)
+    },
+    handleDownload (file) {
+      console.log(file)
+    },
+    beforeAvatarUpload (file) {
+      const isJPG = file.type === 'image/jpeg'
+      const isLt2M = file.size / 1024 / 1024 < 2
+
+      if (!isJPG) {
+        this.$message.error('上传头像图片只能是 JPG 格式!')
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 2MB!')
+      }
+      return isJPG && isLt2M
+    },
+    handlePictureCardPreview (file) {
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
+    },
     foldText () {
       if (this.isHidden === true) {
         this.isHidden = false
@@ -221,9 +311,6 @@ export default {
       this.blurBackG()
       this.textarea = ''
       this.text = ''
-    },
-    handleExceed (files, fileList) {
-      this.$message.warning('文件个数超出限制')
     }
   },
   watch: {
@@ -251,11 +338,12 @@ export default {
   font-weight: bolder;
 }
 .askQ{
-  width: 150%;
+  width: 160%;
   background: #f6f6f6;
   position: absolute;
   margin-left: 92%;
   margin-top: -100px;
+  border-radius: 10px;
   z-index: 999;
   padding: 5%;
   box-shadow:5px 5px 10px #797676

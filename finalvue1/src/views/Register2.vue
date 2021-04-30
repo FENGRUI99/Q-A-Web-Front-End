@@ -43,9 +43,10 @@ export default {
   },
   data () {
     return {
-      vedioCanPlay: false,
       logo: require('../assets/logo1.png'),
-      imgSrc: require('../assets/background.jpg')
+      imgSrc: require('../assets/background.jpg'),
+      fixStyle: '',
+      vedioCanPlay: false
     }
   },
   methods: {
@@ -85,7 +86,7 @@ export default {
           'margin-bottom': 'initial'
         }
       }
-      window.onresize()
+      // window.onresize()
     }
   }
 }

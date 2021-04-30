@@ -12,9 +12,9 @@
       <img :src="logo"  alt="" />
     </div>
     <div class="logo" style="margin-top: 400px;">
-      <div style="width: 55%; margin-left: 8%; z-index: 10;color: white;font-size: 30px;display: inline-block;font-family: 'DIN Alternate';">
+      <div style="width: 100%; margin-left: 8%; z-index: 10;color: white;font-size: 30px;display: inline-block;font-family: 'DIN Alternate';">
         <div style="font-size: 20px;z-index: 10;color: white"> Click to continue</div>
-        <div style="margin-right: 3%;display: inline-block; font-family: 'helvetica 50';">Over</div>
+        <div style="margin-right: 3%;display: inline-block; font-family: 'helvetica';font-size: 40px;font-weight: lighter">Over</div>
         <li class="number">
           <span class="animate" id='digit1'>1 2 3 4 5 6 7 8 9 0</span>
         </li>
@@ -27,8 +27,8 @@
         <li class="number">
           <span class="animate4" id='digit4'>1 2 3 4 5 6 7 8 9 0</span>
         </li>
-        <div style="display: inline-block; font-family: 'helvetica 50';">questions proposed and got solved</div>
-        <div style="display: inline-block; font-family: 'helvetica 50';">  Now it's your turn to ask louder here </div>
+        <div style="display: inline-block; font-family: 'helvetica';font-size: 40px;font-weight: lighter">questions proposed and got solved</div>
+        <div style="display: inline-block; font-family: 'helvetica';font-size: 40px;font-weight: lighter">  Now it's your turn to ask louder here </div>
       </div>
     </div>
   </div>
@@ -155,14 +155,15 @@ div{
   overflow: hidden;
   line-height: 1em;
   display: inline-block;
-  font-size: 30px;
   margin-top: 0px;
   padding: -5px;
-  font-family: "helvetica 50";
+  font-family: 'helvetica';
+  font-size: 80px;
+  font-weight: lighter;
   position: relative;
   color: white;
-  margin-left: -8px;
-  margin-right: -8px;
+  margin-left: -20px;
+  margin-right: -20px;
 }
 span {
   position: relative;

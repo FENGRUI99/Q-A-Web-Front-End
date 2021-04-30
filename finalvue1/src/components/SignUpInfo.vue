@@ -94,7 +94,6 @@ export default {
       this.axios.post('http://localhost:8080/checkID', {
         user_id: this.user_id
       }).then((response) => {
-        alert(response.data.code)
         if (response.data.code === '400') {
           alert('The id has already been used')
         }
