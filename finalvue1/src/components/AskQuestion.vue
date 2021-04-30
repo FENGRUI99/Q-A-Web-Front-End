@@ -1,17 +1,17 @@
 <template>
-<div>
+<div style="width: 80%;border-radius: 10px">
   <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
     <div class="foreground" style="width: 1000%;margin-top:-10%;margin-left:-100%;height: 2000px;float: right;position: absolute;"></div>
     </div>
   <v-btn
-    color= #A5D6A7
+    color= #d4974e
     elevation="3"
     @click="foldText"
     x-large
     id="ask">
-    <table style="width: 100%" >
-      <tr style="font-size:30px; text-align: left"> Add </tr>
-      <tr style="font-size:30px;font-weight: bolder"> Questions </tr>
+    <table style="width: 60%" >
+      <tr style="font-size:30px; text-align: left;color:white "> Add </tr>
+      <tr style="font-size:30px;font-weight: bolder ;color:white"> Questions </tr>
     </table>
   </v-btn>
   <ul v-bind:hidden="isHidden" class="askQ" v-blur = false>
@@ -278,7 +278,7 @@ li{
   width: 200px;
   height: 100px;
   border-radius: 4px;
-  background-color: #409EFF;
+  background-color: #d4974e;
   text-align: center;
   color: #fff;
   padding: 40px 20px;
