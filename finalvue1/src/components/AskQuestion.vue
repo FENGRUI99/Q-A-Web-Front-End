@@ -123,7 +123,7 @@
             type="textarea"
             placeholder="Write your description"
             v-model="text"
-            maxlength="200"
+            maxlength="400"
             show-word-limit
             resize="none"
             clearable=""
