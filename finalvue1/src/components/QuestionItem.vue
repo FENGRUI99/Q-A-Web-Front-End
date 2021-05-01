@@ -38,7 +38,7 @@
                 <li style="text-align: right;float: right;display:inline-block;margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
                     :key="tag"
                     effect="plain">
-                  <el-tag type="success" style="font-weight: bold;font-size: 13px;text-align: left;margin-top: 5px;border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454;"
+                  <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454;"
                   >  {{ tag }}
                   </el-tag>
                 </li>
@@ -490,7 +490,7 @@ li{
   transform: scale(0.9);
   color: #dd4d24;
 }
-.fm { list-style-type: none;text-align: left;}/*设置盒子的行高，去掉标记，设置背景颜色*/
+.fm { list-style-type: none;text-align: left;margin-left: -8%}/*设置盒子的行高，去掉标记，设置背景颜色*/
 .fm a { text-align:left;}/*设置A标签为块元素不显示，宽度，居中*/
 .fm a:hover { color:#CCC;text-decoration:none;font-weight:bold; }  /* 当有鼠标悬停在链接上的颜色 */
 .fm li ul {  list-style-type: none; left: -999em;  }
