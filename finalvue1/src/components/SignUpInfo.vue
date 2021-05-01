@@ -2,15 +2,15 @@
   <div>
     <br>
 <!--    <ul style="float:left; border: 3px;border-color: white #cccccc white white;border-style:solid;padding-right: 3%; padding-bottom: 15%;text-align: left" class="p">-->
-    <li style="float: left;">Student ID&nbsp;&nbsp;</li><div style="float: left;" id = idCheck></div>
+    <li style="float: left;">Student ID&nbsp;&nbsp;</li><div v-show="user_id.length !== 0" style="float: left;" id = idCheck></div><div style="float: left; color: darkred">&nbsp;{{id_alert}}</div>
     <li><el-input @blur="checkDupID" v-model ="user_id" type = "text" id="user_id" name = "user_id" pattern = "^\d{7}$" placeholder="Enter your student ID" required></el-input></li>
 <!--    -->
-    <li style="float: left; width: 45%"><div style="float: left">Password&nbsp;&nbsp;</div><div style="float: left" id = pswCheck></div></li><li style="float: left;width:45%;margin-left: 10%"><div style="float: left">Confirm&nbsp;&nbsp;</div><div style="float: left;" id = psw1check></div></li>
-    <li style="float: left; width: 45%"><el-input v-model ="user_pwd" type="password" id="user_psw" name="user_psw" pattern = "^[A-Za-z0-9]{4,7}?$" placeholder="Password" required></el-input></li>
+    <li style="float: left; width: 45%"><div style="float: left">Password&nbsp;&nbsp;</div><div style="float: left" v-show="user_pwd.length !== 0" id = pswCheck></div><div style="float: left; color: darkred">&nbsp;{{psw_alert}}</div></li><li style="float: left;width:45%;margin-left: 10%"><div style="float: left">Confirm&nbsp;&nbsp;</div><div v-show="user_pwd1.length !== 0" style="float: left;" id = psw1check></div><div style="float: left; color: darkred">&nbsp;{{psw1_alert}}</div></li>
+    <li style="float: left; width: 45%"><el-input v-model ="user_pwd" type="password" id="user_psw" name="user_psw" pattern = "^[A-Za-z0-9]{4,30}?$" placeholder="Password" required></el-input></li>
 <!--    -->
     <li style="float: left; width: 45%;margin-left: 10%"><el-input v-model ="user_pwd1" type="password" id="user_psw1" name="user_psw1" placeholder="Type again" required></el-input></li>
     <div style="clear: both"></div>
-    <li style="float: left;">Username&nbsp;&nbsp;</li><div style="float: left;" id = namecheck></div>
+    <li style="float: left;">Username&nbsp;&nbsp;</li><div style="float: left;" v-show="user_name.length !== 0" id = namecheck></div><div style="float: left; color: darkred">&nbsp;{{name_alert}}</div>
     <li><el-input v-model ="user_name" type="text" id="user_name" name="user_name" pattern = "^[a-zA-Z0-9_-]{4,16}$" placeholder="4-12 letters" required></el-input></li>
     <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div><div style="clear: both"></div>
     <li style="float: left"><el-input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+$" placeholder="Exp xx.xx18" style="width:45%;float: left" required></el-input><span style="float: right;margin-top:5%;text-align: inherit"> @student.xjtlu.edu.cn</span></li>
@@ -31,7 +31,7 @@
         {{ count }}s</v-btn>
     </li>
 <!--    <li style="float: right; width: 45%; margin-left: 10%"><el-button @click="sendEmail" style="padding: 5px; opacity: 4; font-size: large; margin-top: 5%;border-radius: 2px">&nbsp;send Email&nbsp;</el-button></li><br/>-->
-    <li style=" float: left; margin-left: 127%;margin-top: 0.4%">
+    <li style=" float: left; margin-left: 141%;margin-top: -15%">
         <v-btn
           color="success"
           @click="regiser"
@@ -56,7 +56,11 @@ export default {
       validation: '',
       show: true,
       count: '',
-      timer: null
+      timer: null,
+      id_alert: '',
+      psw_alert: '',
+      psw1_alert: '',
+      name_alert: ''
     }
   },
   watch: {
@@ -110,9 +114,11 @@ export default {
       console.log(this.user_id.length)
       if (this.user_id.length === 0) {
         id.className = '-status nothing'
+        this.id_alert = ''
       } else if (reg.test(this.user_id)) {
         id.className = '-status correct'
       } else {
+        this.id_alert = 'not correct format'
         id.className = '-status incorrect'
       }
     },
@@ -121,7 +127,10 @@ export default {
         user_id: this.user_id
       }).then((response) => {
         if (response.data.code === '400') {
-          alert('The id has already been used')
+          // alert('The id has already been used')
+          this.id_alert = 'The id has already been used'
+        } else {
+          this.id_alert = ''
         }
       }).catch((response) => {
         console.log(response)
@@ -137,9 +146,16 @@ export default {
       }
       if (this.user_pwd.length === 0) {
         id.className = '-status nothing'
+        this.psw_alert = ''
       } else if (reg.test(this.user_pwd)) {
+        this.psw_alert = ''
         id.className = '-status correct'
       } else {
+        if (this.user_pwd.length < 4) {
+          this.psw_alert = 'too short'
+        } else {
+          this.psw_alert = 'too long'
+        }
         id.className = '-status incorrect'
       }
     },
@@ -148,9 +164,18 @@ export default {
       let reg = /^[A-Za-z0-9]{4,30}?$/
       if (this.user_pwd1.length === 0) {
         id.className = '-status nothing'
+        this.psw1_alert = ''
       } else if (this.user_pwd === this.user_pwd1 && reg.test(this.user_pwd)) {
         id.className = '-status correct'
+        this.psw1_alert = ''
       } else {
+        if (this.user_pwd1.length < 4) {
+          this.psw1_alert = 'too short'
+        } else if (this.user_pwd1.length > 30) {
+          this.psw1_alert = 'too long'
+        } else {
+          this.psw1_alert = 'not same'
+        }
         id.className = '-status incorrect'
       }
     },
@@ -159,9 +184,16 @@ export default {
       let reg = /^[a-zA-Z0-9_-]{4,12}$/
       if (this.user_name.length === 0) {
         id.className = '-status nothing'
+        this.name_alert = ''
       } else if (reg.test(this.user_name)) {
         id.className = '-status correct'
+        this.name_alert = ''
       } else {
+        if (this.user_name.length < 4) {
+          this.name_alert = 'too short'
+        } else {
+          this.name_alert = 'too long'
+        }
         id.className = '-status incorrect'
       }
     },
