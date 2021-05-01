@@ -9,7 +9,6 @@
     <li style="float: left; width: 45%"><el-input v-model ="user_pwd" type="password" id="user_psw" name="user_psw" pattern = "^[A-Za-z0-9]{4,7}?$" placeholder="Password" required></el-input></li>
 <!--    -->
     <li style="float: left; width: 45%;margin-left: 10%"><el-input v-model ="user_pwd1" type="password" id="user_psw1" name="user_psw1" placeholder="Type again" required></el-input></li>
-    <!--    -->
     <div style="clear: both"></div>
     <li style="float: left;">Username&nbsp;&nbsp;</li><div style="float: left;" id = namecheck></div>
     <li><el-input v-model ="user_name" type="text" id="user_name" name="user_name" pattern = "^[a-zA-Z0-9_-]{4,16}$" placeholder="4-12 letters" required></el-input></li>
