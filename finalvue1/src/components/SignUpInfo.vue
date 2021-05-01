@@ -18,14 +18,21 @@
     <!--    -->
     <li style="float: left;">Verification Code&nbsp;&nbsp;</li><div style="clear: both"></div>
     <li style="float: left; width: 45%"><el-input v-model ="validation" type="text" placeholder="Code" required></el-input></li>
-    <li><v-btn
+    <li>
+      <v-btn v-show = "show"
       color="success"
       @click="sendEmail"
       style="float: right"
     >
-      Send Email</v-btn></li>
+      Send Email</v-btn>
+      <v-btn v-show = "!show"
+             color="success"
+             style="float: right"
+      disabled>
+        {{ count }}s</v-btn>
+    </li>
 <!--    <li style="float: right; width: 45%; margin-left: 10%"><el-button @click="sendEmail" style="padding: 5px; opacity: 4; font-size: large; margin-top: 5%;border-radius: 2px">&nbsp;send Email&nbsp;</el-button></li><br/>-->
-    <li style=" float: right; margin-right: -127%;margin-top: 0.4%">
+    <li style=" float: left; margin-left: 127%;margin-top: 0.4%">
         <v-btn
           color="success"
           @click="regiser"
@@ -47,7 +54,10 @@ export default {
       user_pwd1: '',
       user_name: '',
       user_mail: '',
-      validation: ''
+      validation: '',
+      show: true,
+      count: '',
+      timer: null
     }
   },
   watch: {
@@ -78,6 +88,23 @@ export default {
     }
   },
   methods: {
+    getCode () {
+      console.log(1111)
+      const TIME_COUNT = 30
+      if (!this.timer) {
+        this.count = TIME_COUNT
+        this.show = false
+        this.timer = setInterval(() => {
+          if (this.count > 0 && this.count <= TIME_COUNT) {
+            this.count--
+          } else {
+            this.show = true
+            clearInterval(this.timer)
+            this.timer = null
+          }
+        }, 1000)
+      }
+    },
     checkID: function () {
       let id = document.getElementById('idCheck')
       let reg = /^\d{7}$/
@@ -179,6 +206,20 @@ export default {
       }).catch((response) => {
         console.log(response)
       })
+      const TIME_COUNT = 30
+      if (!this.timer) {
+        this.count = TIME_COUNT
+        this.show = false
+        this.timer = setInterval(() => {
+          if (this.count > 0 && this.count <= TIME_COUNT) {
+            this.count--
+          } else {
+            this.show = true
+            clearInterval(this.timer)
+            this.timer = null
+          }
+        }, 1000)
+      }
     }
   }
 }
