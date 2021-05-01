@@ -249,6 +249,14 @@ export default {
       this.dialogImageUrl = file.url
       this.dialogVisible = true
     },
+    splitComma () {
+      let tagsList = this.value.toString().split(',')
+      let ans = ''
+      for (let i = 0; i < tagsList.length; i++) {
+        ans += tagsList[i] + ' '
+      }
+      return ans
+    },
     foldText () {
       if (this.isHidden === true) {
         this.isHidden = false
@@ -295,9 +303,9 @@ export default {
           'user_name': JSON.parse(sessionStorage.getItem('user_info')).user_name,
           'question_description': this.textarea,
           'question_detail': this.text,
-          'question_tags': this.value.toString()
+          'question_tags': this.splitComma(this.value)
         }).then(res => {
-          if (res.data.code === 200) {
+          if (res.data.code === '200') {
             alert('finish')
           }
         }).catch(error => {
@@ -308,9 +316,9 @@ export default {
         formData.append('user_name', JSON.parse(sessionStorage.getItem('user_info')).user_name)
         formData.append('question_description', this.textarea)
         formData.append('question_detail', this.text)
-        formData.append('question_tags', '1,3')
+        formData.append('question_tags', this.splitComma(this.value))
         this.axios.post('http://localhost:8080/publishQuestionWP', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
-          if (res.data.code === 200) {
+          if (res.data.code === '200') {
             alert('finish')
           }
         }).catch(error => {

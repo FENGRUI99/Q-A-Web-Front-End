@@ -3,7 +3,7 @@
     <div>  <el-backtop style="background-color: #eef5e3;color:#51bd20;border-radius: 8px"></el-backtop></div>
     <button @click="test">test for picture loading</button>
     <div v-if="this.$store.getters.getIsFind === true">
-      <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
+      <div v-for="(item, key, index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
           <td style="width: 100%;">
             <div style="margin: 1% 3%;width: 97%;">
@@ -13,7 +13,8 @@
                        style="width: 100px; height: 100px;"
                        v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                   >
-                {{item.question_detail.substring(0,200) + '...'}}
+<!--                {{item.question_detail.substring(0,200) + '...'}}-->
+                {{item.question_detail}}
               </li>
               <li style="float: left;">
                 <UL class=fm>
@@ -46,7 +47,7 @@
           </td>
           <td style="margin:0 5px 5px 5px;float:right;width: 120px;" >
             <div v-bind:key="keyValue">
-              <div v-if="getLikeFlag(index) === '1'">
+              <div v-if="item.like_flag === '1'">
                 <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
                   <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
                 </button>
@@ -61,18 +62,7 @@
             <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
               <table>
              <td><i class="el-icon-edit"></i></td>
-          <td><div v-if="item.commentList.length === 1">
-                <div v-if="item.commentList[0].comment_detail === null">
-                  <li>{{0}}</li>
-                </div>
-                <div v-else>
-                  <li>{{item.commentList.length}}</li>
-                </div>
-              </div>
-              <div v-else>
-                <li>{{item.commentList.length}}</li>
-              </div>
-          </td>
+                <td>{{item.number_comment}}</td>
               </table>
             </el-button>
           </td>
@@ -131,21 +121,22 @@ export default {
     }
   },
   beforeUpdate: function () {
-    let num = 0
-    for (let i = 0; i < this.$store.state.list.length; i++) {
-      for (let j = 0; j < this.$store.state.liked_list.length; j++) {
-        if (this.$store.state.list[i].question_id.toString() === this.$store.state.liked_list[j]) {
-          num += 1
-          this.$store.state.list[i].like_flag = '1'
-          break
-        }
-        // else if (list[i].like_flag === true) {
-        //   this.$store.state.list[i].like_flag = false
-        // }
-      }
-      if (num >= this.$store.state.liked_list.length) {
-        break
-      }
+    // let num = 0
+    // for (let i = 0; i < this.$store.state.list.length; i++) {
+    //   for (let j = 0; j < this.$store.state.liked_list.length; j++) {
+    //     if (this.$store.state.list[i].question_id.toString() === this.$store.state.liked_list[j]) {
+    //       num += 1
+    //       this.$store.state.list[i].like_flag = '1'
+    //       break
+    //     }
+    //   }
+    //   if (num >= this.$store.state.liked_list.length) {
+    //     break
+    //   }
+    // }
+    let likedList = this.$store.getters.getLikedList
+    for (let i = 0; i < likedList.length; i++) {
+      this.$store.state.list[i].like_flag = '1'
     }
   },
   created () {
@@ -154,6 +145,7 @@ export default {
     this.axios.post('http://localhost:8080/listQuestion', {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
+      console.log(response.data.entity)
       this.$store.commit('setList', response.data.entity)
     }).catch((response) => {
       console.log(response)
@@ -179,6 +171,7 @@ export default {
         this.refresh()
       }, 6000)
     }
+    console.log('list is: ' + this.$store.state.list)
   },
   methods: {
     mouseOver () {
@@ -246,10 +239,10 @@ export default {
       })
     },
     liked (item) {
-      let list = this.$store.getters.getLikedList
+      let likedlist = this.$store.getters.getLikedList
       let flag = false
-      for (let i = 0; i < list.length; i++) {
-        if (list[i].toString() === item.question_id.toString()) {
+      for (let i = 0; i < likedlist.length; i++) {
+        if (likedlist[i].toString() === item.question_id.toString()) {
           this.$store.commit('changeList', [item.question_id, -1])
           this.$store.commit('changeLikedList', [false, item.question_id])
           flag = true
@@ -276,7 +269,7 @@ export default {
       }
     },
     setQuestion_tags_en (msg) {
-      let tagsList = msg.toString().split(',')
+      let tagsList = msg.toString().split(' ')
       let ans = []
       for (let i = 0; i < tagsList.length; i++) {
         if (tagsList[i] === '1') {
@@ -344,9 +337,6 @@ export default {
         this.keyValue += 1
         console.log(this.keyValue)
       }
-    },
-    getLikeFlag (index) {
-      return this.$store.getters.getList[index].like_flag
     },
     test () {
       localforage.clear()

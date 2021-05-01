@@ -108,7 +108,7 @@
           <br>
           <!--          Comments-->
           <div>
-            <!--            {{item}}-->
+                        {{item.commentList}}
             <table class="intro">
               <div v-if="item.commentList.length === 1">
                 <!--no answer remain-->
@@ -309,10 +309,10 @@ export default {
       })
     },
     liked (item) {
-      let list = this.$store.getters.getLikedList
+      let likedlist = this.$store.getters.getLikedList
       let flag = false
-      for (let i = 0; i < list.length; i++) {
-        if (list[i].toString() === item.question_id.toString()) {
+      for (let i = 0; i < likedlist.length; i++) {
+        if (likedlist[i].toString() === item.question_id.toString()) {
           this.$store.commit('changeList', [item.question_id, -1])
           this.$store.commit('changeLikedList', [false, item.question_id])
           this.item.likes -= 1
@@ -344,7 +344,7 @@ export default {
       sessionStorage.setItem('item', JSON.stringify(this.item))
     },
     setQuestion_tags_en (msg) {
-      let tagsList = msg.toString().split(',')
+      let tagsList = msg.toString().split(' ')
       let ans = []
       for (let i = 0; i < tagsList.length; i++) {
         if (tagsList[i] === '1') {
