@@ -85,7 +85,7 @@ export default {
           'margin-bottom': 'initial'
         }
       }
-      window.onresize()
+      // window.onresize()
     }
   },
   destroyed () {

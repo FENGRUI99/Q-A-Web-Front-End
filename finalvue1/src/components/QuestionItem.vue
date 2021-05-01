@@ -13,7 +13,7 @@
                           style="width: 100px; height: 100px;"
                           v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                 >
-                {{item.question_detail}}
+                {{item.question_detail.substring(0,200) + '...'}}
               </li>
               <li style="float: left;">
                 <UL class=fm>
@@ -139,11 +139,12 @@ export default {
     }
   },
   created () {
+  },
+  mounted: function () {
     this.axios.post('http://localhost:8080/listQuestion', {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setList', response.data.entity)
-      console.log(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -156,11 +157,10 @@ export default {
     })
     this.axios.post('http://localhost:8080/imglist').then((response) => {
       this.$store.commit('setImgList', response.data.entity)
+      sessionStorage.setItem('imglist', JSON.stringify(response.data.entity))
     }).catch((response) => {
       console.log(response)
     })
-  },
-  mounted: function () {
     window.addEventListener('scroll', this.handleScroll, true)
     if (this.timer) {
       clearInterval(this.timer)
@@ -344,8 +344,6 @@ export default {
   watch: {
     loading: {
       handler (val, oldVal) {
-        console.log(val, oldVal)
-        console.log('-----')
         this.count += 2
       },
       deep: true

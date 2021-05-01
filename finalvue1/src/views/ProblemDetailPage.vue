@@ -16,16 +16,21 @@
               </tr>
               <div class="blank"></div>
               <tr id="detail">
-                <td class="top_chart">{{item.question_detail}}</td>
-                {{pic_number}}--cfr
-                <div v-if="pic_flag === true">
-                  <div v-for="(picture,pic_index) in pic" v-bind:key="pic_index">
-                    <img
-                         style="width: 100px; height: 100px;"
-                         v-bind:src="'data:image/png;base64,' + picture"
-                    >
+                <div v-if="viewAll_flag === false">
+                  <td class="top_chart">{{item.question_detail.substring(0,40) + '...'}}</td>
+                </div>
+                <div v-else>
+                  <td class="top_chart">{{item.question_detail}}</td>
+                  <div v-if="pic_flag === true">
+                    <div v-for="(picture,pic_index) in pic" v-bind:key="pic_index">
+                      <img
+                        style="width: 100px; height: 100px;"
+                        v-bind:src="'data:image/png;base64,' + picture"
+                      >
+                    </div>
                   </div>
                 </div>
+                <td @click="viewAll">view all</td>
               </tr>
               <div class="blank"></div>
               <span class="butt" style="width: 100%;margin-left: 5%">
@@ -211,7 +216,8 @@ export default {
       relevant_question: [],
       pic: {},
       pic_number: 0,
-      pic_flag: false
+      pic_flag: false,
+      viewAll_flag: false
     }
   },
   created () {
@@ -237,16 +243,27 @@ export default {
     })
   },
   mounted () {
-    this.axios.post('http://localhost:8080/imglist').then((response) => {
-      this.$store.commit('setImgList', response.data.entity)
-    }).catch((response) => {
-      console.log(response)
-    })
-    let imgList = this.$store.getters.getImgList
+    let imgList = JSON.parse(sessionStorage.getItem('imglist'))
+    if (imgList === null) {
+      this.axios.post('http://localhost:8080/imglist').then((response) => {
+        imgList = response.data.entity
+      }).catch((response) => {
+        console.log(response)
+      })
+    }
     for (let i = 0; i < imgList.length; i++) {
       if (this.item.question_id === imgList[i].toString()) {
         this.pic_flag = true
         this.pic = JSON.parse(localStorage.getItem(this.item.question_id))
+        if (this.pic === null) {
+          this.axios.post('http://localhost:8080/img', {
+            request: this.item.question_id
+          }).then((response) => {
+            this.pic = response.data.entity
+          }).catch((response) => {
+            console.log(response)
+          })
+        }
         this.pic_number = this.pic.length
       }
     }
@@ -280,7 +297,6 @@ export default {
       }).catch((response) => {
         console.log(response)
       })
-      // location.reload()
     },
     liked (item) {
       let list = this.$store.getters.getLikedList
@@ -351,6 +367,13 @@ export default {
     toAnotherQuestion (index) {
       sessionStorage.setItem('item', JSON.stringify(this.relevant_question[index]))
       location.reload()
+    },
+    viewAll () {
+      if (this.viewAll_flag === false) {
+        this.viewAll_flag = true
+      } else {
+        this.viewAll_flag = false
+      }
     }
   }
 }
