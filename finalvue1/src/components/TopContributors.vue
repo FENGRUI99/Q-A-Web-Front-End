@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding-right: 20px">
 
 <!--      <el-carousel height="130px" width="200px" :autoplay="true" type="card" style="border-radius:10px; ">-->
 <!--        <el-carousel-item  width="300px" v-for="item in nameList2" :key="item" style="border-radius:10px;">-->
@@ -85,9 +85,8 @@ export default {
   }
   #t2{
     margin: auto;
-    background:#ffffff; width:60%; height:150px;
+    background:#ffffff; width:90%; height:150px;
     border-radius: 10px;
-  ;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, 0.04)
   }
   h1 {

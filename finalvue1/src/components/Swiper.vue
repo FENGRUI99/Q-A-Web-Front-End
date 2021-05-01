@@ -57,7 +57,7 @@ export default {
         //
         // 自动轮播
         autoplay: {
-          delay: 500
+          delay: 800
         },
         // 开启循环模式
         loop: true,
@@ -71,8 +71,8 @@ export default {
 
 <style scoped>
   .swiper-container{
-    width: 81%;
-    height: 150px;
+    width: 100%;
+    height: 180px;
   }
   .li{
     line-height: 10px;

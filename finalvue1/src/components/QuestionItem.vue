@@ -1,7 +1,7 @@
 <template>
   <div id="block" >
-    <div><el-backtop></el-backtop></div>
-    <el-button @click="test">click</el-button>
+    <div>  <el-backtop style="background-color: #eef5e3;color:#51bd20;border-radius: 8px"></el-backtop></div>
+    <button @click="test">test for picture loading</button>
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
@@ -82,7 +82,15 @@
       </div>
       <!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
 
-      <div ><a-skeleton :paragraph="{ rows: 3 ,width: [650,650,200]}" :title="{width: 450}" loading active style="border-radius:10px " class="abc loadingStyle" id = 'load'/></div>
+      <div class="demo-search-div">
+<!--        <a-skeleton :paragraph="{ rows: 3 ,width: [650,650,200]}" :title="{width: 450}" loading="false" active  class="abc loadingStyle" id = 'load'/>-->
+        <v-skeleton-loader
+          type="article"
+          style="border-radius:10px "
+          class="abc loadingStyle" id = 'load'
+        ></v-skeleton-loader>
+        <a-spin  />
+      </div>
 
     </div>
     <div v-else class = "abc loadingStyle">
@@ -163,13 +171,13 @@ export default {
       console.log(response)
     })
     window.addEventListener('scroll', this.handleScroll, true)
-    // if (this.timer) {
-    //   clearInterval(this.timer)
-    // } else {
-    //   this.timer = setInterval(() => {
-    //     this.refresh()
-    //   }, 6000)
-    // }
+    if (this.timer) {
+      clearInterval(this.timer)
+    } else {
+      this.timer = setInterval(() => {
+        this.refresh()
+      }, 6000)
+    }
   },
   methods: {
     mouseOver () {
@@ -199,7 +207,7 @@ export default {
         if (clientHeight + scrollTop + footerHeight > scrollHeight) {
           if (this.$store.getters.getList.length > this.count) {
             this.count += 5
-            this.sleep(300)
+            this.sleep(800)
           }
         }
       } else {
@@ -326,6 +334,10 @@ export default {
       }
       return false
     },
+    getPic0 (questionId) {
+      let pic = JSON.parse(localStorage.getItem(questionId))
+      return pic[0]
+    },
     refresh () {
       if (this.keyValue < 10) {
         this.keyValue += 1
@@ -353,7 +365,10 @@ export default {
 }
 </script>
 <style scoped>
-
+  .demo-search-div >>> .v-skeleton-loader__text{
+    height: 16px;
+    width: 80%;
+  }
 .Touchable{
   height: auto;
 }

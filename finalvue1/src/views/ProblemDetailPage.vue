@@ -1,6 +1,9 @@
 <template>
   <div style="background: #f6f6f6;">
-    <el-container>
+    <div class="background1" >
+      <img :src="imgSrc"  alt="" />
+    </div>
+    <el-container style="z-index: 10;position: relative" >
       <el-header style="height: 40px">
         <header123></header123>
       </el-header>
@@ -49,15 +52,13 @@
                   align="center"
                   justify="space-around"
                   >
-                  <v-btn
-                    tile
-                    color="success"
-                  >
-                    <v-icon left>
-                      mdi-pencil
-                    </v-icon>
-                    Edit
-                  </v-btn>
+                    <v-btn
+                      class="ma-2"
+                      depressed
+                      color="success">
+                           Answer
+                      <a-icon type="edit" theme="twoTone" two-tone-color="white" />
+                    </v-btn>
                   </v-row>
 <!--                <el-button plain size="medium" @click="foldText" type="success">-->
 <!--                  <i class="el-icon-edit"></i>-->
@@ -110,9 +111,12 @@
             <!--            {{item}}-->
             <table class="intro">
               <div v-if="item.commentList.length === 1">
+                <!--no answer remain-->
                 <div v-if="item.commentList[0].comment_detail === null">
                   <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number-1}} Answers</p>
+                  <p style="color: grey;font-weight: bold;font-size: 35px">Wait fot your Louder Voice . . .</p>
                 </div>
+                <!--have item-->
                 <div v-else>
                   <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>
                   <div v-if="item.commentList.length >= 1" style="margin-top:2px ">
@@ -120,7 +124,6 @@
                       <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>
                       <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
                       <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
-                      <el-divider id="divider"></el-divider>
                     </div>
                   </div>
                 </div>
@@ -129,13 +132,20 @@
                 <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>
                 <div v-if="item.commentList.length >= 1" style="margin-top:2px ">
                   <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
-                    <el-tag color="#81D454" id="tagItem1">{{index+1}}</el-tag>
-                    <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
-                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
-                    <el-divider></el-divider>
+                    <div v-if="index===item.commentList.length-1">
+                      <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
+                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
+                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
+                    </div>
+                    <div v-else>
+                      <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
+                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
+                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
+                      <el-divider></el-divider>
+                    </div>
                   </div>
                 </div>
-                <div>Waiting for More Louder Voice! </div>
+<!--                <div style="">Waiting for More Louder Voice! </div>-->
               </div>
             </table>
           </div>
@@ -167,7 +177,7 @@
                 <div @click="toAnotherQuestion(index)" style="padding-left: 10px">
                   <li style="cursor: pointer;">{{relevant.question_description}}</li>
                   <div v-if="relevant.commentList === null">
-                    <li>wait for your answer</li>
+                    <li >wait for your answer</li>
                   </div>
                   <li v-else  class="commit">
                     {{relevant.commentList.length}} Answers
@@ -212,7 +222,8 @@ export default {
       pic_number: 0,
       pic_flag: false,
       viewAll_flag: false,
-      tmpValue: null
+      tmpValue: null,
+      imgSrc: require('../assets/Image 2021-4-29 at 23.50.jpg')
     }
   },
   created () {
@@ -400,7 +411,7 @@ export default {
   margin-top: 1%;
   margin-left: 20px;
 }
-#tagItem1{
+.tagItem1{
   color: #fffdfd;
   font-size: 15px;
   font-weight: bolder;
@@ -535,5 +546,25 @@ li{
   border-style: solid;
   border-color: white;
   font-size: 18px;
+}
+.background1{
+  position:fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  zoom: 1.1;
+  transform:translateX(-100px);
+  /*transform:translatey(50px);*/
+  /*background-color: #fff;*/
+  /*background-repeat: repeat;*/
+  /*background-size: cover;*/
+  /*-webkit-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-position: center 0;*/
+  /*background-size: 100% 100%;*/
+  opacity:30%;
+
 }
 </style>

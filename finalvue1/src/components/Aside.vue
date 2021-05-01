@@ -5,9 +5,9 @@
 <!--    </div>-->
     <div class="aside">
     <br>
-    <AskQuestion style="padding-left: 5px"></AskQuestion>
+    <AskQuestion style=""></AskQuestion>
     <br>
-    <TopContributors v-blur = this.$store.getters.getBlur style="width: 90%;padding-left:60px" ></TopContributors>
+    <TopContributors v-blur = this.$store.getters.getBlur style="width: 90%;padding-left:40px" ></TopContributors>
     </div>
 
   </div>
