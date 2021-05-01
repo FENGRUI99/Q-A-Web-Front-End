@@ -195,6 +195,8 @@
 <script>
 import RealHead from '../components/realhead'
 import Footer from '../components/Footer'
+// import localforage from 'localforage'
+import localforage from 'localforage'
 export default {
   name: 'ProblemDetailPage',
   components: {
@@ -214,7 +216,8 @@ export default {
       pic: {},
       pic_number: 0,
       pic_flag: false,
-      viewAll_flag: false
+      viewAll_flag: false,
+      tmpValue: null
     }
   },
   created () {
@@ -251,7 +254,11 @@ export default {
     for (let i = 0; i < imgList.length; i++) {
       if (this.item.question_id === imgList[i].toString()) {
         this.pic_flag = true
-        this.pic = JSON.parse(localStorage.getItem(this.item.question_id))
+        localforage.getItem(this.item.question_id).then((value) => {
+          this.pic = JSON.parse(value)
+        }).catch(function (err) {
+          console.log(err)
+        })
         if (this.pic === null) {
           this.axios.post('http://localhost:8080/img', {
             request: this.item.question_id
@@ -261,7 +268,6 @@ export default {
             console.log(response)
           })
         }
-        console.log('pic = ' + this.pic)
         this.pic_number = this.pic.length
       }
     }

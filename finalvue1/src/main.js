@@ -16,7 +16,7 @@ import Vuetify from 'vuetify'
 import vuetify from '@/plugins/vuetify'
 // import 'vuetify/dist/vuetify.min.css'
 // import colors from 'vuetify/lib/util/colors'
-
+import localforage from 'localforage'
 Vue.config.productionTip = false
 
 Vue.use(router)
@@ -27,6 +27,8 @@ Vue.use(Antd)
 Vue.use(vBlur)
 Vue.use(Chat)
 Vue.use(Vuetify)
+Vue.use(localforage)
+
 const store = new Vuex.Store({
   state: {
     list: '',

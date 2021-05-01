@@ -1,7 +1,7 @@
 <template>
   <div id="block" >
-    <div>  <el-backtop></el-backtop></div>
-    <button @click="test">test for picture loading</button>
+    <div><el-backtop></el-backtop></div>
+    <el-button @click="test">click</el-button>
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
@@ -9,10 +9,10 @@
             <div style="margin: 1% 3%;width: 97%;">
               <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
               <li @click="toDetailPage(item)" align="left">
-                <img v-if="getImage(item.question_id) === true"
-                          style="width: 100px; height: 100px;"
-                          v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
-                >
+                  <img v-if="getImage(item.question_id) === true"
+                       style="width: 100px; height: 100px;"
+                       v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
+                  >
                 {{item.question_detail.substring(0,200) + '...'}}
               </li>
               <li style="float: left;">
@@ -101,7 +101,7 @@
 </template>
 
 <script>
-
+import localforage from 'localforage'
 export default {
   name: 'QuestionItem',
   data () {
@@ -117,7 +117,8 @@ export default {
       fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
       flag: false,
       keyValue: 0,
-      pic: {}
+      pic: {},
+      tmpValue: null
     }
   },
   beforeUpdate: function () {
@@ -162,13 +163,13 @@ export default {
       console.log(response)
     })
     window.addEventListener('scroll', this.handleScroll, true)
-    if (this.timer) {
-      clearInterval(this.timer)
-    } else {
-      this.timer = setInterval(() => {
-        this.refresh()
-      }, 6000)
-    }
+    // if (this.timer) {
+    //   clearInterval(this.timer)
+    // } else {
+    //   this.timer = setInterval(() => {
+    //     this.refresh()
+    //   }, 6000)
+    // }
   },
   methods: {
     mouseOver () {
@@ -303,27 +304,27 @@ export default {
       let imgList = this.$store.getters.getImgList
       for (let i = 0; i < imgList.length; i++) {
         if (questionId === imgList[i].toString()) {
-          if (localStorage.getItem(questionId) === null) {
-            this.axios.post('http://localhost:8080/img', {
-              request: questionId
-            }).then((response) => {
-              this.$set(this.pic, questionId, response.data.entity[0].toString())
-              let tmp = JSON.stringify(response.data.entity)
-              localStorage.setItem(questionId, tmp)
-            }).catch((response) => {
-              console.log(response)
-            })
-          } else {
-            this.$set(this.pic, questionId, this.getPic0(questionId))
-          }
+          localforage.getItem(questionId).then((value) => {
+            this.tmpValue = value
+            if (value === null) {
+              this.axios.post('http://localhost:8080/img', {
+                request: questionId
+              }).then((response) => {
+                this.$set(this.pic, questionId, response.data.entity[0].toString())
+                localforage.setItem(questionId, JSON.stringify(response.data.entity))
+              }).catch((response) => {
+                console.log(response)
+              })
+            } else {
+              this.$set(this.pic, questionId, JSON.parse(this.tmpValue)[0].toString())
+            }
+          }).catch(function (err) {
+            console.log(err)
+          })
           return true
         }
       }
       return false
-    },
-    getPic0 (questionId) {
-      let pic = JSON.parse(localStorage.getItem(questionId))
-      return pic[0]
     },
     refresh () {
       if (this.keyValue < 10) {
@@ -335,7 +336,7 @@ export default {
       return this.$store.getters.getList[index].like_flag
     },
     test () {
-      localStorage.clear()
+      localforage.clear()
     }
   },
   destroyed () {
