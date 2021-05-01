@@ -117,20 +117,22 @@ export default {
         this.id_alert = ''
       } else if (reg.test(this.user_id)) {
         id.className = '-status correct'
+        this.id_alert = ''
       } else {
         this.id_alert = 'not correct format'
         id.className = '-status incorrect'
       }
+      this.checkDupID()
     },
     checkDupID: function () {
       this.axios.post('http://localhost:8080/checkID', {
         user_id: this.user_id
       }).then((response) => {
+        console.log(2122)
         if (response.data.code === '400') {
           // alert('The id has already been used')
           this.id_alert = 'The id has already been used'
-        } else {
-          this.id_alert = ''
+          id.className = '-status incorrect'
         }
       }).catch((response) => {
         console.log(response)
