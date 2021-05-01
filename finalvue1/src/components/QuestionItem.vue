@@ -86,10 +86,11 @@
 <!--        <a-skeleton :paragraph="{ rows: 3 ,width: [650,650,200]}" :title="{width: 450}" loading="false" active  class="abc loadingStyle" id = 'load'/>-->
         <v-skeleton-loader
           type="article"
-          style="border-radius:10px "
+          style="border-radius:10px ;z-index: -1"
           class="abc loadingStyle" id = 'load'
+
         ></v-skeleton-loader>
-        <a-spin  />
+        <a-spin  style="z-index: -1"/>
       </div>
 
     </div>
@@ -365,7 +366,9 @@ export default {
 }
 </script>
 <style scoped>
-  .demo-search-div >>> .v-skeleton-loader__text{
+  .demo-search-div >>> .v-skeleton-loader__heading{
+    height: 18px;
+  }.demo-search-div >>> .v-skeleton-loader__text{
     height: 16px;
     width: 80%;
   }

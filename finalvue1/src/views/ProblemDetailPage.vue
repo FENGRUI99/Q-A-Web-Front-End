@@ -114,7 +114,7 @@
                 <!--no answer remain-->
                 <div v-if="item.commentList[0].comment_detail === null">
                   <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number-1}} Answers</p>
-                  <p style="color: grey;font-weight: bold;font-size: 35px">Wait fot your Louder Voice . . .</p>
+                  <p style="color: grey;font-weight: bold;font-size: 35px">Wait for your Louder Voice . . .</p>
                 </div>
                 <!--have item-->
                 <div v-else>
@@ -549,13 +549,9 @@ li{
 }
 .background1{
   position:fixed;
-  top: 0;
-  left: 0;
-  width:100%;
-  height:100%;
   z-index:0;
-  zoom: 1.1;
-  transform:translateX(-100px);
+  background-size: 100% 100%;
+  /*transform:translateX(-100px);*/
   /*transform:translatey(50px);*/
   /*background-color: #fff;*/
   /*background-repeat: repeat;*/

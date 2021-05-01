@@ -1,5 +1,6 @@
 <template>
-<div width="80%">
+  <!--  NO USE-->
+<div width="100%">
   <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
     <div class="foreground" style="width: 1000%;margin-top:-10%;margin-left:-100%;height: 2000px;float: right;position: absolute;"></div>
     </div>
@@ -9,7 +10,7 @@
     @click="foldText"
     x-large
     id="ask">
-    <table style="width: 80%" >
+    <table style="width: 100%" >
       <tr style="font-size:25px; text-align: left"> Add </tr>
       <tr style="font-size:25px;font-weight: bolder"> Questions </tr>
     </table>

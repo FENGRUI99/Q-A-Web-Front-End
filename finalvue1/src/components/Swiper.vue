@@ -71,7 +71,7 @@ export default {
 
 <style scoped>
   .swiper-container{
-    width: 100%;
+    width: 95%;
     height: 180px;
   }
   .li{

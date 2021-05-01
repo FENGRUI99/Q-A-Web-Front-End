@@ -5,9 +5,9 @@
 <!--    </div>-->
     <div class="aside">
     <br>
-    <AskQuestion style=""></AskQuestion>
+    <AskQuestion ></AskQuestion>
     <br>
-    <TopContributors v-blur = this.$store.getters.getBlur style="width: 90%;padding-left:40px" ></TopContributors>
+    <TopContributors v-blur = this.$store.getters.getBlur style="width: 92%;padding-left:60px" ></TopContributors>
     </div>
 
   </div>
@@ -27,7 +27,7 @@ export default {
 
 <style scoped>
 .aside{
-  width: 28%;
+  width: 27%;
   position: fixed;
   margin-left: 3.5%;
 }
