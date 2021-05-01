@@ -31,6 +31,14 @@ export default {
   components: {
     'nameTag': NameTag,
     'searchBox': SearchBox
+  },
+  methods: {
+    toRegister () {
+      this.$router.push({
+        path: '/Register2',
+        name: 'Register2'
+      })
+    }
   }
 }
 

@@ -15,10 +15,10 @@
               </tr>
               <tr id="detail">
                 <div v-if="viewAll_flag === false">
-                  <td class="top_chart">{{item.question_detail.substring(0,40) + '...'}}</td>
+                  <td @click="viewAll" class="top_chart">{{item.question_detail.substring(0,40) + '...'}}<el-link type="success">view all</el-link></td>
                 </div>
                 <div v-else>
-                  <td class="top_chart">{{item.question_detail}}</td>
+                  <td @click="viewAll" class="top_chart">{{item.question_detail}}&nbsp;&nbsp;<el-link type="success">fold</el-link></td>
                   <div v-if="pic_flag === true">
                     <div v-for="(picture,pic_index) in pic" v-bind:key="pic_index">
                       <img
@@ -28,10 +28,11 @@
                     </div>
                   </div>
                 </div>
-                <div @click="viewAll" style="float:right;">  <el-link type="success">view all</el-link></div>
+<!--                <div @click="viewAll" style="float:right;">    </div>-->
               </tr>
-              <span class="butt" style="width: 100%;margin-left: 3%">
-                <td>
+              <div class="blank"></div>
+              <table class="butt" style="width: 90%;margin-left: 3%;">
+                <td width="10%">
                   <div v-if="item.like_flag === '1'">
                     <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
                       <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
@@ -43,8 +44,7 @@
                     </button>
                   </div>
                 </td>
-                <td style="width: 2%;"></td>
-                <td>
+                <td width="20%">
                   <v-row
                   align="center"
                   justify="space-around"
@@ -64,21 +64,16 @@
 <!--              &nbsp;&nbsp;Answer &nbsp;&nbsp;-->
 <!--            </el-button>-->
                 </td>
-                <td style="width: 30%">
-                </td>
-                 <td>
-                  <table>
-                    <td>
-                      <el-tag type="success" style="font-weight: bold;font-size: 13px;text-align: right;border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454;"
-                        v-for="tag in setQuestion_tags_en(this.item.question_tags)"
-                        :key="tag"
-                        effect="plain">
-                        {{ tag }}
-                      </el-tag>
+                <td style="width:35%"></td>
+                 <td style="text-align: right;width: 25%; margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
+                           :key="tag"
+                           effect="plain">
+                  <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454;"
+                  >  {{ tag }}
+                  </el-tag>
                     </td>
-                  </table>
-                </td>
-              </span>
+                <div class="blank"></div>
+              </table>
             </table>
 <!--          -->
 <!--          -->

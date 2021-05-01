@@ -37,15 +37,15 @@
           <el-upload
             action="#"
             list-type="picture-card"
-            :before-upload="beforeAvatarUpload"
+            :class="{hide:hideUploadEdit}"
             :auto-upload="false"
             :on-preview="handlePreview"
-            :on-remove="removeFile"
             :http-request="uploadFile"
-            :on-change="handleChange"
+            :on-change="beforeUpload"
             :on-exceed="handleExceed"
-            :before-remove="beforeRemove"
             :file-list="fileList"
+            accept="image/png,image/jpg,image/jpeg"
+            :on-success="handleAvatarSuccess"
             multiple
             :limit="3"
           >
@@ -72,8 +72,8 @@
       </span>
             </div>
           </el-upload>
-          <el-dialog :visible.sync="dialogVisible">
-            <img width="100%" :src="dialogImageUrl" alt="">
+          <el-dialog style="z-index: 10000;" :visible.sync="dialogVisible">
+            <el-image width="100%" :src="dialogImageUrl" alt=""></el-image>
           </el-dialog>
           <el-select
             style="width: 88%;"
@@ -168,10 +168,13 @@ export default {
       describeIsHidden: false,
       textarea: '',
       text: '',
-      fileList: [],
       dialogImageUrl: '',
       dialogVisible: false,
       disabled: false,
+      imageUrl: '',
+      hideUploadEdit: false, // 隐藏'上传按钮'
+      limitNum: 3, // 图片数量
+      fileList: [], // 图片列表
       options: [{
         value: '1',
         label: 'Test & Coursework'
@@ -213,26 +216,33 @@ export default {
         delete file[key]
       }
     },
+    // 这是在用的
+
     handleExceed (files, fileList) {
       this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
     },
-    beforeRemove (file, fileList) {
-      return this.$confirm(`确定移除 ${file.name} ？`)
+    handleAvatarSuccess (res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw)
     },
-    handleDownload (file) {
-      console.log(file)
-    },
-    beforeAvatarUpload (file) {
-      const isJPG = file.type === 'image/jpeg'
-      const isLt2M = file.size / 1024 / 1024 < 2
+    beforeUpload (file, fileList) { // 图片状态改变时的钩子
+      this.isUpload = 1
+      const isImage = file.raw.type === 'image/png' || file.raw.type === 'image/jpg' || file.raw.type === 'image/jpeg'
+      const isLt5M = file.size < 1024 * 500
+      if (!isImage) {
+        this.$message.error('上传只能是png,jpg,jpeg格式!')
+        this.forbidUpload = false
+      }
+      if (!isLt5M) {
+        this.$message.error('上传图片大小不能超过500kb!')
+        this.forbidUpload = false
+      }
 
-      if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!')
+      if (isImage && isLt5M) {
+        this.forbidUpload = true
+        // this.uploadFile = file.raw || null
+      } else {
+        fileList.splice(-1, 1)
       }
-      if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!')
-      }
-      return isJPG && isLt2M
     },
     handlePictureCardPreview (file) {
       this.dialogImageUrl = file.url
@@ -256,16 +266,16 @@ export default {
       }
       this.uploadFile()
     },
-    removeFile (file) {
-      // 移除文件时，要重新给fileList赋值
-      const arr = []
-      for (let i = 0; i < this.fileList.length; i++) {
-        if (this.fileList[i].uid !== file.uid) {
-          arr.push(this.fileList[i])
-        }
-      }
-      this.fileList = arr
-    },
+    // removeFile (file) {
+    //   // 移除文件时，要重新给fileList赋值
+    //   const arr = []
+    //   for (let i = 0; i < this.fileList.length; i++) {
+    //     if (this.fileList[i].uid !== file.uid) {
+    //       arr.push(this.fileList[i])
+    //     }
+    //   }
+    //   this.fileList = arr
+    // },
     handlePreview (file) {
       console.log(file)
     },

@@ -17,10 +17,10 @@
           <button class="button" style="width: 15%; font-family: Arial, sans-serif;font-size: x-large; padding: 10px; margin-left: 1%" v-on:click="toLog">Login</button>
           <button class="button" style="border-bottom:3px solid green;width: 15%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px; font-weight:bold;" disabled >Sign up</button>
         </div>
-      <ul style="float:left; width: 35%; margin-left: 10%; opacity: 1.0">
+      <ul style="float:left; width: 40%; margin-left: 5%; opacity: 1.0">
         <sign-up-info></sign-up-info>
       </ul>
-      <ul style="float:left; width: 45%; margin-left: 10%">
+      <ul style="float:left; width: 45%; margin-left: 5%">
         <br>
         <div style = "text-align: left">Choose Interested Tags</div>
          <InterestTag></InterestTag>

@@ -31,7 +31,7 @@
         {{ count }}s</v-btn>
     </li>
 <!--    <li style="float: right; width: 45%; margin-left: 10%"><el-button @click="sendEmail" style="padding: 5px; opacity: 4; font-size: large; margin-top: 5%;border-radius: 2px">&nbsp;send Email&nbsp;</el-button></li><br/>-->
-    <li style=" float: left; margin-left: 141%;margin-top: -15%">
+    <li style=" float: left; margin-left: 122%;margin-top: -13%">
         <v-btn
           color="success"
           @click="regiser"
