@@ -10,11 +10,9 @@
             <table class="intro">
               <div class="blank"></div>
               <tr id="title1" ><td class="top_chart">{{item.question_description}} ？</td></tr>
-              <div class="blank"></div>
               <tr class="small">
                 <td class="top_chart">Posted by <span style="color: #81D454;text-decoration:underline">{{item.user_name}}</span> {{item.time}}</td>
               </tr>
-              <div class="blank"></div>
               <tr id="detail">
                 <div v-if="viewAll_flag === false">
                   <td class="top_chart">{{item.question_detail.substring(0,40) + '...'}}</td>
@@ -30,20 +28,19 @@
                     </div>
                   </div>
                 </div>
-                <td @click="viewAll">view all</td>
+                <div @click="viewAll" style="float:right;">  <el-link type="success">view all</el-link></div>
               </tr>
-              <div class="blank"></div>
-              <span class="butt" style="width: 100%;margin-left: 5%">
+              <span class="butt" style="width: 100%;margin-left: 3%">
                 <td>
                   <div v-if="item.like_flag === '1'">
-<!--                    <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
-<!--                      <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
-<!--                    </button>-->
-<!--                  </div>-->
-<!--                  <div v-else>-->
-<!--                    <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
-<!--                      <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
-<!--                    </button>-->
+                    <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
+                      <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+                    </button>
+                  </div>
+                  <div v-else>
+                    <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
+                      <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+                    </button>
                   </div>
                 </td>
                 <td style="width: 2%;"></td>
@@ -72,7 +69,7 @@
                  <td>
                   <table>
                     <td>
-                      <el-tag type="success"
+                      <el-tag type="success" style="font-weight: bold;font-size: 13px;text-align: right;border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454;"
                         v-for="tag in setQuestion_tags_en(this.item.question_tags)"
                         :key="tag"
                         effect="plain">
@@ -264,6 +261,7 @@ export default {
             console.log(response)
           })
         }
+        console.log('pic = ' + this.pic)
         this.pic_number = this.pic.length
       }
     }
