@@ -132,7 +132,7 @@ export default {
         if (response.data.code === '400') {
           // alert('The id has already been used')
           this.id_alert = 'The id has already been used'
-          id.className = '-status incorrect'
+          document.getElementById('idCheck').className = '-status incorrect'
         }
       }).catch((response) => {
         console.log(response)
