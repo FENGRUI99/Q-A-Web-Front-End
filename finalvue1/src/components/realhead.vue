@@ -8,7 +8,7 @@
       <td style="width: 20%"></td>
       <!--        <p id="title">Ask Louder Here! </p>-->
       <!--      -->
-      <h1 id="title" data-shadow='Ask Louder Here!' style="margin-top: 10px;">Ask Louder Here!</h1>
+      <h1 id="title" data-shadow='Ask Louder Here!' style="margin-top: 10px;z-index:10;">Ask Louder Here!</h1>
       <!--      -->
       <td style="width: 30%"></td>
       <td>
@@ -101,17 +101,17 @@ h1:after {
   text-shadow: none;
   background-image:
     linear-gradient(
-    45deg,
-   transparent 45%,
-    hsl(104, 100%, 53%) 45%,
-    hsl(130, 77%, 19%) 55%,
-    transparent 0
+      45deg,
+      transparent 45%,
+      hsl(104, 100%, 53%) 45%,
+      hsl(130, 77%, 19%) 55%,
+      transparent 0
     );
-    background-size: .1em .1em;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shad-anim 35s linear infinite;
-    }
+  background-size: .1em .1em;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shad-anim 35s linear infinite;
+}
 @keyframes shad-anim {
   0% {
     background-position: 0 0
