@@ -9,12 +9,11 @@
 <!--      </el-carousel>-->
       <Swiper></Swiper>
     <br>
-    <br>
 <!--    <h3 style="height: 10%;font-size: 30px  " >Hot tags</h3>-->
 <!--    <table id="t2">-->
       <div id="t2">
         <h3 style="height: 30px;font-size: 30px  " >Hot tags</h3>
-        <el-carousel  height="230px" indicator-position="none" :autoplay="true" style="border-bottom-left-radius:10px;border-bottom-right-radius: 10px">
+        <el-carousel  height="250px" indicator-position="none" :autoplay="true" style="border-bottom-left-radius:10px;border-bottom-right-radius: 10px">
           <el-carousel-item v-for="item in imgList" :key="item.id" label="hahah">
             <img :src="item.img" style="height:100%;width:100%;z-index: -1;color: transparent" alt="Hot tag">
             <h1><a-icon type="loading" />Tag:   {{item.title}}</h1>

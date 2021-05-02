@@ -6,7 +6,6 @@
     <div class="aside">
     <br>
     <AskQuestion ></AskQuestion>
-    <br>
     <TopContributors v-blur = this.$store.getters.getBlur style="width: 92%;padding-left:60px" ></TopContributors>
     </div>
 

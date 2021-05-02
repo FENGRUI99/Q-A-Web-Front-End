@@ -136,11 +136,23 @@
           <div>
             <table class="intro">
               <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{item.number_comment}} Answers</p>
-              <div v-for="(comment, key, index) in item.commentList" v-bind:key="index">
-                <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
-                <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
-                <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
-                <el-divider></el-divider>
+              <div v-if="item.number_comment===0">
+                <p style="color: grey;font-weight: bold;font-size: 35px">Wait for your Louder Voice . . .</p>
+              </div>
+              <div v-else>
+                <div v-for="(comment, key, index) in item.commentList" v-bind:key="index">
+                  <div v-if="index===item.commentList.length-1">
+                    <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
+                    <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
+                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
+                  </div>
+                  <div v-else>
+                    <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
+                    <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
+                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
+                    <el-divider></el-divider>
+                  </div>
+                </div>
               </div>
 <!--              <div v-if="item.commentList.length === 1">-->
 <!--                &lt;!&ndash;no answer remain&ndash;&gt;-->
@@ -164,16 +176,7 @@
 <!--                <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>-->
 <!--                <div v-if="item.commentList.length >= 1" style="margin-top:2px ">-->
 <!--                  <div v-for="(comment,index) in item.commentList" v-bind:key="index" >-->
-<!--                    <div v-if="index===item.commentList.length-1">-->
-<!--                      <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>-->
-<!--                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>-->
-<!--                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>-->
-<!--                    </div>-->
-<!--                    <div v-else>-->
-<!--                      <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>-->
-<!--                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>-->
-<!--                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>-->
-<!--                      <el-divider></el-divider>-->
+
 <!--                    </div>-->
 <!--                  </div>-->
 <!--                </div>-->
@@ -592,9 +595,12 @@ li{
 }
 .background1{
   position:fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
   z-index:0;
-  background-size: 100% 100%;
-  /*transform:translateX(-100px);*/
+  zoom: 0.85;
   /*transform:translatey(50px);*/
   /*background-color: #fff;*/
   /*background-repeat: repeat;*/

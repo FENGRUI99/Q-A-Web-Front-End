@@ -96,8 +96,7 @@ export default {
   width:100%;
   height:100%;
   z-index:0;
-  zoom: 1.1;
-  transform:translateX(-100px);
+  zoom: 0.85;
   /*transform:translatey(50px);*/
   /*background-color: #fff;*/
   /*background-repeat: repeat;*/

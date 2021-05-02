@@ -4,17 +4,17 @@
   <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
     <div class="foreground" style="width: 1000%;margin-top:-10%;margin-left:-100%;height: 2000px;float: right;position: absolute;"></div>
     </div>
-  <v-btn
-    color= #A5D6A7
-    elevation="3"
-    @click="foldText"
-    x-large
-    id="ask">
-    <table style="width: 100%" >
-      <tr style="font-size:25px; text-align: left"> Add </tr>
-      <tr style="font-size:25px;font-weight: bolder"> Questions </tr>
-    </table>
-  </v-btn>
+    <v-btn
+      color=  #90c49c
+      elevation="3"
+      @click="foldText"
+      x-large
+      id="ask">
+      <table style="width: 100%;border: #90c49c 1px" >
+        <tr style="font-size:25px; text-align: left;color: white"> Add </tr>
+        <tr style="font-size:25px;font-weight: bolder;border-bottom: 1px;color: white"> Questions </tr>
+      </table>
+    </v-btn>
   <ul v-bind:hidden="isHidden" class="askQ" v-blur = false>
 <!--      question title-->
       <div>
@@ -356,6 +356,8 @@ export default {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   font-style: italic;
   font-weight: bolder;
+  border: white 1px solid;
+  border-radius: 10px;
 }
 .askQ{
   width: 160%;
@@ -386,7 +388,7 @@ li{
   width: 200px;
   height: 100px;
   border-radius: 4px;
-  background-color: #409EFF;
+  background-color: #4f916a;
   text-align: center;
   color: #fff;
   padding: 40px 20px;

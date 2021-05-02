@@ -90,20 +90,57 @@
             </td>
             <br>
           </table>
+          <div style="height: 10px"></div>
         </div>
-        <div style="height: 10px"></div>
+
       </div>
       <!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
+<!--      Skeleton&SPin-->
 
       <div class="demo-search-div">
-<!--        <a-skeleton :paragraph="{ rows: 3 ,width: [650,650,200]}" :title="{width: 450}" loading="false" active  class="abc loadingStyle" id = 'load'/>-->
+
         <v-skeleton-loader
           type="article"
           style="border-radius:10px ;z-index: -1"
           class="abc loadingStyle" id = 'load'
 
         ></v-skeleton-loader>
-        <a-spin  style="z-index: -13"/>
+        <v-progress-circular
+          :size="50"
+          color="primary"
+          indeterminate
+          style="border-radius:10px ;z-index: -1"
+        ></v-progress-circular>
+
+        <v-progress-circular
+          :width="3"
+          color="red"
+          indeterminate
+          style="border-radius:10px ;z-index: -1"
+        ></v-progress-circular>
+
+        <v-progress-circular
+          :size="70"
+          :width="7"
+          color="purple"
+          indeterminate
+          style="border-radius:10px ;z-index: -1"
+        ></v-progress-circular>
+
+        <v-progress-circular
+          :width="3"
+          color="green"
+          indeterminate
+          style="border-radius:10px ;z-index: -1"
+        ></v-progress-circular>
+
+        <v-progress-circular
+          :size="50"
+          color="amber"
+          indeterminate
+          style="border-radius:10px ;z-index: -1"
+        ></v-progress-circular>
+
       </div>
 
     </div>
@@ -397,11 +434,19 @@ export default {
 }
 </script>
 <style scoped>
+  .demo-search-div{
+  }
+
   .demo-search-div >>> .v-skeleton-loader__heading{
-    height: 18px;
-  }.demo-search-div >>> .v-skeleton-loader__text{
-    height: 16px;
+    height: 25px;
+    margin:16px 0 1px 16px;
+  }
+  .demo-search-div >>> .v-skeleton-loader__text{
+    height: 20px;
     width: 80%;
+  }
+  .demo-search-div >>>.v-skeleton-loader__paragraph .v-skeleton-loader__text:nth-child(2){
+    max-width: 75%;
   }
 .Touchable{
   height: auto;
