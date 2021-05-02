@@ -18,10 +18,10 @@
               </tr>
               <tr id="detail">
                 <div v-if="viewAll_flag === false">
-                  <td class="top_chart" v-html="item.question_detail">{{item.question_detail.substring(0,40) + '...'}}<el-link type="success" @click="viewAll" >view all</el-link></td>
+                  <td class="top_chart"><span v-html="item.question_detail" >{{item.question_detail.substring(0,40) + '...'}} </span><el-link type="success" @click="viewAll" >view all</el-link></td>
                 </div>
                 <div v-else>
-                  <td  class="top_chart" v-html="item.question_detail" >{{item.question_detail}}&nbsp;&nbsp;<el-link type="success" @click="viewAll">fold</el-link></td>
+                  <td  class="top_chart" ><span v-html="item.question_detail" >{{item.question_detail}}</span>&nbsp;&nbsp;<el-link type="success" @click="viewAll">fold</el-link></td>
                   <div v-if="pic_flag === true">
                     <div v-for="(picture,pic_index) in pic" v-bind:key="pic_index">
                       <img

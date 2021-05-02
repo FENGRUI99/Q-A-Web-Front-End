@@ -9,13 +9,13 @@
             <td style="width: 100%;">
               <div style="margin: 1% 3%;width: 97%;">
                 <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" v-html="item.question_description">{{item.question_description}}</li>
-                <li @click="toDetailPage(item)" align="left" v-html="item.question_detail">
+                <li @click="toDetailPage(item)" align="left" >
                   <img v-if="getImage(item.question_id) === true"
                        style="width: 100px; height: 100px;"
                        v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                   >
 <!--                  {{item.question_detail.substring(0,200) + '...'}}-->
-                  {{item.question_detail + '...'}}
+                 <span v-html="item.question_detail"> {{item.question_detail + '...'}}</span>
                 </li>
                 <li style="float: left;">
                   <UL class=fm>
@@ -58,7 +58,7 @@
                       icon
                       color="orange lighten-2"
                       @click="liked(item)"
-                      style="margin-top:-5%;"
+                      style="margin-top:-5%"
                       v-show="!isBlur"
                     >
                       <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
@@ -74,7 +74,7 @@
                     icon
                     color="grey lighten-2"
                     @click="liked(item),gethome()"
-                    style="margin-top:-5%;"
+                    style="margin-top:-5%; z-index: 1"
                     v-show="!isBlur"
                   >
                     <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
@@ -540,7 +540,7 @@ li{
   transform: scale(0.9);
   color: #dd4d24;
 }
-.fm { list-style-type: none;text-align: left;margin-left: -8%}/*设置盒子的行高，去掉标记，设置背景颜色*/
+.fm { list-style-type: none;text-align: left;margin-left: -20px}/*设置盒子的行高，去掉标记，设置背景颜色*/
 .fm a { text-align:left;}/*设置A标签为块元素不显示，宽度，居中*/
 .fm a:hover { color:#CCC;text-decoration:none;font-weight:bold; }  /* 当有鼠标悬停在链接上的颜色 */
 .fm li ul {  list-style-type: none; left: -999em;  }
