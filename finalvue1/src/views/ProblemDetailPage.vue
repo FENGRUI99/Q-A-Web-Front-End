@@ -18,10 +18,10 @@
               </tr>
               <tr id="detail">
                 <div v-if="viewAll_flag === false">
-                  <td @click="viewAll" class="top_chart">{{item.question_detail.substring(0,40) + '...'}}<el-link type="success">view all</el-link></td>
+                  <td class="top_chart">{{item.question_detail.substring(0,40) + '...'}}<el-link type="success" @click="viewAll" >view all</el-link></td>
                 </div>
                 <div v-else>
-                  <td @click="viewAll" class="top_chart">{{item.question_detail}}&nbsp;&nbsp;<el-link type="success">fold</el-link></td>
+                  <td  class="top_chart">{{item.question_detail}}&nbsp;&nbsp;<el-link type="success" @click="viewAll">fold</el-link></td>
                   <div v-if="pic_flag === true">
                     <div v-for="(picture,pic_index) in pic" v-bind:key="pic_index">
                       <img
@@ -55,8 +55,9 @@
                     <v-btn
                       @click="foldText"
                       class="ma-2"
+                      elevation="3"
                       depressed
-                      color="success">
+                      color=#A5D6A7>
                            Answer
                       <a-icon type="edit" theme="twoTone" two-tone-color="white" />
                     </v-btn>
@@ -70,7 +71,7 @@
                  <td style="text-align: right;width: 25%; margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
                            :key="tag"
                            effect="plain">
-                  <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454;"
+                  <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #A5D6A7;color: #A5D6A7"
                   >  {{ tag }}
                   </el-tag>
                     </td>

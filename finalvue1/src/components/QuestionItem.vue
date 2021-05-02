@@ -8,8 +8,8 @@
           <table class="abc">
             <td style="width: 100%;">
               <div style="margin: 1% 3%;width: 97%;">
-                <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
-                <li @click="toDetailPage(item)" align="left">
+                <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" v-html="item.question_description">{{item.question_description}}</li>
+                <li @click="toDetailPage(item)" align="left" v-html="item.question_detail">
                   <img v-if="getImage(item.question_id) === true"
                        style="width: 100px; height: 100px;"
                        v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
@@ -40,7 +40,7 @@
                 <li style="text-align: right;float: right;display:inline-block;margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
                     :key="tag"
                     effect="plain">
-                  <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #81D454;"
+                  <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #A5D6A7;color: #A5D6A7"
                   >  {{ tag }}
                   </el-tag>
                 </li>

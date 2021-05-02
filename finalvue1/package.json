@@ -14,6 +14,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@mdi/js": "^5.9.55",
     "ajv": "^6.12.6",
     "ant-design-vue": "^1.7.4",
     "axios": "^0.21.1",
@@ -39,6 +40,7 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "@mdi/font": "^5.9.55",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
