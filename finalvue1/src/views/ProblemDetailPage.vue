@@ -12,16 +12,16 @@
           <!--          问题详情框-->
             <table class="intro">
               <div class="blank"></div>
-              <tr id="title1" ><td class="top_chart">{{item.question_description}} ？</td></tr>
+              <tr id="title1" ><td class="top_chart" v-html="item.question_description">{{item.question_description}} ？</td></tr>
               <tr class="small">
                 <td class="top_chart">Posted by <span style="color: #81D454;text-decoration:underline">{{item.user_name}}</span> {{item.time}}</td>
               </tr>
               <tr id="detail">
                 <div v-if="viewAll_flag === false">
-                  <td class="top_chart">{{item.question_detail.substring(0,40) + '...'}}<el-link type="success" @click="viewAll" >view all</el-link></td>
+                  <td class="top_chart" v-html="item.question_detail">{{item.question_detail.substring(0,40) + '...'}}<el-link type="success" @click="viewAll" >view all</el-link></td>
                 </div>
                 <div v-else>
-                  <td  class="top_chart">{{item.question_detail}}&nbsp;&nbsp;<el-link type="success" @click="viewAll">fold</el-link></td>
+                  <td  class="top_chart" v-html="item.question_detail" >{{item.question_detail}}&nbsp;&nbsp;<el-link type="success" @click="viewAll">fold</el-link></td>
                   <div v-if="pic_flag === true">
                     <div v-for="(picture,pic_index) in pic" v-bind:key="pic_index">
                       <img

@@ -58,7 +58,7 @@
                       icon
                       color="orange lighten-2"
                       @click="liked(item)"
-                      style="margin-top:-5%"
+                      style="margin-top:-5%;"
                       v-show="!isBlur"
                     >
                       <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
@@ -74,7 +74,7 @@
                     icon
                     color="grey lighten-2"
                     @click="liked(item),gethome()"
-                    style="margin-top:-5%; z-index: 1"
+                    style="margin-top:-5%;"
                     v-show="!isBlur"
                   >
                     <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
