@@ -14,7 +14,8 @@
                        style="width: 100px; height: 100px;"
                        v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                   >
-                  {{item.question_detail.substring(0,200) + '...'}}
+<!--                  {{item.question_detail.substring(0,200) + '...'}}-->
+                  {{item.question_detail + '...'}}
                 </li>
                 <li style="float: left;">
                   <UL class=fm>
@@ -89,7 +90,7 @@
           class="abc loadingStyle" id = 'load'
 
         ></v-skeleton-loader>
-        <a-spin  style="z-index: -1"/>
+        <a-spin  style="z-index: -13"/>
       </div>
 
     </div>

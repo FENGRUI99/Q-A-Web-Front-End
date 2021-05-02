@@ -241,8 +241,9 @@ export default {
       if (isImage && isLt5M) {
         this.forbidUpload = true
         // this.uploadFile = file.raw || null
+        this.fileList.push(file)
       } else {
-        fileList.splice(-1, 1)
+        this.fileList.splice(-1, 1)
       }
     },
     handlePictureCardPreview (file) {
@@ -306,7 +307,7 @@ export default {
           'question_tags': this.splitComma(this.value)
         }).then(res => {
           if (res.data.code === '200') {
-            alert('finish')
+            alert('finish with no pic')
           }
         }).catch(error => {
           alert('更新用户数据失败' + error)
@@ -319,7 +320,7 @@ export default {
         formData.append('question_tags', this.splitComma(this.value))
         this.axios.post('http://localhost:8080/publishQuestionWP', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
           if (res.data.code === '200') {
-            alert('finish')
+            alert('finish with pic')
           }
         }).catch(error => {
           alert('更新用户数据失败' + error)

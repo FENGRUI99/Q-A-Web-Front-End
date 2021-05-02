@@ -201,7 +201,7 @@ export default {
     },
     checkEmail: function () {
       let id = document.getElementById('mailcheck')
-      let reg = /^[a-zA-Z0-9_-]+$/
+      let reg = ''
       if (this.user_mail.length === 0) {
         console.log(123213)
         id.className = '-status nothing'
@@ -214,7 +214,7 @@ export default {
     regiser: function () {
       this.axios.post('http://localhost:8080/register', {
         user_id: this.user_id,
-        user_mail: this.user_mail,
+        user_mail: this.user_mail + '@student.xjtlu.edu.cn',
         user_name: this.user_name,
         user_psw: this.user_pwd,
         user_tags: this.$store.getters.getUserTags,
@@ -234,7 +234,7 @@ export default {
     },
     sendEmail: function () {
       this.axios.post('http://localhost:8080/sendEmail', {
-        request: this.user_mail
+        request: this.user_mail + '@student.xjtlu.edu.cn'
       }).then((response) => {
       }).catch((response) => {
         console.log(response)

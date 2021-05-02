@@ -5,7 +5,7 @@
       filterable
       allow-create
       multiple
-      @change="filtered"
+      @change="filtered" :multiple-limit=2
       v-model="value" placeholder="Choose">
       <el-option
         v-for="item in options"
