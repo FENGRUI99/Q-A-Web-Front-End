@@ -49,25 +49,36 @@
             <td style="margin:0 5px 5px 5px;float:right;width: 120px;" >
               <div v-bind:key="keyValue">
                 <div v-if="item.like_flag === '1'">
-                  <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
-                    <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
-                  </button>
+<!--                  <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
+<!--                    <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
+<!--                  </button>-->
                   <v-btn
                     class="ma-2"
                     text
                     icon
-                    color="blue lighten-2"
+                    color="orange lighten-2"
+                    @click="liked(item)"
+                    style="margin-top:-5%"
                   >
-                    <v-icon>mdi-thumb-up</v-icon>
+                    <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
                   </v-btn>
                 </div>
                 <div v-else>
-                  <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
-                    <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
-                  </button>
+<!--                  <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
+<!--                    <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
+<!--                  </button>-->
+                  <v-btn
+                    class="ma-2"
+                    text
+                    icon
+                    color="grey lighten-2"
+                    @click="liked(item),gethome()"
+                    style="margin-top:-5%"
+                  >
+                    <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
+                  </v-btn>
                 </div>
               </div>
-              <br>
               <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
                 <table>
                   <td><i class="el-icon-edit"></i></td>

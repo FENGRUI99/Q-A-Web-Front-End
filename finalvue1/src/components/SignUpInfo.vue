@@ -6,7 +6,7 @@
     <li><el-input @blur="checkDupID" v-model ="user_id" type = "text" id="user_id" name = "user_id" pattern = "^\d{7}$" placeholder="Enter your student ID" required></el-input></li>
 <!--    -->
     <li style="float: left; width: 45%"><div style="float: left">Password&nbsp;&nbsp;</div><div style="float: left" v-show="user_pwd.length !== 0" id = pswCheck></div><div style="float: left; color: darkred">&nbsp;{{psw_alert}}</div></li><li style="float: left;width:45%;margin-left: 10%"><div style="float: left">Confirm&nbsp;&nbsp;</div><div v-show="user_pwd1.length !== 0" style="float: left;" id = psw1check></div><div style="float: left; color: darkred">&nbsp;{{psw1_alert}}</div></li>
-    <li style="float: left; width: 45%"><el-input v-model ="user_pwd" type="password" id="user_psw" name="user_psw" pattern = "^[A-Za-z0-9]{4,30}?$" placeholder="Password" required></el-input></li>
+    <li style="float: left; width: 45%"><el-input v-model ="user_pwd" type="password" id="user_psw" name="user_psw" pattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\s\S]{8,16}$/" placeholder="Password" required></el-input></li>
 <!--    -->
     <li style="float: left; width: 45%;margin-left: 10%"><el-input v-model ="user_pwd1" type="password" id="user_psw1" name="user_psw1" placeholder="Type again" required></el-input></li>
     <div style="clear: both"></div>
@@ -140,7 +140,7 @@ export default {
     },
     checkPsw: function () {
       let id = document.getElementById('pswCheck')
-      let reg = /^[A-Za-z0-9]{4,30}?$/
+      let reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/
       if (this.user_pwd === this.user_pwd1 && reg.test(this.user_pwd)) {
         document.getElementById('psw1check').className = '-status correct'
       } else if (this.user_pwd1.length !== 0) {
@@ -153,17 +153,19 @@ export default {
         this.psw_alert = ''
         id.className = '-status correct'
       } else {
-        if (this.user_pwd.length < 4) {
+        if (this.user_pwd.length < 8) {
           this.psw_alert = 'too short'
-        } else {
+        } else if (this.user_pwd.length > 16) {
           this.psw_alert = 'too long'
+        } else {
+          this.psw_alert = 'too easy'
         }
         id.className = '-status incorrect'
       }
     },
     checkPsw1: function () {
       let id = document.getElementById('psw1check')
-      let reg = /^[A-Za-z0-9]{4,30}?$/
+      let reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/
       if (this.user_pwd1.length === 0) {
         id.className = '-status nothing'
         this.psw1_alert = ''
@@ -171,9 +173,9 @@ export default {
         id.className = '-status correct'
         this.psw1_alert = ''
       } else {
-        if (this.user_pwd1.length < 4) {
+        if (this.user_pwd1.length < 8) {
           this.psw1_alert = 'too short'
-        } else if (this.user_pwd1.length > 30) {
+        } else if (this.user_pwd1.length > 16) {
           this.psw1_alert = 'too long'
         } else {
           this.psw1_alert = 'not same'
