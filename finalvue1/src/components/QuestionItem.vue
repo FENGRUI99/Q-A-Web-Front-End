@@ -151,20 +151,21 @@ export default {
     }
   },
   created () {
-    this.axios.post('http://localhost:8080/userLike', {
+    this.axios.post('http://localhost:8080/listQuestion', {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
-      this.$store.commit('setLikedList', response.data.entity)
-      console.log(this.$store.state.liked_list)
+      this.$store.commit('setList', response.data.entity)
+      console.log(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
   },
   mounted: function () {
-    this.axios.post('http://localhost:8080/listQuestion', {
+    this.axios.post('http://localhost:8080/userLike', {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
-      this.$store.commit('setList', response.data.entity)
+      this.$store.commit('setLikedList', response.data.entity)
+      console.log(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -350,7 +351,15 @@ export default {
       }
     },
     test () {
-      localforage.clear()
+      this.axios.post('http://localhost:8080/userLike', {
+        request: sessionStorage.getItem('user_id')
+      }).then((response) => {
+        // this.$store.commit('setLikedList', response.data.entity)
+        this.$store.state.liked_list = response.data.entity
+        console.log(response.data.entity)
+      }).catch((response) => {
+        console.log(response)
+      })
     }
   },
   destroyed () {

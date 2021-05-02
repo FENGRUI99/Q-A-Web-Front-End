@@ -16,9 +16,7 @@ import Vuetify from 'vuetify'
 import vuetify from '@/plugins/vuetify'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'vuetify/dist/vuetify.min.css'
-// import { mdiThumbUp } from '@mdi/js'
-import '@mdi/font/css/materialdesignicons.css'
-// import colors from 'vuetify/lib/util/colors'
+
 import localforage from 'localforage'
 Vue.config.productionTip = false
 
