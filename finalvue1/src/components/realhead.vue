@@ -5,7 +5,7 @@
 <!--         <div class="foreground" style="width: 2000px;height: 80px;position: absolute;margin-top: -15%;z-index: 20;"></div>-->
 <!--        </div>-->
       <img src="../assets/logo1.png" width="200px" style="margin: auto" class="pho">
-      <td style="width: 20%"></td>
+      <td @click="toHomePage" style="width: 20%; cursor: pointer;"></td>
       <!--        <p id="title">Ask Louder Here! </p>-->
       <!--      -->
       <h1 id="title" data-shadow='Ask Louder Here!' style="margin-top: 10px;z-index:10;">Ask Louder Here!</h1>
@@ -28,16 +28,28 @@ import NameTag from './NameTag'
 import SearchBox from './SearchBox'
 export default {
   name: 'RealHead',
+  data () {
+    return {
+      reLoad: 0
+    }
+  },
   components: {
     'nameTag': NameTag,
     'searchBox': SearchBox
   },
   methods: {
-    toRegister () {
+    toHomePage () {
       this.$router.push({
-        path: '/Register2',
-        name: 'Register2'
+        path: '/HomePage',
+        name: 'HomePage'
       })
+      window.location.reload()
+    },
+    refresh () {
+      if (this.reLoad < 10) {
+        this.reLoad += 1
+        console.log(this.reLoad)
+      }
     }
   }
 }

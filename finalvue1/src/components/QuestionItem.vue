@@ -51,6 +51,14 @@
                   <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
                     <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
                   </button>
+                  <v-btn
+                    class="ma-2"
+                    text
+                    icon
+                    color="blue lighten-2"
+                  >
+                    <v-icon>mdi-thumb-up</v-icon>
+                  </v-btn>
                 </div>
                 <div v-else>
                   <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
