@@ -36,16 +36,16 @@
               <div class="blank"></div>
               <table class="butt" style="width: 90%;margin-left: 3%;">
                 <td width="10%">
-                  <div v-if="item.like_flag === '1'">
-                    <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
-                      <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
-                    </button>
-                  </div>
-                  <div v-else>
-                    <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
-                      <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
-                    </button>
-                  </div>
+<!--                  <div v-if="item.like_flag === '1'">-->
+<!--                    <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
+<!--                      <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <div v-else>-->
+<!--                    <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
+<!--                      <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
+<!--                    </button>-->
+<!--                  </div>-->
                 </td>
                 <td width="20%">
                   <v-row
@@ -53,6 +53,7 @@
                   justify="space-around"
                   >
                     <v-btn
+                      @click="foldText"
                       class="ma-2"
                       depressed
                       color="success">
@@ -110,43 +111,50 @@
           <div>
                         {{item.commentList}}
             <table class="intro">
-              <div v-if="item.commentList.length === 1">
-                <!--no answer remain-->
-                <div v-if="item.commentList[0].comment_detail === null">
-                  <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number-1}} Answers</p>
-                  <p style="color: grey;font-weight: bold;font-size: 35px">Wait for your Louder Voice . . .</p>
-                </div>
-                <!--have item-->
-                <div v-else>
-                  <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>
-                  <div v-if="item.commentList.length >= 1" style="margin-top:2px ">
-                    <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
-                      <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>
-                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
-                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
-                    </div>
-                  </div>
-                </div>
+              <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{item.number_comment}} Answers</p>
+              <div v-for="(comment, key, index) in item.commentList" v-bind:key="index">
+                <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
+                <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
+                <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
+                <el-divider></el-divider>
               </div>
-              <div v-else>
-                <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>
-                <div v-if="item.commentList.length >= 1" style="margin-top:2px ">
-                  <div v-for="(comment,index) in item.commentList" v-bind:key="index" >
-                    <div v-if="index===item.commentList.length-1">
-                      <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
-                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
-                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
-                    </div>
-                    <div v-else>
-                      <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
-                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
-                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
-                      <el-divider></el-divider>
-                    </div>
-                  </div>
-                </div>
-<!--                <div style="">Waiting for More Louder Voice! </div>-->
-              </div>
+<!--              <div v-if="item.commentList.length === 1">-->
+<!--                &lt;!&ndash;no answer remain&ndash;&gt;-->
+<!--                <div v-if="item.commentList[0].comment_detail === null">-->
+<!--                  <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number-1}} Answers</p>-->
+<!--                  <p style="color: grey;font-weight: bold;font-size: 35px">Wait for your Louder Voice . . .</p>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;have item&ndash;&gt;-->
+<!--                <div v-else>-->
+<!--                  <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>-->
+<!--                  <div v-if="item.commentList.length >= 1" style="margin-top:2px ">-->
+<!--                    <div v-for="(comment,index) in item.commentList" v-bind:key="index" >-->
+<!--                      <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>-->
+<!--                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>-->
+<!--                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div v-else>-->
+<!--                <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>-->
+<!--                <div v-if="item.commentList.length >= 1" style="margin-top:2px ">-->
+<!--                  <div v-for="(comment,index) in item.commentList" v-bind:key="index" >-->
+<!--                    <div v-if="index===item.commentList.length-1">-->
+<!--                      <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>-->
+<!--                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>-->
+<!--                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>-->
+<!--                    </div>-->
+<!--                    <div v-else>-->
+<!--                      <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>-->
+<!--                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>-->
+<!--                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>-->
+<!--                      <el-divider></el-divider>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--&lt;!&ndash;                <div style="">Waiting for More Louder Voice! </div>&ndash;&gt;-->
+<!--              </div>-->
             </table>
           </div>
           <br>
@@ -292,11 +300,12 @@ export default {
         return null
       }
       this.submit_flag = true
-      this.isHidden = true
+      this.isHidden = false
       this.myComment = this.textarea
-      this.comment_number += 1
       this.textarea = ''
-      this.item.commentList.push({ 'comment_id': '-1', 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': null })
+      // this.item.commentList.push({'-1': { 'comment_id': '-1', 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': ' ' }})
+      this.item.number_comment += 1
+      this.$set(this.item.commentList, '-1', { 'comment_id': '-1', 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': ' ' })
       sessionStorage.setItem('item', JSON.stringify(this.item))
       this.axios.post('http://localhost:8080/publishComment', {
         user_id: sessionStorage.getItem('user_id'),
@@ -304,6 +313,7 @@ export default {
         comment_detail: this.myComment,
         question_id: this.item.question_id
       }).then((response) => {
+        console.log(response.data.code)
       }).catch((response) => {
         console.log(response)
       })

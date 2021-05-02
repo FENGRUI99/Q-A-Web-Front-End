@@ -1,41 +1,41 @@
 <template>
   <div id="block" >
     <div>  <el-backtop style="background-color: #eef5e3;color:#51bd20;border-radius: 8px"></el-backtop></div>
-    <button @click="test">test for picture loading</button>
+    <button @click="test">test</button>
     <div v-if="this.$store.getters.getIsFind === true">
-      <div v-for="(item, key, index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
-        <table class="abc">
-          <td style="width: 100%;">
-            <div style="margin: 1% 3%;width: 97%;">
-              <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
-              <li @click="toDetailPage(item)" align="left">
+      <div v-for="(item, key, index) in this.$store.getters.getList" v-bind:key="index">
+        <div v-if="index < count">
+          <table class="abc">
+            <td style="width: 100%;">
+              <div style="margin: 1% 3%;width: 97%;">
+                <li @click="toDetailPage(item)" align="left" id="title" class="Touchable">{{item.question_description}}</li>
+                <li @click="toDetailPage(item)" align="left">
                   <img v-if="getImage(item.question_id) === true"
                        style="width: 100px; height: 100px;"
                        v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                   >
-<!--                {{item.question_detail.substring(0,200) + '...'}}-->
-                {{item.question_detail}}
-              </li>
-              <li style="float: left;">
-                <UL class=fm>
-                  <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
-                    <ul class="idinfo">
-                      <li >
-                        id: {{ item.user_id }}
-                      </li>
-                      <li>
-                        likes: {{item.user_info}}
-                      </li>
-                      <li>
-                        email: {{item.user_mail}}
-                      </li>
-                      <li>
-                        XJTLU student
-                      </li>
-                    </ul>
-                  </LI>
-                </UL>
-              </li>
+                  {{item.question_detail.substring(0,200) + '...'}}
+                </li>
+                <li style="float: left;">
+                  <UL class=fm>
+                    <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
+                      <ul class="idinfo">
+                        <li >
+                          id: {{ item.user_id }}
+                        </li>
+                        <li>
+                          likes: {{item.user_info}}
+                        </li>
+                        <li>
+                          email: {{item.user_mail}}
+                        </li>
+                        <li>
+                          XJTLU student
+                        </li>
+                      </ul>
+                    </LI>
+                  </UL>
+                </li>
                 <li style="text-align: right;float: right;display:inline-block;margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
                     :key="tag"
                     effect="plain">
@@ -43,62 +43,32 @@
                   >  {{ tag }}
                   </el-tag>
                 </li>
-            </div>
-          </td>
-          <td style="margin:0 5px 5px 5px;float:right;width: 120px;" >
-            <div v-bind:key="keyValue">
-              <div v-if="item.like_flag === '1'">
-<!--                <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
-<!--                  <li>-->
-<!--                    <i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>-->
-<!--&lt;!&ndash;                    <v-icon>>mdi-thumb-up</v-icon>&ndash;&gt;-->
-<!--                    {{item.likes}}</li>-->
-<!--                </button>-->
-<!--                <v-btn-->
-<!--                  class="ma-2"-->
-<!--                  text-->
-<!--                  icon-->
-<!--                  color="blue lighten-2"-->
-<!--                >-->
-<!--                  <v-icon>mdi-thumb-up</v-icon>-->
-<!--                </v-btn>-->
-                <v-btn
-                  @click="liked(item)"
-                  class="ma-2"
-                  text
-                  icon
-                  large
-                  color="orange lighten-2"
-                >
-                  <v-icon dense>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
-                </v-btn>
               </div>
-              <div v-else>
-<!--                <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
-<!--                  <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
-<!--                </button>-->
-                <v-btn
-                  @click="liked(item)"
-                  class="ma-2"
-                  text
-                  icon
-                  large
-                  color="grey lighten-2"
-                >
-                  <v-icon dense>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
-                </v-btn>
+            </td>
+            <td style="margin:0 5px 5px 5px;float:right;width: 120px;" >
+              <div v-bind:key="keyValue">
+                <div v-if="item.like_flag === '1'">
+                  <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">
+                    <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+                  </button>
+                </div>
+                <div v-else>
+                  <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">
+                    <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>
+                  </button>
+                </div>
               </div>
-            </div>
+              <br>
+              <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
+                <table>
+                  <td><i class="el-icon-edit"></i></td>
+                  <td>{{item.number_comment}}</td>
+                </table>
+              </el-button>
+            </td>
             <br>
-            <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
-              <table>
-             <td><i class="el-icon-edit"></i></td>
-                <td>{{item.number_comment}}</td>
-              </table>
-            </el-button>
-          </td>
-          <br>
-        </table>
+          </table>
+        </div>
         <div style="height: 10px"></div>
       </div>
       <!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
@@ -167,24 +137,26 @@ export default {
     // }
     let likedList = this.$store.getters.getLikedList
     for (let i = 0; i < likedList.length; i++) {
-      this.$store.state.list[i].like_flag = '1'
+      if (likedList[i] !== '-1') {
+        this.$store.state.list[likedList[i]].like_flag = '1'
+      }
     }
   },
   created () {
+    this.axios.post('http://localhost:8080/userLike', {
+      request: sessionStorage.getItem('user_id')
+    }).then((response) => {
+      this.$store.commit('setLikedList', response.data.entity)
+      console.log(this.$store.state.liked_list)
+    }).catch((response) => {
+      console.log(response)
+    })
   },
   mounted: function () {
     this.axios.post('http://localhost:8080/listQuestion', {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
-      console.log(response.data.entity)
       this.$store.commit('setList', response.data.entity)
-    }).catch((response) => {
-      console.log(response)
-    })
-    this.axios.post('http://localhost:8080/userLike', {
-      request: sessionStorage.getItem('user_id')
-    }).then((response) => {
-      this.$store.commit('setLikedList', response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -195,14 +167,15 @@ export default {
       console.log(response)
     })
     window.addEventListener('scroll', this.handleScroll, true)
-    if (this.timer) {
-      clearInterval(this.timer)
-    } else {
-      this.timer = setInterval(() => {
-        this.refresh()
-      }, 6000)
-    }
-    console.log('list is: ' + this.$store.state.list)
+    // if (this.keyValue >= 10) {
+    //   console.log('refresh finishes')
+    //   clearInterval(this.timer)
+    // } else {
+    //   this.timer = setInterval(() => {
+    //     this.refresh()
+    //   }, 1000)
+    // }
+    this.timer = setInterval(this.refresh, 500)
   },
   methods: {
     mouseOver () {
@@ -359,12 +332,11 @@ export default {
       }
       return false
     },
-    getPic0 (questionId) {
-      let pic = JSON.parse(localStorage.getItem(questionId))
-      return pic[0]
-    },
     refresh () {
-      if (this.keyValue < 10) {
+      if (this.keyValue >= 10) {
+        console.log('refresh finishes')
+        clearInterval(this.timer)
+      } else {
         this.keyValue += 1
         console.log(this.keyValue)
       }
