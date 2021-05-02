@@ -100,11 +100,15 @@
                 size="medium"
               >
               </el-input>
-              <div class="blank"></div>
-            <el-button @click="submit" size="medium" class="butt" style="width: 125px;margin-left: 20px" type="success" >
-              Submit
-            </el-button>
-              <div class="blank"></div>
+              <v-btn
+               @click="submit"
+                class="ma-2"
+                elevation="3"
+                depressed
+               style="float: left"
+                color=#A5D6A7>
+                Submit
+              </v-btn>
             </table>
           </div>
           <br>
