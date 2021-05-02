@@ -36,16 +36,36 @@
               <div class="blank"></div>
               <table class="butt" style="width: 90%;margin-left: 3%;">
                 <td width="10%">
-<!--                  <div v-if="item.like_flag === '1'">-->
+                  <div v-if="item.like_flag === '1'">
+                    <v-btn
+                      class="ma-2"
+                      text
+                      icon
+                      color="orange lighten-2"
+                      @click="liked(item)"
+                      style="margin-top:-5%; z-index: 1"
+                    >
+                      <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
+                    </v-btn>
 <!--                    <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
 <!--                      <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
 <!--                    </button>-->
-<!--                  </div>-->
-<!--                  <div v-else>-->
+                  </div>
+                  <div v-else>
 <!--                    <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
 <!--                      <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
 <!--                    </button>-->
-<!--                  </div>-->
+                    <v-btn
+                      class="ma-2"
+                      text
+                      icon
+                      color="grey lighten-2"
+                      @click="liked(item),gethome()"
+                      style="margin-top:-5%; z-index: 1"
+                    >
+                      <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
+                    </v-btn>
+                  </div>
                 </td>
                 <td width="20%">
                   <v-row
@@ -114,7 +134,6 @@
           <br>
           <!--          Comments-->
           <div>
-                        {{item.commentList}}
             <table class="intro">
               <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{item.number_comment}} Answers</p>
               <div v-for="(comment, key, index) in item.commentList" v-bind:key="index">
@@ -262,6 +281,14 @@ export default {
     })
   },
   mounted () {
+    this.axios.post('http://localhost:8080/listQuestion', {
+      request: sessionStorage.getItem('user_id')
+    }).then((response) => {
+      this.$store.commit('setList', response.data.entity)
+      console.log(response.data.entity)
+    }).catch((response) => {
+      console.log(response)
+    })
     let imgList = JSON.parse(sessionStorage.getItem('imglist'))
     if (imgList === null) {
       this.axios.post('http://localhost:8080/imglist').then((response) => {
@@ -325,6 +352,7 @@ export default {
     },
     liked (item) {
       let likedlist = this.$store.getters.getLikedList
+      console.log(item.likes)
       let flag = false
       for (let i = 0; i < likedlist.length; i++) {
         if (likedlist[i].toString() === item.question_id.toString()) {

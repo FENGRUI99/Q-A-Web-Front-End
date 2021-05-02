@@ -52,16 +52,17 @@
 <!--                  <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
 <!--                    <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
 <!--                  </button>-->
-                  <v-btn
-                    class="ma-2"
-                    text
-                    icon
-                    color="orange lighten-2"
-                    @click="liked(item)"
-                    style="margin-top:-5%"
-                  >
-                    <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
-                  </v-btn>
+                    <v-btn
+                      class="ma-2"
+                      text
+                      icon
+                      color="orange lighten-2"
+                      @click="liked(item)"
+                      style="margin-top:-5%"
+                      v-show="!isBlur"
+                    >
+                      <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
+                    </v-btn>
                 </div>
                 <div v-else>
 <!--                  <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
@@ -73,7 +74,8 @@
                     icon
                     color="grey lighten-2"
                     @click="liked(item),gethome()"
-                    style="margin-top:-5%"
+                    style="margin-top:-5%; z-index: 1"
+                    v-show="!isBlur"
                   >
                     <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
                   </v-btn>
@@ -138,7 +140,8 @@ export default {
       flag: false,
       keyValue: 0,
       pic: {},
-      tmpValue: null
+      tmpValue: null,
+      isBlur: false
     }
   },
   beforeUpdate: function () {
@@ -161,6 +164,7 @@ export default {
         this.$store.state.list[likedList[i]].like_flag = '1'
       }
     }
+    this.isBlur = this.$store.state.blurConfig.isBlurred
   },
   created () {
     this.axios.post('http://localhost:8080/listQuestion', {
@@ -171,6 +175,7 @@ export default {
     }).catch((response) => {
       console.log(response)
     })
+    this.isBlur = this.$store.state.blurConfig.isBlurred
   },
   mounted: function () {
     this.axios.post('http://localhost:8080/userLike', {
@@ -188,6 +193,7 @@ export default {
       console.log(response)
     })
     window.addEventListener('scroll', this.handleScroll, true)
+    window.addEventListener('mousedown', this.getBlur, true)
     // if (this.keyValue >= 10) {
     //   console.log('refresh finishes')
     //   clearInterval(this.timer)
@@ -208,6 +214,9 @@ export default {
     mouseLeave () {
       this.active = ''
       this.$refs.acp.style = ''
+    },
+    getBlur () {
+      this.isBlur = this.$store.state.blurConfig.isBlurred
     },
     handleScroll: function () {
       if (this.change === -1) {
