@@ -12,9 +12,10 @@
     <div style="clear: both"></div>
     <li style="float: left;">Username&nbsp;&nbsp;</li><div style="float: left;" v-show="user_name.length !== 0" id = namecheck></div><div style="float: left; color: darkred">&nbsp;{{name_alert}}</div>
     <li><el-input v-model ="user_name" type="text" id="user_name" name="user_name" pattern = "^[a-zA-Z0-9_-]{4,16}$" placeholder="4-12 letters" required></el-input></li>
-    <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div><div style="clear: both"></div>
+    <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div><div style="float: left; color: darkred">&nbsp;{{mail_alert}}</div><div style="clear: both"></div>
     <li style="float: left"><el-input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+$" placeholder="Exp xx.xx18" style="width:45%;float: left" required></el-input><span style="float: right;margin-top:5%;text-align: inherit"> @student.xjtlu.edu.cn</span></li>
     <!--    -->
+    {{user_mail}}
     <li style="float: left;">Verification Code&nbsp;&nbsp;</li><div style="clear: both"></div>
     <li style="float: left; width: 45%"><el-input v-model ="validation" type="text" placeholder="Code" required></el-input></li>
     <li>
@@ -60,7 +61,8 @@ export default {
       id_alert: '',
       psw_alert: '',
       psw1_alert: '',
-      name_alert: ''
+      name_alert: '',
+      mail_alert: ''
     }
   },
   watch: {
@@ -125,18 +127,20 @@ export default {
       this.checkDupID()
     },
     checkDupID: function () {
-      this.axios.post('http://localhost:8080/checkID', {
-        user_id: this.user_id
-      }).then((response) => {
-        console.log(2122)
-        if (response.data.code === '400') {
-          // alert('The id has already been used')
-          this.id_alert = 'The id has already been used'
-          document.getElementById('idCheck').className = '-status incorrect'
-        }
-      }).catch((response) => {
-        console.log(response)
-      })
+      if (this.user_id.length !== 0) {
+        this.axios.post('http://localhost:8080/checkID', {
+          user_id: this.user_id
+        }).then((response) => {
+          console.log(2122)
+          if (response.data.code === '400') {
+            // alert('The id has already been used')
+            this.id_alert = 'The id has already been used'
+            document.getElementById('idCheck').className = '-status incorrect'
+          }
+        }).catch((response) => {
+          console.log(response)
+        })
+      }
     },
     checkPsw: function () {
       let id = document.getElementById('pswCheck')
@@ -203,57 +207,70 @@ export default {
     },
     checkEmail: function () {
       let id = document.getElementById('mailcheck')
-      let reg = ''
+      // let reg = ''
       if (this.user_mail.length === 0) {
         console.log(123213)
         id.className = '-status nothing'
-      } else if (reg.test(this.user_mail)) {
+      } else if (this.mail_alert.length === 0) {
         id.className = '-status correct'
       } else {
         id.className = '-status incorrect'
       }
     },
     regiser: function () {
-      this.axios.post('http://localhost:8080/register', {
-        user_id: this.user_id,
-        user_mail: this.user_mail + '@student.xjtlu.edu.cn',
-        user_name: this.user_name,
-        user_psw: this.user_pwd,
-        user_tags: this.$store.getters.getUserTags,
-        code: this.validation
-      }).then((response) => {
-        if (response.data.code === '200') {
-          this.$router.push({
-            name: 'Login'
-          })
-        } else {
-          alert('wrong validation code')
-        }
-        console.log(response.data.code)
-      }).catch((response) => {
-        console.log(response)
-      })
+      if (this.user_mail.length === 0 || this.validation.length === 0 || this.user_name.length === 0 || this.user_pwd === 0 || this.user_pwd1 === 0 || this.user_id === 0) {
+        alert('Please enter all information')
+      } else {
+        this.axios.post('http://localhost:8080/register', {
+          user_id: this.user_id,
+          user_mail: this.user_mail + '@student.xjtlu.edu.cn',
+          user_name: this.user_name,
+          user_psw: this.user_pwd,
+          user_tags: this.$store.getters.getUserTags,
+          code: this.validation
+        }).then((response) => {
+          if (response.data.code === '200') {
+            this.$router.push({
+              name: 'Login'
+            })
+          } else {
+            alert('wrong validation code')
+          }
+          console.log(response.data.code)
+        }).catch((response) => {
+          console.log(response)
+        })
+      }
     },
     sendEmail: function () {
-      this.axios.post('http://localhost:8080/sendEmail', {
-        request: this.user_mail + '@student.xjtlu.edu.cn'
-      }).then((response) => {
-      }).catch((response) => {
-        console.log(response)
-      })
-      const TIME_COUNT = 30
-      if (!this.timer) {
-        this.count = TIME_COUNT
-        this.show = false
-        this.timer = setInterval(() => {
-          if (this.count > 0 && this.count <= TIME_COUNT) {
-            this.count--
+      if (this.user_mail.length > 0) {
+        this.axios.post('http://localhost:8080/sendEmail', {
+          request: this.user_mail + '@student.xjtlu.edu.cn'
+        }).then((response) => {
+          console.log(response.data.code)
+          if (response.data.code === '400') {
+            console.log(11111)
+            this.mail_alert = response.data.msg.toString()
           } else {
-            this.show = true
-            clearInterval(this.timer)
-            this.timer = null
+            this.mail_alert = ''
           }
-        }, 1000)
+          this.checkEmail()
+        }).catch((response) => {
+        })
+        const TIME_COUNT = 30
+        if (!this.timer) {
+          this.count = TIME_COUNT
+          this.show = false
+          this.timer = setInterval(() => {
+            if (this.count > 0 && this.count <= TIME_COUNT) {
+              this.count--
+            } else {
+              this.show = true
+              clearInterval(this.timer)
+              this.timer = null
+            }
+          }, 1000)
+        }
       }
     }
   }
