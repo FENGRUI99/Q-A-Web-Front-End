@@ -20,7 +20,7 @@
                 </li>
                 <li style="float: left;">
                   <UL class=fm>
-                    <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.time}}
+                    <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.create_time | getTimeFormat}}
                       <ul class="idinfo">
                         <li >
                           id: {{ item.user_id }}
@@ -414,6 +414,28 @@ export default {
         this.keyValue += 1
         console.log(this.keyValue)
       }
+    },
+    GetDateStr (sjStr) {
+      var data = new Date().toLocaleDateString()
+      var dd = Date.parse(data) / 1000
+      console.log(dd)
+      console.log(data)
+      var iday = Math.floor(parseInt(dd - sjStr) / 60 / 60 / 24)
+      if (iday === -1) {
+        return 'today'
+      } else if (iday === 0) {
+        return 'yestoday'
+      } else {
+        dd = []
+        dd = new Date(sjStr * 1000).toLocaleDateString().split('/')
+        var y = dd[0]
+        var m = dd[1]
+        var d = dd[2]
+        return y + '-' + this.num(m) + '-' + this.num(d)
+      }
+    },
+    num (s) {
+      return s < 10 ? '0' + s : s
     },
     test () {
       this.axios.post('http://localhost:8080/userLike', {

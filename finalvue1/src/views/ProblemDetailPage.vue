@@ -14,7 +14,7 @@
               <div class="blank"></div>
               <tr id="title1" ><td class="top_chart" v-html="item.question_description">{{item.question_description}} ？</td></tr>
               <tr class="small">
-                <td class="top_chart">Posted by <span style="color: #81D454;text-decoration:underline">{{item.user_name}}</span> {{item.time}}</td>
+                <td class="top_chart">Posted by <span style="color: #81D454;text-decoration:underline">{{item.user_name}}</span> {{item.create_time | getTimeFormat}}</td>
               </tr>
               <tr id="detail">
                 <div v-if="viewAll_flag === false">
@@ -144,12 +144,12 @@
                   <div v-if="index===item.number_comment-1">
                     <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
                     <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
-                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
+                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> {{comment.create_time | getTimeFormat}}</p>
                   </div>
                   <div v-else>
                     <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
                     <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
-                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
+                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> {{comment.create_time | getTimeFormat}}</p>
                     <el-divider></el-divider>
                   </div>
                 </div>
@@ -347,7 +347,7 @@ export default {
       this.item.number_comment += 1
       let commentId = -this.item.number_comment
       console.log('comemnt id = ' + commentId)
-      this.$set(this.item.commentList, commentId.toString(), { 'comment_id': commentId.toString(), 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': ' ' })
+      this.$set(this.item.commentList, commentId.toString(), { 'comment_id': commentId.toString(), 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': new Date().getTime() })
       sessionStorage.setItem('item', JSON.stringify(this.item))
       this.axios.post('http://localhost:8080/publishComment', {
         user_id: sessionStorage.getItem('user_id'),
