@@ -32,7 +32,7 @@ Vue.use(localforage)
 Vue.use(mdiThumbUp)
 const store = new Vuex.Store({
   state: {
-    list: {},
+    list: [],
     user_id: '',
     isFind: true,
     liked_list: [],
@@ -75,23 +75,23 @@ const store = new Vuex.Store({
     changeList (state, indexAndData) {
       let questionId = indexAndData[0]
       let data = indexAndData[1]
-      // for (let i = 0; i < state.list.length; i++) {
-      //   if (state.list[i].question_id === questionId) {
-      //     state.list[i].likes += data
-      //     if (data === 1) {
-      //       state.list[i].like_flag = '1'
-      //     } else {
-      //       state.list[i].like_flag = '0'
-      //     }
-      //     break
-      //   }
-      // }
-      state.list[questionId].likes += data
-      if (data === 1) {
-        state.list[questionId].like_flag = '1'
-      } else {
-        state.list[questionId].like_flag = '0'
+      for (let i = 0; i < state.list.length; i++) {
+        if (state.list[i].question_id === questionId) {
+          state.list[i].likes += data
+          if (data === 1) {
+            state.list[i].like_flag = '1'
+          } else {
+            state.list[i].like_flag = '0'
+          }
+          break
+        }
       }
+      // state.list[questionId].likes += data
+      // if (data === 1) {
+      //   state.list[questionId].like_flag = '1'
+      // } else {
+      //   state.list[questionId].like_flag = '0'
+      // }
     },
     changeLikedList (state, msg) {
       let flag = msg[0]

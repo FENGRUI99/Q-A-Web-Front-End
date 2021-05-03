@@ -2,100 +2,97 @@
   <div id="block" >
     <div>  <el-backtop style="background-color: #eef5e3;color:#51bd20;border-radius: 8px"></el-backtop></div>
     <div v-if="this.$store.getters.getIsFind === true">
-      <div v-for="(item, key, index) in this.$store.getters.getList" v-bind:key="index">
-        <div v-if="index < count">
-          <table class="abc">
-            <td style="width: 100%;">
-              <div style="margin: 1% 3%;width: 97%;">
-                <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" v-html="item.question_description">{{item.question_description}}</li>
-                <li @click="toDetailPage(item)" align="left" >
-                  <table>
-                    <td>
-                  <img v-if="getImage(item.question_id) === true"
-                       style="width: 100px; height: 100px;vertical-align: text-top;"
-                       v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
-                  >
-                    </td>
-                    <td>
+      <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
+        <table class="abc">
+          <td style="width: 100%;">
+            <div style="margin: 1% 3%;width: 97%;">
+              <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" v-html="item.question_description">{{item.question_description}}</li>
+              <li @click="toDetailPage(item)" align="left" >
+                <table>
+                  <td>
+                <img v-if="getImage(item.question_id) === true"
+                     style="width: 100px; height: 100px;vertical-align: text-top;"
+                     v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
+                >
+                  </td>
+                  <td>
 <!--                  {{item.question_detail.substring(0,200) + '...'}}-->
-                 <span v-html="item.question_detail"> {{item.question_detail.substring(0,200) + '...'}}</span>
-                    </td>
-                  </table>
-                </li>
-                <li style="float: left;">
-                  <UL class=fm>
-                    <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.create_time | getTimeFormat}}
-                      <ul class="idinfo">
-                        <li >
-                          id: {{ item.user_id }}
-                        </li>
-                        <li>
-                          likes: {{item.user_info}}
-                        </li>
-                        <li>
-                          email: {{item.user_mail}}
-                        </li>
-                        <li>
-                          XJTLU student
-                        </li>
-                      </ul>
-                    </LI>
-                  </UL>
-                </li>
-                <li style="text-align: right;float: right;display:inline-block;margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
-                    :key="tag"
-                    effect="plain">
-                  <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #A5D6A7;color: #A5D6A7"
-                  >  {{ tag }}
-                  </el-tag>
-                </li>
-              </div>
-            </td>
-              <div v-bind:key="keyValue">
-                <div v-if="item.like_flag === '1'">
+               <span v-html="item.question_detail"> {{item.question_detail.substring(0,200) + '...'}}</span>
+                  </td>
+                </table>
+              </li>
+              <li style="float: left;">
+                <UL class=fm>
+                  <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.create_time | getTimeFormat}}
+                    <ul class="idinfo">
+                      <li >
+                        id: {{ item.user_id }}
+                      </li>
+                      <li>
+                        likes: {{item.user_info}}
+                      </li>
+                      <li>
+                        email: {{item.user_mail}}
+                      </li>
+                      <li>
+                        XJTLU student
+                      </li>
+                    </ul>
+                  </LI>
+                </UL>
+              </li>
+              <li style="text-align: right;float: right;display:inline-block;margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
+                  :key="tag"
+                  effect="plain">
+                <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #A5D6A7;color: #A5D6A7"
+                >  {{ tag }}
+                </el-tag>
+              </li>
+            </div>
+          </td>
+            <div v-bind:key="keyValue">
+              <div v-if="item.like_flag === '1'">
 <!--                  <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
 <!--                    <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
-<!--                  </button>-->
-                    <v-btn
-                      class="ma-2"
-                      text
-                      icon
-                      color="orange lighten-2"
-                      @click="liked(item)"
-                      style="margin-top:-5%"
-                      v-show="!isBlur"
-                    >
-                      <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
-                    </v-btn>
-                </div>
-                <div v-else>
-<!--                  <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
-<!--                    <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
 <!--                  </button>-->
                   <v-btn
                     class="ma-2"
                     text
                     icon
-                    color="grey lighten-2"
-                    @click="liked(item),gethome()"
-                    style="margin-top:-5%; z-index: 1"
+                    color="orange lighten-2"
+                    @click="liked(item)"
+                    style="margin-top:-5%"
                     v-show="!isBlur"
                   >
                     <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
                   </v-btn>
-                </div>
               </div>
-              <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
-                <table>
-                  <td><i class="el-icon-edit"></i></td>
-                  <td>{{item.number_comment}}</td>
-                </table>
-              </el-button>
-            <br>
-          </table>
-          <div style="height: 10px"></div>
-        </div>
-
+              <div v-else>
+<!--                  <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
+<!--                    <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
+<!--                  </button>-->
+                <v-btn
+                  class="ma-2"
+                  text
+                  icon
+                  color="grey lighten-2"
+                  @click="liked(item),gethome()"
+                  style="margin-top:-5%; z-index: 1"
+                  v-show="!isBlur"
+                >
+                  <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
+                </v-btn>
+              </div>
+            </div>
+            <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
+              <table>
+                <td><i class="el-icon-edit"></i></td>
+                <td>{{item.number_comment}}</td>
+              </table>
+            </el-button>
+          <br>
+        </table>
+        <div style="height: 10px"></div>
       </div>
       <!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
 <!--      Skeleton&SPin-->
@@ -185,23 +182,17 @@ export default {
     }
   },
   beforeUpdate: function () {
-    // let num = 0
-    // for (let i = 0; i < this.$store.state.list.length; i++) {
-    //   for (let j = 0; j < this.$store.state.liked_list.length; j++) {
-    //     if (this.$store.state.list[i].question_id.toString() === this.$store.state.liked_list[j]) {
-    //       num += 1
-    //       this.$store.state.list[i].like_flag = '1'
-    //       break
-    //     }
-    //   }
-    //   if (num >= this.$store.state.liked_list.length) {
-    //     break
-    //   }
-    // }
-    let likedList = this.$store.getters.getLikedList
-    for (let i = 0; i < likedList.length; i++) {
-      if (likedList[i] !== '-1') {
-        this.$store.state.list[likedList[i]].like_flag = '1'
+    let num = 0
+    for (let i = 0; i < this.$store.state.list.length; i++) {
+      for (let j = 0; j < this.$store.state.liked_list.length; j++) {
+        if (this.$store.state.list[i].question_id.toString() === this.$store.state.liked_list[j]) {
+          num += 1
+          this.$store.state.list[i].like_flag = '1'
+          break
+        }
+      }
+      if (num >= this.$store.state.liked_list.length) {
+        break
       }
     }
     this.isBlur = this.$store.state.blurConfig.isBlurred
@@ -211,6 +202,7 @@ export default {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setList', response.data.entity)
+      console.log('list is: =  ' + response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -248,7 +240,7 @@ export default {
     //     this.refresh()
     //   }, 1000)
     // }
-    this.timer = setInterval(this.refresh, 500)
+    // this.timer = setInterval(this.refresh, 500)
   },
   methods: {
     mouseOver () {
@@ -266,20 +258,20 @@ export default {
     },
     handleScroll: function () {
       if (this.change === -1) {
-        this.change = Object.keys(this.$store.state.list).length
-      } else if (this.change !== Object.keys(this.$store.state.list).length) {
+        this.change = this.$store.getters.getList.length
+      } else if (this.change !== this.$store.getters.getList.length) {
         this.count = 5
-        this.change = Object.keys(this.$store.state.list).length
+        this.change = this.$store.getters.getList.length
         this.loading.check = true
       }
-      if (document.getElementById('load') && Object.keys(this.$store.state.list).length > this.count) {
+      if (document.getElementById('load') && this.$store.getters.getList.length > this.count) {
         let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
         let loadElement = document.getElementById('load')
         let footerHeight = scrollHeight - loadElement.offsetTop
         if (clientHeight + scrollTop + footerHeight > scrollHeight) {
-          if (Object.keys(this.$store.state.list).length > this.count) {
+          if (this.$store.getters.getList.length > this.count) {
             this.count += 5
             this.sleep(800)
           }

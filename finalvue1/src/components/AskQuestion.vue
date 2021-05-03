@@ -160,7 +160,6 @@
 </template>
 
 <script>
-import localforage from 'localforage'
 export default {
   name: 'AskQuestion',
   data () {
@@ -230,11 +229,11 @@ export default {
       const isImage = file.raw.type === 'image/png' || file.raw.type === 'image/jpg' || file.raw.type === 'image/jpeg'
       const isLt5M = file.size < 1024 * 500
       if (!isImage) {
-        this.$message.error('上传只能是png,jpg,jpeg格式!')
+        this.$message.error('Uploads can only be in PNG, JPG, JPEG format!')
         this.forbidUpload = false
       }
       if (!isLt5M) {
-        this.$message.error('上传图片大小不能超过500kb!')
+        this.$message.error('Upload image size cannot exceed 500KB!')
         this.forbidUpload = false
       }
 
@@ -295,18 +294,9 @@ export default {
     },
     uploadFile () {
       const formData = new FormData()
-      var localList = []
       // 因为要传一个文件数组过去，所以要循环append
       this.fileList.forEach((file) => {
         formData.append('files', file.raw)
-        var This = this
-        var reader = new FileReader()
-        reader.readAsDataURL(file.raw)
-        reader.onload = function (e) {
-          This.imageBaseUrl = this.result
-          This.imageUrl = this.result
-          localList.push(this.result)
-        }
       })
       if (formData.get('files') === null) {
         this.axios.post('http://localhost:8080/publishQuestion', {
@@ -317,7 +307,7 @@ export default {
           'question_tags': this.splitComma(this.value)
         }).then(res => {
           if (res.data.code === '200') {
-            alert('finish with no pic')
+            alert('Publish question successfully')
           }
         }).catch(error => {
           alert('更新用户数据失败' + error)
@@ -330,7 +320,7 @@ export default {
         formData.append('question_tags', this.splitComma(this.value))
         this.axios.post('http://localhost:8080/publishQuestionWP', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
           if (res.data.code === '200') {
-            localforage.setItem(res.data.entity.toString(), JSON.stringify(localList))
+            alert('Publish question successfully')
           }
         }).catch(error => {
           alert('更新用户数据失败' + error)

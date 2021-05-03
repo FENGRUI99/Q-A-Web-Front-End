@@ -207,7 +207,7 @@
             <div class="blank"></div>
             <div id="relatedQuestions">Related Questions</div>
             <div class="blank"></div>
-            <div class="website" v-for="(relevant, key, index) in this.relevant_question" v-bind:key="index">
+            <div class="website" v-for="(relevant, index) in this.relevant_question" v-bind:key="index">
               <div v-if="index < 5">
                 <div @click="toAnotherQuestion(key)" style="padding-left: 10px">
                   <li style="cursor: pointer;">{{relevant.question_description}}</li>
@@ -284,6 +284,7 @@ export default {
       request: this.item.question_tags
     }).then((response) => {
       this.relevant_question = response.data.entity
+      console.log('relevant question : ' + response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -294,7 +295,7 @@ export default {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setList', response.data.entity)
-      console.log(response.data.entity)
+      console.log('list is : ' + response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -428,8 +429,8 @@ export default {
         this.activeClass = true
       }, 200)
     },
-    toAnotherQuestion (key) {
-      sessionStorage.setItem('item', JSON.stringify(this.relevant_question[key]))
+    toAnotherQuestion (index) {
+      sessionStorage.setItem('item', JSON.stringify(this.relevant_question[index]))
       location.reload()
     },
     viewAll () {
