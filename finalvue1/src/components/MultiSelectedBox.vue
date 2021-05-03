@@ -6,7 +6,6 @@
       default-first-option
       filterable
       allow-create
-      @change="Sorted"
       placeholder="Likes">
       <el-option
         v-for="item in options"
@@ -15,6 +14,7 @@
         :value="item.value">
       </el-option>
     </el-select>
+    <el-button @click="Sorted">{{this.cfr}}</el-button>
   </div>
 
 </template>
@@ -34,30 +34,50 @@ export default {
         value: 'Comments',
         label: 'Comments'
       }],
-      value: []
+      value: [],
+      isDes: 'a',
+      cfr: 'descend'
     }
   },
   methods: {
     Sorted () {
+      if (this.isDes === 'a') {
+        this.isDes = 'b'
+      } else {
+        this.isDes = 'a'
+      }
+      if (this.cfr === 'descend') {
+        this.cfr = 'ascend '
+      } else {
+        this.cfr = 'descend'
+      }
       if (this.value.toString() === 'Likes') {
-        this.axios.post('http://localhost:8080/sortbyLikes').then((response) => {
+        this.axios.post('http://localhost:8080/sortbyLikes', {
+          request: this.isDes
+        }).then((response) => {
           this.$store.commit('setList', response.data.entity)
         }).catch((response) => {
           console.log(response)
         })
       } else if (this.value.toString() === 'Time') {
-        this.axios.post('http://localhost:8080/sortbyTime').then((response) => {
+        this.axios.post('http://localhost:8080/sortbyTime', {
+          request: this.isDes
+        }).then((response) => {
           this.$store.commit('setList', response.data.entity)
         }).catch((response) => {
           console.log(response)
         })
       } else if (this.value.toString() === 'Comments') {
-        this.axios.post('http://localhost:8080/sortbyAnswers').then((response) => {
+        this.axios.post('http://localhost:8080/sortbyAnswers', {
+          request: this.isDes
+        }).then((response) => {
           this.$store.commit('setList', response.data.entity)
         }).catch((response) => {
           console.log(response)
         })
       }
+    },
+    change () {
     }
   }
 }

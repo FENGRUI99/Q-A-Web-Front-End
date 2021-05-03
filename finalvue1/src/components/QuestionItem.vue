@@ -10,14 +10,14 @@
               <li @click="toDetailPage(item)" align="left" >
                 <table>
                   <td>
-                <img v-if="getImage(item.question_id) === true"
-                     style="width: 100px; height: 100px;vertical-align: text-top;"
-                     v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
-                >
+                    <img v-if="getImage(item.question_id) === true"
+                         style="width: 100px; height: 100px;vertical-align: text-top;"
+                         v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
+                    >
                   </td>
                   <td>
-<!--                  {{item.question_detail.substring(0,200) + '...'}}-->
-               <span v-html="item.question_detail"> {{item.question_detail.substring(0,200) + '...'}}</span>
+                    <!--                  {{item.question_detail.substring(0,200) + '...'}}-->
+                    <span v-html="item.question_detail"> {{item.question_detail.substring(0,200) + '...'}}</span>
                   </td>
                 </table>
               </li>
@@ -50,53 +50,57 @@
               </li>
             </div>
           </td>
-            <div v-bind:key="keyValue">
-              <div v-if="item.like_flag === '1'">
-<!--                  <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
-<!--                    <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
-<!--                  </button>-->
-                  <v-btn
-                    class="ma-2"
-                    text
-                    icon
-                    color="orange lighten-2"
-                    @click="liked(item)"
-                    style="margin-top:-5%"
-                    v-show="!isBlur"
-                  >
-                    <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
-                  </v-btn>
-              </div>
-              <div v-else>
-<!--                  <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
-<!--                    <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
-<!--                  </button>-->
-                <v-btn
-                  class="ma-2"
-                  text
-                  icon
-                  color="grey lighten-2"
-                  @click="liked(item),gethome()"
-                  style="margin-top:-5%; z-index: 1"
-                  v-show="!isBlur"
-                >
-                  <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}
-                </v-btn>
-              </div>
+          <div v-bind:key="keyValue">
+            <div v-if="item.like_flag === '1'">
+              <!--                  <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
+              <!--                    <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
+              <!--                  </button>-->
+              <a-icon type="like" theme="twoTone" v-show="!isBlur"  @click="liked(item)" two-tone-color="#b20610" style="font-size: large"/>
+              {{item.likes}}
+              <!--                    <v-btn-->
+              <!--                      class="ma-2"-->
+              <!--                      text-->
+              <!--                      icon-->
+              <!--                      color="orange lighten-2"-->
+              <!--                      @click="liked(item)"-->
+              <!--                      style="margin-top:-5%"-->
+              <!--                      v-show="!isBlur"-->
+              <!--                    >-->
+              <!--                      <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}-->
+              <!--                    </v-btn>-->
             </div>
-            <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
-              <table>
-                <td><i class="el-icon-edit"></i></td>
-                <td>{{item.number_comment}}</td>
-              </table>
-            </el-button>
+            <div v-else>
+              <!--                  <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
+              <!--                    <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
+              <!--                  </button>-->
+              <!--                  <v-btn-->
+              <!--                    class="ma-2"-->
+              <!--                    text-->
+              <!--                    icon-->
+              <!--                    color="grey lighten-2"-->
+              <!--                    @click="liked(item),gethome()"-->
+              <!--                    style="margin-top:-5%; z-index: 1"-->
+              <!--                    v-show="!isBlur"-->
+              <!--                  >-->
+              <!--                    <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}-->
+              <!--                  </v-btn>-->
+              <a-icon type="like" theme="twoTone" v-show="!isBlur"  @click="liked(item),gethome()" two-tone-color="#cccccc" style="font-size: large"/>
+              {{item.likes}}
+            </div>
+            <div class="blank"></div>
+          </div>
+          <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
+            <table>
+              <td><i class="el-icon-edit"></i></td>
+              <td>{{item.number_comment}}</td>
+            </table>
+          </el-button>
           <br>
         </table>
         <div style="height: 10px"></div>
       </div>
       <!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
-<!--      Skeleton&SPin-->
-
+      <!--      Skeleton&SPin-->
       <div class="demo-search-div">
 
         <v-skeleton-loader
@@ -105,44 +109,43 @@
           class="abc loadingStyle" id = 'load'
 
         ></v-skeleton-loader>
-        <v-progress-circular
-          :size="50"
-          color="primary"
-          indeterminate
-          style="border-radius:10px ;z-index: -1"
-        ></v-progress-circular>
+        <!--        <v-progress-circular-->
+        <!--          :size="50"-->
+        <!--          color="primary"-->
+        <!--          indeterminate-->
+        <!--          style="border-radius:10px ;z-index: -1"-->
+        <!--        ></v-progress-circular>-->
 
-        <v-progress-circular
-          :width="3"
-          color="red"
-          indeterminate
-          style="border-radius:10px ;z-index: -1"
-        ></v-progress-circular>
+        <!--        <v-progress-circular-->
+        <!--          :width="3"-->
+        <!--          color="red"-->
+        <!--          indeterminate-->
+        <!--          style="border-radius:10px ;z-index: -1"-->
+        <!--        ></v-progress-circular>-->
 
-        <v-progress-circular
-          :size="70"
-          :width="7"
-          color="purple"
-          indeterminate
-          style="border-radius:10px ;z-index: -1"
-        ></v-progress-circular>
+        <!--        <v-progress-circular-->
+        <!--          :size="70"-->
+        <!--          :width="7"-->
+        <!--          color="purple"-->
+        <!--          indeterminate-->
+        <!--          style="border-radius:10px ;z-index: -1"-->
+        <!--        ></v-progress-circular>-->
 
-        <v-progress-circular
-          :width="3"
-          color="green"
-          indeterminate
-          style="border-radius:10px ;z-index: -1"
-        ></v-progress-circular>
+        <!--        <v-progress-circular-->
+        <!--          :width="3"-->
+        <!--          color="green"-->
+        <!--          indeterminate-->
+        <!--          style="border-radius:10px ;z-index: -1"-->
+        <!--        ></v-progress-circular>-->
 
-        <v-progress-circular
-          :size="50"
-          color="amber"
-          indeterminate
-          style="border-radius:10px ;z-index: -1"
-        ></v-progress-circular>
+        <!--        <v-progress-circular-->
+        <!--          :size="50"-->
+        <!--          color="amber"-->
+        <!--          indeterminate-->
+        <!--          style="border-radius:10px ;z-index: -1"-->
+        <!--        ></v-progress-circular>-->
 
       </div>
-
     </div>
     <div v-else class = "abc loadingStyle">
       there is no questions
@@ -231,7 +234,7 @@ export default {
       console.log(response)
     })
     window.addEventListener('scroll', this.handleScroll, true)
-    window.addEventListener('mousedown', this.getBlur, true)
+    // window.addEventListener('mousedown', this.getBlur, true)
     // if (this.keyValue >= 10) {
     //   console.log('refresh finishes')
     //   clearInterval(this.timer)
@@ -459,20 +462,20 @@ export default {
 }
 </script>
 <style scoped>
-  .demo-search-div{
-  }
+.demo-search-div{
+}
 
-  .demo-search-div >>> .v-skeleton-loader__heading{
-    height: 25px;
-    margin:16px 0 1px 16px;
-  }
-  .demo-search-div >>> .v-skeleton-loader__text{
-    height: 20px;
-    width: 80%;
-  }
-  .demo-search-div >>>.v-skeleton-loader__paragraph .v-skeleton-loader__text:nth-child(2){
-    max-width: 75%;
-  }
+.demo-search-div >>> .v-skeleton-loader__heading{
+  height: 25px;
+  margin:16px 0 1px 16px;
+}
+.demo-search-div >>> .v-skeleton-loader__text{
+  height: 20px;
+  width: 80%;
+}
+.demo-search-div >>>.v-skeleton-loader__paragraph .v-skeleton-loader__text:nth-child(2){
+  max-width: 75%;
+}
 .Touchable{
   height: auto;
 }

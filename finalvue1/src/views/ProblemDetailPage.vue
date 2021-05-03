@@ -25,9 +25,10 @@
                   <div v-if="pic_flag === true">
                     <div v-for="(picture,pic_index) in pic" v-bind:key="pic_index">
                       <img
-                        style="width: 100px; height: 100px;"
+                        style="width: 100px; height: 100px;margin-left: 5%"
                         v-bind:src="'data:image/png;base64,' + picture"
                       >
+                      <div class="blank"></div>
                     </div>
                   </div>
                 </div>
