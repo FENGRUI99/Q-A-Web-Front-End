@@ -137,10 +137,10 @@
     <div class="blank"></div>
     <li style="display: inline-block;">
       <v-btn
-        color= #A5D6A7
+        depressed
         elevation="3"
       @click="foldText"
-        style="width: 130px;">close </v-btn>
+        style="width: 130px;color: grey">close </v-btn>
     </li>
     <li style="display:inline-block;width: 25%;"></li>
     <li style="display: inline-block;">
