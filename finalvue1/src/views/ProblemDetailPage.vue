@@ -209,7 +209,7 @@
             <div class="blank"></div>
             <div class="website" v-for="(relevant, key, index) in this.relevant_question" v-bind:key="index">
               <div v-if="index < 5">
-                <div @click="toAnotherQuestion(index)" style="padding-left: 10px">
+                <div @click="toAnotherQuestion(key)" style="padding-left: 10px">
                   <li style="cursor: pointer;">{{relevant.question_description}}</li>
                   <div v-if="relevant.commentList === null">
                     <li >wait for your answer</li>
@@ -345,7 +345,9 @@ export default {
       this.textarea = ''
       // this.item.commentList.push({'-1': { 'comment_id': '-1', 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': ' ' }})
       this.item.number_comment += 1
-      this.$set(this.item.commentList, '-1', { 'comment_id': '-1', 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': ' ' })
+      let commentId = -this.item.number_comment
+      console.log('comemnt id = ' + commentId)
+      this.$set(this.item.commentList, commentId.toString(), { 'comment_id': commentId.toString(), 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': ' ' })
       sessionStorage.setItem('item', JSON.stringify(this.item))
       this.axios.post('http://localhost:8080/publishComment', {
         user_id: sessionStorage.getItem('user_id'),
@@ -425,8 +427,8 @@ export default {
         this.activeClass = true
       }, 200)
     },
-    toAnotherQuestion (index) {
-      sessionStorage.setItem('item', JSON.stringify(this.relevant_question[index]))
+    toAnotherQuestion (key) {
+      sessionStorage.setItem('item', JSON.stringify(this.relevant_question[key]))
       location.reload()
     },
     viewAll () {
