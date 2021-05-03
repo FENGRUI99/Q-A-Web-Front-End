@@ -8,6 +8,7 @@
           <table class="abc">
             <td style="width: 100%;">
               <div style="margin: 1% 3%;width: 97%;">
+                {{item.question_id}}
                 <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" v-html="item.question_description">{{item.question_description}}</li>
                 <li @click="toDetailPage(item)" align="left" >
                   <img v-if="getImage(item.question_id) === true"
@@ -208,7 +209,6 @@ export default {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setList', response.data.entity)
-      console.log(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -257,20 +257,20 @@ export default {
     },
     handleScroll: function () {
       if (this.change === -1) {
-        this.change = this.$store.getters.getList.length
-      } else if (this.change !== this.$store.getters.getList.length) {
+        this.change = Object.keys(this.$store.state.list).length
+      } else if (this.change !== Object.keys(this.$store.state.list).length) {
         this.count = 5
-        this.change = this.$store.getters.getList.length
+        this.change = Object.keys(this.$store.state.list).length
         this.loading.check = true
       }
-      if (document.getElementById('load') && this.$store.getters.getList.length > this.count) {
+      if (document.getElementById('load') && Object.keys(this.$store.state.list).length > this.count) {
         let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
         let loadElement = document.getElementById('load')
         let footerHeight = scrollHeight - loadElement.offsetTop
         if (clientHeight + scrollTop + footerHeight > scrollHeight) {
-          if (this.$store.getters.getList.length > this.count) {
+          if (Object.keys(this.$store.state.list).length > this.count) {
             this.count += 5
             this.sleep(800)
           }
@@ -414,10 +414,11 @@ export default {
       }).then((response) => {
         // this.$store.commit('setLikedList', response.data.entity)
         this.$store.state.liked_list = response.data.entity
-        console.log(response.data.entity)
+        console.log('like list is: ' + response.data.entity)
       }).catch((response) => {
         console.log(response)
       })
+      console.log(Object.keys(this.$store.state.list).length)
     }
   },
   destroyed () {
@@ -427,6 +428,7 @@ export default {
     loading: {
       handler (val, oldVal) {
         this.count += 2
+        console.log('count = ' + this.count)
       },
       deep: true
     }
