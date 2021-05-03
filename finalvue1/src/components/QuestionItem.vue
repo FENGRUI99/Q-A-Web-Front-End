@@ -47,7 +47,6 @@
                 </li>
               </div>
             </td>
-            <td style="margin:0 5px 5px 5px;float:right;width: 120px;" >
               <div v-bind:key="keyValue">
                 <div v-if="item.like_flag === '1'">
 <!--                  <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
@@ -88,7 +87,6 @@
                   <td>{{item.number_comment}}</td>
                 </table>
               </el-button>
-            </td>
             <br>
           </table>
           <div style="height: 10px"></div>

@@ -4,7 +4,7 @@
         <swiper class="swiper" :options="swiperOption">
           <swiper-slide class="swiper-slide" v-for="swlp in nameList2" :key="swlp.id">
               <h1>Top louder</h1>
-            <h3 class="small" style="line-height: 40px"> {{swlp.title}}<a-icon type="rocket" theme="twoTone" two-tone-color="#eb2f96" :style="{ fontSize: '20px', color: 'blue' }" /></h3>
+            <h3 class="small" style="line-height: 40px"> {{swlp.id+1}}.{{swlp.title}}<a-icon type="rocket" theme="twoTone" two-tone-color="#eb2f96" :style="{ fontSize: '20px', color: 'blue' }" /></h3>
           </swiper-slide>
           <div class="swiper-pagination"  slot="pagination"></div>   <!-- 分页 -->
         </swiper>
