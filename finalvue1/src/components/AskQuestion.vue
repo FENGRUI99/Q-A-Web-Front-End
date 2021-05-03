@@ -160,7 +160,7 @@
 </template>
 
 <script>
-
+import localforage from 'localforage'
 export default {
   name: 'AskQuestion',
   data () {
@@ -242,6 +242,7 @@ export default {
         this.forbidUpload = true
         // this.uploadFile = file.raw || null
         this.fileList.push(file)
+        console.log('fileList is: ' + fileList)
       } else {
         this.fileList.splice(-1, 1)
       }
@@ -294,9 +295,18 @@ export default {
     },
     uploadFile () {
       const formData = new FormData()
+      var localList = []
       // 因为要传一个文件数组过去，所以要循环append
       this.fileList.forEach((file) => {
         formData.append('files', file.raw)
+        var This = this
+        var reader = new FileReader()
+        reader.readAsDataURL(file.raw)
+        reader.onload = function (e) {
+          This.imageBaseUrl = this.result
+          This.imageUrl = this.result
+          localList.push(this.result)
+        }
       })
       if (formData.get('files') === null) {
         this.axios.post('http://localhost:8080/publishQuestion', {
@@ -320,7 +330,7 @@ export default {
         formData.append('question_tags', this.splitComma(this.value))
         this.axios.post('http://localhost:8080/publishQuestionWP', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
           if (res.data.code === '200') {
-            alert('finish with pic')
+            localforage.setItem(res.data.entity.toString(), JSON.stringify(localList))
           }
         }).catch(error => {
           alert('更新用户数据失败' + error)
