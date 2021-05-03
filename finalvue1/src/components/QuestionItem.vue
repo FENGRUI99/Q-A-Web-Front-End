@@ -1,14 +1,12 @@
 <template>
   <div id="block" >
     <div>  <el-backtop style="background-color: #eef5e3;color:#51bd20;border-radius: 8px"></el-backtop></div>
-    <button @click="test">test</button>
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item, key, index) in this.$store.getters.getList" v-bind:key="index">
         <div v-if="index < count">
           <table class="abc">
             <td style="width: 100%;">
               <div style="margin: 1% 3%;width: 97%;">
-                {{item.question_id}}
                 <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" v-html="item.question_description">{{item.question_description}}</li>
                 <li @click="toDetailPage(item)" align="left" >
                   <img v-if="getImage(item.question_id) === true"

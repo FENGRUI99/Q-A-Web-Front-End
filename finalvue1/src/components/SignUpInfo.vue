@@ -15,7 +15,6 @@
     <li style="float: left;">Your Email&nbsp;&nbsp;</li><div style="float: left;" id = mailcheck></div><div style="float: left; color: darkred">&nbsp;{{mail_alert}}</div><div style="clear: both"></div>
     <li style="float: left"><el-input v-model ="user_mail" type="text" id="user_mail" name="user_mail" pattern = "^[a-zA-Z0-9_-]+$" placeholder="Exp xx.xx18" style="width:45%;float: left" required></el-input><span style="float: right;margin-top:5%;text-align: inherit"> @student.xjtlu.edu.cn</span></li>
     <!--    -->
-    {{user_mail}}
     <li style="float: left;">Verification Code&nbsp;&nbsp;</li><div style="clear: both"></div>
     <li style="float: left; width: 45%"><el-input v-model ="validation" type="text" placeholder="Code" required></el-input></li>
     <li>
