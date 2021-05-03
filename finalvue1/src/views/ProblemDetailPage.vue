@@ -141,7 +141,7 @@
               </div>
               <div v-else>
                 <div v-for="(comment, key, index) in item.commentList" v-bind:key="index">
-                  <div v-if="index===item.commentList.length-1">
+                  <div v-if="index===item.number_comment-1">
                     <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
                     <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
                     <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>
@@ -154,6 +154,7 @@
                   </div>
                 </div>
               </div>
+            </table>
 <!--              <div v-if="item.commentList.length === 1">-->
 <!--                &lt;!&ndash;no answer remain&ndash;&gt;-->
 <!--                <div v-if="item.commentList[0].comment_detail === null">-->
@@ -182,7 +183,6 @@
 <!--                </div>-->
 <!--&lt;!&ndash;                <div style="">Waiting for More Louder Voice! </div>&ndash;&gt;-->
 <!--              </div>-->
-            </table>
           </div>
           <br>
           <br>
