@@ -215,6 +215,13 @@ export default {
     this.isBlur = this.$store.state.blurConfig.isBlurred
   },
   mounted: function () {
+    this.axios.post('http://localhost:8080/UserInfo', {
+      request: sessionStorage.getItem('user_id')
+    }).then((response) => {
+      sessionStorage.setItem('user_info', JSON.stringify(response.data.entity))
+    }).catch((response) => {
+      console.log(response)
+    })
     this.axios.post('http://localhost:8080/userLike', {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {

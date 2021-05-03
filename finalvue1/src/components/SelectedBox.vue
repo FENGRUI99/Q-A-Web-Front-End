@@ -55,14 +55,22 @@ export default {
   },
   methods: {
     filtered () {
-      this.axios.post('http://localhost:8080/listbyTag', {
-        request: this.value.toString(),
+      this.axios.post('http://localhost:8080/listbyTags', {
+        request: this.splitComma(),
         msg: ''}
       ).then((response) => {
         this.$store.commit('setList', response.data.entity)
       }).catch((response) => {
         console.log(response)
       })
+    },
+    splitComma () {
+      let tagsList = this.value.toString().split(',')
+      let ans = ''
+      for (let i = 0; i < tagsList.length; i++) {
+        ans += tagsList[i] + ' '
+      }
+      return ans
     }
   }
 }

@@ -207,7 +207,7 @@
             <div class="blank"></div>
             <div id="relatedQuestions">Related Questions</div>
             <div class="blank"></div>
-            <div class="website" v-for="(relevant,index) in this.relevant_question" v-bind:key="index">
+            <div class="website" v-for="(relevant, key, index) in this.relevant_question" v-bind:key="index">
               <div v-if="index < 5">
                 <div @click="toAnotherQuestion(index)" style="padding-left: 10px">
                   <li style="cursor: pointer;">{{relevant.question_description}}</li>
@@ -215,7 +215,12 @@
                     <li >wait for your answer</li>
                   </div>
                   <li v-else  class="commit">
-                    {{relevant.commentList.length}} Answers
+                    <div v-if="relevant.number_comment === 0">
+                      Wait for your Louder Voice . . .
+                    </div>
+                    <div v-else>
+                      {{relevant.number_comment}} Answers
+                    </div>
                   </li>
                 </div>
                 <div class="blank"></div>
