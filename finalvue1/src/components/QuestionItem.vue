@@ -16,7 +16,7 @@
                        v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                   >
 <!--                  {{item.question_detail.substring(0,200) + '...'}}-->
-                 <span v-html="item.question_detail"> {{item.question_detail + '...'}}</span>
+                 <span v-html="item.question_detail"> {{item.question_detail.substring(0,200) + '...'}}</span>
                 </li>
                 <li style="float: left;">
                   <UL class=fm>

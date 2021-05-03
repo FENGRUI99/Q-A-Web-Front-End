@@ -289,6 +289,7 @@ export default {
     })
   },
   mounted () {
+    window.scroll(0, 0)
     this.axios.post('http://localhost:8080/listQuestion', {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
