@@ -9,12 +9,18 @@
               <div style="margin: 1% 3%;width: 97%;">
                 <li @click="toDetailPage(item)" align="left" id="title" class="Touchable" v-html="item.question_description">{{item.question_description}}</li>
                 <li @click="toDetailPage(item)" align="left" >
+                  <table>
+                    <td>
                   <img v-if="getImage(item.question_id) === true"
-                       style="width: 100px; height: 100px;"
+                       style="width: 100px; height: 100px;vertical-align: text-top;"
                        v-bind:src="'data:image/png;base64,' + pic[item.question_id]"
                   >
+                    </td>
+                    <td>
 <!--                  {{item.question_detail.substring(0,200) + '...'}}-->
                  <span v-html="item.question_detail"> {{item.question_detail.substring(0,200) + '...'}}</span>
+                    </td>
+                  </table>
                 </li>
                 <li style="float: left;">
                   <UL class=fm>
