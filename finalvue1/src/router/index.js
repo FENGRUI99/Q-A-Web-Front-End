@@ -8,6 +8,9 @@ import Register from '../views/Register'
 import ProblemDetailPage from '../views/ProblemDetailPage'
 import Register2 from '../views/Register2'
 import Cover from '../views/Cover'
+import DetailAnswer from '../components/DetailAnswer'
+import DetailLikes from '../components/DetailLikes'
+import DetailQuestion from '../components/DetailQuestion'
 Vue.use(Router)
 
 export default new Router({
@@ -28,7 +31,24 @@ export default new Router({
     {
       path: '/PersonalDetail',
       name: 'PersonalDetail',
-      component: PersonalDetail
+      component: PersonalDetail,
+      children: [
+        {
+          path: 'DetailAnswer/:id',
+          name: 'DetailAnswer',
+          component: DetailAnswer
+        },
+        {
+          path: 'DetailLikes/:id',
+          name: 'DetailLikes',
+          component: DetailLikes
+        },
+        {
+          path: 'DetailQuestion/:id',
+          name: 'DetailQuestion',
+          component: DetailQuestion
+        }
+      ]
     },
     {
       path: '/Header',

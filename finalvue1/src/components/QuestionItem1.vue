@@ -165,7 +165,7 @@
 <script>
 import localforage from 'localforage'
 export default {
-  name: 'QuestionItem',
+  name: 'QuestionItem1',
   data () {
     return {
       count: 5,
@@ -205,11 +205,9 @@ export default {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setList', response.data.entity)
-      console.log('list is: =  ' + response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
-    this.isBlur = this.$store.state.blurConfig.isBlurred
   },
   mounted: function () {
     this.axios.post('http://localhost:8080/UserInfo', {
@@ -276,7 +274,7 @@ export default {
         if (clientHeight + scrollTop + footerHeight > scrollHeight) {
           if (this.$store.getters.getList.length > this.count) {
             this.count += 5
-            this.sleep(800)
+            this.sleep(300)
           }
         }
       } else {

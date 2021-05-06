@@ -210,7 +210,7 @@
             <div class="blank"></div>
             <div class="website" v-for="(relevant, index) in this.relevant_question" v-bind:key="index">
               <div v-if="index < 5">
-                <div @click="toAnotherQuestion(key)" style="padding-left: 10px">
+                <div @click="toAnotherQuestion(index)" style="padding-left: 10px">
                   <li style="cursor: pointer;">{{relevant.question_description}}</li>
                   <div v-if="relevant.commentList === null">
                     <li >wait for your answer</li>

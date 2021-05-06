@@ -23,13 +23,10 @@
 
         </el-aside>
         <el-main width="60%">
-          <JwChat-index
-            :taleList="list"
-            @enter="bindEnter"
-            v-model="inputMsg"
-            :toolConfig="tool"
-          />
-          <h1>nihao</h1>
+          <el-button @click="getQuestion" >queston</el-button>
+          <el-button @click="getAnswer">answer</el-button>
+          <el-button @click="getLikes ">likes</el-button>
+          <router-view></router-view>
         </el-main>
 
       </el-container>
@@ -44,6 +41,26 @@ export default {
   name: 'PersonalDetail',
   components: {
     'header123': RealHead
+  },
+  methods: {
+    getQuestion () {
+      let id = 'question'
+      this.$router.push({
+        path: `/PersonalDetail/DetailQuestion/${id}`
+      })
+    },
+    getAnswer () {
+      let id = 'answer'
+      this.$router.push({
+        path: `/PersonalDetail/DetailAnswer/${id}`
+      })
+    },
+    getLikes () {
+      let id = 'likes'
+      this.$router.push({
+        path: `/PersonalDetail/DetailLikes/${id}`
+      })
+    }
   }
 }
 </script>
