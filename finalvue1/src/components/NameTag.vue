@@ -5,10 +5,12 @@
           <UL class=fm>
           <LI><A href="#">
             <div style="display: inline-block">
-              <img style="width: 100px; height: 100px;vertical-align: text-top;"
-                   v-bind:src="'data:image/png;base64,' + pic"
-                   alt="../assets/tag1.jpg"
-              >
+              <v-avatar style="margin-top: -10%">
+                <img style="width: 100px; height: 100px;vertical-align: text-top;"
+                     v-bind:src="'data:image/png;base64,' + pic"
+                     alt="../assets/tag1.jpg"
+                >
+              </v-avatar>
             </div>
           </A>
             <ul>
