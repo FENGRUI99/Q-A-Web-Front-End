@@ -5,19 +5,21 @@
         <header123></header123>
       </el-header>
       <el-container>
-        <el-aside width=40.5% >
+        <el-aside>
 <!--           Personal Card-->
         <div class="pCard">
-          <div>Touxiang</div>
+          <nameTag style="margin-left: 10px"></nameTag>
          <!-- Privacy-->
           <br>
-          <div>Email_address</div>
-          <div>StudentId</div>
-          <div>Gender</div>
-          <div>Usage</div>
-          <div>Slogan</div>
-          <div>Introducrtion</div>
-          <el-divider></el-divider>
+          <div style="text-align: left;padding-left: 5px">
+            <div>Email</div>
+            <div>StudentId</div>
+            <div>Gender</div>
+            <div>Usage</div>
+            <div>Slogan</div>
+            <div>Introducrtion</div>
+            <el-divider></el-divider>
+          </div>
           <div>Interest Tag</div>
           <!--<td style="width:35%"></td>
           <td style="text-align: right;width: 25%; margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
@@ -32,7 +34,7 @@
         </div>
 
         </el-aside>
-        <el-main width="60%">
+        <el-main width="80%">
           {{this.user_info.question_sum}}<el-button @click="getQuestion" >queston</el-button>
           {{this.user_info.comment_sum}}<el-button @click="getAnswer">comment</el-button>
           {{this.user_info.like_sum}}<el-button @click="getLikes ">likes</el-button>
@@ -46,11 +48,13 @@
 
 <script>
 import RealHead from '../components/realhead'
+import NameTag from '../components/NameTag'
 
 export default {
   name: 'PersonalDetail',
   components: {
-    'header123': RealHead
+    'header123': RealHead,
+    'nameTag': NameTag
   },
   data () {
     return {
@@ -85,13 +89,13 @@ export default {
 
 <style scoped>
 .pCard{
-  margin-left: 45%;
+  margin-left: 20%;
   margin-top: 10%;
   background: #ffffff;
   border-radius: 10px;
-  width: 40%;
+  width: 80%;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   border: #20caf6 3px solid;
-  height: 600px;
+  height: 500px;
 }
 </style>
