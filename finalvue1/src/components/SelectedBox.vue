@@ -1,6 +1,6 @@
 <template>
-  <div style="display: inline-block;margin: 0 5%;">
-    <span id="Sort">Tags Filter</span>
+  <div style="display: inline-block;margin: 0 auto;width: 100%">
+    <span id="Sort">Tags Filter </span>
     <el-select v-blur = this.$store.getters.getBlur
       filterable
       allow-create

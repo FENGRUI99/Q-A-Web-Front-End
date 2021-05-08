@@ -1,14 +1,16 @@
 <template>
   <div>
     <div class=bar v-if="this.$store.state.blurConfig.isBlurred" hidden="true">
-      <div style="height: 10px"></div>
-      <multiSelectedBox></multiSelectedBox>
-      <selectedBox></selectedBox>
+      <div style="height: 10px;"></div>
+      <span><multiSelectedBox></multiSelectedBox></span>
+      <span><selectedBox></selectedBox></span>
     </div>
     <div class=bar v-else>
       <div style="height: 10px"></div>
-      <multiSelectedBox></multiSelectedBox>
-      <selectedBox></selectedBox>
+      <ul style="width: 100%; ">
+        <li style="float:left;margin-left: 2%"><multiSelectedBox></multiSelectedBox></li>
+        <li style="float:right;margin-right: 2%"><selectedBox></selectedBox></li>
+      </ul>
     </div>
     <div>
       <div style="height: 10px"></div>
@@ -35,5 +37,11 @@ export default {
   background: #ffffff;
   width: 90%;
   height: 60px;
+}
+li{
+  list-style: none;
+}
+ul{
+  display: inline;
 }
 </style>
