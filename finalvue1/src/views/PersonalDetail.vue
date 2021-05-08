@@ -5,20 +5,30 @@
         <header123></header123>
       </el-header>
       <el-container>
-        <el-aside width=40.5%>
+        <el-aside width=40.5% >
 <!--           Personal Card-->
         <div class="pCard">
-          <div>niubiu</div>
-          <div>username</div>
-          <div>
-            <ul>
-              <li>Coffee</li>
-              <li>Tea</li>
-              <li>Milk</li>
-            </ul>
-          </div>
+          <div>Touxiang</div>
+         <!-- Privacy-->
+          <br>
+          <div>Email_address</div>
+          <div>StudentId</div>
+          <div>Gender</div>
+          <div>Usage</div>
+          <div>Slogan</div>
+          <div>Introducrtion</div>
           <el-divider></el-divider>
-          <div>InTerest Tag</div>
+          <div>Interest Tag</div>
+          <!--<td style="width:35%"></td>
+          <td style="text-align: right;width: 25%; margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
+              :key="tag"
+              effect="plain">
+            <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #A5D6A7;color: #A5D6A7"
+            >  {{ tag }}
+            </el-tag>
+          </td>
+          <div class="blank"></div>
+          </table>-->
         </div>
 
         </el-aside>
@@ -81,6 +91,7 @@ export default {
   border-radius: 10px;
   width: 40%;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  height: 80%;
+  border: #20caf6 3px solid;
+  height: 600px;
 }
 </style>

@@ -95,7 +95,7 @@
                   <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #A5D6A7;color: #A5D6A7"
                   >  {{ tag }}
                   </el-tag>
-                    </td>
+                  </td>
                 <div class="blank"></div>
               </table>
             </table>

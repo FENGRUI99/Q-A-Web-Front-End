@@ -18,8 +18,14 @@ import { mdiThumbUp } from '@mdi/js'
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/dist/vuetify.min.css'
 import localforage from 'localforage'
-Vue.config.productionTip = false
+import 'vue-awesome/icons'
+/* 引入Vue组件 */
+import Icon from 'vue-awesome/components/Icon'
 
+// 可以象下面这样全局注册
+
+Vue.config.productionTip = false
+Vue.use(Icon)
 Vue.use(router)
 Vue.use(Element)
 Vue.use(VueAxios, axios)
