@@ -52,39 +52,11 @@
           </td>
           <div v-bind:key="keyValue">
             <div v-if="item.like_flag === '1'">
-              <!--                  <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
-              <!--                    <li><i class="el-icon-star-on" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
-              <!--                  </button>-->
-              <a-icon type="like" theme="twoTone" v-show="!isBlur"  @click="liked(item)" two-tone-color="#b20610" style="font-size: large"/>
+              <a-icon type="like" theme="twoTone" @click="liked(item)" two-tone-color="#b20610" style="font-size: large"/>
               {{item.likes}}
-              <!--                    <v-btn-->
-              <!--                      class="ma-2"-->
-              <!--                      text-->
-              <!--                      icon-->
-              <!--                      color="orange lighten-2"-->
-              <!--                      @click="liked(item)"-->
-              <!--                      style="margin-top:-5%"-->
-              <!--                      v-show="!isBlur"-->
-              <!--                    >-->
-              <!--                      <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}-->
-              <!--                    </v-btn>-->
             </div>
             <div v-else>
-              <!--                  <button @click="liked(item),gethome()" :class="activeClass ==true?'animate':''" class="bubbly-button">-->
-              <!--                    <li><i class="el-icon-star-off" style="font-size: 27px;margin:-5%"></i>{{item.likes}}</li>-->
-              <!--                  </button>-->
-              <!--                  <v-btn-->
-              <!--                    class="ma-2"-->
-              <!--                    text-->
-              <!--                    icon-->
-              <!--                    color="grey lighten-2"-->
-              <!--                    @click="liked(item),gethome()"-->
-              <!--                    style="margin-top:-5%; z-index: 1"-->
-              <!--                    v-show="!isBlur"-->
-              <!--                  >-->
-              <!--                    <v-icon>mdi-thumb-up</v-icon>&nbsp;{{item.likes}}-->
-              <!--                  </v-btn>-->
-              <a-icon type="like" theme="twoTone" v-show="!isBlur"  @click="liked(item),gethome()" two-tone-color="#cccccc" style="font-size: large"/>
+              <a-icon type="like" theme="twoTone" @click="liked(item),gethome()" two-tone-color="#cccccc" style="font-size: large"/>
               {{item.likes}}
             </div>
             <div class="blank"></div>
@@ -99,51 +71,12 @@
         </table>
         <div style="height: 10px"></div>
       </div>
-      <!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
-      <!--      Skeleton&SPin-->
       <div class="demo-search-div">
-
         <v-skeleton-loader
           type="article"
           style="border-radius:10px ;z-index: -1"
           class="abc loadingStyle" id = 'load'
-
         ></v-skeleton-loader>
-        <!--        <v-progress-circular-->
-        <!--          :size="50"-->
-        <!--          color="primary"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :width="3"-->
-        <!--          color="red"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :size="70"-->
-        <!--          :width="7"-->
-        <!--          color="purple"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :width="3"-->
-        <!--          color="green"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :size="50"-->
-        <!--          color="amber"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
 
       </div>
     </div>
@@ -180,10 +113,10 @@ export default {
       flag: false,
       keyValue: 0,
       pic: {},
-      tmpValue: null,
-      isBlur: false
+      tmpValue: null
     }
   },
+  props: ['id'],
   beforeUpdate: function () {
     let num = 0
     for (let i = 0; i < this.$store.state.list.length; i++) {
@@ -198,12 +131,13 @@ export default {
         break
       }
     }
-    this.isBlur = this.$store.state.blurConfig.isBlurred
   },
   created () {
-    this.axios.post('http://localhost:8080/listQuestion', {
+    console.log('id is: ' + this.id)
+    this.axios.post('http://localhost:8080/' + this.id, {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
+      console.log('list length is: ' + response.data.entity.length)
       this.$store.commit('setList', response.data.entity)
     }).catch((response) => {
       console.log(response)
@@ -221,7 +155,6 @@ export default {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
       this.$store.commit('setLikedList', response.data.entity)
-      console.log(response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -232,15 +165,6 @@ export default {
       console.log(response)
     })
     window.addEventListener('scroll', this.handleScroll, true)
-    // window.addEventListener('mousedown', this.getBlur, true)
-    // if (this.keyValue >= 10) {
-    //   console.log('refresh finishes')
-    //   clearInterval(this.timer)
-    // } else {
-    //   this.timer = setInterval(() => {
-    //     this.refresh()
-    //   }, 1000)
-    // }
     this.timer = setInterval(this.refresh, 500)
   },
   methods: {
@@ -253,9 +177,6 @@ export default {
     mouseLeave () {
       this.active = ''
       this.$refs.acp.style = ''
-    },
-    getBlur () {
-      this.isBlur = this.$store.state.blurConfig.isBlurred
     },
     handleScroll: function () {
       if (this.change === -1) {
@@ -403,18 +324,14 @@ export default {
     },
     refresh () {
       if (this.keyValue >= 10) {
-        console.log('refresh finishes')
         clearInterval(this.timer)
       } else {
         this.keyValue += 1
-        console.log(this.keyValue)
       }
     },
     GetDateStr (sjStr) {
       var data = new Date().toLocaleDateString()
       var dd = Date.parse(data) / 1000
-      console.log(dd)
-      console.log(data)
       var iday = Math.floor(parseInt(dd - sjStr) / 60 / 60 / 24)
       if (iday === -1) {
         return 'today'
@@ -438,11 +355,9 @@ export default {
       }).then((response) => {
         // this.$store.commit('setLikedList', response.data.entity)
         this.$store.state.liked_list = response.data.entity
-        console.log('like list is: ' + response.data.entity)
       }).catch((response) => {
         console.log(response)
       })
-      console.log(Object.keys(this.$store.state.list).length)
     }
   },
   destroyed () {
@@ -452,7 +367,6 @@ export default {
     loading: {
       handler (val, oldVal) {
         this.count += 2
-        console.log('count = ' + this.count)
       },
       deep: true
     }

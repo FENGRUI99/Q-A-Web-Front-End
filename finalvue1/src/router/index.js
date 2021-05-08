@@ -11,6 +11,8 @@ import Cover from '../views/Cover'
 import DetailAnswer from '../components/DetailAnswer'
 import DetailLikes from '../components/DetailLikes'
 import DetailQuestion from '../components/DetailQuestion'
+import Chat from '../components/Chat'
+
 Vue.use(Router)
 
 export default new Router({
@@ -74,6 +76,11 @@ export default new Router({
       path: '/',
       name: 'Cover',
       component: Cover
+    },
+    {
+      path: '/Chat',
+      name: 'Chat',
+      component: Chat
     }
   ]
 })

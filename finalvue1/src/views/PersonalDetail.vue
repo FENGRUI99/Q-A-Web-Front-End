@@ -6,7 +6,6 @@
       </el-header>
       <el-container>
         <el-aside width=40.5%>
-<!--           Personal Card-->
         <div class="pCard">
           <div>niubiu</div>
           <div>username</div>
@@ -20,7 +19,6 @@
           <el-divider></el-divider>
           <div>InTerest Tag</div>
         </div>
-
         </el-aside>
         <el-main width="60%">
           <el-button @click="getQuestion" >queston</el-button>
@@ -28,7 +26,6 @@
           <el-button @click="getLikes ">likes</el-button>
           <router-view></router-view>
         </el-main>
-
       </el-container>
     </el-container>
   </div>
@@ -44,19 +41,19 @@ export default {
   },
   methods: {
     getQuestion () {
-      let id = 'question'
+      let id = 'userIDQuestion'
       this.$router.push({
         path: `/PersonalDetail/DetailQuestion/${id}`
       })
     },
     getAnswer () {
-      let id = 'answer'
+      let id = 'userCommentQuestion'
       this.$router.push({
         path: `/PersonalDetail/DetailAnswer/${id}`
       })
     },
     getLikes () {
-      let id = 'likes'
+      let id = 'userLikeQuestion'
       this.$router.push({
         path: `/PersonalDetail/DetailLikes/${id}`
       })

@@ -2,7 +2,7 @@
   <div>
     <h1>Likes</h1>
     <h1>{{this.$route.params.id}}</h1>
-    <questionItem></questionItem>
+    <questionItem :id="this.$route.params.id"></questionItem>
   </div>
 </template>
 
