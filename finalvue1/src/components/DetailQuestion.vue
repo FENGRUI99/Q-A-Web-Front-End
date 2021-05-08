@@ -2,7 +2,7 @@
 <div>
   <h1>Question</h1>
   <h1>{{this.$route.params.id}}</h1>
-  <questionItem :id="this.$route.params.id"></questionItem>
+  <questionItem></questionItem>
 </div>
 </template>
 

@@ -16,9 +16,6 @@
         <searchBox></searchBox>
         <div style="height: 10px;"></div>
       </td>
-      <td>
-        <el-button @click="toChat">Chat</el-button>
-      </td>
       <td style="margin: auto">
         <nameTag></nameTag>
       </td>
@@ -29,7 +26,6 @@
 <script>
 import NameTag from './NameTag'
 import SearchBox from './SearchBox'
-
 export default {
   name: 'RealHead',
   data () {
@@ -54,12 +50,6 @@ export default {
         this.reLoad += 1
         console.log(this.reLoad)
       }
-    },
-    toChat () {
-      this.$router.push({
-        path: '/Chat',
-        name: 'Chat'
-      })
     }
   }
 }
