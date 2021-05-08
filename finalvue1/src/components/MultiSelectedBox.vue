@@ -1,7 +1,7 @@
 <template>
   <div style="display: inline-block;margin: 0 auto;">
     <span id="Sort">Sorted by</span>
-    <el-select v-blur = this.$store.getters.getBlur
+   <span> <el-select v-blur = this.$store.getters.getBlur
       v-model="value"
       default-first-option
       filterable
@@ -14,7 +14,13 @@
         :value="item.value">
       </el-option>
     </el-select>
-    <el-button @click="Sorted">{{this.cfr}}</el-button>
+       <v-btn
+         color= #A5D6A7
+         elevation="3"
+        style="height: 35px;width: 90px;"
+         @click="Sorted">{{this.cfr}}
+        </v-btn>
+   </span>
   </div>
 
 </template>

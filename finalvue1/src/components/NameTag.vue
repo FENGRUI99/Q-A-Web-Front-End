@@ -3,7 +3,15 @@
     <router-link to="/PersonalDetail">
         <td style="margin-left: -30px;position: absolute;">
           <UL class=fm>
-          <LI><A href="#">  <el-avatar :size="30" :src="circleUrl" style="position:absolute;margin-left:25px"></el-avatar>
+          <LI><A href="#">
+            <div style="display: inline-block">
+              <v-avatar style="margin-top: -10%">
+                <img style="width: 100px; height: 100px;vertical-align: text-top;"
+                     v-bind:src="'data:image/png;base64,' + pic"
+                     alt="../assets/tag1.jpg"
+                >
+              </v-avatar>
+            </div>
           </A>
             <ul>
               <li>
@@ -40,17 +48,23 @@
 </template>
 
 <script>
-import HeadPortrait from './HeadPortrait'
 
 export default {
   name: 'NameTag',
-  components: {
-    'head-potrait': HeadPortrait
-  },
   data () {
     return {
-      circleUrl: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+      circleUrl: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+      pic: ''
     }
+  },
+  created () {
+    this.axios.post('http://localhost:8080/getPhoto', {
+      request: sessionStorage.getItem('user_id')
+    }).then((response) => {
+      this.pic = response.data.entity
+    }).catch((response) => {
+      console.log(response)
+    })
   }
 }
 </script>

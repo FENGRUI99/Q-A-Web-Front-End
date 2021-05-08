@@ -25,18 +25,46 @@
                 <UL class=fm>
                   <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.create_time | getTimeFormat}}
                     <ul class="idinfo">
-                      <li >
-                        id: {{ item.user_id }}
-                      </li>
-                      <li>
-                        likes: {{item.user_info}}
-                      </li>
-                      <li>
-                        email: {{item.user_mail}}
-                      </li>
-                      <li>
-                        XJTLU student
-                      </li>
+                      <v-card>
+                        <v-list-item-content class="justify-center">
+                          <div class="mx-auto text-center">
+                            <v-avatar
+                              color="green"
+                              size = "40"
+                            >
+<!--                              <img-->
+<!--                                src="../assets/back.png"-->
+<!--                                alt = item.user_name-->
+<!--                                size="25"-->
+<!--                              >-->
+                              <span class="white--text headline">{{item.user_name.substring(0,2)}}</span>
+                            </v-avatar>
+<!--                            <v-divider class="my-3"></v-divider>-->
+                            <h3 style="font-weight: bold">{{item.user_name}}</h3>
+                            <p class="caption mt-1">
+                              ID: {{ item.user_id }}
+                            </p>
+                            <v-divider class="my-3"></v-divider>
+                            <v-btn
+                              depressed
+                              rounded
+                              text
+                            >
+                              Send Message
+                            </v-btn>
+<!--                            <v-divider class="my-3"></v-divider>-->
+                          </div>
+                        </v-list-item-content>
+                      </v-card>
+<!--                      <li>-->
+<!--                        likes: {{item.user_info}}-->
+<!--                      </li>-->
+<!--                      <li>-->
+<!--                        email: {{item.user_mail}}-->
+<!--                      </li>-->
+<!--                      <li>-->
+<!--                        XJTLU student-->
+<!--                      </li>-->
                     </ul>
                   </LI>
                 </UL>
@@ -621,13 +649,13 @@ li{
 .fm li.sfhover ul { left: auto; }
 #content { clear: left; }
 .idinfo{
-  border: 1.5px solid #cccccc;
-  border-radius: 10px;
-  background: white;
+  /*border: 1.5px solid #cccccc;*/
+  /*border-radius: 10px;*/
+  background: none;
   height: auto;
   width: auto;
   position: absolute;
-  padding: 1% 2%;
+  /*padding: 1% 2%;*/
   margin-left: 0%;
 }
 .demo-image{

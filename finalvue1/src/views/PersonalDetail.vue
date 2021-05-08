@@ -23,9 +23,9 @@
 
         </el-aside>
         <el-main width="60%">
-          <el-button @click="getQuestion" >queston</el-button>
-          <el-button @click="getAnswer">answer</el-button>
-          <el-button @click="getLikes ">likes</el-button>
+          {{this.user_info.question_sum}}<el-button @click="getQuestion" >queston</el-button>
+          {{this.user_info.comment_sum}}<el-button @click="getAnswer">comment</el-button>
+          {{this.user_info.like_sum}}<el-button @click="getLikes ">likes</el-button>
           <router-view></router-view>
         </el-main>
 
@@ -41,6 +41,14 @@ export default {
   name: 'PersonalDetail',
   components: {
     'header123': RealHead
+  },
+  data () {
+    return {
+      user_info: {}
+    }
+  },
+  created () {
+    this.user_info = JSON.parse(sessionStorage.getItem('user_info'))
   },
   methods: {
     getQuestion () {
