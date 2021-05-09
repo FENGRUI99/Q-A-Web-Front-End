@@ -12,12 +12,18 @@
          <!-- Privacy-->
           <br>
           <div style="text-align: left;padding-left: 5px">
-            <div>Email</div>
-            <div>StudentId</div>
+            <div>
+              Email
+              <span>{{this.user_info.user_mail}}</span>
+            </div>
+            <div>
+              StudentId
+              <span>{{this.user_info.user_id}}</span>
+            </div>
             <div>Gender</div>
             <div>Usage</div>
             <div>Slogan</div>
-            <div>Introducrtion</div>
+            <div>Introduction</div>
             <el-divider></el-divider>
           </div>
           <div>Interest Tag</div>
