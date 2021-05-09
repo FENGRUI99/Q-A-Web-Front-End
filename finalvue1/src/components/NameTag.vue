@@ -59,6 +59,7 @@ export default {
     this.axios.post('http://localhost:8080/getPhoto', {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
+      console.log('photo length is: ' + response.data.entity.length)
       this.pic = response.data.entity
     }).catch((response) => {
       console.log(response)

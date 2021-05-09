@@ -61,9 +61,15 @@
                   <v-btn
                     color= #A5D6A7
                     elevation="3"
-                    @click="uploadFile"
+                    @click="submit"
                     style="width: 130px;"
                   >add</v-btn>
+                  <v-btn
+                    color= #A5D6A7
+                    elevation="3"
+                    @click="overlay = !overlay"
+                    style="width: 130px;"
+                  >close</v-btn>
                 </v-overlay>
               </v-row>
             </div>
@@ -188,10 +194,6 @@ export default {
       this.$store.commit('setBlur')
     },
     submit () {
-      if (this.text.length === 0 || this.textarea.length === 0 || this.value.length === 0) {
-        alert('Cannot be null')
-        return
-      }
       this.uploadFile()
     },
     handlePreview (file) {
@@ -204,8 +206,9 @@ export default {
       const formData = new FormData()
       // 因为要传一个文件数组过去，所以要循环append
       this.fileList.forEach((file) => {
-        formData.append('files', file.raw)
+        formData.append('file', file.raw)
       })
+      alert(typeof formData.get('file'))
       formData.append('user_id', sessionStorage.getItem('user_id'))
       this.axios.post('http://localhost:8080/Upload', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
         if (res.data.code === '200') {
