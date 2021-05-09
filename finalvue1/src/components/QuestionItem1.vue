@@ -137,8 +137,11 @@ export default {
     this.axios.post('http://localhost:8080/' + this.id, {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
-      console.log('list length is: ' + response.data.entity.length)
-      this.$store.commit('setList', response.data.entity)
+      if (response.data.entity === null) {
+        this.$store.commit('setList', [])
+      } else {
+        this.$store.commit('setList', response.data.entity)
+      }
     }).catch((response) => {
       console.log(response)
     })
