@@ -8,7 +8,9 @@
         <el-aside width=35% style="margin-left: 8%;margin-right: 0">
 <!--           Personal Card-->
         <div class="pCard">
-          <changePho style="margin-left: 10px;"></changePho>
+          <div @click="changeHidden">
+            <changePho style="margin-left: 10px;"></changePho>
+          </div>
           <!-- Privacy-->
           <br>
           <div>
@@ -149,11 +151,13 @@
               <div style="clear: both"></div>
             </div>
             <br>
+            <div v-if="!isHidden">
             <v-tabs>
               <v-tab @click="getQuestion" style="width: 33%">{{this.user_info.question_sum}} Questions</v-tab>
               <v-tab @click="getAnswer" style="width: 34%">{{this.user_info.comment_sum}} Answers</v-tab>
               <v-tab @click="getLikes" style="width: 33%">{{this.user_info.like_sum}} likes</v-tab>
             </v-tabs>
+            </div>
           </div><div style="clear: both"></div>
           <router-view></router-view>
         </el-main>
@@ -186,6 +190,7 @@ export default {
         label: 'Null'
       }],
       value: '',
+      isHidden: false,
       user_info: {},
       radio1: '1',
       radio2: '1',
@@ -281,6 +286,13 @@ export default {
       }).catch((response) => {
         console.log(response)
       })
+    },
+    changeHidden () {
+      if (this.isHidden === true) {
+        this.isHidden = false
+      } else {
+        this.isHidden = true
+      }
     },
     clickIntro () {
       this.isIntroduction = true
