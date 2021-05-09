@@ -71,8 +71,6 @@
         </table>
         <div style="height: 10px"></div>
       </div>
-      <!--        <div v-if="loading.check && this.$store.getters.getList.length > 5" class="abc loadingStyle" id = 'load'>-->
-      <!--      Skeleton&SPin-->
       <div class="demo-search-div">
 
         <v-skeleton-loader
@@ -81,41 +79,6 @@
           class="abc loadingStyle" id = 'load'
 
         ></v-skeleton-loader>
-        <!--        <v-progress-circular-->
-        <!--          :size="50"-->
-        <!--          color="primary"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :width="3"-->
-        <!--          color="red"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :size="70"-->
-        <!--          :width="7"-->
-        <!--          color="purple"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :width="3"-->
-        <!--          color="green"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :size="50"-->
-        <!--          color="amber"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
 
       </div>
     </div>
