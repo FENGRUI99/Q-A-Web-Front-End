@@ -9,12 +9,6 @@
 <!--           Personal Card-->
         <div class="pCard">
           <nameTag style="margin-left: 10px"></nameTag>
-          <el-button
-            type="primary"
-            icon="el-icon-edit"
-            size="mini"
-            style="margin-left:70%"
-          ></el-button>
           <!-- Privacy-->
           <br>
           <div>
@@ -42,10 +36,8 @@
                 <a-icon type="team" style="color: #208cf7"/> Gender
               </div>
               <div class="sideright">
-                <div v-if="isEdit">
+                <div v-if="isEdit" style="margin-bottom: 5px">
                   <el-input type="text" v-model="Gender" size="small"></el-input>
-                  <el-button @click="save" type="text">保存</el-button>
-                  <el-button @click="cancel" type="text">取消</el-button>
                 </div>
                 <div v-else @dblclick="edit">{{ Gender }}</div>
               </div>
@@ -56,10 +48,8 @@
                 <a-icon type="container" theme="twoTone" /> Age
               </div>
               <div class="sideright">
-                <div v-if="isEdit">
+                <div v-if="isEdit" style="margin-bottom: 5px">
                   <el-input type="text" v-model="age" size="small"></el-input>
-                  <el-button @click="save" type="text">保存</el-button>
-                  <el-button @click="cancel" type="text">取消</el-button>
                 </div>
                 <div v-else @dblclick="edit">{{ age }}</div>
               </div>
@@ -76,10 +66,8 @@
                 <a-icon type="calendar" theme="twoTone" />   Usage:
               </div>
               <div class="sideright">
-                <div v-if="isEdit">
+                <div v-if="isEdit" style="margin-bottom: 5px">
                   <el-input type="text" v-model="Usgae" size="small"></el-input>
-                  <el-button @click="save" type="text">保存</el-button>
-                  <el-button @click="cancel" type="text">取消</el-button>
                 </div>
                 <div v-else @dblclick="edit">{{ Usgae }}</div>
               </div>
@@ -90,10 +78,8 @@
                 <a-icon type="container" theme="twoTone" /> Major
               </div>
               <div class="sideright">
-                <div v-if="isEdit">
+                <div v-if="isEdit" style="margin-bottom: 5px">
                   <el-input type="text" v-model="Major" size="small"></el-input>
-                  <el-button @click="save" type="text">保存</el-button>
-                  <el-button @click="cancel" type="text">取消</el-button>
                 </div>
                 <div v-else @dblclick="edit">{{ Major }}</div>
               </div>
@@ -104,10 +90,8 @@
                 <a-icon type="container" theme="twoTone" /> Degree
               </div>
               <div class="sideright">
-                <div v-if="isEdit">
+                <div v-if="isEdit" style="margin-bottom: 5px">
                   <el-input type="text" v-model="Degree" size="small"></el-input>
-                  <el-button @click="save" type="text">保存</el-button>
-                  <el-button @click="cancel" type="text">取消</el-button>
                 </div>
                 <div v-else @dblclick="edit">{{ Degree }}</div>
               </div>
@@ -119,10 +103,8 @@
                 Slogan
               </div>
               <div class="sideright">
-                <div v-if="isEdit">
+                <div v-if="isEdit" style="margin-bottom: 5px">
                   <el-input type="text" v-model="Slogan" size="small"></el-input>
-                  <el-button @click="save" type="text">保存</el-button>
-                  <el-button @click="cancel" type="text">取消</el-button>
                 </div>
                 <div v-else @dblclick="edit">{{ Slogan }}</div>
               </div>
@@ -133,10 +115,10 @@
                 <a-icon type="alert" theme="twoTone" />Introduction
               </div>
               <div class="sideright">
-                <div v-if="isEdit">
-                  <el-input  type="textarea" :rows="2" v-model="Introduction" size="small"></el-input>
-                  <el-button @click="save" type="text">保存</el-button>
-                  <el-button @click="cancel" type="text">取消</el-button>
+                <div v-if="isEdit" >
+                  <el-input  type="textarea" :rows="4" v-model="Introduction" size="small"></el-input>
+                  <el-button @click="save" type="primary" style="margin-top: 3px;color: white">Save</el-button>
+                  <el-button @click="cancel" type="text" >Cancel</el-button>
                 </div>
                 <div v-else @dblclick="edit">{{ Introduction }}</div>
               </div>
