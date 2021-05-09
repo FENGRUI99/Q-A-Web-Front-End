@@ -19,7 +19,7 @@
               <div class="side">
                 <a-icon type="home" theme="twoTone" /> Email:
               </div>
-              <div class="sideright">
+              <div class="sideright1">
                 {{this.user_info.user_mail}}
               </div>
             </div>
@@ -28,7 +28,7 @@
               <div class="side">
                <a-icon type="idcard" theme="twoTone" /> Student ID
               </div>
-              <div class="sideright">
+              <div class="sideright1">
                 <span>{{this.user_info.user_id}}</span>
               </div>
             </div>
@@ -60,14 +60,14 @@
               <div class="side">
                 <a-icon type="container" theme="twoTone" /> Edit pwd
               </div>
-              <div class="sideright">link </div>
+              <div class="sideright1">link </div>
             </div>
             <!--Usage-->
             <div>
               <div class="side">
                 <a-icon type="calendar" theme="twoTone" />   Usage:
               </div>
-              <div class="sideright">
+              <div class="sideright1">
                 <div>3 mouths</div>
               </div>
             </div>
@@ -121,15 +121,16 @@
               </div>
             </div>
             <div v-if="isShowSubmit">
-              <el-button @click="save" type="primary" style="margin-top: 3px;color: white">Save</el-button>
+              <el-button @click="save" type="primary" plain style="margin-top: 3px">Save</el-button>
               <el-button @click="cancel" type="text" >Cancel</el-button>
             </div>
             <el-divider></el-divider>
             <div>Interest Tag</div>
-            <div style="float: left">tag1</div>
-            <div style="float: right">tag2</div>
-            <div style="height: 10px"></div>
-            <el-divider></el-divider>
+            <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #82a1e3;color: #67a3d0"
+            > tag1
+            </el-tag><el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #7ba9e2;color: #62889c"
+          >  tag2
+          </el-tag>
           </div>
          </div>
         </el-aside>
@@ -145,11 +146,19 @@
           </table>-->
         <el-main width="55%" style="margin-left: -10%; padding-right: 10%">
           <div style="width: 90%; float: left">
-            <div style="background-color: #72AFFF;" class="divS">
+            <touch-ripple
+              class="div-box box-1"
+              :speed="2"
+              :opacity="0.3"
+              color="#fff"
+              transition="cubic-bezier(0.18, 0.89, 0.32, 1.28)"
+            >
+              <div style="background-color: #72AFFF;" class="divS">
               <div style="width: 60%; float: left; color: white; font-size: 44px; font-weight: bold;margin-top: 5%; margin-left:5%;text-align: left">Make Your Question Matter.</div>
               <img style="width: 24%; float: right; transform: rotate(30deg); margin: 4% 7% 2% 0%" src="../assets/logo1111.png">
               <div style="clear: both"></div>
             </div>
+            </touch-ripple>
             <br>
             <div v-if="!isHidden">
             <v-tabs>
@@ -158,7 +167,8 @@
               <v-tab @click="getLikes" style="width: 33%">{{this.user_info.like_sum}} likes</v-tab>
             </v-tabs>
             </div>
-          </div><div style="clear: both"></div>
+          </div>
+          <div style="clear: both"></div>
           <router-view></router-view>
         </el-main>
       </el-container>
@@ -168,12 +178,17 @@
 
 <script>
 import RealHead from '../components/realhead'
+import NameTag from '../components/NameTag'
+import { touchRipple } from 'vue-touch-ripple'
+import 'vue-touch-ripple/dist/vue-touch-ripple.css'
 import changePho from '../components/changePho'
 
 export default {
   name: 'PersonalDetail',
   components: {
     'header123': RealHead,
+    'nameTag': NameTag,
+    'touchRipple': touchRipple,
     'changePho': changePho
   },
   data () {
@@ -357,6 +372,11 @@ export default {
   text-align: left;
   display: inline-block;
 }
+.sideright1{
+  width: 50%;
+  text-align: left;
+  display: inline-block;
+}
 .pCard{
   margin-left: 5%;
   background: #ffffff;
@@ -372,5 +392,35 @@ export default {
 }
 button{
   background-color: white;
+}
+.sideright:hover{
+  border-color: #de4638;
+  border-bottom: #70ace7 1px solid;
+  cursor: pointer;
+  background-color: rgba(112, 172, 231, 0.37);
+  color: #ffffff;
+  font-size: 18px;
+}
+.sideright1:hover{
+  cursor: pointer;
+}
+.sideright >>> .el-input__inner {
+  height: 33px;
+  font-size: 13px;
+  border: 1px #70ace7 solid;
+  filter: drop-shadow(0.1rem 0.1rem rgba(0, 0, 0, 0.5));
+}
+
+.sideright >>> .el-input__inner:hover {
+  border: 2px solid rgba(88, 104, 208, 0.88);
+}
+
+.sideright >>> . el-input__inner:focus {
+  border-color: #94bf58;
+  transition-duration: 1.5s;
+}
+
+.sideright >>> .el-input__inner::-webkit-input-placeholder {
+  line-height: 20px;
 }
 </style>
