@@ -16,6 +16,9 @@
         <searchBox></searchBox>
         <div style="height: 10px;"></div>
       </td>
+      <td>
+        <el-button @click="toChat">Chat</el-button>
+      </td>
       <td style="margin: auto">
         <nameTag></nameTag>
       </td>
@@ -48,8 +51,12 @@ export default {
     refresh () {
       if (this.reLoad < 10) {
         this.reLoad += 1
-        console.log(this.reLoad)
       }
+    },
+    toChat () {
+      this.$router.push({
+        path: '/Chat'
+      })
     }
   }
 }
