@@ -58,6 +58,12 @@
                       </span>
                     </div>
                   </el-upload>
+                  <v-btn
+                    color= #A5D6A7
+                    elevation="3"
+                    @click="uploadFile"
+                    style="width: 130px;"
+                  >add</v-btn>
                 </v-overlay>
               </v-row>
             </div>
@@ -200,39 +206,14 @@ export default {
       this.fileList.forEach((file) => {
         formData.append('files', file.raw)
       })
-      if (formData.get('files') === null) {
-        this.axios.post('http://localhost:8080/publishQuestion', {
-          'user_id': sessionStorage.getItem('user_id'),
-          'user_name': JSON.parse(sessionStorage.getItem('user_info')).user_name,
-          'question_description': this.textarea,
-          'question_detail': this.text,
-          'question_tags': this.splitComma(this.value)
-        }).then(res => {
-          if (res.data.code === '200') {
-            alert('Publish question successfully')
-          }
-        }).catch(error => {
-          alert('更新用户数据失败' + error)
-        })
-      } else {
-        formData.append('user_id', sessionStorage.getItem('user_id'))
-        formData.append('user_name', JSON.parse(sessionStorage.getItem('user_info')).user_name)
-        formData.append('question_description', this.textarea)
-        formData.append('question_detail', this.text)
-        formData.append('question_tags', this.splitComma(this.value))
-        this.axios.post('http://localhost:8080/publishQuestionWP', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
-          if (res.data.code === '200') {
-            alert('Publish question successfully')
-          }
-        }).catch(error => {
-          alert('更新用户数据失败' + error)
-        })
-      }
-      this.isHidden = true
-      this.describeIsHidden = true
-      this.blurBackG()
-      this.textarea = ''
-      this.text = ''
+      formData.append('user_id', sessionStorage.getItem('user_id'))
+      this.axios.post('http://localhost:8080/Upload', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
+        if (res.data.code === '200') {
+          alert('success')
+        }
+      }).catch(error => {
+        alert('更新用户数据失败' + error)
+      })
     }
   }
 }
