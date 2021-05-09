@@ -1,11 +1,12 @@
 <template>
   <div style="background: #f6f6f6">
     <el-container>
+      {{this.user_info}}
       <el-header height="15px">
         <header123></header123>
       </el-header>
       <el-container>
-          <el-aside width=35% style="margin-left: 8%;margin-right: 0">
+        <el-aside width=35% style="margin-left: 8%;margin-right: 0">
 <!--           Personal Card-->
         <div class="pCard">
           <nameTag style="margin-left: 10px"></nameTag>
@@ -36,10 +37,10 @@
                 <a-icon type="team" style="color: #208cf7"/> Gender
               </div>
               <div class="sideright">
-                <div v-if="isEdit" style="margin-bottom: 5px">
-                  <el-input type="text" v-model="Gender" size="small"></el-input>
+                <div v-if="isSex" style="margin-bottom: 5px">
+                  <el-input type="text" v-model="sex" size="small"></el-input>
                 </div>
-                <div v-else @dblclick="edit">{{ Gender }}</div>
+                <div v-else @click="clickSex">{{sex}}</div>
               </div>
             </div>
             <!--// age-->
@@ -48,10 +49,10 @@
                 <a-icon type="container" theme="twoTone" /> Age
               </div>
               <div class="sideright">
-                <div v-if="isEdit" style="margin-bottom: 5px">
+                <div v-if="isAge" style="margin-bottom: 5px">
                   <el-input type="text" v-model="age" size="small"></el-input>
                 </div>
-                <div v-else @dblclick="edit">{{ age }}</div>
+                <div v-else @click="clickAge">{{ age }}</div>
               </div>
             </div>
             <div>
@@ -66,10 +67,7 @@
                 <a-icon type="calendar" theme="twoTone" />   Usage:
               </div>
               <div class="sideright">
-                <div v-if="isEdit" style="margin-bottom: 5px">
-                  <el-input type="text" v-model="Usgae" size="small"></el-input>
-                </div>
-                <div v-else @dblclick="edit">{{ Usgae }}</div>
+                <div>3 mouths</div>
               </div>
             </div>
             <!--Major-->
@@ -78,10 +76,10 @@
                 <a-icon type="container" theme="twoTone" /> Major
               </div>
               <div class="sideright">
-                <div v-if="isEdit" style="margin-bottom: 5px">
-                  <el-input type="text" v-model="Major" size="small"></el-input>
+                <div v-if="isMajor" style="margin-bottom: 5px">
+                  <el-input type="text" v-model="major" size="small"></el-input>
                 </div>
-                <div v-else @dblclick="edit">{{ Major }}</div>
+                <div v-else @click="clickMajor">{{ major }}</div>
               </div>
             </div>
             <!--degree-->
@@ -90,23 +88,23 @@
                 <a-icon type="container" theme="twoTone" /> Degree
               </div>
               <div class="sideright">
-                <div v-if="isEdit" style="margin-bottom: 5px">
-                  <el-input type="text" v-model="Degree" size="small"></el-input>
+                <div v-if="isDegree" style="margin-bottom: 5px">
+                  <el-input type="text" v-model="degree" size="small"></el-input>
                 </div>
-                <div v-else @dblclick="edit">{{ Degree }}</div>
+                <div v-else @click="clickDegree">{{ degree }}</div>
               </div>
             </div>
-            <!--Slogan-->
+            <!--Address-->
             <div>
               <div class="side">
                 <a-icon type="pushpin" theme="twoTone"/>
                 Slogan
               </div>
               <div class="sideright">
-                <div v-if="isEdit" style="margin-bottom: 5px">
-                  <el-input type="text" v-model="Slogan" size="small"></el-input>
+                <div v-if="isAddress" style="margin-bottom: 5px">
+                  <el-input type="text" v-model="address" size="small"></el-input>
                 </div>
-                <div v-else @dblclick="edit">{{ Slogan }}</div>
+                <div v-else @click="clickAddress">{{ address }}</div>
               </div>
             </div>
             <!--intro-->
@@ -115,13 +113,15 @@
                 <a-icon type="alert" theme="twoTone" />Introduction
               </div>
               <div class="sideright">
-                <div v-if="isEdit" >
-                  <el-input  type="textarea" :rows="4" v-model="Introduction" size="small"></el-input>
-                  <el-button @click="save" type="primary" style="margin-top: 3px;color: white">Save</el-button>
-                  <el-button @click="cancel" type="text" >Cancel</el-button>
+                <div v-if="isIntroduction" >
+                  <el-input  type="textarea" :rows="4" v-model="introduction" size="small"></el-input>
                 </div>
-                <div v-else @dblclick="edit">{{ Introduction }}</div>
+                <div v-else @click="clickIntro">{{ introduction }}</div>
               </div>
+            </div>
+            <div v-if="isShowSubmit">
+              <el-button @click="save" type="primary" style="margin-top: 3px;color: white">Save</el-button>
+              <el-button @click="cancel" type="text" >Cancel</el-button>
             </div>
             <el-divider></el-divider>
             <div>Interest Tag</div>
@@ -176,15 +176,6 @@ export default {
   data () {
     return {
       nameEditText: 'nameEditText',
-      Usgae: '3 year',
-      Gender: 'Null',
-      age: '18',
-      Major: 'IMAIS',
-      Degree: 'Y3',
-      Slogan: 'Loderrrrrr',
-      Introduction: '你根本想象不到，鸡胸竟然可以这么好吃？！为什么健身要吃鸡胸？鸡胸到底有哪些我们想象不到的秘密？来看全叔叨一叨~',
-      backUp: null,
-      isEdit: false,
       options: [{
         value: '选项1',
         label: 'Female'
@@ -200,32 +191,120 @@ export default {
       radio1: '1',
       radio2: '1',
       radio3: '1',
-      input: '',
       textarea: '',
-      flag: 'true'
+      isShowSubmit: false,
+      sex: '',
+      isSex: false,
+      age: 0,
+      isAge: false,
+      major: '',
+      isMajor: false,
+      degree: '',
+      isDegree: false,
+      address: '',
+      isAddress: false,
+      introduction: '',
+      isIntroduction: false
     }
   },
   created () {
     this.user_info = JSON.parse(sessionStorage.getItem('user_info'))
   },
+  mounted () {
+    this.sex = this.user_info.sex
+    this.isSex = false
+    this.age = this.user_info.age
+    this.isAge = false
+    this.major = this.user_info.major
+    this.isMajor = false
+    this.degree = this.user_info.degree
+    this.isDegree = false
+    this.address = this.user_info.address
+    this.isAddress = false
+    this.introduction = this.user_info.introduction
+    this.isIntroduction = false
+  },
   methods: {
     cancel () {
-      this.newVal = this.backUp
-      this.isEdit = false
-    },
-    edit () {
-      // 先让其他的 编辑框为 flase
-      this.$parent.$children
-        // eslint-disable-next-line eqeqeq
-        .filter(item => item.nameEditText === 'nameEditText')
-        .forEach(items => {
-          items.isEdit = false
-        })
-      this.isEdit = true
-      this.backUp = this.newVal
+      this.sex = this.user_info.sex
+      this.isSex = false
+      this.age = this.user_info.age
+      this.isAge = false
+      this.major = this.user_info.major
+      this.isMajor = false
+      this.degree = this.user_info.degree
+      this.isDegree = false
+      this.address = this.user_info.address
+      this.isAddress = false
+      this.introduction = this.user_info.introduction
+      this.isIntroduction = false
+      this.isShowSubmit = false
     },
     save () {
-      this.isEdit = false
+      this.isShowSubmit = false
+      this.axios.post('http://localhost:8080/changeInfo', {
+        user_id: this.user_info.user_id,
+        sex: this.sex,
+        age: this.age,
+        address: this.address,
+        major: this.major,
+        introduction: this.introduction,
+        usage_time: '30'
+      }).then((response) => {
+        if (response.data.code === '200') {
+          let user = {
+            user_id: this.user_info.user_id,
+            user_tags: this.user_info.user_tags,
+            user_mail: this.user_info.user_mail,
+            user_name: this.user_info.user_name,
+            sex: this.sex,
+            age: this.age,
+            address: this.address,
+            degree: this.degree,
+            major: this.major,
+            introduction: this.introduction,
+            usage_time: '30',
+            like_sum: this.user_info.like_sum,
+            question_sum: this.user_info.question_sum,
+            comment_sum: this.user_info.comment_sum
+          }
+          sessionStorage.setItem('user_info', JSON.stringify(user))
+        } else {
+          alert('wrong')
+        }
+        this.isSex = false
+        this.isAge = false
+        this.isMajor = false
+        this.isDegree = false
+        this.isAddress = false
+        this.isIntroduction = false
+      }).catch((response) => {
+        console.log(response)
+      })
+    },
+    clickIntro () {
+      this.isIntroduction = true
+      this.isShowSubmit = true
+    },
+    clickSex () {
+      this.isSex = true
+      this.isShowSubmit = true
+    },
+    clickAddress () {
+      this.isAddress = true
+      this.isShowSubmit = true
+    },
+    clickAge () {
+      this.isAge = true
+      this.isShowSubmit = true
+    },
+    clickDegree () {
+      this.isDegree = true
+      this.isShowSubmit = true
+    },
+    clickMajor () {
+      this.isMajor = true
+      this.isShowSubmit = true
     },
     getQuestion () {
       let id = 'userIDQuestion'
