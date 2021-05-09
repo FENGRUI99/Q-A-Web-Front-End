@@ -1,7 +1,7 @@
 <template>
   <div @click="toDetail">
-        <td style="margin-left: -30px;position: absolute;">
-          <UL class=fm>
+      <td style="margin-left: -30px;position: absolute;">
+        <UL class=fm>
           <LI><A href="#">
             <div style="display: inline-block">
               <v-avatar style="margin-top: -10%">
@@ -19,7 +19,7 @@
             </ul>
           </LI>
         </UL>
-        </td>
+      </td>
       <td>
         <ul class=fm>
           <LI><A href="#"> <el-link :underline="false">Username</el-link>
