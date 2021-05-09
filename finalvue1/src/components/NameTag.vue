@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <router-link to="/PersonalDetail">
+  <div @click="toDetail">
         <td style="margin-left: -30px;position: absolute;">
           <UL class=fm>
           <LI><A href="#">
@@ -42,7 +41,6 @@
           </li>
         </ul>
       </td>
-    </router-link>
   </div>
 
 </template>
@@ -65,6 +63,14 @@ export default {
     }).catch((response) => {
       console.log(response)
     })
+  },
+  methods: {
+    toDetail () {
+      let id = 'userIDQuestion'
+      this.$router.push({
+        path: `/PersonalDetail/DetailQuestion/${id}`
+      })
+    }
   }
 }
 </script>

@@ -1,7 +1,6 @@
 <template>
   <div style="background: #f6f6f6">
     <el-container>
-      {{this.user_info}}
       <el-header height="15px">
         <header123></header123>
       </el-header>
@@ -248,6 +247,7 @@ export default {
         age: this.age,
         address: this.address,
         major: this.major,
+        degree: this.degree,
         introduction: this.introduction,
         usage_time: '30'
       }).then((response) => {
