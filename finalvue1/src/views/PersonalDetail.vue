@@ -8,7 +8,7 @@
         <el-aside width=35% style="margin-left: 8%;margin-right: 0">
 <!--           Personal Card-->
         <div class="pCard">
-          <nameTag style="margin-left: 10px"></nameTag>
+          <changePho style="margin-left: 10px;"></changePho>
           <!-- Privacy-->
           <br>
           <div>
@@ -164,13 +164,13 @@
 
 <script>
 import RealHead from '../components/realhead'
-import NameTag from '../components/NameTag'
+import changePho from '../components/changePho'
 
 export default {
   name: 'PersonalDetail',
   components: {
     'header123': RealHead,
-    'nameTag': NameTag
+    'changePho': changePho
   },
   data () {
     return {
