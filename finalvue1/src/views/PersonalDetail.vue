@@ -5,7 +5,7 @@
         <header123></header123>
       </el-header>
       <el-container>
-        <el-aside>
+          <el-aside width=35% style="margin-left: 8%;margin-right: 0">
 <!--           Personal Card-->
         <div class="pCard">
           <nameTag style="margin-left: 10px"></nameTag>
@@ -160,13 +160,22 @@
           </td>
           <div class="blank"></div>
           </table>-->
-        <el-main width="50%" style="margin-left: 10%">
-          {{this.user_info.question_sum}}<el-button @click="getQuestion" >queston</el-button>
-          {{this.user_info.comment_sum}}<el-button @click="getAnswer">comment</el-button>
-          {{this.user_info.like_sum}}<el-button @click="getLikes ">likes</el-button>
+        <el-main width="55%" style="margin-left: -10%; padding-right: 10%">
+          <div style="width: 90%; float: left">
+            <div style="background-color: #72AFFF;" class="divS">
+              <div style="width: 60%; float: left; color: white; font-size: 44px; font-weight: bold;margin-top: 5%; margin-left:5%;text-align: left">Make Your Question Matter.</div>
+              <img style="width: 24%; float: right; transform: rotate(30deg); margin: 4% 7% 2% 0%" src="../assets/logo1111.png">
+              <div style="clear: both"></div>
+            </div>
+            <br>
+            <v-tabs>
+              <v-tab @click="getQuestion" style="width: 33%">{{this.user_info.question_sum}} Questions</v-tab>
+              <v-tab @click="getAnswer" style="width: 34%">{{this.user_info.comment_sum}} Answers</v-tab>
+              <v-tab @click="getLikes" style="width: 33%">{{this.user_info.like_sum}} likes</v-tab>
+            </v-tabs>
+          </div><div style="clear: both"></div>
           <router-view></router-view>
         </el-main>
-
       </el-container>
     </el-container>
   </div>
@@ -283,5 +292,12 @@ export default {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   border: #72afff 5px solid;
   position: fixed;
+}
+
+.divS{
+  border-radius: 10px;
+}
+button{
+  background-color: white;
 }
 </style>

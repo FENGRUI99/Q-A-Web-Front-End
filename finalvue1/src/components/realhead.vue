@@ -1,9 +1,9 @@
 <template>
   <div>
     <table id="tt">
-<!--      <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>-->
-<!--         <div class="foreground" style="width: 2000px;height: 80px;position: absolute;margin-top: -15%;z-index: 20;"></div>-->
-<!--        </div>-->
+      <!--      <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>-->
+      <!--         <div class="foreground" style="width: 2000px;height: 80px;position: absolute;margin-top: -15%;z-index: 20;"></div>-->
+      <!--        </div>-->
       <img src="../assets/logo1.png" width="200px" style="margin: auto" class="pho">
       <td @click="toHomePage" style="width: 20%; cursor: pointer;"></td>
       <!--        <p id="title">Ask Louder Here! </p>-->
@@ -29,6 +29,7 @@
 <script>
 import NameTag from './NameTag'
 import SearchBox from './SearchBox'
+
 export default {
   name: 'RealHead',
   data () {
@@ -51,11 +52,13 @@ export default {
     refresh () {
       if (this.reLoad < 10) {
         this.reLoad += 1
+        console.log(this.reLoad)
       }
     },
     toChat () {
       this.$router.push({
-        path: '/Chat'
+        path: '/Chat',
+        name: 'Chat'
       })
     }
   }
@@ -97,11 +100,11 @@ export default {
   position: relative;
 }
 html, body {
-height: 100%;
+  height: 100%;
 }
 body {
-text-align: center;
-background-color: hsl(0, 0%, 100%);
+  text-align: center;
+  background-color: hsl(0, 0%, 100%);
 }
 body:before {
   content: '';

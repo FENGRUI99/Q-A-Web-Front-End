@@ -72,12 +72,10 @@
         <div style="height: 10px"></div>
       </div>
       <div class="demo-search-div">
-
         <v-skeleton-loader
           type="article"
           style="border-radius:10px ;z-index: -1"
           class="abc loadingStyle" id = 'load'
-
         ></v-skeleton-loader>
 
       </div>
@@ -135,14 +133,12 @@ export default {
     }
   },
   created () {
+    console.log('id is: ' + this.id)
     this.axios.post('http://localhost:8080/' + this.id, {
       request: sessionStorage.getItem('user_id')
     }).then((response) => {
-      if (response.data.entity === null) {
-        this.$store.commit('setList', [])
-      } else {
-        this.$store.commit('setList', response.data.entity)
-      }
+      console.log('list length is: ' + response.data.entity.length)
+      this.$store.commit('setList', response.data.entity)
     }).catch((response) => {
       console.log(response)
     })
@@ -352,6 +348,16 @@ export default {
     },
     num (s) {
       return s < 10 ? '0' + s : s
+    },
+    test () {
+      this.axios.post('http://localhost:8080/userLike', {
+        request: sessionStorage.getItem('user_id')
+      }).then((response) => {
+        // this.$store.commit('setLikedList', response.data.entity)
+        this.$store.state.liked_list = response.data.entity
+      }).catch((response) => {
+        console.log(response)
+      })
     }
   },
   destroyed () {
