@@ -108,7 +108,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'changePho',
 
@@ -208,11 +207,16 @@ export default {
       this.fileList.forEach((file) => {
         formData.append('file', file.raw)
       })
-      alert(typeof formData.get('file'))
       formData.append('user_id', sessionStorage.getItem('user_id'))
       this.axios.post('http://localhost:8080/Upload', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res => {
         if (res.data.code === '200') {
-          alert('success')
+          this.axios.post('http://localhost:8080/getPhoto', {
+            request: sessionStorage.getItem('user_id')
+          }).then((response) => {
+            this.pic = response.data.entity
+          }).catch((response) => {
+            console.log(response)
+          })
         }
       }).catch(error => {
         alert('更新用户数据失败' + error)
