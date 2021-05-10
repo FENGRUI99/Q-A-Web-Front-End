@@ -31,8 +31,7 @@
                     :file-list="fileList"
                     accept="image/png,image/jpg,image/jpeg"
                     :on-success="handleAvatarSuccess"
-                    multiple
-                    :limit="3"
+                    :limit="1"
                   >
                     <!--                  </el-upload>-->
                     <i slot="default" class="el-icon-plus"></i>

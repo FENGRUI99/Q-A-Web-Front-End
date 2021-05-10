@@ -141,7 +141,7 @@
                 <p style="color: grey;font-weight: bold;font-size: 35px">Wait for your Louder Voice . . .</p>
               </div>
               <div v-else>
-                <div v-for="(comment, key, index) in item.commentList" v-bind:key="index">
+                <div v-for="(comment, index) in item.commentList" v-bind:key="index">
                   <div v-if="index===item.number_comment-1">
                     <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
                     <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
@@ -350,7 +350,7 @@ export default {
       this.item.number_comment += 1
       let commentId = -this.item.number_comment
       console.log('comemnt id = ' + commentId)
-      this.$set(this.item.commentList, commentId.toString(), { 'comment_id': commentId.toString(), 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': new Date().getTime() })
+      this.item.commentList.push({ 'comment_id': commentId.toString(), 'user_id': sessionStorage.getItem('user_id'), 'user_name': 'me', 'comment_detail': this.myComment, 'question_id': this.item.question_id, 'create_time': new Date().getTime() })
       sessionStorage.setItem('item', JSON.stringify(this.item))
       this.axios.post('http://localhost:8080/publishComment', {
         user_id: sessionStorage.getItem('user_id'),
