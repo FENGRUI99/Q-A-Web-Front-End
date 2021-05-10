@@ -1,11 +1,12 @@
 <template>
   <div @click="toDetail">
-      <td style="margin-left: -30px;position: absolute;">
+    <table>
+      <td style="margin-left: -30px;">
         <UL class=fm>
           <LI><A href="#">
             <div style="display: inline-block">
-              <v-avatar style="margin-top: -10%">
-                <img style="width: 100px; height: 100px;vertical-align: text-top;"
+              <v-avatar style="margin-top: -10%;"   size="36">
+                <img style="vertical-align: text-top;"
                      v-bind:src="'data:image/png;base64,' + pic"
                      alt="../assets/tag1.jpg"
                 >
@@ -14,33 +15,19 @@
           </A>
             <ul>
               <li>
-                完全显示的头像放在这里
+                <img style="width: 180px; height: 180px;vertical-align: text-top;position: absolute;margin-left: -350%"
+                     v-bind:src="'data:image/png;base64,' + pic"
+                     alt="../assets/tag1.jpg"
+                >
               </li>
             </ul>
           </LI>
         </UL>
       </td>
       <td>
-        <ul class=fm>
-          <LI><A href="#"> <el-link :underline="false">Username</el-link>
-          </A>
-            <ul class="idinfo">
-              <li>
-                name:wahahahaha
-              </li>
-              <li >
-                id:123123123
-              </li>
-              <li >
-                likes:ababab sss
-              </li>
-              <li >
-                XJTLU student
-              </li>
-            </ul>
-          </li>
-        </ul>
+           <el-link :underline="false">Username</el-link>
       </td>
+    </table>
   </div>
 
 </template>

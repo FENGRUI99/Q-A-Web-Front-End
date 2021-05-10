@@ -8,12 +8,16 @@
         <el-aside width=35% style="margin-left: 8%;margin-right: 0">
 <!--           Personal Card-->
         <div class="pCard">
-          <div @click="changeHidden">
-            <changePho style="margin-left: 10px;"></changePho>
-          </div>
           <!-- Privacy-->
           <br>
           <div>
+            <div @click="changeHidden" style="height: auto;width: 100%;display: inline-block;margin-left: 10%; cursor:hand;">
+             <span style="float: left;" class="touxiang"> <changePho></changePho> </span>
+              <span  align="center" justify="center"> {{user_info.user_name}} </span>
+              <br>
+            </div>
+            <br>
+            <br>
             <!--email-->
             <div>
               <div class="side">
@@ -146,19 +150,20 @@
           </table>-->
         <el-main width="55%" style="margin-left: -10%; padding-right: 10%">
           <div style="width: 90%; float: left">
-            <touch-ripple
-              class="div-box box-1"
-              :speed="2"
-              :opacity="0.3"
-              color="#fff"
-              transition="cubic-bezier(0.18, 0.89, 0.32, 1.28)"
-            >
+<!--            <touch-ripple-->
+<!--              class="div-box box-1"-->
+<!--              z-index="-10"-->
+<!--              :speed="2"-->
+<!--              :opacity="0.3"-->
+<!--              color="#fff"-->
+<!--              transition="cubic-bezier(0.18, 0.89, 0.32, 1.28)"-->
+<!--            >-->
               <div style="background-color: #72AFFF;" class="divS">
               <div style="width: 60%; float: left; color: white; font-size: 44px; font-weight: bold;margin-top: 5%; margin-left:5%;text-align: left">Make Your Question Matter.</div>
               <img style="width: 24%; float: right; transform: rotate(30deg); margin: 4% 7% 2% 0%" src="../assets/logo1111.png">
               <div style="clear: both"></div>
             </div>
-            </touch-ripple>
+<!--            </touch-ripple>-->
             <br>
             <div v-if="!isHidden">
             <v-tabs>
@@ -401,7 +406,8 @@ button{
   color: #ffffff;
   font-size: 18px;
 }
-.sideright1:hover{
+
+.touxiang:hover{
   cursor: pointer;
 }
 .sideright >>> .el-input__inner {

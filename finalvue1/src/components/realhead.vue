@@ -4,20 +4,20 @@
       <!--      <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>-->
       <!--         <div class="foreground" style="width: 2000px;height: 80px;position: absolute;margin-top: -15%;z-index: 20;"></div>-->
       <!--        </div>-->
-      <img src="../assets/logo1.png" width="200px" style="margin: auto" class="pho">
-      <td @click="toHomePage" style="width: 20%; cursor: pointer;"></td>
+      <img src="../assets/logo1.png" width="200px"  class="pho">
+      <td @click="toHomePage" style="width: 22%; cursor: pointer;"></td>
       <!--        <p id="title">Ask Louder Here! </p>-->
       <!--      -->
       <h1 id="title" data-shadow='Ask Louder Here!' style="margin-top: 10px;z-index:10;">Ask Louder Here!</h1>
       <!--      -->
-      <td style="width: 30%"></td>
+      <td style="width: 28%"></td>
       <td>
         <div style=";width: 10px;margin-top: 20px;"></div>
         <searchBox></searchBox>
         <div style="height: 10px;"></div>
       </td>
-      <td>
-        <el-button @click="toChat">Chat</el-button>
+      <td class="notify">
+      <div @click="toChat"> <i class="el-icon-message-solid"></i></div>
       </td>
       <td style="margin: auto">
         <nameTag></nameTag>
@@ -89,7 +89,7 @@ export default {
 }
 .pho{
   position: absolute;
-  margin-top: -10px;
+  margin-top: -5px;
   margin-left: 3%;
 }
 @import url(https://fonts.googleapis.com/css?family=Righteous);
@@ -112,6 +112,9 @@ body:before {
   vertical-align: middle;
   font-size: 0;
   height: 100%;
+}
+.notify:hover{
+  cursor: pointer;
 }
 h1 {
   display: inline-block;

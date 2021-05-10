@@ -1,107 +1,70 @@
 <template>
   <div>
-      <td style="margin-left: -30px;position: absolute;">
-        <UL class=fm>
-          <LI><A href="#">
-            <div style="display: inline-block">
-              <v-row   align="center"
-                       justify="center">
-                <v-avatar
-                  class="white--text"
-                  @click="overlay = !overlay"
-                  style="margin-top: -10%">
-                  <img style="width: 100px; height: 100px;vertical-align: text-top;"
-                       v-bind:src="'data:image/png;base64,' + pic"
-                       alt="../assets/tag1.jpg"
-                  >
-                </v-avatar>
-                <v-overlay
-                  :z-index="zIndex"
-                  :value="overlay"
-                >
-                  <el-upload
-                    action="#"
-                    list-type="picture-card"
-                    :class="{hide:hideUploadEdit}"
-                    :auto-upload="false"
-                    :on-preview="handlePreview"
-                    :http-request="uploadFile"
-                    :on-change="beforeUpload"
-                    :on-exceed="handleExceed"
-                    :file-list="fileList"
-                    accept="image/png,image/jpg,image/jpeg"
-                    :on-success="handleAvatarSuccess"
-                    :limit="1"
-                  >
-                    <!--                  </el-upload>-->
-                    <i slot="default" class="el-icon-plus"></i>
-                    <div slot="file" slot-scope="{file}">
-                      <img
-                        class="el-upload-list__item-thumbnail"
-                        :src="file.url" alt=""
-                      >
-                      <span class="el-upload-list__item-actions">
-                        <span
-                          class="el-upload-list__item-preview"
-                          @click="handlePictureCardPreview(file)"
-                        >
-                          <i class="el-icon-zoom-in"></i>
-                        </span>
-                        <span
-                          v-if="!disabled"
-                          class="el-upload-list__item-delete"
-                          @click="handleRemove(file)"
-                        >
-                          <i class="el-icon-delete"></i>
-                        </span>
-                      </span>
-                    </div>
-                  </el-upload>
-                  <v-btn
-                    color= #A5D6A7
-                    elevation="3"
-                    @click="submit"
-                    style="width: 130px;"
-                  >add</v-btn>
-                  <v-btn
-                    color= #A5D6A7
-                    elevation="3"
-                    @click="overlay = !overlay"
-                    style="width: 130px;"
-                  >close</v-btn>
-                </v-overlay>
-              </v-row>
-            </div>
-          </A>
-            <ul>
-              <li>
-                完全显示的头像放在这里
-              </li>
-            </ul>
-          </LI>
-        </UL>
-      </td>
-      <td>
-        <ul class=fm>
-          <LI><A href="#"> <el-link :underline="false">Username</el-link>
-          </A>
-            <ul class="idinfo">
-              <li>
-                name:wahahahaha
-              </li>
-              <li >
-                id:123123123
-              </li>
-              <li >
-                likes:ababab sss
-              </li>
-              <li >
-                XJTLU student
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </td>
+    <v-row >
+      <v-avatar
+        class="white--text"
+        @click="overlay = !overlay"
+        style="margin-top: -10%">
+        <img style="width: 100px; height: 100px;vertical-align: text-top;"
+             v-bind:src="'data:image/png;base64,' + pic"
+             alt="../assets/tag1.jpg"
+        >
+      </v-avatar>
+      <v-overlay
+        :z-index="zIndex"
+        :value="overlay"
+      >
+        <el-upload
+          action="#"
+          list-type="picture-card"
+          :class="{hide:hideUploadEdit}"
+          :auto-upload="false"
+          :on-preview="handlePreview"
+          :http-request="uploadFile"
+          :on-change="beforeUpload"
+          :on-exceed="handleExceed"
+          :file-list="fileList"
+          accept="image/png,image/jpg,image/jpeg"
+          :on-success="handleAvatarSuccess"
+          :limit="1"
+        >
+          <i slot="default" class="el-icon-plus"></i>
+          <div slot="file" slot-scope="{file}">
+            <img
+              class="el-upload-list__item-thumbnail"
+              :src="file.url" alt=""
+            >
+            <span class="el-upload-list__item-actions">
+              <span
+                class="el-upload-list__item-preview"
+                @click="handlePictureCardPreview(file)"
+              >
+                <i class="el-icon-zoom-in"></i>
+              </span>
+              <span
+                v-if="!disabled"
+                class="el-upload-list__item-delete"
+                @click="handleRemove(file)"
+              >
+                <i class="el-icon-delete"></i>
+              </span>
+            </span>
+          </div>
+        </el-upload>
+        <v-btn
+          color= #A5D6A7
+          elevation="3"
+          @click="submit"
+          style="width: 130px;"
+        >add</v-btn>
+        <v-btn
+          color= #A5D6A7
+          elevation="3"
+          @click="overlay = !overlay"
+          style="width: 130px;"
+        >close</v-btn>
+      </v-overlay>
+    </v-row>
   </div>
 
 </template>
@@ -125,7 +88,7 @@ export default {
       disabled: false,
       imageUrl: '',
       hideUploadEdit: false, // 隐藏'上传按钮'
-      limitNum: 3, // 图片数量
+      limitNum: 1, // 图片数量
       fileList: [] // 图片列表
     }
   },
@@ -269,4 +232,5 @@ export default {
   height: 178px;
   display: block;
 }
+
 </style>
