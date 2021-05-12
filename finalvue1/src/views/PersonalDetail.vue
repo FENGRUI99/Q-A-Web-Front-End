@@ -5,7 +5,7 @@
         <header123></header123>
       </el-header>
       <el-container>
-        <el-aside width=35% style="margin-left: 8%;margin-top: 1.3%;margin-right: 0">
+        <el-aside width=35% style="margin-left: 5%;margin-top: 1.3%;margin-right: 0">
 <!--           Personal Card-->
         <div class="pCard" style="overflow-Y:scroll">
           <!-- Privacy-->
@@ -14,8 +14,8 @@
             <div @click="changeHidden" style="cursor:hand;">
               <div  class="touxiang" style="text-align: center;display:inline-block;margin-top:1%;margin-bottom: 0"> <changePho></changePho> </div>
             </div>
-            <div style="font-weight: bolder;font-size: 30px" > {{user_info.user_name}} </div>
-            <span style="font-size: 23px;color: #8c939d;font-weight: bolder">Personal Information</span>
+            <div style="font-weight: bolder;font-size: 23px" > {{user_info.user_name}} </div>
+            <span style="font-size: 20px;color: #8c939d;font-weight: bolder">Personal Information</span>
             <!--email-->
             <div>
               <div class="side">
@@ -135,7 +135,7 @@
               </div>
               <div class="sideright">
                 <div v-if="isIntroduction" >
-                  <el-input  type="textarea" :rows="4" v-model="introduction" size="small"></el-input>
+                  <el-input  type="textarea" :rows="2" v-model="introduction" size="small"></el-input>
                 </div>
                 <div v-else @click="clickIntro">{{ introduction }}</div>
               </div>
@@ -406,12 +406,12 @@ export default {
   font-family: Helvetica;
 }
 .pCard{
-  margin-left: 5%;
+  margin-left: 2%;
   background: #ffffff;
   border-radius: 10px;
-  width: 20%;
+  width: 23%;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  border: #72afff 5px solid;
+  border: #72afff 2px solid;
   position: fixed;
   height: 85%;
 }
@@ -428,7 +428,7 @@ button{
   cursor: pointer;
   background-color: rgba(112, 172, 231, 0.37);
   color: #ffffff;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .touxiang:hover{
@@ -455,4 +455,8 @@ button{
 .sideright >>> .el-input__inner::-webkit-input-placeholder {
   line-height: 20px;
 }
+  .pCard >>>.el-divider--horizontal{
+    height: 1px;
+    margin: 1px 0;
+  }
 </style>
