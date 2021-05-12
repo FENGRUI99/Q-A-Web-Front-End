@@ -29,7 +29,7 @@ export default {
   mounted () {
     this.userId = sessionStorage.getItem('user_id')
     this.userName = JSON.parse(sessionStorage.getItem('user_info')).user_name
-    // this.init()
+    this.list = this.$store.state.user_chat_list
   },
   methods: {
     bindEnter (e) {
@@ -46,47 +46,38 @@ export default {
       this.list.push(msgObj)
       const sendData = {
         'user_id': this.userId,
-        'senduser_id': '18229922',
+        'senduser_id': '2',
         'text': msg,
         'date': aData
       }
-      this.send(JSON.stringify(sendData))
+      this.$global.ws.send(JSON.stringify(sendData))
     },
     toolEvent (type, obj) {
       console.log('tools', type, obj)
     },
     talkEvent (play) {
       console.log(play)
-    },
-    init: function () {
-      if (typeof (WebSocket) === 'undefined') {
-        alert('您的浏览器不支持socket')
-      } else {
-        // 实例化socket
-        this.socket = new WebSocket(`ws://localhost:8080/websocket/${this.userId}`)
-        // 监听socket连接
-        this.socket.onopen = this.open
-        // 监听socket错误信息
-        this.socket.onerror = this.error
-        // 监听socket消息
-        this.socket.onmessage = this.getMessage
-      }
-    },
-    open: function () {
-      console.log('socket连接成功')
-    },
-    error: function () {
-      console.log('连接错误')
-    },
-    getMessage: function (msg) {
-      console.log(msg.data)
-    },
-    send: function (params) {
-      this.socket.send(params)
-    },
-    close: function () {
-      console.log('socket已经关闭')
     }
+    // init: function () {
+    //   if (typeof (WebSocket) === 'undefined') {
+    //     alert('您的浏览器不支持socket')
+    //   } else {
+    //     // 实例化socket
+    //     this.socket = new WebSocket(`ws://localhost:8080/websocket/${this.userId}`)
+    //     // 监听socket连接
+    //     this.socket.onopen = this.open
+    //     // 监听socket错误信息
+    //     this.socket.onerror = this.error
+    //     // 监听socket消息
+    //     this.socket.onmessage = this.getMessage
+    //   }
+    // },
+    // open: function () {
+    //   console.log('socket连接成功')
+    // },
+    // error: function () {
+    //   console.log('连接错误')
+    // }
   }
 
 }

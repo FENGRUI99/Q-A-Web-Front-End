@@ -12,6 +12,7 @@
         <header123></header123>
       </el-header>
       <el-container>
+        <router-view></router-view>
         <el-aside width=26.5%>
           <Aside></Aside>
         </el-aside>
@@ -66,45 +67,34 @@ export default {
       imgSrc: require('../assets/Image 2021-4-29 at 23.50.jpg')
     }
   },
-  mounted () {
+  created () {
     this.userId = sessionStorage.getItem('user_id')
     this.userName = JSON.parse(sessionStorage.getItem('user_info')).user_name
-    this.init()
-  },
-  methods: {
-    init: function () {
-      if (typeof (WebSocket) === 'undefined') {
-        alert('您的浏览器不支持socket')
-      } else {
-        // 实例化socket
-        this.socket = new WebSocket(`ws://localhost:8080/websocket/${this.userId}`)
-        // 监听socket连接
-        this.socket.onopen = this.open
-        // 监听socket错误信息
-        this.socket.onerror = this.error
-        // 监听socket消息
-        this.socket.onmessage = this.getMessage
+    let that = this
+    if ('WebSocket' in window) {
+      that.ws = new WebSocket(`ws://localhost:8080/websocket/${this.userId}`)
+      that.$global.setWs(that.ws)
+      that.$global.ws.onopen = function () {
+        console.log('socket连接成功')
       }
-    },
-    open: function () {
-      console.log('socket连接成功')
-    },
-    error: function () {
-      console.log('连接错误')
-    },
-    getMessage: function (msg) {
-      console.log(msg.data)
-    },
-    send: function (params) {
-      this.socket.send(params)
-    },
-    close: function () {
-      console.log('socket已经关闭')
+      that.$global.ws.onerror = function () {
+        console.log('错误')
+      }
+      that.$global.ws.onmessage = function (e) {
+        console.log(e)
+      }
+    } else {
+      // 浏览器不支持 WebSocket
+      console.log('您的浏览器不支持 WebSocket!')
     }
   },
   destroyed () {
+    let that = this
     // 销毁监听
-    this.socket.onclose = this.close
+    that.ws.onclose = function () {
+      // 关闭 websocket
+      console.log('连接已关闭...')
+    }
   }
 }
 

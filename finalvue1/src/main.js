@@ -21,9 +21,9 @@ import localforage from 'localforage'
 import 'vue-awesome/icons'
 /* 引入Vue组件 */
 import Icon from 'vue-awesome/components/Icon'
+import global from '../src/components/myWebSocket'
 
-// 可以象下面这样全局注册
-
+Vue.prototype.$global = global
 Vue.config.productionTip = false
 Vue.use(Icon)
 Vue.use(router)
@@ -49,7 +49,8 @@ const store = new Vuex.Store({
       opacity: 1,
       filter: 'blur(5px)'
     },
-    user_tags: ''
+    user_tags: '',
+    user_chat_list: []
   },
   // vuex中的方法, 在组件中使用commit来调用
   mutations: {

@@ -57,7 +57,7 @@ export default {
     },
     toChat () {
       this.$router.push({
-        path: '/Chat',
+        path: '/HomePage/Chat',
         name: 'Chat'
       })
     }

@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Login from '../views/Login'
 import HomePage from '../views/HomePage'
 import PersonalDetail from '../views/PersonalDetail'
-import Header from '../components/Header'
 import Register from '../views/Register'
 import ProblemDetailPage from '../views/ProblemDetailPage'
 import Register2 from '../views/Register2'
@@ -27,6 +26,11 @@ export default new Router({
       name: 'HomePage',
       component: HomePage,
       children: [
+        {
+          path: 'Chat',
+          name: 'Chat',
+          component: Chat
+        }
       ]
     },
     {
@@ -52,11 +56,6 @@ export default new Router({
       ]
     },
     {
-      path: '/Header',
-      name: 'Header',
-      component: Header
-    },
-    {
       path: '/Register',
       name: 'Register',
       component: Register
@@ -75,11 +74,6 @@ export default new Router({
       path: '/',
       name: 'Cover',
       component: Cover
-    },
-    {
-      path: '/Chat',
-      name: 'Chat',
-      component: Chat
     }
   ]
 })
