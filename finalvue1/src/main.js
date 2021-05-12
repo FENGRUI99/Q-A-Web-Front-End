@@ -116,6 +116,19 @@ const store = new Vuex.Store({
     },
     setImgList (state, msg) {
       state.img_list = msg
+    },
+    setChatList (state, data) {
+      let id = data[0]
+      let list = data[1]
+      state.user_chat_list[id] = list
+    },
+    addChatList (state, data) {
+      let id = data[0]
+      let msg = data[1]
+      if (!state.user_chat_list.contains(id)) {
+        state.user_chat_list[id] = {}
+      }
+      state.user_chat_list[id].push(msg)
     }
   },
   // 计算属性
@@ -140,6 +153,9 @@ const store = new Vuex.Store({
     },
     getImgList (state) {
       return state.img_list
+    },
+    getChatList (state) {
+      return state.user_chat_list
     }
   }
 })

@@ -80,8 +80,16 @@ export default {
       that.$global.ws.onerror = function () {
         console.log('错误')
       }
-      that.$global.ws.onmessage = function (e) {
-        console.log(e)
+      that.$global.ws.onmessage = function (res) {
+        let data = JSON.parse(res.data)
+        console.log(data)
+        // const msgObj = {
+        //   'date': data.date,
+        //   'text': { 'text': data.text },
+        //   'mine': data.mine,
+        //   'name': this.userName,
+        //   'img': '../image/three.jpeg'
+        // }
       }
     } else {
       // 浏览器不支持 WebSocket

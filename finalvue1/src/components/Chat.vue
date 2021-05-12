@@ -29,7 +29,7 @@ export default {
   mounted () {
     this.userId = sessionStorage.getItem('user_id')
     this.userName = JSON.parse(sessionStorage.getItem('user_info')).user_name
-    this.list = this.$store.state.user_chat_list
+    this.list = this.$store.getters.getChatList
   },
   methods: {
     bindEnter (e) {
@@ -44,13 +44,23 @@ export default {
         'img': '../image/three.jpeg'
       }
       this.list.push(msgObj)
-      const sendData = {
-        'user_id': this.userId,
-        'senduser_id': '1',
-        'text': msg,
-        'date': aData
+      if (this.userId === '1') {
+        const sendData = {
+          'user_id': this.userId,
+          'senduser_id': '2',
+          'text': msg,
+          'date': aData
+        }
+        this.$global.ws.send(JSON.stringify(sendData))
+      } else if (this.userId === '2') {
+        const sendData = {
+          'user_id': this.userId,
+          'senduser_id': '1',
+          'text': msg,
+          'date': aData
+        }
+        this.$global.ws.send(JSON.stringify(sendData))
       }
-      this.$global.ws.send(JSON.stringify(sendData))
     },
     toolEvent (type, obj) {
       console.log('tools', type, obj)
