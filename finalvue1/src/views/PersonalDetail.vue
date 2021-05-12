@@ -5,19 +5,17 @@
         <header123></header123>
       </el-header>
       <el-container>
-        <el-aside width=35% style="margin-left: 8%;margin-right: 0">
+        <el-aside width=35% style="margin-left: 8%;margin-top: 1.3%;margin-right: 0">
 <!--           Personal Card-->
-        <div class="pCard">
+        <div class="pCard" style="overflow-Y:scroll">
           <!-- Privacy-->
           <br>
           <div>
-            <div @click="changeHidden" style="height: auto;width: 100%;display: inline-block;margin-left: 10%; cursor:hand;">
-             <span style="float: left;" class="touxiang"> <changePho></changePho> </span>
-              <span  align="center" justify="center"> {{user_info.user_name}} </span>
-              <br>
+            <div @click="changeHidden" style="cursor:hand;">
+              <div  class="touxiang" style="text-align: center;display:inline-block;margin-top:1%;margin-bottom: 0"> <changePho></changePho> </div>
             </div>
-            <br>
-            <br>
+            <div style="font-weight: bolder;font-size: 30px" > {{user_info.user_name}} </div>
+            <span style="font-size: 23px;color: #8c939d;font-weight: bolder">Personal Information</span>
             <!--email-->
             <div>
               <div class="side">
@@ -25,6 +23,55 @@
               </div>
               <div class="sideright1">
                 {{this.user_info.user_mail}}
+              </div>
+            </div>
+            <!--degree-->
+            <div>
+              <div class="side">
+                <a-icon type="container" theme="twoTone" /> Degree
+              </div>
+              <div class="sideright">
+                <div v-if="isDegree" style="margin-bottom: 5px">
+                  <el-input type="text" v-model="degree" size="small"></el-input>
+                </div>
+                <div v-else @click="clickDegree">{{ degree }}</div>
+              </div>
+            </div>
+            <!--Major-->
+            <div>
+              <div class="side">
+                <a-icon type="container" theme="twoTone" /> Major
+              </div>
+              <div class="sideright">
+                <div v-if="isMajor" style="margin-bottom: 5px">
+                  <el-input type="text" v-model="major" size="small"></el-input>
+                </div>
+                <div v-else @click="clickMajor">{{ major }}</div>
+              </div>
+            </div>
+            <!--Address-->
+            <div>
+              <div class="side">
+                <a-icon type="pushpin" theme="twoTone"/>
+                Address
+              </div>
+              <div class="sideright">
+                <div v-if="isAddress" style="margin-bottom: 5px">
+                  <el-input type="text" v-model="address" size="small"></el-input>
+                </div>
+                <div v-else @click="clickAddress">{{ address }}</div>
+              </div>
+            </div>
+            <!--// age-->
+            <div>
+              <div class="side">
+                <a-icon type="container" theme="twoTone" /> Age
+              </div>
+              <div class="sideright">
+                <div v-if="isAge" style="margin-bottom: 5px">
+                  <el-input type="text" v-model="age" size="small"></el-input>
+                </div>
+                <div v-else @click="clickAge">{{ age }}</div>
               </div>
             </div>
             <!--Id-->
@@ -41,30 +88,29 @@
               <div class="side">
                 <a-icon type="team" style="color: #208cf7"/> Gender
               </div>
-              <div class="sideright">
+              <div class="sideright1">
                 <div v-if="isSex" style="margin-bottom: 5px">
-                  <el-input type="text" v-model="sex" size="small"></el-input>
+<!--                  <el-radio-group v-model="radio1" size="mini">-->
+<!--                    <el-radio-button label="male">male</el-radio-button>-->
+<!--                    <el-radio-button label="female">female</el-radio-button>-->
+<!--                    <el-radio-button label="unkown">unkown</el-radio-button>-->
+<!--                  </el-radio-group>-->
+                  <a-radio-group default-value="c"  v-model="sex" @change="onChange" size="small">
+                    <a-radio-button value="0" style="transform: scale(1.1)">
+                      Male
+                    </a-radio-button>
+                    <a-radio-button value="1" style="transform: scale(1.1)">
+                      Female
+                    </a-radio-button>
+                    <a-radio-button value="2" style="transform: scale(1.1)">
+                      Unkown
+                    </a-radio-button>
+                  </a-radio-group>
                 </div>
-                <div v-else @click="clickSex">{{sex}}</div>
-              </div>
-            </div>
-            <!--// age-->
-            <div>
-              <div class="side">
-                <a-icon type="container" theme="twoTone" /> Age
-              </div>
-              <div class="sideright">
-                <div v-if="isAge" style="margin-bottom: 5px">
-                  <el-input type="text" v-model="age" size="small"></el-input>
+                <div v-else @click="clickSex">
+                  {{sex}}
                 </div>
-                <div v-else @click="clickAge">{{ age }}</div>
               </div>
-            </div>
-            <div>
-              <div class="side">
-                <a-icon type="container" theme="twoTone" /> Edit pwd
-              </div>
-              <div class="sideright1">link </div>
             </div>
             <!--Usage-->
             <div>
@@ -75,42 +121,12 @@
                 <div>3 mouths</div>
               </div>
             </div>
-            <!--Major-->
+            <!--// PWD-->
             <div>
               <div class="side">
-                <a-icon type="container" theme="twoTone" /> Major
+                <a-icon type="container" theme="twoTone" /> Edit pwd
               </div>
-              <div class="sideright">
-                <div v-if="isMajor" style="margin-bottom: 5px">
-                  <el-input type="text" v-model="major" size="small"></el-input>
-                </div>
-                <div v-else @click="clickMajor">{{ major }}</div>
-              </div>
-            </div>
-            <!--degree-->
-            <div>
-              <div class="side">
-                <a-icon type="container" theme="twoTone" /> Degree
-              </div>
-              <div class="sideright">
-                <div v-if="isDegree" style="margin-bottom: 5px">
-                  <el-input type="text" v-model="degree" size="small"></el-input>
-                </div>
-                <div v-else @click="clickDegree">{{ degree }}</div>
-              </div>
-            </div>
-            <!--Address-->
-            <div>
-              <div class="side">
-                <a-icon type="pushpin" theme="twoTone"/>
-                Slogan
-              </div>
-              <div class="sideright">
-                <div v-if="isAddress" style="margin-bottom: 5px">
-                  <el-input type="text" v-model="address" size="small"></el-input>
-                </div>
-                <div v-else @click="clickAddress">{{ address }}</div>
-              </div>
+              <div class="sideright1">link </div>
             </div>
             <!--intro-->
             <div>
@@ -124,17 +140,16 @@
                 <div v-else @click="clickIntro">{{ introduction }}</div>
               </div>
             </div>
-            <div v-if="isShowSubmit">
-              <el-button @click="save" type="primary" plain style="margin-top: 3px">Save</el-button>
+            <div v-if="isShowSubmit" style="margin-top: 2%">
+              <a-button  @click="save" type="primary">
+                Finish Editing
+              </a-button>
               <el-button @click="cancel" type="text" >Cancel</el-button>
             </div>
             <el-divider></el-divider>
-            <div>Interest Tag</div>
-            <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #82a1e3;color: #67a3d0"
-            > tag1
-            </el-tag><el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #7ba9e2;color: #62889c"
-          >  tag2
-          </el-tag>
+            <div style="font-size: 25px;color: #8c939d;font-weight: bolder;margin-bottom: 10px">Interest Tag</div>
+            <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #7ba9e2;color: #67a3d0" > tag1</el-tag>
+            <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #7ba9e2;color: #67a3d0">  tag2</el-tag>
           </div>
          </div>
         </el-aside>
@@ -210,6 +225,7 @@ export default {
         label: 'Null'
       }],
       value: '',
+      value1: 'a',
       isHidden: false,
       user_info: {},
       radio1: '1',
@@ -363,7 +379,7 @@ export default {
 <style scoped>
 .side{
   float: left;
-  width: 50%;
+  width: 45%;
   text-align: left;
   padding-left: 5px;
   display: inline-block;
@@ -371,16 +387,23 @@ export default {
   font-size: 14px;
   color: #72afff;
   font-family: Helvetica;
+  height: 30px;
 }
 .sideright{
-  width: 50%;
+  width: 55%;
   text-align: left;
   display: inline-block;
+  height: 30px;
+  font-size: 14px;
+  font-family: Helvetica;
 }
 .sideright1{
-  width: 50%;
+  width:55%;
   text-align: left;
   display: inline-block;
+  height: 30px;
+  font-size: 14px;
+  font-family: Helvetica;
 }
 .pCard{
   margin-left: 5%;
@@ -390,6 +413,7 @@ export default {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   border: #72afff 5px solid;
   position: fixed;
+  height: 85%;
 }
 
 .divS{
@@ -409,9 +433,10 @@ button{
 
 .touxiang:hover{
   cursor: pointer;
+  text-align:center;
 }
 .sideright >>> .el-input__inner {
-  height: 33px;
+  height: 30px;
   font-size: 13px;
   border: 1px #70ace7 solid;
   filter: drop-shadow(0.1rem 0.1rem rgba(0, 0, 0, 0.5));
@@ -425,7 +450,8 @@ button{
   border-color: #94bf58;
   transition-duration: 1.5s;
 }
-
+.touxiang >>>.v-avatar{
+}
 .sideright >>> .el-input__inner::-webkit-input-placeholder {
   line-height: 20px;
 }

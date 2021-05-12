@@ -3,6 +3,7 @@
     <v-row >
       <v-avatar
         class="white--text"
+        size="65"
         @click="overlay = !overlay"
         style="margin-top: -10%">
         <img style="width: 100px; height: 100px;vertical-align: text-top;"
