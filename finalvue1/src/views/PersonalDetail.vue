@@ -95,14 +95,14 @@
 <!--                    <el-radio-button label="female">female</el-radio-button>-->
 <!--                    <el-radio-button label="unkown">unkown</el-radio-button>-->
 <!--                  </el-radio-group>-->
-                  <a-radio-group default-value="c"  v-model="sex" @change="onChange" size="small">
-                    <a-radio-button value="0" style="transform: scale(1.1)">
+                  <a-radio-group default-value="c"  v-model="sex" @change="onChange" size="small"  style="display: block">
+                    <a-radio-button value="0" >
                       Male
                     </a-radio-button>
-                    <a-radio-button value="1" style="transform: scale(1.1)">
+                    <a-radio-button value="1" >
                       Female
                     </a-radio-button>
-                    <a-radio-button value="2" style="transform: scale(1.1)">
+                    <a-radio-button value="2" >
                       Unkown
                     </a-radio-button>
                   </a-radio-group>
@@ -381,28 +381,28 @@ export default {
   float: left;
   width: 45%;
   text-align: left;
-  padding-left: 5px;
+  padding-left: 10px;
   display: inline-block;
   font-weight: bolder;
   font-size: 14px;
   color: #72afff;
   font-family: Helvetica;
-  height: 30px;
+  height: 20px;
 }
 .sideright{
   width: 55%;
   text-align: left;
   display: inline-block;
-  height: 30px;
-  font-size: 14px;
+  height: 20px;
+  font-size: 12px;
   font-family: Helvetica;
 }
 .sideright1{
   width:55%;
   text-align: left;
   display: inline-block;
-  height: 30px;
-  font-size: 14px;
+  height: 20px;
+  font-size: 12px;
   font-family: Helvetica;
 }
 .pCard{
@@ -436,7 +436,7 @@ button{
   text-align:center;
 }
 .sideright >>> .el-input__inner {
-  height: 30px;
+  height: 20px;
   font-size: 13px;
   border: 1px #70ace7 solid;
   filter: drop-shadow(0.1rem 0.1rem rgba(0, 0, 0, 0.5));
@@ -459,4 +459,8 @@ button{
     height: 1px;
     margin: 1px 0;
   }
+.sideright1 >>> .ant-radio-group-small .ant-radio-button-wrapper{
+  padding: 0 2px;
+  line-height: 15px;
+}
 </style>
