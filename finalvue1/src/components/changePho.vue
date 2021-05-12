@@ -156,6 +156,7 @@ export default {
       this.$store.commit('setBlur')
     },
     submit () {
+      this.overlay = !this.overlay
       this.uploadFile()
     },
     handlePreview (file) {

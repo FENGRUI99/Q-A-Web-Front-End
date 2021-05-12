@@ -50,6 +50,7 @@
               </li>
             </div>
           </td>
+          <br>
           <div v-bind:key="keyValue">
             <div v-if="item.like_flag === '1'">
               <a-icon type="like" theme="twoTone" @click="liked(item)" two-tone-color="#b20610" style="font-size: large"/>
@@ -68,6 +69,8 @@
             </table>
           </el-button>
           <br>
+          <br>
+        <i class="el-icon-delete"></i>
         </table>
         <div style="height: 10px"></div>
       </div>

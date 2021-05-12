@@ -181,12 +181,13 @@
 <!--            </touch-ripple>-->
             <br>
             <div v-if="!isHidden">
-            <v-tabs>
+            <v-tabs style="border-radius: 10px">
               <v-tab @click="getQuestion" style="width: 33%">{{this.user_info.question_sum}} Questions</v-tab>
               <v-tab @click="getAnswer" style="width: 34%">{{this.user_info.comment_sum}} Answers</v-tab>
               <v-tab @click="getLikes" style="width: 33%">{{this.user_info.like_sum}} likes</v-tab>
             </v-tabs>
             </div>
+            <div style="height: 10px"></div>
           </div>
           <div style="clear: both"></div>
           <router-view></router-view>

@@ -46,7 +46,7 @@ export default {
       this.list.push(msgObj)
       const sendData = {
         'user_id': this.userId,
-        'senduser_id': '2',
+        'senduser_id': '1',
         'text': msg,
         'date': aData
       }

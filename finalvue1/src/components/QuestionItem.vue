@@ -78,6 +78,7 @@
               </li>
             </div>
           </td>
+          <br>
           <div v-bind:key="keyValue">
             <div v-if="item.like_flag === '1'">
               <!--                  <button @click="liked(item)" @onmousedown="mouseDown ('red')" plain size="medium" :class="{like2:button_color===index}" class="like2">-->
@@ -117,6 +118,7 @@
             </div>
             <div class="blank"></div>
           </div>
+          <br>
           <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
             <table>
               <td><i class="el-icon-edit"></i></td>
