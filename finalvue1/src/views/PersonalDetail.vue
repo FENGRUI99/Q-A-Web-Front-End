@@ -95,17 +95,23 @@
 <!--                    <el-radio-button label="female">female</el-radio-button>-->
 <!--                    <el-radio-button label="unkown">unkown</el-radio-button>-->
 <!--                  </el-radio-group>-->
-                  <a-radio-group default-value="c"  v-model="sex" @change="onChange" size="small"  style="display: block">
-                    <a-radio-button value="0" >
-                      Male
-                    </a-radio-button>
-                    <a-radio-button value="1" >
-                      Female
-                    </a-radio-button>
-                    <a-radio-button value="2" >
-                      Unkown
-                    </a-radio-button>
-                  </a-radio-group>
+
+                  <template>
+                    <div>
+                      <a-radio-group v-model="sex" defaultValue="2">
+                        <a-radio :value="0">
+                          Female
+                        </a-radio>
+                        <a-radio :value="1">
+                          Male
+                        </a-radio>
+                        <a-radio :value="2">
+                          Unkown
+                        </a-radio>
+                      </a-radio-group>
+                    </div>
+                  </template>
+
                 </div>
                 <div v-else @click="clickSex">
                   {{sex}}
@@ -147,7 +153,7 @@
               <el-button @click="cancel" type="text" >Cancel</el-button>
             </div>
             <el-divider></el-divider>
-            <div style="font-size: 25px;color: #8c939d;font-weight: bolder;margin-bottom: 10px">Interest Tag</div>
+            <div style="font-size: 20px;color: #8c939d;font-weight: bolder;margin-bottom: 10px">Interest Tag</div>
             <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #7ba9e2;color: #67a3d0" > tag1</el-tag>
             <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #7ba9e2;color: #67a3d0">  tag2</el-tag>
           </div>
