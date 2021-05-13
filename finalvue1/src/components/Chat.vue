@@ -8,7 +8,6 @@
     v-model="inputMsg"
     :toolConfig="tool"
   />
-  <el-button @click="send('hello world')">click</el-button>
 </div>
 </template>
 
@@ -44,6 +43,14 @@ export default {
         'img': '../image/three.jpeg'
       }
       this.list.push(msgObj)
+      const msg1 = {
+        'date': '2021/5/13',
+        'text': { 'text': 'i know' },
+        'mine': false,
+        'name': '2',
+        'img': '../image/three.jpeg'
+      }
+      this.$store.commit('addChatList', msg1)
       if (this.userId === '1') {
         const sendData = {
           'user_id': this.userId,

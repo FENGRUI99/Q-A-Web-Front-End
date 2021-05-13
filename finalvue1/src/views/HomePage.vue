@@ -83,13 +83,14 @@ export default {
       that.$global.ws.onmessage = function (res) {
         let data = JSON.parse(res.data)
         console.log(data)
-        // const msgObj = {
-        //   'date': data.date,
-        //   'text': { 'text': data.text },
-        //   'mine': data.mine,
-        //   'name': this.userName,
-        //   'img': '../image/three.jpeg'
-        // }
+        const msgObj = {
+          'date': data.date,
+          'text': { 'text': data.text },
+          'mine': false,
+          'name': this.userName,
+          'img': '../image/three.jpeg'
+        }
+        this.$store.commit('addChatList', msgObj)
       }
     } else {
       // 浏览器不支持 WebSocket
