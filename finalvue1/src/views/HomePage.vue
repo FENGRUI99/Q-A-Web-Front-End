@@ -12,12 +12,12 @@
         <header123></header123>
       </el-header>
       <el-container>
-        <router-view></router-view>
         <el-aside width=26.5%>
           <Aside></Aside>
         </el-aside>
         <el-container>
           <el-main>
+            <router-view></router-view>
             <body123></body123>
           </el-main>
           <el-footer>
@@ -81,16 +81,16 @@ export default {
         console.log('错误')
       }
       that.$global.ws.onmessage = function (res) {
+        console.log('response data is: ' + res.data)
         let data = JSON.parse(res.data)
-        console.log(data)
         const msgObj = {
           'date': data.date,
           'text': { 'text': data.text },
           'mine': false,
-          'name': this.userName,
+          'name': data.name,
           'img': '../image/three.jpeg'
         }
-        this.$store.commit('addChatList', msgObj)
+        that.$store.commit('addChatList', [data.user_id, msgObj])
       }
     } else {
       // 浏览器不支持 WebSocket

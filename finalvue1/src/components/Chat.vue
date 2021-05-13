@@ -1,13 +1,15 @@
 <template>
 <div>
   {{this.userName}}
-  <JwChat-index
-    :taleList="list"
-    @enter="bindEnter"
-    @clickTalk="talkEvent"
-    v-model="inputMsg"
-    :toolConfig="tool"
-  />
+  <div v-bind:key="this.$store.state.chat_fresh">
+    <JwChat-index
+      :taleList="this.$store.state.user_chat_list[this.$route.params.receiverId]"
+      @enter="bindEnter"
+      @clickTalk="talkEvent"
+      v-model="inputMsg"
+      :toolConfig="tool"
+    />
+  </div>
 </div>
 </template>
 
@@ -18,22 +20,60 @@ export default {
     return {
       userId: '',
       userName: '',
-      list: [],
       tool: {
         callback: this.toolEvent
       },
-      inputMsg: ''
+      inputMsg: '',
+      receiverId: '',
+      winBarConfig: {
+        active: 'win00',
+        width: '160px',
+        listHeight: '60px',
+        list: [ {
+          id: 'win00',
+          img: '..//image/cover.png',
+          name: 'JwChat',
+          dept: '最简单、最便捷',
+          readNum: 99
+        },
+        {
+          id: 'win01',
+          img: '..//image/three.jpeg',
+          name: '阳光明媚爱万物',
+          dept: '沙拉黑油',
+          readNum: 12
+        },
+        {
+          id: 'win02',
+          img: '..//image/two.jpeg',
+          name: '只盼流星不盼雨',
+          dept: '最后说的话'
+        },
+        {
+          id: 'win03',
+          img: '..//image/one.jpeg',
+          name: '留恋人间不羡仙',
+          dept: '这里可以放万物'
+        },
+        {
+          id: 'win04',
+          img: '..//image/three.jpeg',
+          name: '阳光明媚爱万物',
+          dept: '官方客服'
+        }],
+        callback: this.bindWinBar
+      }
     }
   },
   mounted () {
     this.userId = sessionStorage.getItem('user_id')
     this.userName = JSON.parse(sessionStorage.getItem('user_info')).user_name
-    this.list = this.$store.getters.getChatList
+    this.receiverId = this.$route.params.receiverId
   },
   methods: {
     bindEnter (e) {
       const msg = this.inputMsg
-      if (!msg) return
+      if (msg.length === 0) return
       let aData = new Date().toLocaleDateString()
       const msgObj = {
         'date': aData,
@@ -42,38 +82,30 @@ export default {
         'name': this.userName,
         'img': '../image/three.jpeg'
       }
-      this.list.push(msgObj)
-      const msg1 = {
-        'date': '2021/5/13',
-        'text': { 'text': 'i know' },
-        'mine': false,
-        'name': '2',
-        'img': '../image/three.jpeg'
+      this.$store.commit('addChatList', [this.receiverId, msgObj])
+      const sendData = {
+        'user_id': this.userId,
+        'senduser_id': this.receiverId,
+        'text': msg,
+        'date': aData,
+        'name': this.userName
       }
-      this.$store.commit('addChatList', msg1)
-      if (this.userId === '1') {
-        const sendData = {
-          'user_id': this.userId,
-          'senduser_id': '2',
-          'text': msg,
-          'date': aData
-        }
-        this.$global.ws.send(JSON.stringify(sendData))
-      } else if (this.userId === '2') {
-        const sendData = {
-          'user_id': this.userId,
-          'senduser_id': '1',
-          'text': msg,
-          'date': aData
-        }
-        this.$global.ws.send(JSON.stringify(sendData))
-      }
+      this.$global.ws.send(JSON.stringify(sendData))
+      this.inputMsg = ''
     },
     toolEvent (type, obj) {
       console.log('tools', type, obj)
     },
     talkEvent (play) {
       console.log(play)
+    },
+    bindWinBar (play = {}) {
+      // const {type, data = {}} = play
+      // console.log(data)
+      // if (type === 'winBar') {
+      //   const { id, dept, name, img } = data
+      //   this.winBarConfig.active = id
+      // }
     }
     // init: function () {
     //   if (typeof (WebSocket) === 'undefined') {

@@ -49,6 +49,7 @@
                               depressed
                               rounded
                               text
+                              @click="toChat(item.user_id)"
                             >
                               Send Message
                             </v-btn>
@@ -463,6 +464,15 @@ export default {
     },
     num (s) {
       return s < 10 ? '0' + s : s
+    },
+    toChat (receiverId) {
+      this.$router.push({
+        path: '/Homepage/Chat',
+        name: 'Chat',
+        params: {
+          'receiverId': receiverId
+        }
+      })
     },
     test () {
       this.axios.post('http://localhost:8080/userLike', {

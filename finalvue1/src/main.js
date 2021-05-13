@@ -22,7 +22,6 @@ import 'vue-awesome/icons'
 /* 引入Vue组件 */
 import Icon from 'vue-awesome/components/Icon'
 import global from '../src/components/myWebSocket'
-
 Vue.prototype.$global = global
 Vue.config.productionTip = false
 Vue.use(Icon)
@@ -50,7 +49,8 @@ const store = new Vuex.Store({
       filter: 'blur(5px)'
     },
     user_tags: '',
-    user_chat_list: []
+    user_chat_list: {},
+    chat_fresh: -100
   },
   // vuex中的方法, 在组件中使用commit来调用
   mutations: {
@@ -121,14 +121,16 @@ const store = new Vuex.Store({
       let id = data[0]
       let list = data[1]
       state.user_chat_list[id] = list
+      state.chat_fresh++
     },
     addChatList (state, data) {
       let id = data[0]
       let msg = data[1]
-      if (!state.user_chat_list.contains(id)) {
-        state.user_chat_list[id] = {}
+      if (state.user_chat_list[id] === undefined) {
+        state.user_chat_list[id] = []
       }
       state.user_chat_list[id].push(msg)
+      state.chat_fresh++
     }
   },
   // 计算属性
