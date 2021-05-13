@@ -137,7 +137,7 @@
             <!--intro-->
             <div>
               <div class="side">
-                <a-icon type="alert" theme="twoTone" />Introduction
+                <a-icon type="alert" theme="twoTone" /> Introduction
               </div>
               <div class="sideright">
                 <div v-if="isIntroduction" >
