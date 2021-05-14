@@ -50,7 +50,8 @@ const store = new Vuex.Store({
     },
     user_tags: '',
     user_chat_list: {},
-    chat_fresh: -100
+    chat_fresh: -100,
+    user_chat_members: []
   },
   // vuex中的方法, 在组件中使用commit来调用
   mutations: {
@@ -93,12 +94,6 @@ const store = new Vuex.Store({
           break
         }
       }
-      // state.list[questionId].likes += data
-      // if (data === 1) {
-      //   state.list[questionId].like_flag = '1'
-      // } else {
-      //   state.list[questionId].like_flag = '0'
-      // }
     },
     changeLikedList (state, msg) {
       let flag = msg[0]
@@ -121,16 +116,27 @@ const store = new Vuex.Store({
       let id = data[0]
       let list = data[1]
       state.user_chat_list[id] = list
+      for (let i = 0; i < list.length; i++) {
+        state.user_chat_list[id][i].text = {'text': list[i].text}
+        state.user_chat_list[id][i].img = ''
+      }
       state.chat_fresh++
     },
     addChatList (state, data) {
       let id = data[0]
       let msg = data[1]
-      if (state.user_chat_list[id] === undefined) {
-        state.user_chat_list[id] = []
-      }
+      // if (state.user_chat_list[id] === undefined) {
+      //   state.user_chat_list[id] = []
+      // }
+      console.log('test' + state.user_chat_list[id])
       state.user_chat_list[id].push(msg)
       state.chat_fresh++
+    },
+    setUserChatMembers (state, data) {
+      state.user_chat_members = data
+    },
+    addUserChatMembers (state, data) {
+      state.user_chat_members.push(data)
     }
   },
   // 计算属性
@@ -156,8 +162,14 @@ const store = new Vuex.Store({
     getImgList (state) {
       return state.img_list
     },
-    getChatList (state) {
-      return state.user_chat_list
+    getChatList (state, id) {
+      if (state.user_chat_list[id] === undefined) {
+        return []
+      }
+      return state.user_chat_list[id]
+    },
+    getChatMembers (state) {
+      return state.user_chat_members
     }
   }
 })
