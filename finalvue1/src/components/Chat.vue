@@ -42,6 +42,7 @@ export default {
       userId: '',
       overlay: true,
       userName: '',
+      receiverName: '',
       tool: {
         callback: this.toolEvent
       },
@@ -84,15 +85,23 @@ export default {
         break
       }
     }
-    if (!flag) {
-      const item = {
-        id: this.receiverId,
-        img: '..//image/three.jpeg',
-        name: '123',
-        dept: '',
-        readNum: 0
-      }
-      this.$store.commit('addUserChatMembers', item)
+    if (flag === false && this.receiverId !== '') {
+      this.axios.post('http://localhost:8080/UserInfo', {
+        request: this.receiverId
+      }).then((response) => {
+        this.receiverName = response.data.entity.user_name
+        console.log('name ' + this.receiverName)
+        const item = {
+          id: this.receiverId,
+          img: '..//image/three.jpeg',
+          name: this.receiverName,
+          dept: '',
+          readNum: 0
+        }
+        this.$store.commit('addUserChatMembers', item)
+      }).catch((response) => {
+        console.log(response)
+      })
     }
     this.winBarConfig.active = this.receiverId
     this.axios.post('http://localhost:8080/chatRecords', {

@@ -52,7 +52,8 @@ const store = new Vuex.Store({
     user_chat_list: {},
     user_chat_members: [],
     chat_flag: false,
-    receiver_id: ''
+    receiver_id: '',
+    chat_member_number: 0
   },
   // vuex中的方法, 在组件中使用commit来调用
   mutations: {
@@ -134,10 +135,13 @@ const store = new Vuex.Store({
       state.user_chat_list[id].push(msg)
     },
     setUserChatMembers (state, data) {
+      state.chat_member_number = data.length
       state.user_chat_members = data
     },
     addUserChatMembers (state, data) {
-      state.user_chat_members.push(data)
+      // state.user_chat_members.push(data)
+      Vue.set(state.user_chat_members, state.chat_member_number, data)
+      state.chat_member_number++
     },
     setReceiverId (state, id) {
       state.receiver_id = id
