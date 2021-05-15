@@ -115,10 +115,13 @@ const store = new Vuex.Store({
     setChatList (state, data) {
       let id = data[0]
       let list = data[1]
-      state.user_chat_list[id] = list
+      // state.user_chat_list[id] = list
+      Vue.set(state.user_chat_list, id, list)
       for (let i = 0; i < list.length; i++) {
-        state.user_chat_list[id][i].text = {'text': list[i].text}
-        state.user_chat_list[id][i].img = ''
+        // state.user_chat_list[id][i].text = {'text': list[i].text}
+        // state.user_chat_list[id][i].img = ''
+        Vue.set(state.user_chat_list[id][i], 'text', {'text': list[i].text})
+        Vue.set(state.user_chat_list[id][i], 'img', '')
       }
       state.chat_fresh++
     },
@@ -128,7 +131,6 @@ const store = new Vuex.Store({
       // if (state.user_chat_list[id] === undefined) {
       //   state.user_chat_list[id] = []
       // }
-      console.log('test' + state.user_chat_list[id])
       state.user_chat_list[id].push(msg)
       state.chat_fresh++
     },

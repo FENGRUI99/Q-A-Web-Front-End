@@ -1,7 +1,7 @@
 <template>
 <div>
   {{this.userName}}--{{this.winBarConfig.list}}
-  <div v-bind:key="this.$store.state.chat_fresh">
+<!--  <div v-bind:key="this.$store.state.chat_fresh">-->
     <JwChat-index
       :taleList="this.$store.state.user_chat_list[this.receiverId]"
       @enter="bindEnter"
@@ -9,9 +9,10 @@
       v-model="inputMsg"
       :toolConfig="tool"
       :winBarConfig="winBarConfig"
+      scrollType="scroll"
     />
   </div>
-</div>
+<!--</div>-->
 </template>
 
 <script>
@@ -19,6 +20,7 @@ export default {
   name: 'Chat',
   data () {
     return {
+      a: 0,
       userId: '',
       userName: '',
       tool: {
@@ -49,10 +51,16 @@ export default {
       }
     }
   },
-  mounted () {
+  created () {
     this.userId = sessionStorage.getItem('user_id')
     this.userName = JSON.parse(sessionStorage.getItem('user_info')).user_name
     this.receiverId = this.$route.params.receiverId
+    let _this = this
+    setTimeout(function () {
+      _this.a = 10
+    }, 3000)
+  },
+  mounted () {
     this.winBarConfig.list = this.$store.getters.getChatMembers
     let flag = false
     for (let i = 0; i < this.winBarConfig.list.length; i++) {
@@ -151,8 +159,12 @@ export default {
     // error: function () {
     //   console.log('连接错误')
     // }
+  },
+  computed: {
+    getList () {
+      return this.$store.state.user_chat_list[this.receiverId]
+    }
   }
-
 }
 </script>
 
