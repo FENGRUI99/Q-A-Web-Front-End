@@ -17,7 +17,10 @@
         </el-aside>
         <el-container>
           <el-main>
-            <router-view></router-view>
+            {{this.$store.state.chat_flag}}
+            <div v-if="this.$store.state.chat_flag">
+              <Chat></Chat>
+            </div>
             <body123></body123>
           </el-main>
           <el-footer>
@@ -54,13 +57,15 @@ import RealHead from '../components/realhead'
 import Body from '../components/Body'
 import Footer from '../components/Footer'
 import Aside from '../components/Aside'
+import Chat from '../components/Chat'
 export default {
   name: 'HomePage',
   components: {
     'header123': RealHead,
     'body123': Body,
     'footer123': Footer,
-    'Aside': Aside
+    'Aside': Aside,
+    'Chat': Chat
   },
   data () {
     return {

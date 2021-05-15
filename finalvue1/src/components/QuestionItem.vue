@@ -466,25 +466,8 @@ export default {
       return s < 10 ? '0' + s : s
     },
     toChat (receiverId) {
-      this.$router.push({
-        path: '/Homepage/Chat',
-        name: 'Chat',
-        params: {
-          'receiverId': receiverId
-        }
-      })
-    },
-    test () {
-      this.axios.post('http://localhost:8080/userLike', {
-        request: sessionStorage.getItem('user_id')
-      }).then((response) => {
-        // this.$store.commit('setLikedList', response.data.entity)
-        this.$store.state.liked_list = response.data.entity
-        console.log('like list is: ' + response.data.entity)
-      }).catch((response) => {
-        console.log(response)
-      })
-      console.log(Object.keys(this.$store.state.list).length)
+      this.$store.commit('changeChatFlag')
+      this.$store.commit('setReceiverId', receiverId)
     }
   },
   destroyed () {

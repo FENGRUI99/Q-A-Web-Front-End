@@ -1,7 +1,6 @@
 <template>
 <div>
   {{this.userName}}--{{this.winBarConfig.list}}
-<!--  <div v-bind:key="this.$store.state.chat_fresh">-->
     <JwChat-index
       :taleList="this.$store.state.user_chat_list[this.receiverId]"
       @enter="bindEnter"
@@ -11,8 +10,7 @@
       :winBarConfig="winBarConfig"
       scrollType="scroll"
     />
-  </div>
-<!--</div>-->
+</div>
 </template>
 
 <script>
@@ -20,7 +18,6 @@ export default {
   name: 'Chat',
   data () {
     return {
-      a: 0,
       userId: '',
       userName: '',
       tool: {
@@ -54,11 +51,7 @@ export default {
   created () {
     this.userId = sessionStorage.getItem('user_id')
     this.userName = JSON.parse(sessionStorage.getItem('user_info')).user_name
-    this.receiverId = this.$route.params.receiverId
-    let _this = this
-    setTimeout(function () {
-      _this.a = 10
-    }, 3000)
+    this.receiverId = this.$store.getters.getReceiverId
   },
   mounted () {
     this.winBarConfig.list = this.$store.getters.getChatMembers

@@ -50,8 +50,9 @@ const store = new Vuex.Store({
     },
     user_tags: '',
     user_chat_list: {},
-    chat_fresh: -100,
-    user_chat_members: []
+    user_chat_members: [],
+    chat_flag: false,
+    receiver_id: ''
   },
   // vuex中的方法, 在组件中使用commit来调用
   mutations: {
@@ -123,7 +124,6 @@ const store = new Vuex.Store({
         Vue.set(state.user_chat_list[id][i], 'text', {'text': list[i].text})
         Vue.set(state.user_chat_list[id][i], 'img', '')
       }
-      state.chat_fresh++
     },
     addChatList (state, data) {
       let id = data[0]
@@ -132,13 +132,22 @@ const store = new Vuex.Store({
       //   state.user_chat_list[id] = []
       // }
       state.user_chat_list[id].push(msg)
-      state.chat_fresh++
     },
     setUserChatMembers (state, data) {
       state.user_chat_members = data
     },
     addUserChatMembers (state, data) {
       state.user_chat_members.push(data)
+    },
+    setReceiverId (state, id) {
+      state.receiver_id = id
+    },
+    changeChatFlag (state) {
+      if (state.chat_flag === true) {
+        state.chat_flag = false
+      } else {
+        state.chat_flag = true
+      }
     }
   },
   // 计算属性
@@ -172,6 +181,12 @@ const store = new Vuex.Store({
     },
     getChatMembers (state) {
       return state.user_chat_members
+    },
+    getReceiverId (state) {
+      return state.receiver_id
+    },
+    getChatFlag (state) {
+      return state.chat_flag
     }
   }
 })

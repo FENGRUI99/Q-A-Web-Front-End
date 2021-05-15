@@ -56,10 +56,7 @@ export default {
       }
     },
     toChat () {
-      this.$router.push({
-        path: '/HomePage/Chat',
-        name: 'Chat'
-      })
+      this.$store.commit('changeChatFlag')
     }
   }
 }
