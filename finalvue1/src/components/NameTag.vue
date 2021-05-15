@@ -56,7 +56,7 @@ export default {
     toDetail () {
       let id = 'userIDQuestion'
       this.$router.push({
-        path: `/PersonalDetail/DetailQuestion/${id}`
+        path: `/First/PersonalDetail/DetailQuestion/${id}`
       })
     }
   }

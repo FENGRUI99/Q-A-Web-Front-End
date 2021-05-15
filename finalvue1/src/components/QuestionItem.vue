@@ -323,7 +323,7 @@ export default {
       this.item = JSON.stringify(item)
       sessionStorage.setItem('item', this.item)
       this.$router.push({
-        path: '/ProblemDetailPage',
+        path: '/First/ProblemDetailPage',
         name: 'ProblemDetailPage',
         params: {
           item: this.item,
@@ -336,7 +336,7 @@ export default {
       this.item = JSON.stringify(item)
       sessionStorage.setItem('item', this.item)
       this.$router.push({
-        path: '/ProblemDetailPage',
+        path: '/First/ProblemDetailPage',
         name: 'ProblemDetailPage',
         params: {
           item: this.item,

@@ -74,7 +74,7 @@ export default {
           let tmp = JSON.stringify(response.data.entity[0])
           sessionStorage.setItem('user_info', tmp)
           this.$router.push({
-            name: 'HomePage'
+            path: '/First/HomePage'
           })
           this.$store.commit('setUserId', this.user_id)
           sessionStorage.setItem('user_id', this.user_id)

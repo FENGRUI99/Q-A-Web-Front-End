@@ -364,19 +364,19 @@ export default {
     getQuestion () {
       let id = 'userIDQuestion'
       this.$router.push({
-        path: `/PersonalDetail/DetailQuestion/${id}`
+        path: `/First/PersonalDetail/DetailQuestion/${id}`
       })
     },
     getAnswer () {
       let id = 'userCommentQuestion'
       this.$router.push({
-        path: `/PersonalDetail/DetailAnswer/${id}`
+        path: `/First/PersonalDetail/DetailAnswer/${id}`
       })
     },
     getLikes () {
       let id = 'userLikeQuestion'
       this.$router.push({
-        path: `/PersonalDetail/DetailLikes/${id}`
+        path: `/First/PersonalDetail/DetailLikes/${id}`
       })
     }
   }

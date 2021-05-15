@@ -1,16 +1,9 @@
 <template>
   <div>
-<!--    <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>-->
-<!--      <div class="foreground" style="width: 1000%;margin-top:-20%;height: 2000px;float: right;position: absolute;"></div>-->
-<!--    </div>-->
     <div class="background1" >
       <img :src="imgSrc"  alt="" />
     </div>
   <div v-if = !this.$store.state.blurConfig.isBlurred style="z-index: 10;position: relative" >
-    <el-container>
-      <el-header height="15px">
-        <header123></header123>
-      </el-header>
       <el-container>
         <el-aside width=26.5%>
           <Aside></Aside>
@@ -28,13 +21,8 @@
           </el-footer>
         </el-container>
       </el-container>
-    </el-container>
   </div>
   <div v-else  @mousewheel.prevent style="z-index: 10;position: relative">
-      <el-container>
-        <el-header height="15px">
-          <header123></header123>
-        </el-header>
         <el-container>
           <el-aside width=27.5%>
             <Aside></Aside>
@@ -48,12 +36,10 @@
             </el-footer>
           </el-container>
         </el-container>
-      </el-container>
     </div>
   </div>
 </template>
 <script>
-import RealHead from '../components/realhead'
 import Body from '../components/Body'
 import Footer from '../components/Footer'
 import Aside from '../components/Aside'
@@ -61,7 +47,6 @@ import Chat from '../components/Chat'
 export default {
   name: 'HomePage',
   components: {
-    'header123': RealHead,
     'body123': Body,
     'footer123': Footer,
     'Aside': Aside,

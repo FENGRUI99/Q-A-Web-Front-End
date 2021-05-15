@@ -2,7 +2,7 @@
   <!--  NO USE-->
 <div width="100%">
   <div class="wrapper" v-if = this.$store.state.blurConfig.isBlurred>
-    <div class="foreground" style="width: 1000%;margin-top:-10%;margin-left:-100%;height: 2000px;float: right;position: absolute;"></div>
+    <div class="foreground" style="width: 1000%;margin-top:-40%;margin-left:-100%;height: 2000px;float: right;position: absolute;"></div>
     </div>
     <v-btn
       color=  #90c49c

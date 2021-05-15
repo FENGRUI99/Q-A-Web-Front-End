@@ -11,7 +11,7 @@
       :z-index="100"
       :value="overlay"
     >
-      <div style="z-index: 200;margin-left: 15%;color: black">
+      <div style="z-index: 200;margin-left: 15%;color: black; height: 70%">
       <JwChat-index
         :taleList="getList"
         @enter="bindEnter"

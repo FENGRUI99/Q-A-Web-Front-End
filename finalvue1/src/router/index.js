@@ -10,7 +10,7 @@ import Cover from '../views/Cover'
 import DetailAnswer from '../components/DetailAnswer'
 import DetailLikes from '../components/DetailLikes'
 import DetailQuestion from '../components/DetailQuestion'
-import Chat from '../components/Chat'
+import First from '../views/First'
 Vue.use(Router)
 
 export default new Router({
@@ -22,36 +22,41 @@ export default new Router({
       component: Login
     },
     {
-      path: '/HomePage',
-      name: 'HomePage',
-      component: HomePage,
+      path: '/First',
+      name: 'First',
+      component: First,
       children: [
         {
-          path: 'Chat',
-          name: 'Chat',
-          component: Chat
-        }
-      ]
-    },
-    {
-      path: '/PersonalDetail',
-      name: 'PersonalDetail',
-      component: PersonalDetail,
-      children: [
-        {
-          path: 'DetailAnswer/:id',
-          name: 'DetailAnswer',
-          component: DetailAnswer
+          path: 'HomePage',
+          name: 'HomePage',
+          component: HomePage
         },
         {
-          path: 'DetailLikes/:id',
-          name: 'DetailLikes',
-          component: DetailLikes
+          path: 'PersonalDetail',
+          name: 'PersonalDetail',
+          component: PersonalDetail,
+          children: [
+            {
+              path: 'DetailAnswer/:id',
+              name: 'DetailAnswer',
+              component: DetailAnswer
+            },
+            {
+              path: 'DetailLikes/:id',
+              name: 'DetailLikes',
+              component: DetailLikes
+            },
+            {
+              path: 'DetailQuestion/:id',
+              name: 'DetailQuestion',
+              component: DetailQuestion
+            }
+          ]
         },
         {
-          path: 'DetailQuestion/:id',
-          name: 'DetailQuestion',
-          component: DetailQuestion
+          path: 'ProblemDetailPage',
+          name: 'ProblemDetailPage',
+          component: ProblemDetailPage
         }
       ]
     },
@@ -59,11 +64,6 @@ export default new Router({
       path: '/Register',
       name: 'Register',
       component: Register
-    },
-    {
-      path: '/ProblemDetailPage',
-      name: 'ProblemDetailPage',
-      component: ProblemDetailPage
     },
     {
       path: '/Register2',
