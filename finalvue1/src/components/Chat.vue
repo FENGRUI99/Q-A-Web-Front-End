@@ -52,20 +52,6 @@ export default {
         active: 'win00',
         width: '160px',
         listHeight: '60px',
-        // list: [ {
-        //   id: 'win00',
-        //   img: '..//image/cover.png',
-        //   name: 'JwChat',
-        //   dept: '最简单、最便捷',
-        //   readNum: 99
-        // },
-        // {
-        //   id: 'win01',
-        //   img: '..//image/three.jpeg',
-        //   name: '阳光明媚爱万物',
-        //   dept: '沙拉黑油',
-        //   readNum: 12
-        // }],
         list: [],
         callback: this.bindWinBar
       }

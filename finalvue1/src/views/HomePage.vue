@@ -69,12 +69,21 @@ export default {
   },
   data () {
     return {
-      imgSrc: require('../assets/Image 2021-4-29 at 23.50.jpg')
+      imgSrc: require('../assets/Image 2021-4-29 at 23.50.jpg'),
+      test: []
     }
   },
   created () {
     this.userId = sessionStorage.getItem('user_id')
     this.userName = JSON.parse(sessionStorage.getItem('user_info')).user_name
+    this.axios.post('http://localhost:8080/getRecentChat', {
+      request: sessionStorage.getItem('user_id')
+    }).then((response) => {
+      this.$store.commit('setUserChatMembers', response.data.entity)
+      this.test = response.data.entity
+    }).catch((response) => {
+      console.log(response)
+    })
     let that = this
     if ('WebSocket' in window) {
       that.ws = new WebSocket(`ws://localhost:8080/websocket/${this.userId}`)
@@ -86,7 +95,6 @@ export default {
         console.log('错误')
       }
       that.$global.ws.onmessage = function (res) {
-        console.log('response data is: ' + res.data)
         let data = JSON.parse(res.data)
         const msgObj = {
           'date': data.date,
