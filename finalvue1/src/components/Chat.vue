@@ -1,15 +1,36 @@
 <template>
-<div>
-  {{this.userName}}--{{this.winBarConfig.list}}
-    <JwChat-index
-      :taleList="this.$store.state.user_chat_list[this.receiverId]"
-      @enter="bindEnter"
-      @clickTalk="talkEvent"
-      v-model="inputMsg"
-      :toolConfig="tool"
-      :winBarConfig="winBarConfig"
-      scrollType="scroll"
-    />
+<div @mousewheel.prevent>
+<!--  <v-row >-->
+<!--    <v-avatar-->
+<!--      class="white&#45;&#45;text"-->
+<!--      size="65"-->
+<!--      @click="overlay = !overlay"-->
+<!--      style="margin-top: -10%">-->
+<!--    </v-avatar>-->
+    <v-overlay
+      :z-index="100"
+      :value="overlay"
+    >
+      <div style="z-index: 200;margin-left: 15%;color: black">
+      <JwChat-index
+        :taleList="getList"
+        @enter="bindEnter"
+        @clickTalk="talkEvent"
+        v-model="inputMsg"
+        :toolConfig="tool"
+        :winBarConfig="winBarConfig"
+        scrollType="scroll"
+      />
+      </div>
+      <div style="height: 10px;width: 100px"></div>
+      <v-btn
+        color= #A5D6A7
+        elevation="3"
+        @click="clickClose"
+        style="width: 130px;"
+      >close</v-btn>
+    </v-overlay>
+<!--  </v-row>-->
 </div>
 </template>
 
@@ -19,6 +40,7 @@ export default {
   data () {
     return {
       userId: '',
+      overlay: true,
       userName: '',
       tool: {
         callback: this.toolEvent
@@ -131,6 +153,10 @@ export default {
           console.log(response)
         })
       }
+    },
+    clickClose () {
+      this.$store.commit('changeChatFlag')
+      this.overlay = !this.overlay
     }
     // init: function () {
     //   if (typeof (WebSocket) === 'undefined') {
@@ -155,6 +181,9 @@ export default {
   },
   computed: {
     getList () {
+      if (this.$store.state.user_chat_list[this.receiverId] === null) {
+        return []
+      }
       return this.$store.state.user_chat_list[this.receiverId]
     }
   }
