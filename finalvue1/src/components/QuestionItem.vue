@@ -436,11 +436,9 @@ export default {
     },
     refresh () {
       if (this.keyValue >= 10) {
-        console.log('refresh finishes')
         clearInterval(this.timer)
       } else {
         this.keyValue += 1
-        console.log(this.keyValue)
       }
     },
     GetDateStr (sjStr) {

@@ -12,6 +12,7 @@
       :value="overlay"
     >
       <div style="z-index: 200;margin-left: 15%;color: black; height: 70%">
+        {{this.winBarConfig.list}}
       <JwChat-index
         :taleList="getList"
         @enter="bindEnter"
@@ -79,7 +80,7 @@ export default {
         console.log('name ' + this.receiverName)
         const item = {
           id: this.receiverId,
-          img: '..//image/three.jpeg',
+          img: '../assets/head.jpeg',
           name: this.receiverName,
           dept: '',
           readNum: 0
@@ -109,7 +110,7 @@ export default {
         'text': { 'text': msg },
         'mine': true,
         'name': this.userName,
-        'img': '../image/three.jpeg'
+        'img': '../assets/head.jpeg'
       }
       this.$store.commit('addChatList', [this.receiverId, msgObj])
       const sendData = {

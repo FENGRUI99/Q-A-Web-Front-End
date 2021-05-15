@@ -123,7 +123,7 @@ const store = new Vuex.Store({
         // state.user_chat_list[id][i].text = {'text': list[i].text}
         // state.user_chat_list[id][i].img = ''
         Vue.set(state.user_chat_list[id][i], 'text', {'text': list[i].text})
-        Vue.set(state.user_chat_list[id][i], 'img', '')
+        Vue.set(state.user_chat_list[id][i], 'img', '/assets/head.jpeg')
       }
     },
     addChatList (state, data) {
@@ -137,6 +137,9 @@ const store = new Vuex.Store({
     setUserChatMembers (state, data) {
       state.chat_member_number = data.length
       state.user_chat_members = data
+      for (let i = 0; i < data.length; i++) {
+        Vue.set(state.user_chat_members[i], 'img', 'assets/hBg.jpg')
+      }
     },
     addUserChatMembers (state, data) {
       // state.user_chat_members.push(data)
