@@ -12,7 +12,6 @@
       :value="overlay"
     >
       <div style="z-index: 200;margin-left: 15%;color: black; height: 70%">
-        {{this.winBarConfig.list}}
       <JwChat-index
         :taleList="getList"
         @enter="bindEnter"
@@ -22,6 +21,7 @@
         :winBarConfig="winBarConfig"
         scrollType="scroll"
       />
+        {{this.winBarConfig.list}}--{{this.winBarConfig.active}}
       </div>
       <div style="height: 10px;width: 100px"></div>
       <v-btn
@@ -69,6 +69,7 @@ export default {
     for (let i = 0; i < this.winBarConfig.list.length; i++) {
       if (this.winBarConfig.list[i].id === this.receiverId) {
         flag = true
+        this.winBarConfig.active = this.receiverId
         break
       }
     }
@@ -89,6 +90,10 @@ export default {
       }).catch((response) => {
         console.log(response)
       })
+    }
+    if (this.receiverId === '' && this.winBarConfig.list.length > 0) {
+      this.winBarConfig.active = this.winBarConfig.list[0].id
+      this.receiverId = this.winBarConfig.list[0].id
     }
     this.winBarConfig.active = this.receiverId
     this.axios.post('http://localhost:8080/chatRecords', {
@@ -135,19 +140,21 @@ export default {
       const { id, dept, name, img } = data
       if (this.winBarConfig.active !== id) {
         this.winBarConfig.active = id
+        this.receiverId = id
         console.log('id' + id)
         console.log('dept' + dept)
         console.log('name' + name)
         console.log('img' + img)
-        this.axios.post('http://localhost:8080/chatRecords', {
-          request: this.userId,
-          msg: this.receiverId
-        }).then((response) => {
-          console.log('chat record is: ' + response.data.entity)
-          this.$store.commit('setChatList', [this.receiverId, response.data.entity])
-        }).catch((response) => {
-          console.log(response)
-        })
+        if (this.$store.getters.getChatList[id] === undefined) {
+          this.axios.post('http://localhost:8080/chatRecords', {
+            request: this.userId,
+            msg: this.receiverId
+          }).then((response) => {
+            this.$store.commit('setChatList', [this.receiverId, response.data.entity.list])
+          }).catch((response) => {
+            console.log(response)
+          })
+        }
       }
     },
     clickClose () {
@@ -177,8 +184,15 @@ export default {
   },
   computed: {
     getList () {
-      if (this.$store.state.user_chat_list[this.receiverId] === null) {
-        return []
+      if (this.$store.state.user_chat_list[this.receiverId] === undefined) {
+        const ans = [{
+          'date': '2020/05/20',
+          'text': { 'text': 'wodemaya' },
+          'mine': false,
+          'name': 'JwChat',
+          'img': ''
+        }]
+        return ans
       }
       return this.$store.state.user_chat_list[this.receiverId]
     }

@@ -44,7 +44,7 @@ export default {
   methods: {
     toHomePage () {
       this.$router.push({
-        path: '/HomePage',
+        path: '/First/HomePage',
         name: 'HomePage'
       })
       window.location.reload()
