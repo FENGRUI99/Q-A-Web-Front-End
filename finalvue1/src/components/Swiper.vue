@@ -92,7 +92,8 @@ export default {
     background: white;
     text-shadow:  0 0 5px;
     margin-bottom: -1px;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 
 </style>
