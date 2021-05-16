@@ -53,13 +53,13 @@
           </div>
         </el-upload>
         <v-btn
-          color= #A5D6A7
+          color= #72afff
           elevation="3"
           @click="submit"
           style="width: 130px;"
         >add</v-btn>
         <v-btn
-          color= #A5D6A7
+          color= #72afff
           elevation="3"
           @click="overlay = !overlay"
           style="width: 130px;"

@@ -14,14 +14,14 @@
               <div class="blank"></div>
               <tr id="title1" ><td class="top_chart" v-html="item.question_description">{{item.question_description}} ？</td></tr>
               <tr class="small">
-                <td class="top_chart">Posted by <span style="color: #81D454;text-decoration:underline">{{item.user_name}}</span> {{item.create_time | getTimeFormat}}</td>
+                <td class="top_chart">Posted by <span style="color: #72afff;text-decoration:underline">{{item.user_name}}</span> {{item.create_time | getTimeFormat}}</td>
               </tr>
               <tr id="detail">
                 <div v-if="viewAll_flag === false">
-                  <td class="top_chart"><span v-html="item.question_detail" >{{item.question_detail.substring(0,40) + '...'}} </span><el-link type="success" @click="viewAll" >view all</el-link></td>
+                  <td class="top_chart"><span v-html="item.question_detail" >{{item.question_detail.substring(0,40) + '...'}} </span><el-link style="color: #72afff" @click="viewAll" >view all</el-link></td>
                 </div>
                 <div v-else>
-                  <td  class="top_chart" ><span v-html="item.question_detail" >{{item.question_detail}}</span>&nbsp;&nbsp;<el-link type="success" @click="viewAll">fold</el-link></td>
+                  <td  class="top_chart" ><span v-html="item.question_detail" >{{item.question_detail}}</span>&nbsp;&nbsp;<el-link  style="color: #72afff" @click="viewAll">fold</el-link></td>
                   <div v-if="pic_flag === true">
                     <div v-for="(picture,pic_index) in pic" v-bind:key="pic_index">
                       <img
@@ -78,7 +78,7 @@
                       class="ma-2"
                       elevation="3"
                       depressed
-                      color=#A5D6A7>
+                      color=#72afff>
                            Answer
                       <a-icon type="edit" theme="twoTone" two-tone-color="white" />
                     </v-btn>
@@ -92,7 +92,7 @@
                  <td style="text-align: right;width: 25%; margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
                            :key="tag"
                            effect="plain">
-                  <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #A5D6A7;color: #A5D6A7"
+                  <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #72afff;color: #a5bbd9"
                   >  {{ tag }}
                   </el-tag>
                   </td>
@@ -127,7 +127,7 @@
                 elevation="3"
                 depressed
                style="float: left"
-                color=#A5D6A7>
+                color=#72afff>
                 Submit
               </v-btn>
             </table>
@@ -143,14 +143,14 @@
               <div v-else>
                 <div v-for="(comment, index) in item.commentList" v-bind:key="index">
                   <div v-if="index===item.number_comment-1">
-                    <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
+                    <el-tag color="#72afff" class="tagItem1">{{index+1}}</el-tag>
                     <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
-                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> {{comment.create_time | getTimeFormat}}</p>
+                    <p class="small2" >Answer by <a style="color: #72afff;font-weight: bold">{{comment.user_name}}</a> {{comment.create_time | getTimeFormat}}</p>
                   </div>
                   <div v-else>
-                    <el-tag color="#81D454" class="tagItem1">{{index+1}}</el-tag>
-                    <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
-                    <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> {{comment.create_time | getTimeFormat}}</p>
+                    <el-tag color="#72afff" class="tagItem1">{{index+1}}</el-tag>
+                    <p style="font-family:Helvetica;text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>
+                    <p class="small2" >Answer by <a style="color: #72afff;font-weight: bold">{{comment.user_name}}</a> {{comment.create_time | getTimeFormat}}</p>
                     <el-divider></el-divider>
                   </div>
                 </div>
@@ -167,9 +167,9 @@
 <!--                  <p style="border-bottom: 3px solid #299ec7; text-transform: capitalize;font-weight: bolder;font-size: 25px;margin: 10px;text-align: left">{{comment_number}} Answers</p>-->
 <!--                  <div v-if="item.commentList.length >= 1" style="margin-top:2px ">-->
 <!--                    <div v-for="(comment,index) in item.commentList" v-bind:key="index" >-->
-<!--                      <el-tag color="#81D454" id="tagItem">{{index+1}}</el-tag>-->
+<!--                      <el-tag color="#72afff" id="tagItem">{{index+1}}</el-tag>-->
 <!--                      <p style="text-align: left;padding-left: 8%;font-size: 18px;margin: 3px">{{comment.comment_detail}}</p>-->
-<!--                      <p class="small2" >Answer by <a style="color: #81D454;font-weight: bold">{{comment.user_name}}</a> in aa</p>-->
+<!--                      <p class="small2" >Answer by <a style="color: #72afff;font-weight: bold">{{comment.user_name}}</a> in aa</p>-->
 <!--                    </div>-->
 <!--                  </div>-->
 <!--                </div>-->
@@ -551,6 +551,7 @@ export default {
   color:gray;
   font-style: italic;
   margin-top: 4px;
+  font-family: Helvetica;
 }
 .small2{
   font-size: x-small;
@@ -560,6 +561,7 @@ export default {
   text-align: right;
   margin-bottom: 10px;
   margin-right: 30px;
+  font-family: Helvetica;
 }
 
 #likes{
@@ -572,10 +574,12 @@ export default {
   border-style:solid;
   font-size: 20px;
   text-align: left;
+  font-family: Helvetica;
 }
 .website{
-  color: #81D454;
+  color: #72afff;
   text-align: left;
+  font-family: Helvetica;
 }
 .commit{
   color:gray;

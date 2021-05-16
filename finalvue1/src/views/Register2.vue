@@ -14,8 +14,8 @@
     <br>
     <div id = total class="side">
         <div style="text-align: left">
-          <button class="button" style="width: 15%; font-family: Arial, sans-serif;font-size: x-large; padding: 10px; margin-left: 1%" v-on:click="toLog">Login</button>
-          <button class="button" style="border-bottom:3px solid green;width: 15%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px; font-weight:bold;" disabled >Sign up</button>
+          <button class="button" style="width: 15%; font-family: helvetica;font-size: x-large; padding: 10px; margin-left: 1%" v-on:click="toLog">Login</button>
+          <button class="button" style="border-bottom:3px solid #72afff;width: 15%; font-family: helvetica; font-size: x-large; padding: 10px; font-weight:bold;" disabled >Sign up</button>
         </div>
       <ul style="float:left; width: 40%; margin-left: 5%; opacity: 1.0">
         <sign-up-info></sign-up-info>
@@ -111,7 +111,7 @@ img{
   border-radius: 0px;
   background: none;
   color: black;
-  border-bottom:3px solid green;
+  border-bottom:3px solid #72afff;
   font-weight: bold;
 }
 .button{
@@ -129,7 +129,7 @@ img{
   margin:0 auto;
   background: #fffdfd;
   border: 1px;
-  border-color:#cccccc;
+  border-color:#72afff;
   border-style:solid;
   border-radius: 10px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);

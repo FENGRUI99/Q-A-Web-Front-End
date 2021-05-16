@@ -68,7 +68,7 @@ export default {
   background: white;
   border: 1px;
   border-style: solid;
-  border-color: #ffffff #ffffff #81D454 #ffffff;
+  border-color: #ffffff #ffffff #72afff #ffffff;
   position: fixed;
   z-index:5;
   margin:0px  auto;
@@ -83,6 +83,7 @@ export default {
   /*font-family: "Helvetica Neue";*/
   /*color: #81D454;*/
   margin-left: -5px;
+  font-family: helvetica;
 }
 .pho{
   position: absolute;
@@ -115,7 +116,7 @@ body:before {
 }
 h1 {
   display: inline-block;
-  color: #81D454;
+  color: #72afff;
   font-family: 'Righteous', serif;
   font-size: 3em;
   text-shadow: .03em .03em 0 hsl(220, 10%, 94%);
@@ -133,8 +134,8 @@ h1:after {
     linear-gradient(
       45deg,
       transparent 45%,
-      hsl(104, 100%, 53%) 45%,
-      hsl(130, 77%, 19%) 55%,
+      hsl(214, 100%, 72%) 45%,
+      hsl(225, 100%, 5%) 55%,
       transparent 0
     );
   background-size: .1em .1em;

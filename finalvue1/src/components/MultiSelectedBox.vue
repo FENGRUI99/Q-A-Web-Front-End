@@ -15,10 +15,10 @@
       </el-option>
     </el-select>
        <v-btn
-         color= #A5D6A7
+         color= #72afff
          elevation="3"
         style="height: 35px;width: 90px;"
-         @click="Sorted">{{this.cfr}}
+         @click="Sorted"><div style="color: white;font-family: Helvetica">{{this.cfr}}</div>
         </v-btn>
    </span>
   </div>
@@ -97,6 +97,7 @@ export default {
     text-transform: capitalize;
     font-size: 18px;
     padding-right: 3px;
+    font-family: Helvetica;
   }
 
 </style>

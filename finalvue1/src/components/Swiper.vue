@@ -79,17 +79,18 @@ export default {
   }
 
   .swiper-slide {
-    background: #ace3b0;
+    background: #72afff;
     border-radius: 10px;
     height: 20px;
+    color: white;
   }
   h1 {
-    color: #090606;
+    color: #72afff;
     font-size: 19px;
     font-style: italic;
     padding-bottom: 0px;
-    background: linear-gradient(to top, rgba(69, 198, 230, 0.58) 10.2%, rgba(131, 237, 203, 0.59) 23.8%, #ebf1ef 50.7%);
-    text-shadow: #20caf6 0 0 5px;
+    background: white;
+    text-shadow:  0 0 5px;
     margin-bottom: -1px;
     border-radius: 10px;
   }

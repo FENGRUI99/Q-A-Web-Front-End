@@ -7,12 +7,12 @@
       <el-container>
         <el-aside width=35% style="margin-left: 5%;margin-top: 1.3%;margin-right: 0">
 <!--           Personal Card-->
-        <div class="pCard" style="overflow-Y:scroll">
+        <div class="pCard" >
           <!-- Privacy-->
           <br>
           <div>
             <div @click="changeHidden" style="cursor:hand;">
-              <div  class="touxiang" style="text-align: center;display:inline-block;margin-top:1%;margin-bottom: 0"> <changePho></changePho> </div>
+              <div  class="touxiang" style="text-align: center;display:inline-block;margin-top:3%;margin-bottom: 0"> <changePho></changePho> </div>
             </div>
             <div style="font-weight: bolder;font-size: 23px" > {{user_info.user_name}} </div>
             <span style="font-size: 20px;color: #8c939d;font-weight: bolder">Personal Information</span>
@@ -153,7 +153,7 @@
               <el-button @click="cancel" type="text" >Cancel</el-button>
             </div>
             <el-divider></el-divider>
-            <div style="font-size: 20px;color: #8c939d;font-weight: bolder;margin-bottom: 10px">Interest Tag</div>
+            <div style="font-size: 20px;color: #8c939d;font-weight: bolder;margin-top:2%;margin-bottom: 10px">Interest Tag</div>
             <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #7ba9e2;color: #67a3d0" > tag1</el-tag>
             <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #7ba9e2;color: #67a3d0">  tag2</el-tag>
           </div>

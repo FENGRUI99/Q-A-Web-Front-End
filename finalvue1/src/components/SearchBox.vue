@@ -10,9 +10,9 @@
       </el-input>
       </td>
       <td width="3%"></td>
-      <td>
+      <td style="font-family: Helvetica">
         <v-btn
-          color= #A5D6A7
+          color= #72afff
           elevation="3"
           @click="getList">Search
         </v-btn>

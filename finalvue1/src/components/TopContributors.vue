@@ -65,10 +65,10 @@ export default {
     font-family: Helvetica;
   }
   .el-carousel__item:nth-child(2n) {
-    background-color: #99bfab;
+    background-color: #48c0e0;
   }
   .el-carousel__item:nth-child(2n+1) {
-    background-color: #8fcba1;
+    background-color:  #48c0e0;
   }
 
   #ht{margin:0 auto;position: relative; top:0px;height: 50px;left: 0px;font-weight: bolder;}

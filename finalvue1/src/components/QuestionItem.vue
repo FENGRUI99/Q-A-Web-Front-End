@@ -1,6 +1,6 @@
 <template>
   <div id="block" >
-    <div>  <el-backtop style="background-color: #eef5e3;color:#51bd20;border-radius: 8px"></el-backtop></div>
+    <div>  <el-backtop style="background-color: rgba(201,221,245,0.87);color:#72afff;border-radius: 8px"></el-backtop></div>
     <div v-if="this.$store.getters.getIsFind === true">
       <div v-for="(item,index) in this.$store.getters.getList.slice(0, this.count)" v-bind:key="index">
         <table class="abc">
@@ -23,13 +23,13 @@
               </li>
               <li style="float: left;">
                 <UL class=fm>
-                  <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.create_time | getTimeFormat}}
+                  <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #72afff;text-decoration:underline;">{{item.user_name}}</span> {{item.create_time | getTimeFormat}}
                     <ul class="idinfo">
                       <v-card>
                         <v-list-item-content class="justify-center">
                           <div class="mx-auto text-center">
                             <v-avatar
-                              color="green"
+                              color="#72afff"
                               size = "40"
                             >
 <!--                              <img-->
@@ -73,7 +73,7 @@
               <li style="text-align: right;float: right;display:inline-block;margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
                   :key="tag"
                   effect="plain">
-                <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #A5D6A7;color: #A5D6A7"
+                <el-tag type="success" style="font-weight: bold;font-family:Helvetica; font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #97b9e7;color: #72afff"
                 >  {{ tag }}
                 </el-tag>
               </li>
@@ -120,7 +120,7 @@
             <div class="blank"></div>
           </div>
           <br>
-          <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
+          <el-button @click="toDetailPage1(item)" style="background-color: rgba(100,149,237,0.76)" plain size="medium">
             <table>
               <td><i class="el-icon-edit"></i></td>
               <td>{{item.number_comment}}</td>
@@ -140,41 +140,6 @@
           class="abc loadingStyle" id = 'load'
 
         ></v-skeleton-loader>
-        <!--        <v-progress-circular-->
-        <!--          :size="50"-->
-        <!--          color="primary"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :width="3"-->
-        <!--          color="red"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :size="70"-->
-        <!--          :width="7"-->
-        <!--          color="purple"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :width="3"-->
-        <!--          color="green"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
-
-        <!--        <v-progress-circular-->
-        <!--          :size="50"-->
-        <!--          color="amber"-->
-        <!--          indeterminate-->
-        <!--          style="border-radius:10px ;z-index: -1"-->
-        <!--        ></v-progress-circular>-->
 
       </div>
     </div>

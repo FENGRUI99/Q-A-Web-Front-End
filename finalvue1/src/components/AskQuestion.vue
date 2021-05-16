@@ -5,12 +5,12 @@
     <div class="foreground" style="width: 1000%;margin-top:-40%;margin-left:-100%;height: 2000px;float: right;position: absolute;"></div>
     </div>
     <v-btn
-      color=  #90c49c
+      color=  #72afff
       elevation="3"
       @click="foldText"
       x-large
       id="ask">
-      <table style="width: 100%;border: #90c49c 1px" >
+      <table style="width: 100%;border: #72afff 1px" >
         <tr style="font-size:25px; text-align: left;color: white"> Add </tr>
         <tr style="font-size:25px;font-weight: bolder;border-bottom: 1px;color: white"> Questions </tr>
       </table>
@@ -145,7 +145,7 @@
     <li style="display:inline-block;width: 25%;"></li>
     <li style="display: inline-block;">
       <v-btn
-        color= #A5D6A7
+        color= #72afff
         elevation="3"
         @click="submit"
         style="width: 130px;"
@@ -388,7 +388,7 @@ li{
   width: 200px;
   height: 100px;
   border-radius: 4px;
-  background-color: #4f916a;
+  background-color: #5579a7;
   text-align: center;
   color: #fff;
   padding: 40px 20px;

@@ -23,13 +23,13 @@
               </li>
               <li style="float: left;">
                 <UL class=fm>
-                  <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #81D454;text-decoration:underline;">{{item.user_name}}</span> {{item.create_time | getTimeFormat}}
+                  <LI style="color: gray;font-size: 14px;z-index: 10;"> Posted by <span style="color: #72afff;text-decoration:underline;">{{item.user_name}}</span> {{item.create_time | getTimeFormat}}
                     <ul class="idinfo">
                       <v-card>
                         <v-list-item-content class="justify-center">
                           <div class="mx-auto text-center">
                             <v-avatar
-                              color="green"
+                              color="#72afff"
                               size = "40"
                             >
                               <!--                              <img-->
@@ -74,8 +74,8 @@
               </li>
               <li style="text-align: right;float: right;display:inline-block;margin-left: 1%" v-for="tag in setQuestion_tags_en(item.question_tags)"
                   :key="tag"
-                  effect="plain">
-                <el-tag type="success" style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #A5D6A7;color: #A5D6A7"
+                  effect="plain" class="change">
+                <el-tag style="font-weight: bold;font-size: 13px;margin-top:-3px; border-radius: 10px;background: white;border-width: 1.5px;border-color: #72afff;color: #72afff"
                 >  {{ tag }}
                 </el-tag>
               </li>
@@ -93,7 +93,7 @@
             </div>
             <div class="blank"></div>
           </div>
-          <el-button @click="toDetailPage1(item)" type="success" plain size="medium">
+          <el-button @click="toDetailPage1(item)"  plain size="medium">
             <table>
               <td><i class="el-icon-edit"></i></td>
               <td>{{item.number_comment}}</td>
@@ -411,6 +411,10 @@ export default {
 }
 </script>
 <style scoped>
+  .change>>>element.style{
+    color: #70ace7;
+    border-color: #7ba9e2;
+  }
 .demo-search-div{
 }
 

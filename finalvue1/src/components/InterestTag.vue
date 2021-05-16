@@ -116,7 +116,7 @@ button{
   padding: 2px;
   font-size: large;
   background: white;
-  color: #8ae779;
+  color: #72afff;
   border-radius: 3px;
   border: 1px solid #f6f6f6;
   opacity: 1.0;
@@ -129,12 +129,12 @@ button:hover{
   /*width: 20%;*/
   /*padding: 10px;*/
   /*font-size: x-large;*/
-  background: #44d929;
+  background: #4e87d0;
   color: white;
   border: 1px solid darkgrey;
 }
 .click {
-  background: #8ae779;
+  background: #72afff;
   font-weight: bold;
   color: white;
 }
@@ -142,12 +142,13 @@ button:hover{
   background: #cccccc;
 }
 .p{
-  font-family:Arial, sans-serif;
+  font-family:Helvetica;
   /*font-weight: bold;*/
   color: black;
   font-size: x-large;
 }
   .tag{
     font-weight: bold;
+    font-family:Helvetica;
   }
 </style>

@@ -14,7 +14,7 @@
     <br>
     <div id="total">
       <div style="text-align: left">
-        <el-button type="success" class="button" style=" border-bottom:3px solid green;width: 19%;font-weight:bold; font-size: x-large; padding: 10px;" disabled>Log in</el-button>
+        <el-button type="success" class="button" style=" border-bottom:3px solid #72afff;width: 19%;font-weight:bold; font-size: x-large; padding: 10px;" disabled>Log in</el-button>
         <el-button type="success" plain class="button" style="width: 20%; font-family: Arial, sans-serif; font-size: x-large; padding: 10px" v-on:click="toRegister">Sign up</el-button>
       </div>
       <br>
@@ -25,7 +25,7 @@
         <li><el-input  v-model="user_pwd"  placeholder="enter your password" show-password @keyup.enter.native="toPage" ></el-input></li>
         <br>
         <li><v-btn
-          color="success"
+          color="#72afff"
           @click="toPage"
           style="float: left"
         >
@@ -33,7 +33,7 @@
 <!--        <li style="text-align: center"><el-button type="success" v-on:click="toPage" style="height: 40px;"> Login  </el-button></li>-->
       </ul>
       <ul style="float:left;padding-left: 5%"> <el-divider direction="vertical"></el-divider></ul>
-      <ul style="float: left;width: 50%;color: darkblue;font-weight: bold">
+      <ul style="float: left;width: 50%;color: #72afff;font-weight: bold">
         <li class="rightSide">Over 1000 questions proposed and got solved.</li>
         <li class="rightSide">Now it's your turn to ask louder here</li>
       </ul>
@@ -133,6 +133,7 @@ export default {
 }
 .rightSide{
   font-size: 1.5em;
+  font-family: helvetica;
 }
 img{
   width: 100%;
@@ -155,7 +156,7 @@ button:hover{
   border: 1px;
   height: 45px;
   border-radius: 5px;
-  background: limegreen;
+  background: #72afff;
   color: white;
 }
 
@@ -165,7 +166,7 @@ button{
   width: 40%;
   border-radius: 5px;
   border: 1px solid darkgrey;
-  background: #6add6a;
+  background: #72afff;
   color: white;
 }
 .button:hover{
@@ -175,7 +176,7 @@ button{
   border-radius: 0px;
   background: none;
   color: black;
-  border-bottom:3px solid green;
+  border-bottom:3px solid #72afff;
   font-weight: bold;
 }
 .button{
@@ -196,7 +197,7 @@ input{
   /*width: 620px;*/
   font-size: 30px;
   font-weight: 700;
-  color:darkgreen;
+  color:#72afff;
 }
 
 .p{
@@ -207,10 +208,10 @@ input{
 
 }
 input:focus{
-  border-color: limegreen;
+  border-color: #72afff;
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(50,205,50,.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(50,205,50,.6)
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(114, 175, 255);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(114, 175, 255)
 
 }
 input[type = checkbox]{
@@ -293,7 +294,7 @@ input[type = checkbox]{
 /* Animation One */
 
 .seven span {
-  color: #1a601f;
+  color: #72afff;
   opacity: 0;
   transform: translate(-150px, 0) scale(.3);
   animation: leftRight .5s forwards;
@@ -303,7 +304,7 @@ input[type = checkbox]{
   40% {
     transform: translate(50px, 0) scale(.7);
     opacity: 1;
-    color: #1a601f;
+    color: #72afff;
   }
 
   80% {
