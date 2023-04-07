@@ -1,30 +1,64 @@
-# finalvue1
+# Q-A-Web-Application-Front-End
 
-> A Vue.js project
+### 1.简介
 
-## Build Setup
+西交利物浦大学软件开发项目
 
-``` bash
-# install dependencies
-npm install
+实现了一个在线问答平台的前端部分
 
-# serve with hot reload at localhost:8080
-npm run dev
+技术栈： vue3 + vuex + vue-router + webpack + ElementUI
 
-# build for production with minification
-npm run build
+项目原地址： https://gitee.com/yngrxxm/finalvue1/tree/master/finalvue1
 
-# build for production and view the bundle analyzer report
-npm run build --report
+### 2.下载与使用
 
-# run unit tests
-npm run unit
+- 1.下载代码
 
-# run e2e tests
-npm run e2e
+  ```shell
+  git clone https://github.com/FENGRUI99/Q-A-Web-Front-End.git
+  cd finalvue1
+  ```
 
-# run all tests
-npm test
-```
+- 2.安装依赖
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+  ```java
+  npm install
+  ```
+
+  **macbook m1芯片**装chromedriver会报错，需单独执行`npm install chromedriver@87.0.1`
+
+- 使用
+
+  ```shell
+  npm run dev
+  ```
+
+### 3. 页面功能实现
+
+- 封面页
+- 登陆页
+  - 登陆
+- 注册页
+  - 注册
+- 主页
+  - 按照名称，发布时间，热度排序
+  - 按照类型筛选
+  - 搜索问题
+  - 无限下拉+骨架图展示问题
+  - 点击提问按钮
+- 个人详情页
+  - 个人资料修改
+  - 密码修改
+  - 发布问题和回答问题
+- 问题详情页
+  - 问题详情展示
+  - 回复展示
+  - 相关问题展示
+- 聊天页
+  - 选择好友聊天
+
+### 3.界面展示部分
+
+![Screenshot](static/Screenshot.png)
+
+![Screenshot1](static/Screenshot1.png)
